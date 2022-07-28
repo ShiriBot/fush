@@ -7,6 +7,7 @@
 <title>메인</title>
 </head>
 <body>
+임정후 첫번째 push
 <%@ include file="header.jsp" %>
 
 <div class="center">
