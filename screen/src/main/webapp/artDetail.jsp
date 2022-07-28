@@ -14,7 +14,5 @@
 <%@ include file="artDetailRow.jsp" %>
 </div>
 </div>
-<%@ include file="footer.jsp" %>
-
 </body>
 </html>

@@ -1,27 +1,31 @@
 @charset "UTF-8";
 
 .artDetailFrame{
-	display:flex;
+	display : flex;
 }
 
-.artDetail{
-	display:flex;
-	flex-direction: column;
-	align-items: flex-end;
-	justify-content: space-between;
-	background-attachment: scroll;
+.artDetail{/* 작품 정보*/
 	position: fixed;
-	text-align: right;
 	width:20%;
 }
 
-.detailIgm{
-	
+.artDetail a {
+	padding-right:10px;
+}
+
+.detailImg{
+	width:100%;
+}
+
+.replyArrange{
+	display:flex;
+	justify-content: flex-end;
+	width:100%;
 }
 
 .replyFrame{
 	display:flex;
-	flex-direction: column;
+	flex-flow: column;
 	width:60%;
 }
 
