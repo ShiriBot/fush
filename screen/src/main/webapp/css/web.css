@@ -8,15 +8,20 @@ body {
 	font-family: Arial;
 	padding: 10px;
 	background: none;
+	
 }
 
-/* Header/Blog Title */
+/* 상단 네비바 고정 */
 .header {
-	display:flex;
-	justify-content: space-between;
-	padding: 10px;
-	text-align: center;
-	background: none;
+	display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    text-align: center;
+    /* 이 밑 수정 */
+    position: sticky;
+    top: 0px;
+    background-color: rgb(247, 249, 250);
+    margin: -25px;
 }
 .header a {
 	padding-right:10px;
@@ -62,7 +67,7 @@ body {
   height: 100%;
   opacity: 0;
   border: 2px solid transparent;
-  border-top-color: #6078ea;
+  border-color: #6078ea;
   border-left-color: #6078ea;
   border-bottom-color: #6078ea;
   transition: opacity 0.2s ease;
@@ -166,6 +171,8 @@ body {
   background-color: #c7d0f8;
 }
 
+/* 상세검색창 */
+
 .field {
   border: 0;
   width: 100%;
@@ -175,6 +182,12 @@ body {
   border-radius: 3px;
   box-shadow: 0px 8px 15px rgba(75, 72, 72, 0.1);
   transition: all 0.4s ease;
+}
+
+/* 로그인창 사이즈 수정 */
+.sizeOfSearchBar{
+	margin-top: 10px;
+	width:450px;
 }
 .field:focus {
   outline: none;
@@ -188,14 +201,14 @@ body {
   opacity: 0;
   transform: translateX(200%);
 }
-/* Style the top navigation bar */
-.topnav {
+/* Style the  navigation bar */
+.nav {
 	overflow: hidden;
 	background-color: none;
 }
 
-/* Style the topnav links */
-.topnav a {
+/* Style the nav links */
+.nav a {
 	float: left;
 	display: block;
 	color: black;
@@ -206,14 +219,16 @@ body {
 }
 
 /* Change color on hover */
-.topnav a:hover {
+.nav a:hover {
 	background-color: #ddd;
 	color: black;
 }
 
+/* 마진탑 100px */
 .center{
 	display:flex;
 	justify-content: center;
+	margin-top: 100px;
 }
 
 .session{
@@ -283,7 +298,19 @@ body {
 	margin:10px;
 }
 
-/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+
+
+/* 검색창  */
+.searchBox{
+	margin-top: 100px;
+
+	
+}
+
+
+
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on  of each other instead of next to each other */
 @media screen and (max-width: 800px) {
 	.leftcolumn, .rightcolumn {
 		width: 100%;
@@ -291,9 +318,9 @@ body {
 	}
 }
 
-/* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
+/* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on  of each other instead of next to each other */
 @media screen and (max-width: 400px) {
-	.topnav a {
+	.nav a {
 		float: none;
 		width: 100%;
 	}

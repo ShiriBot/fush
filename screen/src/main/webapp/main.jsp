@@ -7,7 +7,6 @@
 <title>메인</title>
 </head>
 <body>
-채정실 첫번째 push
 <%@ include file="header.jsp" %>
 
 <div class="center">
