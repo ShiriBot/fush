@@ -4,11 +4,11 @@
 <html>
 <head>
 <%@ include file="head.jsp" %>
-
-<title>메인</title>
+a
+<title>제발 돼라 11:16분</title>
 </head>
 <body>
-
+누나 미안해!
 <%@ include file="header.jsp" %>
 
 <div class="center">
