@@ -5,7 +5,7 @@
 <head>
 <%@ include file="head.jsp" %>
 
-<title>메인안된다고?</title>
+<title>메인</title>
 </head>
 <body>
 
