@@ -5,7 +5,7 @@
 <head>
 <%@ include file="head.jsp" %>
 a
-<title>메인되지않을까????</title>
+<title>제발 돼라 11:16분</title>
 </head>
 <body>
 
