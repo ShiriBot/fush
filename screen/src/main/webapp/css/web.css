@@ -1,7 +1,8 @@
 @charset "UTF-8";
 
 * {
-	box-sizing: content-box;
+	box-sizing: border-box;
+	background-color: green;
 }
 
 body {
