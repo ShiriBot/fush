@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 * {
-	box-sizing: border-box;
+	box-sizing: content-box;
 }
 
 body {
@@ -22,6 +22,8 @@ body {
     top: 0px;
     background-color: rgb(247, 249, 250);
     margin: -25px;
+    height:50px;
+    z-index:2;
 }
 .header a {
 	padding-right:10px;
@@ -39,7 +41,7 @@ body {
 .icons-container {
   position: absolute;
   top: 5px;
-  right: 0px;
+  right: -20px;
   width: 35px;
   height: 35px; 
   overflow: hidden;
@@ -176,7 +178,7 @@ body {
 .field {
   border: 0;
   width: 100%;
-  height: 100%;
+  height: 60%;
   padding: 10px 20px;
   background: white;
   border-radius: 3px;
@@ -186,8 +188,8 @@ body {
 
 /* 로그인창 사이즈 수정 */
 .sizeOfSearchBar{
-	margin-top: 10px;
 	width:450px;
+	margin-left:5%;
 }
 .field:focus {
   outline: none;
@@ -224,7 +226,7 @@ body {
 	color: black;
 }
 
-/* 마진탑 100px */
+/* 수정) 마진탑 100px */
 .center{
 	display:flex;
 	justify-content: center;
@@ -263,7 +265,7 @@ body {
 }
 
 /* Fake image */
-.fakeimg {
+.slideImg {
 	background-color: #aaa;
 	width: 100%;
 	padding: 20px;
@@ -304,11 +306,79 @@ body {
 .searchBox{
 	margin-top: 100px;
 
-	
 }
+/* 메인 큰 베너 */
+.content{ /*컨텐츠 넓이지정*/
+  position:relative;
+  width:1000px;
+  z-index:1;
+}
+.slides { /*슬라이드 아이템이 나올 뼈대 지정*/
+  width:600px;
+  height:300px;
+  position:relative;
 
-
-
+}
+.slide_item { /*슬라이드 아이템을 absolute로 겹쳐놓고 투명하게 하기*/
+  position:absolute;
+  width:160%;
+  height:300px;
+  opacity:0;
+   transition:all 0.3s;
+}
+.ontheSlide { /*현재 아이템에 붙여줄 클래스*/
+  opacity:1;
+  transition:all 0.3s;
+}
+.ontheThumbnail { /*현재 썸네일에 붙여줄 클래스*/
+  border: 1px dashed red;
+}
+.nextButton,.prevButton { /*다음,이전 버튼을 드래그되지 않게 방지해주기*/
+ -webkit-user-select: none;
+	-ms-user-select: none;
+	user-select: none
+}
+.nextButton { /*다음 버튼을 오른쪽으로 보내기*/
+  float:right;
+  margin-right:4.5%;
+}
+.prevButton{ /*왼쪽 버튼을 왼쪽으로 보내기*/
+  float:left;
+}
+.Thumbnail { /*썸네일 아이템을 감쌀 뼈대*/
+  display:flex;
+  flex-flow:row wrap;
+  width:100%;
+  height:50px;
+  position:absolute;
+  bottom:0px;
+  /* justify-content:center; */
+  padding-left:20%;
+}
+/*   background-image: url(""); */
+.slide_item:nth-of-type(1),.thumbnail_item:nth-of-type(1) { /*예제를 위해 썸네일 아이템들의 색깔을 구분*/
+ background-image: url("../images/logo.png");	
+ background-repeat: no-repeat;
+ background-size:100%,100%;
+}
+.slide_item:nth-of-type(2),.thumbnail_item:nth-of-type(2) {
+  background:blue;
+}
+.slide_item:nth-of-type(3),.thumbnail_item:nth-of-type(3) {
+  background:red;
+}
+.slide_item:nth-of-type(4),.thumbnail_item:nth-of-type(4) {
+  background:orange;
+}
+.slide_item:nth-of-type(5),.thumbnail_item:nth-of-type(5) {
+  background:black;
+}
+.slide_item:nth-of-type(6),.thumbnail_item:nth-of-type(6) {
+  background:green;
+}
+.thumbnail_item { /*썸네일 아이템의 길이 설정*/
+  width:98px;
+}
 
 /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on  of each other instead of next to each other */
 @media screen and (max-width: 800px) {
@@ -317,6 +387,10 @@ body {
 		padding: 0;
 	}
 }
+
+
+
+
 
 /* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on  of each other instead of next to each other */
 @media screen and (max-width: 400px) {
