@@ -12,7 +12,7 @@
 
 <div class="center">
 <div class="session">
-마이페이지?
+<%@ include file="mypageContent.jsp" %>
 </div>
 </div>
 <%@ include file="footer.jsp" %>
