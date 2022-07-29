@@ -4,4 +4,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="css/web.css">
 <link rel="stylesheet" href="css/rating.css">
+<<<<<<< HEAD
 <link rel="stylesheet" href="css/searchDetailCss.css">
+=======
+<link rel="stylesheet" href="css/detail.css">
+>>>>>>> branch 'master' of https://github.com/ShiriBot/fush.git

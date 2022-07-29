@@ -4,19 +4,15 @@
 <html>
 <head>
 <%@ include file="head.jsp" %>
-<title>메인</title>
+<title>작품상세정보:작품명</title>
 </head>
 <body>
 <%@ include file="header.jsp" %>
-엉킨거 풀기
+
 <div class="center">
 <div class="session">
-<%@ include file="row.jsp" %>
+<%@ include file="artDetailRow.jsp" %>
 </div>
 </div>
-<%@ include file="footer.jsp" %>
-
 </body>
 </html>
-
-

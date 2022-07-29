@@ -1,8 +1,13 @@
 @charset "UTF-8";
 
 * {
+<<<<<<< HEAD
 	box-sizing: border-box;
 	background-color: green;
+=======
+	box-sizing : border-box;
+	background-color: black;
+>>>>>>> branch 'master' of https://github.com/ShiriBot/fush.git
 }
 
 body {
@@ -179,7 +184,11 @@ body {
 .field {
   border: 0;
   width: 100%;
+<<<<<<< HEAD
   height: 60%;
+=======
+  height: 60px;
+>>>>>>> branch 'master' of https://github.com/ShiriBot/fush.git
   padding: 10px 20px;
   background: white;
   border-radius: 3px;

@@ -1,0 +1,42 @@
+@charset "UTF-8";
+
+.artDetailFrame{
+	display : flex;
+}
+
+.artDetail{/* 작품 정보*/
+	position: fixed;
+	width:20%;
+}
+
+.artDetail a {
+	padding-right:10px;
+}
+
+.detailImg{
+	width:100%;
+}
+
+.replyArrange{
+	display:flex;
+	justify-content: flex-end;
+	width:100%;
+}
+
+.replyFrame{
+	display:flex;
+	flex-flow: column;
+	width:60%;
+}
+
+.replyCard {
+  background-color: white;
+  padding: 30px;
+  width:100%;
+}
+
+.replyHead{
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-between;
+}
