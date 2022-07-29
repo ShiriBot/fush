@@ -2,10 +2,11 @@
     pageEncoding="UTF-8"%>
 <div class="artDetailFrame">
 	<div class="artDetail">
-			<img class="detailImg" src="images/no_home.jpg"><a href="#">보러가기</a>
-			<h1>집이 없어</h1>
-			<div>연재중</div>
-			<div>와난</div>
+			<img class="detailImg" src="images/no_home.jpg">
+			<button class="bttn-bordered bttn-xs bttn-primary">보러가기</button>
+			<h1 style="display:inline-block;">집이 없어</h1>
+			<div style="display:inline-block;">연재중</div>
+			<h3>와난</h3>
 			<div>평균 평점 : ★★★★★</div>
 			<a href="#">#스토리</a><a href="#">#드라마</a>
 			<div>집을 버리고 뛰쳐나간 고해준, 집 없이 텐트 생활하는 문제아 백은영. 

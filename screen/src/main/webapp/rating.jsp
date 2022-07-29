@@ -13,16 +13,6 @@
 <div class="session">
 <h2> 하여튼 뭔가 간지나고 평가를 독려하는 문구 </h2>
 <%@ include file="ratingContent.jsp" %>
-<%@ include file="ratingContent.jsp" %>
-<%@ include file="ratingContent.jsp" %>
-<%@ include file="ratingContent.jsp" %>
-<%@ include file="ratingContent.jsp" %>
-<%@ include file="ratingContent.jsp" %>
-<%@ include file="ratingContent.jsp" %>
-<%@ include file="ratingContent.jsp" %>
-<%@ include file="ratingContent.jsp" %>
-<%@ include file="ratingContent.jsp" %>
-<%@ include file="ratingContent.jsp" %>
 </div>
 </div>
 <%@ include file="footer.jsp" %>
