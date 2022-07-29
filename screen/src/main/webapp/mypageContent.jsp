@@ -20,8 +20,11 @@
 			<h1>임정후 님</h1>
 			<h3>아직 작품을 평가하지 않으셨네요! 작품을 평가하고 취향을 알아보세요!</h3><!-- 취향분석 이후에는 취향에 대한 한마디로 변경 -->
 		</div>
-		<h4> 평가한 작품 수 : 0개 </h4>
-		<div class="ratingFrame"> <!-- 여기서는 기본적으로 최근에 평가한 항목들 확인가능. 평가한 작품목록에서 여러가지 조회기능 제공예정 -->
+		<h4> 평가한 작품 수 : 00개 </h4>
+		<!-- 여기서는 기본적으로 최근에 평가한 항목들 확인가능.
+		일단 구도만 잡으라고 평가하기의 콘텐츠를 가져왔지만 아마 별도로 구현해야 할 것.
+		평가한 작품목록에서 여러가지 조회기능 제공예정 -->
+		<div class="ratingFrame">
 			<div class="ratingImgFrame">
 				<div class="ratingImg"></div>
 			</div>
@@ -31,14 +34,16 @@
 				<form name="ratingform" class="ratingform" method="post"
 					action="./save">
 					<fieldset>
-						<input type="radio" name="rating" value="5" id="rate1"> <label
-							for="rate1">⭐</label> <input type="radio" name="rating" value="4"
-							id="rate2"> <label for="rate2">⭐</label> <input
-							type="radio" name="rating" value="3" id="rate3"> <label
-							for="rate3">⭐</label> <input type="radio" name="rating" value="2"
-							id="rate4"> <label for="rate4">⭐</label> <input
-							type="radio" name="rating" value="1" id="rate5"> <label
-							for="rate5">⭐</label>
+						<input type="radio" name="rating" value="5" id="rate1"> 
+						<label for="rate1">⭐</label>
+						<input type="radio" name="rating" value="4" id="rate2" checked>
+						<label for="rate2">⭐</label>
+						<input type="radio" name="rating" value="3" id="rate3">
+						<label for="rate3">⭐</label>
+						<input type="radio" name="rating" value="2" id="rate4">
+						<label for="rate4">⭐</label>
+						<input type="radio" name="rating" value="1" id="rate5">
+						<label for="rate5">⭐</label>
 					</fieldset>
 				</form>
 			</div>
