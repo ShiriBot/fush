@@ -19,11 +19,9 @@
 			</div>
 		</fieldset>
 	</div>
-	
-		
-	<div>
 		<a href="searchDetail.jsp"> 상세검색</a>
-		<a href="#" id="rating"> 평가하기 </a>
+	<div>
+		<a href="rating.jsp" id="rating"> 평가하기 </a>
 		 
 <% if(session.getAttribute("login")==null) {%>	
 			<a href="loginProc.jsp" id="login"> 로그인</a>

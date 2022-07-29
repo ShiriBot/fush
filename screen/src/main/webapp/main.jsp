@@ -8,7 +8,6 @@
 </head>
 <body>
 <%@ include file="header.jsp" %>
-엉킨거 풀기
 <div class="center">
 <div class="session">
 <%@ include file="row.jsp" %>

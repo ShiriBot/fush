@@ -33,10 +33,14 @@
 </div>
 <div class="row">
 	<div class="card">
-		<div class="fakeimg" style="height: 200px;">Image</div>
-		<h3>작품명</h3>
-		<h5>작가명</h5>
-		<p>#태그1 #태그2 #태그3</p>
+		<a href="artDetail.jsp">
+			<div class="imgframe" style="height: 200px;overflow:hidden;">
+				<img class="mainImage" src="images/no_home.jpg">
+			</div>
+			<h3>집이 없어</h3>
+		</a>
+		<h5>와난</h5>
+		<a class="maintag" href="#">#스토리</a><a class="maintag" href="#">#드라마</a>
 	</div>
 	<div class="card">
 		<div class="fakeimg" style="height: 200px;">Image</div>
