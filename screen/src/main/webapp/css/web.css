@@ -1,13 +1,9 @@
 @charset "UTF-8";
 
 * {
-<<<<<<< HEAD
-	box-sizing: border-box;
-	background-color: green;
-=======
 	box-sizing : border-box;
-	background-color: black;
->>>>>>> branch 'master' of https://github.com/ShiriBot/fush.git
+	background-color: yellow;
+
 }
 
 body {
@@ -184,11 +180,8 @@ body {
 .field {
   border: 0;
   width: 100%;
-<<<<<<< HEAD
   height: 60%;
-=======
   height: 60px;
->>>>>>> branch 'master' of https://github.com/ShiriBot/fush.git
   padding: 10px 20px;
   background: white;
   border-radius: 3px;
@@ -397,9 +390,6 @@ body {
 		padding: 0;
 	}
 }
-
-
-
 
 
 /* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on  of each other instead of next to each other */
