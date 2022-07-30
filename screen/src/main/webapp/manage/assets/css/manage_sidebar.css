@@ -7,6 +7,7 @@
 
 /* 사이드바 정렬관련 */
 .navbar {
+	margin-bottom: 0;
 	position: relative;
 	display: -ms-flexbox;
 	display: flex;
@@ -17,7 +18,6 @@
 	-ms-flex-pack: justify;
 	justify-content: space-between;
 	padding: 0.5rem 1rem;
-	margin-bottom: 0;
 }
 
 /* 사이드바 로고 */

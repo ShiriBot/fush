@@ -61,12 +61,10 @@ body {
 	line-height: 1.471;
 	margin: 0;
 	text-align: left;
-}
+	background-color: #fff;}
 
 a {
 	color: #5A738E;
-	text-decoration: none;
-	color: #007bff;
 	text-decoration: none;
 	background-color: transparent;
 }
@@ -80,12 +78,6 @@ a, a:visited, a:focus, a:active, :visited, :focus, :active, .btn:focus,
 a:not([href]):not([tabindex]) {
     color: inherit;
     text-decoration: none;
-}
-
-a:-webkit-any-link {
-	color: -webkit-link;
-	cursor: pointer;
-	text-decoration: underline;
 }
 
 img {
@@ -153,11 +145,51 @@ ol ol, ol ul, ul ol, ul ul {
     margin-bottom: 0;
 }
 
+.row {
+    margin-right: -10px;
+    margin-left: -10px;
+}
+.row {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
 .clearfix::after {
 	display: block;
 	clear: both;
 	content: "";
 }
+
+.container {
+	width: 100%;
+	padding: 0;
+	max-width: 100%;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+/* 이것은 무언가 잘못되어 있다.
+ @media ( min-width : 992px) {
+	.container {
+		max-width: 960px;
+	}
+}
+
+@media ( min-width : 768px) {
+	.container {
+		max-width: 720px;
+	}
+}
+
+@media ( min-width : 576px) {
+	.container {
+		max-width: 540px;
+	}
+} */
 
 .clearfix:after, form:after {
 	content: ".";
@@ -170,9 +202,106 @@ ol ol, ol ul, ul ol, ul ul {
 .img-circle {
 	border-radius: 50%;
 }
+.pull-right {
+    float: right;
+}
 
 .dropdown, .dropleft, .dropright, .dropup {
     position: relative;
+}
+
+.dropdown-toggle {
+    white-space: nowrap;
+}
+
+.dropdown-toggle::after {
+    display: inline-block;
+    margin-left: 0.255em;
+    vertical-align: 0.255em;
+    content: "";
+    border-top: 0.3em solid;
+    border-right: 0.3em solid transparent;
+    border-bottom: 0;
+    border-left: 0.3em solid transparent;
+}
+
+.dropdown-menu {
+    border: medium none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    display: none;
+    float: left;
+    font-size: 12px;
+    left: 0;
+    list-style: none outside none;
+    padding: 0;
+    position: absolute;
+    text-shadow: none;
+    top: 100%;
+    z-index: 9998;
+    border: 1px solid #D9DEE4;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 10rem;
+    padding: 0.5rem 0;
+    margin: 0.125rem 0 0;
+    font-size: 1rem;
+    color: #212529;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: 0.25rem;
+}
+
+.dropdown-menu a {
+    cursor: pointer;
+}
+
+.dropdown-menu[x-placement^=bottom], .dropdown-menu[x-placement^=left], .dropdown-menu[x-placement^=right], .dropdown-menu[x-placement^=top] {
+    right: auto;
+    bottom: auto;
+}
+
+.dropdown-item {
+    width: 100%;
+    padding: 12px 20px;
+}
+
+.dropdown-item {
+    display: block;
+    width: 100%;
+    padding: 0.25rem 1.5rem;
+    clear: both;
+    font-weight: 400;
+    color: #212529;
+    text-align: inherit;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+}
+
+.badge {
+    display: inline-block;
+    padding: 0.25em 0.4em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
 .nav {
@@ -206,11 +335,20 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 
 /* nav-md는 사이드바 default 상태 */
 /* 사이드 바 지역 크기와 위치 */
-@media (max-width: 991px){
-.nav-md .container.body .right_col, .nav-md .container.body .top_nav {
-    width: 100%;
-    margin: 0;
+@media ( max-width : 991px) {
+	.nav-md .container.body .right_col, .nav-md .container.body .top_nav {
+		width: 100%;
+		margin: 0;
+	}
 }
+
+.nav-md .container.body .right_col {
+    padding: 10px 20px 0;
+    margin-left: 230px;
+}
+
+body .container.body .right_col {
+    background: #F7F7F7;
 }
 
 .nav-md .container.body .col-md-3.left_col {
@@ -246,21 +384,19 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 	position: absolute;
 	top: 0;
 }
+@media(min-width:1000px){
+	.col-md-2 {
+		-ms-flex: 0 0 16.66666%;
+		flex: 0 0 16.66666%;
+		max-width: 16.66666%;
+	}}
 
-.col-md-55, .col-xs-12, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2,
-	.col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3,
-	.col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5,
-	.col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6,
-	.col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8,
-	.col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9,
-	.col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11,
-	.col-sm-11, .col-md-11, .col-lg-11, .col-sm-12, .col-md-12, .col-lg-12
-	{
-	position: relative;
-	min-height: 1px;
-	float: left;
-	padding-right: 10px;
-	padding-left: 10px;
+@media ( max-width : 999px) {
+	.col-sm-4 {
+		-ms-flex: 0 0 33.333333%;
+		flex: 0 0 33.333333%;
+		max-width: 33.333333%;
+	}
 }
 
 @media ( min-width : 768px) {
@@ -268,6 +404,14 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 		-ms-flex: 0 0 25%;
 		flex: 0 0 25%;
 		max-width: 25%;
+	}
+}
+
+@media ( max-width : 768px) {
+	.col-md-2 {
+		-ms-flex: 0 0 100%;
+		flex: 0 0 100%;
+		max-width: 100%;
 	}
 }
 
@@ -286,6 +430,32 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 	width: 100%;
 	padding-right: 15px;
 	padding-left: 15px;
+}
+
+.col-md-55, .col-xs-12, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2,
+	.col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3,
+	.col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5,
+	.col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6,
+	.col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8,
+	.col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9,
+	.col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11,
+	.col-sm-11, .col-md-11, .col-lg-11, .col-sm-12, .col-md-12, .col-lg-12
+	{
+	position: relative;
+	min-height: 1px;
+	float: left;
+	padding-right: 10px;
+	padding-left: 10px;
+}
+
+.green {
+    color: #1ABB9C;
+}
+
+.bg-green {
+    background: #1ABB9C !important;
+    border: 1px solid #1ABB9C !important;
+    color: #fff;
 }
 
 /* fontawesome을 쓰려고 발악했던 흔적.. 
