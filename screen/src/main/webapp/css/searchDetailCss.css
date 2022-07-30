@@ -1,34 +1,5 @@
 @charset "UTF-8";
 
-/* .searchBox{
-	width:1000px;
-	height:300px;
-	position:relative;
-	border:solid 2px black;
-	margin-left:15%;
-}
-.category{
-	display: flex;
-	flex-direction: column;
-	padding: 10px;
-    text-align: left;
-    width:20%;
-    height:100%;
-    float:left;
-}
-.genreRow{
-	display: flex;
-	justify-content: space-between;
-	padding: 10px;
-    text-align: left;
-    width:80%;
-    height:10px;
-    margin:15px;
-}
-
-.cate{
-	margin:10px;
-} */
 
 div.minimalistBlack {
   border: 1px solid #000000;
@@ -82,9 +53,6 @@ divta
 	margin-top:40px;
 }
 
-.searchPop{
-	float:right;
-}
 
 
 
@@ -117,15 +85,86 @@ table{
 	padding: 20px;
 	background-image:url("../images/doctor.jpg");
 	background-repeat: no-repeat;
-	background-size:150px,180px;
+	background-size:200px,180px;
 	height:200px;
 	display:block;
 	position:relative;
+	margin: auto;
+	display:flex;
+	
 }
 
+.searchPop{
+	margin-right:11%;
+	float:right;
+}
+
+
+/* 검색결과 */
+.webtoonName{
+	padding:15px;
+}
 .detail{
 	position:relative;
 	text-align:center;
+	display:flex;
 }
+
+.leftblock{
+  flex: 1;
+}
+.middleblock{
+  flex: 3;
+  text-align: center;
+  padding:40px;
+  display:flex;
+  flex-direction: column;
+}
+.rightblock{
+  flex: 1;
+  text-align: right;
+  display:flex; 
+}
+
+.platformDetail{
+	text-align: left;
+	margin-bottom: 10px;
+}
+
+.webtoonDetail{
+	text-align: left;
+	margin-bottom: 10px;
+}
+
+.genruDetail{
+	text-align: left;
+	margin-bottom: 10px;
+}
+
+.authorDetail{
+	text-align: left;
+	margin-bottom: 10px;
+}
+
+
+.webtoonDetail{
+	text-align: left;
+	margin-bottom: 10px;
+}
+
+
+.star{
+	margin:auto;
+}
+
+
+
+
+
+
+
+
+
+
 
 
