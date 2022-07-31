@@ -8,7 +8,7 @@
 
 /* table border & margin-top */
 div.minimalistBlack {
-	border: 1px solid #000000;
+	/* border: 1px solid #000000; */
 	width: 1000px;
 	text-align: left;
 	border-collapse: collapse;
@@ -20,19 +20,19 @@ div.minimalistBlack {
 	display: table;
 }
 
-/* 표 제목줄 → 제목줄 안 써서 죽은 코드 됨... 삭제해 말아...*/
+/* 표 제목줄 → 제목줄 안 써서 죽은 코드 됨... 삭제해 말아...→열제목처리함.*/
 .divTableHeading {
 	display: table-header-group;
 }
 
 /* 제목줄 border-bottom */
 .divTable.minimalistBlack .divTableHeading {
-	border-bottom: 1px solid #000000;
+	border-bottom: 1px solid lightgrey;
 }
 
 /* 제목줄 content text */
-.divTable.minimalistBlack .divTableHeading .divTableHead {
-	font-size: 15px;
+.divTable.minimalistBlack .divTableHead {
+	font-size: 20px;
 	font-weight: bold;
 	color: #000000;
 	text-align: left;
@@ -56,13 +56,28 @@ div.minimalistBlack {
 /* data cell border&padding */
 .divTable.minimalistBlack .divTableCell, .divTable.minimalistBlack .divTableHead
 	{
-	border: 1px solid #000000;
+	border-bottom: 1px solid lightgrey;
 	padding: 5px 4px;
 }
 
 /* data cell font-size */
 .divTable.minimalistBlack .divTableBody .divTableCell {
-	font-size: 13px;
+	font-size: 20px;
+	color: #0067a3;
+}
+
+.divTable.minimalistBlack .divTableBody .divTableCell>label:before{
+	content: "#";
+}
+
+.divTable.minimalistBlack .divTableBody .divTableCell input[type=checkbox]	{
+	display: none; /* 체크박스 감춤 */
+}
+
+.divTable.minimalistBlack .divTableBody .divTableCell input[type=checkbox]:checked 
+	+ label {
+	text-decoration: underline; /* 마우스 클릭 체크 */
+	font-weight: bold;
 }
 
 /* data foot? */
@@ -72,10 +87,12 @@ div.minimalistBlack {
 
 /* FootStyle */
 .minimalistBlack .tableFootStyle {
-	font-size: 14px;
+	font-size: 20px;
 	font-weight: bold;
-	color: #000000;
-	border-top: 1px solid #000000;
+	color:grey;
+	border-bottom: 1px solid lightgrey;
+	padding: 5px 4px;
+	display:table-cell;
 }
 
 /* 검색결과창 */
@@ -95,6 +112,12 @@ div.minimalistBlack {
 
 .searchPop a{
 	padding-left: 5px;
+	text-decoration:none;
+	color:grey;
+}
+
+.searchPop a:after{
+	content:"🔽";
 }
 
 /* 검색결과 블록 */
@@ -108,22 +131,28 @@ div.minimalistBlack {
 /* 이미지 블록 */
 .leftblock {
 	flex: 1;
+	display:flex;
+	flex-direction: column;
+	justify-content: center;
 }
 
 /* 상세정보 블록 */
 .middleblock {
 	flex: 3;
 	text-align: center;
-	padding: 40px;
 	display: flex;
 	flex-direction: column;
+	justify-content: space-between;
+	margin:20px;
 }
 
 /* 별점 블록 */
 .rightblock {
 	flex: 1;
-	text-align: right;
+	text-align: center;
 	display: flex;
+	flex-direction: column;
+	justify-content: center;
 }
 
 /* 검색결과 이미지 */
@@ -142,9 +171,10 @@ div.minimalistBlack {
 
 /* 검색결과 */
 .webtoonName{
+	font-size:20px;
+	font-weight:bold;
 	padding:15px;
 }
-
 
 .platformDetail{
 	text-align: left;
@@ -154,6 +184,7 @@ div.minimalistBlack {
 .webtoonDetail{
 	text-align: left;
 	margin-bottom: 10px;
+	font-size: 13px;
 }
 
 .genruDetail{
@@ -166,9 +197,17 @@ div.minimalistBlack {
 	margin-bottom: 10px;
 }
 
-.webtoonDetail{
+.middleblock span{
+	font-weight:bold;
+}
+
+.webtoonHashtag{
 	text-align: left;
 	margin-bottom: 10px;
+}
+
+.webtoonHashtag a{
+	padding-right:5px;
 }
 
 .star{
