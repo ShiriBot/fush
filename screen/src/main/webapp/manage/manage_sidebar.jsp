@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<div class="col-md-3 left_col">
+<div class="col-md-3 left_col menu_fixed">
 	<div class="left_col scroll-view">
 		<div class="navbar nav_title">
 			<a class="site_title" href="manage_index.jsp">
@@ -27,29 +27,37 @@
 				</h3>
 				<ul class="nav side-menu">
 					<li>
-						<a href="manage_main.jsp">
+						<a href="manage_index.jsp">
 							<i class="fa fa-house"></i>
 							HOME
-							<!-- 이 이하 주석은 사이드 메뉴가 필요할 경우 쓸 것들 -->
-	<!-- 						<span class="fa fa-chevron-down"></span> -->
+							
 						</a>
-	<!--					<ul class="nav child_menu">
-							<li>
-								<a href="#">하위메뉴이름</a>
-							</li>
-						</ul> -->
+
 					</li>
 					<li>
-						<a href="#">
+						<a href="manage_members.jsp">
 							<i class="fa fa-users"></i>
-							Member
+							Members
 						</a>
 					</li>
 					<li>
 						<a href="#">
 							<i class="fa fa-paintbrush"></i>
 							Arts
+							<span class="fa fa-chevron-down"></span>
 						</a>
+						<ul class="nav child_menu">
+							<li>
+								<a href="#">
+								작품목록
+								</a>
+							</li>
+							<li>
+								<a href="#">
+								작품등록요청
+								</a>
+							</li>
+						</ul>
 					</li>
 					<li>
 						<a href="#">

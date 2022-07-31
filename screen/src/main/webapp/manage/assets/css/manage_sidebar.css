@@ -174,7 +174,7 @@
 }
 
 .nav.child_menu {
-	display: none;
+	display: block;
 }
 
 .nav.child_menu li {

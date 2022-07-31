@@ -13,7 +13,7 @@
 			<div class="main_container">
 				<%@ include file="manage_sidebar.jsp" %>
 				<%@ include file="manage_topnav.jsp" %>
-				<%@ include file="manage_main.jsp" %>
+				<%@ include file="manage_members_table.jsp" %>
 			</div>
 		</div>
 	</body>
