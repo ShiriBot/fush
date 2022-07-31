@@ -1,0 +1,93 @@
+@charset "UTF-8";
+/* column 관련 스타일시트
+전체를 12로 봤을때 비율로?? 표기하는거 같음
+2+2+2+2+2+2 / 3+9 / 6+6 이런식으로 
+갯수가 많고 media태그도 계속 손봐야 할거 같아서 분리함.
+col-로 시작하는 모든 태그 모을 생각 ㅇㅅ<*/
+
+
+@media(min-width:1000px){
+	.col-md-2 {
+		-ms-flex: 0 0 16.66666%;
+		flex: 0 0 16.66666%;
+		max-width: 16.66666%;
+	}}
+
+@media ( max-width : 999px) {
+	.col-sm-4 {
+		-ms-flex: 0 0 33.333333%;
+		flex: 0 0 33.333333%;
+		max-width: 33.333333%;
+	}
+}
+
+@media ( min-width : 768px) {
+	.col-md-3 {
+		-ms-flex: 0 0 25%;
+		flex: 0 0 25%;
+		max-width: 25%;
+	}
+}
+
+@media ( max-width : 768px) {
+	.col-md-2 {
+		-ms-flex: 0 0 100%;
+		flex: 0 0 100%;
+		max-width: 100%;
+	}
+}
+
+/* 원래 media tag 내부였는데 ㅠ
+일단 비율신경 안 쓰고 작성함 */
+.col-md-6 {
+    -ms-flex: 0 0 50%;
+    flex: 0 0 50%;
+    max-width: 50%;
+}
+
+.col-md-9 {
+    -ms-flex: 0 0 75%;
+    flex: 0 0 75%;
+    max-width: 75%;
+}
+
+.col-md-12 {
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+
+/* 요기까지 원래 미디어 태그 내부에 있던 것들.. */
+
+.col, .col-1, .col-10, .col-11, .col-12, .col-2, .col-3, .col-4, .col-5,
+	.col-6, .col-7, .col-8, .col-9, .col-auto, .col-lg, .col-lg-1,
+	.col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4,
+	.col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-auto,
+	.col-md, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2,
+	.col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8,
+	.col-md-9, .col-md-auto, .col-sm, .col-sm-1, .col-sm-10, .col-sm-11,
+	.col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6,
+	.col-sm-7, .col-sm-8, .col-sm-9, .col-sm-auto, .col-xl, .col-xl-1,
+	.col-xl-10, .col-xl-11, .col-xl-12, .col-xl-2, .col-xl-3, .col-xl-4,
+	.col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-auto {
+	position: relative;
+	width: 100%;
+	padding-right: 15px;
+	padding-left: 15px;
+}
+
+.col-md-55, .col-xs-12, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2,
+	.col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3,
+	.col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5,
+	.col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6,
+	.col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8,
+	.col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9,
+	.col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11,
+	.col-sm-11, .col-md-11, .col-lg-11, .col-sm-12, .col-md-12, .col-lg-12
+	{
+	position: relative;
+	min-height: 1px;
+	float: left;
+	padding-right: 10px;
+	padding-left: 10px;
+}
