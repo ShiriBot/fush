@@ -5,7 +5,7 @@
  */
 .fa {
 	font-family: Font Awesome 5 Free;
-	font-weight: 900 !important;
+	font-weight: 500 !important;
 }
 
 .fa,
@@ -3392,10 +3392,10 @@ readers do not read off random characters that represent icons */
   content: "\f251"; }
 
 .fa-house::before {
-  content: '\f015''; }
+  content: '\f015'; }
 
 .fa-home::before {
-  content: '\f015'; }
+  content: "\f015"; }
 
 .fa-home-alt::before {
   content: "\f015"; }

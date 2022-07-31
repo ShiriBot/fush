@@ -41,32 +41,26 @@
 					</li>
 					<li>
 						<a href="#">
-							<i class="fa fa-pen-to-square"></i>
-							Forms
+							<i class="fa fa-users"></i>
+							Member
 						</a>
 					</li>
 					<li>
 						<a href="#">
-							<i class="fa fa-desktop"></i>
-							UI Elements
+							<i class="fa fa-paintbrush"></i>
+							Arts
 						</a>
 					</li>
 					<li>
 						<a href="#">
-							<i class="fa fa-table"></i>
-							Tables
+							<i class="fa fa-hashtag"></i>
+							Tags
 						</a>
 					</li>
 					<li>
 						<a href="#">
-							<i class="fa fa-chart-column"></i>
-							Data Presentation
-						</a>
-					</li>
-					<li>
-						<a href="#">
-							<i class="fa fa-clone"></i>
-							Layouts
+							<i class="fa fa-bars-progress"></i>
+							Category
 						</a>
 					</li>
 				</ul>
