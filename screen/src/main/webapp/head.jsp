@@ -7,3 +7,4 @@
 <link rel="stylesheet" href="css/searchDetailCss.css">
 <link rel="stylesheet" href="css/detail.css">
 <link rel="stylesheet" href="css/mypage.css">
+<link rel="stylesheet" href="css/preferenceStyle.css">

@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
 <%@ include file="head.jsp" %>
-    
-<%@ include file="header.jsp" %>
 <title>상세검색</title>
-
+</head>
+<body>
+<%@ include file="header.jsp" %>
 <div class="divTable minimalistBlack">
   <div class="divTableHeading">
     <div class="divTableRow">
@@ -65,14 +68,14 @@
 </div>
 
 
+
+<div class= "searchBoard">
+	
 	<div class= "searchPop">
 		<a href="#">인기수</a>
 		<a href="#">조회순</a>
 		<a href="#">등록일자순</a>
 	</div>
-	
-
-<div class= "searchBoard">
 	
 			<div class="detail">
 			
@@ -165,8 +168,8 @@
 		</div>
 	
 	</div>
-
-	
+</body>
+</html>
 	
 	
 	

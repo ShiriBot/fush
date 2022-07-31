@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <div style="display:flex;"><!-- 전체를 감싸는 div -->
 	<div style="width:30%"><!-- 사이드바 -->
-		<a class="mypageSidebarBtn" href="#">
+		<a class="mypageSidebarBtn" href="preference.jsp">
 			취향분석
 		</a>
 		<a class="mypageSidebarBtn"  href="#">
