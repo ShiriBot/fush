@@ -4,16 +4,15 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>관리자 페이지-회원관리</title>
+		<title>관리자 페이지-작품목록</title>
 		<%@ include file="manage_head.jsp" %>
 	</head>
-	
 	<body class="nav-md">
 		<div class="container body">
 			<div class="main_container">
 				<%@ include file="manage_sidebar.jsp" %>
 				<%@ include file="manage_topnav.jsp" %>
-				<%@ include file="manage_members_table.jsp" %>
+				<%@ include file="manage_artsList.jsp" %>
 			</div>
 		</div>
 	</body>

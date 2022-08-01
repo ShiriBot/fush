@@ -11,7 +11,7 @@
 				<div class="row x_title">
 					<div class="col-md-6">
 						<h3>
-							Network Activities <small>Graph title sub-title</small>
+							유입차트 <small> 이용자들의 유입경로별</small>
 						</h3>
 					</div>
 					<div class="col-md-6">
@@ -33,12 +33,12 @@
 				</div>
 				<div class="col-md-3 col-sm-3 bg-white">
 					<div class="x_title">
-						<h2>Top Campaign Performance</h2>
+						<h2>유입율</h2>
 						<div class="clearfix"></div>
 					</div>
 					<div class="col-md-12 col-sm-12 ">
 						<div>
-							<p>Facebook Campaign</p>
+							<p>Naver</p>
 							<div class="">
 								<div class="progress progress_sm" style="width: 76%;">
 									<div class="progress-bar bg-green" role="progressbar"
@@ -47,7 +47,7 @@
 							</div>
 						</div>
 						<div>
-							<p>Twitter Campaign</p>
+							<p>Google</p>
 							<div class="">
 								<div class="progress progress_sm" style="width: 76%;">
 									<div class="progress-bar bg-green" role="progressbar"
@@ -58,7 +58,7 @@
 					</div>
 					<div class="col-md-12 col-sm-12 ">
 						<div>
-							<p>Conventional Media</p>
+							<p>Instagram</p>
 							<div class="">
 								<div class="progress progress_sm" style="width: 76%;">
 									<div class="progress-bar bg-green" role="progressbar"
@@ -67,7 +67,7 @@
 							</div>
 						</div>
 						<div>
-							<p>Bill boards</p>
+							<p>Twitter</p>
 							<div class="">
 								<div class="progress progress_sm" style="width: 76%;">
 									<div class="progress-bar bg-green" role="progressbar"

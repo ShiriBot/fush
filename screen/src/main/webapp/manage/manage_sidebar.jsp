@@ -41,19 +41,19 @@
 						</a>
 					</li>
 					<li>
-						<a href="#">
+						<a href="manage_arts.jsp">
 							<i class="fa fa-paintbrush"></i>
 							Arts
 							<span class="fa fa-chevron-down"></span>
 						</a>
 						<ul class="nav child_menu">
 							<li>
-								<a href="#">
+								<a href="manage_arts.jsp">
 								작품목록
 								</a>
 							</li>
 							<li>
-								<a href="#">
+								<a href="manage_arts_request.jsp">
 								작품등록요청
 								</a>
 							</li>
