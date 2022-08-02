@@ -5,10 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <style>
-
-* {
-	box-sizing:border-box;
-}
 .login {
 	position:fixed;
 	top:50%;
@@ -17,30 +13,42 @@
 	
 	display: block;
 	
-	border : 1px solid black;
 	padding: 10px;
 	
 	text-align:center;
 }
-.login input {
-	display: block;
-	width:100%;
-	margin-bottom:10px;
-}
-
 
 </style>
+<link rel="stylesheet" href="../css/login.css">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
 <title>관리자 로그인</title>
 </head>
 <body>
-	<div class="login">
-		<p>관리시스템</p>
+<div class="login">
+<div class="container" style="width:900px;height:100%;">
+	<div class="form sign-in-container">
 		<form action="manage_index.jsp">
-			<input type="text">
-			<input type="password">
-			<input type="submit">
+			<h1>로그인</h1>
+			<div class="social-container">
+				<a href="#"><i class="fab fa-facebook-f"></i></a>
+				<a href="#"><i class="fab fa-google-plus-g"></i></a>
+				<a href="#"><i class="fab fa-linkedin-in"></i></a>
+			</div>
+			<input type="text" placeholder="아이디를 입력해주세요">
+			<input type="password" placeholder="패스워드를 입력해주세요">
+			<a href="#">아이디/패스워드 찾기</a>
+			<button>로그인</button>
 		</form>
 	</div>
-
+	<div class="overlay-container">
+		<div class="overlay">
+			<div class="overlay-panel overlay-right" style="padding:0;">
+				<p>관리자가 아니신가요?</p>
+				<button class="signup_btn" onclick="location.href='../main.jsp'">메인페이지 가기</button>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
 </body>
 </html>
