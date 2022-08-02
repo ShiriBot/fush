@@ -36,7 +36,12 @@
 	<div class="session">
 		<div class="DetailBoard">
 			<div class="divideBoard">
-				<div class="webtoonCount">평점분포도</div>
+				<div class="webtoonCount">
+						<!-- 넣고싶은 차트예시 (위치조정은 어케하는지몰라서 냅둠) -->
+						<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+						<canvas id="bar-chart" width="500" height="300"></canvas>
+						<script src="js/Chart.js"></script>
+				</div>
 			</div>
 			
 		</div>
@@ -45,18 +50,18 @@
 
 <div class="center" style="background-color:rgb(219, 219, 219)">
 	<div class="session">
-		<h3>회원님이 가장 높게 평가한 웹툰 순위(순위표 차트)</h3><!-- 차트로하고싶음 -->
-		<div class="DetailBoard">
-			<div class="ranking">
-				<p>1위
-				<p>2위
-				<p>3위
+		<h3>회원님이 가장 높게 평가한 웹툰 순위(순위표 차트)</h3><!-- 차트위에 이미지,제목 넣고싶은데 하기힘듬ㄴ -->
+		<div class="DetailBoard1">
+			<div class="podium2">
+			조조코믹스
 			</div>
-			<div class= "ranking">
-				<div class="rankingTitle">아홉수 우리들</div>
-				<div class="rankingTitle">조조코믹스</div>
-				<div class="rankingTitle">유미의 세포들</div>
+			<div class= "podium1">
+			아홉수 우리들
 			</div>
+			<div class= "podium3">
+			유미의 세포들
+			</div>
+			
 		</div>
 	</div>
 </div>
@@ -92,6 +97,11 @@
 				<div class="rankingTitle">수박양</div>
 				<div class="rankingTitle">장봉수</div>
 			</div>
+			<div class= "ranking">
+				<div class="rankingTitle">5편</div>
+				<div class="rankingTitle">3편</div>
+				<div class="rankingTitle">3편</div>
+			</div>
 		</div>
 	</div>
 </div>
@@ -103,6 +113,9 @@
 				<div class="webtoonCount" style="font-size:20px">#OO,#OO,#OO</div>
 			</div>
 			<div class="divideBoard">좋아하는 그림체
+				<div class="webtoonCount" style="font-size:20px">OOO,OOO,OOO</div>
+			</div> 
+			<div class="divideBoard">좋아하는 캐릭터
 				<div class="webtoonCount" style="font-size:20px">OOO,OOO,OOO</div>
 			</div> 
 		</div>
