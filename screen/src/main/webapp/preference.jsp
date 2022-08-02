@@ -36,7 +36,12 @@
 	<div class="session">
 		<div class="DetailBoard">
 			<div class="divideBoard">
-				<div class="webtoonCount">평점분포도</div>
+				<div class="webtoonCount">
+						<!-- 넣고싶은 차트예시 (위치조정은 어케하는지몰라서 냅둠) -->
+						<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+						<canvas id="bar-chart" width="500" height="300"></canvas>
+						<script src="js/Chart.js"></script>
+				</div>
 			</div>
 			
 		</div>
@@ -91,6 +96,11 @@
 				<div class="rankingTitle">이동건</div>
 				<div class="rankingTitle">수박양</div>
 				<div class="rankingTitle">장봉수</div>
+			</div>
+			<div class= "ranking">
+				<div class="rankingTitle">5편</div>
+				<div class="rankingTitle">3편</div>
+				<div class="rankingTitle">3편</div>
 			</div>
 		</div>
 	</div>

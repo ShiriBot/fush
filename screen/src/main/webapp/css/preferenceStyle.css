@@ -22,13 +22,13 @@
 	padding-right:20%;
 }
 
-.ranking{ /* 높게평가한 웹툰 순위 */
+.ranking{ /* 순위매기는 div */
 	width:30%;
 	height:100%;
 	float:left;
 	margin: 20px;
 }
-.ranking p{
+.ranking p{ /* p태그도 웹툰 제목들이랑 크기 맞추려고 넣음 */
 	width:120px;
 	height:30px;
 	margin:20px;
@@ -42,13 +42,15 @@
 	margin:20px;
 }
 
-.webtoonCount{
+.webtoonCount{ /* 카운트하거나 좋아하는태그,그림체의 크기 및 위치설정 */
 	margin-top:70px;
 	font-size:50px;
 }
 
-.session h3{
+.session h3{ /* 각 div 제목 설정  */
 	margin-left:10%;
 }
+
+
 
 
