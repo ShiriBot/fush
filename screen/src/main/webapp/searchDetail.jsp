@@ -1,15 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<%@ include file="head.jsp" %>
-<title>상세검색</title>
-</head>
-<body>
-<%@ include file="header.jsp" %>
-<div class="center">
-	<div class="session">
 		<div class="divTable minimalistBlack">
 			<!-- 제목줄 삭제 
 			<div class="divTableHeading">
@@ -141,14 +131,5 @@
 				</div>
 			</div>
 		</div>
-	</div>
 
-</div>
-</body>
-</html>
-
-	
-	
-	
-	
 	
