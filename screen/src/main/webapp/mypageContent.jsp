@@ -5,7 +5,7 @@
 		<a class="mypageSidebarBtn" href="preference.jsp">
 			취향분석
 		</a>
-		<a class="mypageSidebarBtn"  href="#">
+		<a class="mypageSidebarBtn"  href="checkArt.jsp">
 			평가한 작품보기
 		</a>
 		<a class="mypageSidebarBtn"  href="#">

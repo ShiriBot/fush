@@ -53,13 +53,13 @@
 		<h3>회원님이 가장 높게 평가한 웹툰 순위(순위표 차트)</h3><!-- 차트위에 이미지,제목 넣고싶은데 하기힘듬ㄴ -->
 		<div class="DetailBoard1">
 			<div class="podium2">
-			조조코믹스
+				조조코믹스
 			</div>
 			<div class= "podium1">
-			아홉수 우리들
+				아홉수 우리들
 			</div>
 			<div class= "podium3">
-			유미의 세포들
+				유미의 세포들
 			</div>
 			
 		</div>
