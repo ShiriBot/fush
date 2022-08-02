@@ -20,7 +20,7 @@
 			</div>
 		</fieldset>
 	</div>
-		<a class="btn primary" href="searchDetail.jsp" style="margin-left:10px;"> 상세검색</a>
+		<a class="btn primary" href="search.jsp" style="margin-left:10px;"> 상세검색</a>
 	</div>
 	<div>
 		<a class="btn primary"  href="rating.jsp" id="rating"> 평가하기 </a>

@@ -1,66 +1,55 @@
 @charset "UTF-8";
 
-.rankingContainer{  /* 큰틀 */
-	width:800px;
-	height:100%;
-	margin-left:20%;
-	margin-top:18%;
-}
-
-
-.webtoonRanking{ /* 각 취향분석의 박스 */
-	width:800px;
-	height:350px;
-	border-bottom: solid 1px gray;
-	
-}
-
 .oneline{ /* 제일위에 한줄평 */
 	border-bottom: solid 1px gray;
 	margin-bottom:20px;
+	width:1000px;
 }
 
 
-.rankingBoard{
+.DetailBoard{
 	display: flex;
-	width:600px;
-	height:300px;
-		margin-left:10%;
-	flex-wrap: wrap;
+	width:100%;
+	height:250px;
+	margin-left:10%;
 }
 
-.find{
-	flex-direction: row;
-}
 .ranking{ /* 높게평가한 웹툰 순위 */
-	justify-content: space-between;
-	text-align: center;
-	width:100px;
-	height:30px;
-	background-color:orange;
-	margin:10px;
-	
-	
+	width:30%;
+	height:100%;
+	float:left
 }
 .rankingTitle{ /* 높게 평한 웹툰 이름 */
 	justify-content: space-between;
 	text-align: center;
 	width:120px;
 	height:30px;
-	background-color:yellow;
 	margin:10px;
-	margin-left:250px;
+	margin-top:10px;
 }
 
+.rankingGenre{
+	width:20%;
+	height:30px;
+}
 
+.firstbox{
+	height:300px;
+}
 
+.divideBoard{
+	text-align: justify;
+	width:50%;
+	height:100%;
+	text-align: center;
+	margin-top:20px;
+	padding-right:20%;
+}
 
-
-
-
-
-
-
+.webtoonCount{
+	margin-top:70px;
+	font-size:50px;
+}
 
 
 
