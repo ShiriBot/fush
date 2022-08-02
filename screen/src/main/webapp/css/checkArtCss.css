@@ -10,6 +10,7 @@
 	margin-bottom:30px;
 	font: italic 1.2em "Fira Sans", serif;
 	justify-content:center;
+	overflow:hidden;
 }
 
 .checkTag{
@@ -24,6 +25,7 @@
 	text-align:center;
 	display:flex;
 	margin:10px;
+	border-bottom: 1px solid lightgrey;
 }
 .leftblockChart {
 	flex: 1;
@@ -35,7 +37,7 @@
 /* 상세정보 블록 */
 .middleblockChart {
 	flex: 3;
-	text-align: center;
+	text-align: left;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -50,4 +52,39 @@
 	flex-direction: column;
 	justify-content: center;
 }
+
+
+
+.choice{
+	position:relative;
+	text-align:center;
+	display:flex;
+	margin:10px;
+	border-top: 1px solid lightgrey;
+}
+.choiceRanking{
+	border-right:1px solid lightgrey;
+	width:50%;
+	text-align:center;
+	
+}
+
+.choiceUpdate{
+	width:50%;
+	text-align:center;
+	background-color: #fcfcfc;
+	border-bottom: 1px solid lightgrey;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
