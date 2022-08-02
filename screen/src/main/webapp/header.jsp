@@ -26,7 +26,7 @@
 		<a class="btn primary"  href="rating.jsp" id="rating"> 평가하기 </a>
 		 
 <% if(session.getAttribute("login")==null) {%>	
-			<a class="btn primary"  href="loginProc.jsp" id="login"> 로그인</a>
+			<a class="btn primary"  href="login.jsp" id="login"> 로그인</a>
 			<a class="btn primary"  href="signup.jsp" id="member">회원가입</a>
 <% } else{ %>
 			<a class="btn primary"  href="logoutProc.jsp" id="logout"> 로그아웃</a>

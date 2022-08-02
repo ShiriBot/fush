@@ -15,9 +15,7 @@
 						</h3>
 					</div>
 					<div class="col-md-6">
-						<div id="reportrange" class="pull-right" 
-						style="background: #fff; cursor: pointer; 
-						padding: 5px 10px; border: 1px solid #ccc">
+						<div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
 							<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
 							<span>
 								September 1, 2021 - August 31, 2022 
@@ -28,7 +26,21 @@
 				</div>
 				<div class="col-md-9 col-sm-9 ">
 					<div id="chart_plot_01" class="demo-placeholder">
-						<canvas class="float-base"></canvas>
+						<!-- <canvas class="float-base"></canvas> -->
+						<canvas id="line-chart" width="300" height=70"></canvas>
+						<script type="text/javascript">
+						new Chart(document.getElementById("line-chart"), {
+							  type: 'line',
+							  data: {
+							    labels: [21.9,21.10,21.11,21.12,22.1,21.2,21.3,21.4,21.5,21.6,21.7,21.8],
+							    datasets: [{ 
+							        data: [86,114,106,106,107,111,133,221,456,856,1050,1200],
+							        label: "접속자수",
+							        borderColor: "#3e95cd",
+							        fill: false
+							      }]}
+							});
+						</script>
 					</div>
 				</div>
 				<div class="col-md-3 col-sm-3 bg-white">

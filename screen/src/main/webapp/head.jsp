@@ -8,3 +8,5 @@
 <link rel="stylesheet" href="css/detail.css">
 <link rel="stylesheet" href="css/mypage.css">
 <link rel="stylesheet" href="css/preferenceStyle.css">
+<link rel="stylesheet" href="css/login.css">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">

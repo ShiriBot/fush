@@ -65,12 +65,12 @@
 							Tags
 						</a>
 					</li>
-					<li>
+					<!-- <li>
 						<a href="#">
 							<i class="fa fa-circle-exclamation"></i>
 							Notice
 						</a>
-					</li>
+					</li> -->
 				</ul>
 			</div>
 		</div>
