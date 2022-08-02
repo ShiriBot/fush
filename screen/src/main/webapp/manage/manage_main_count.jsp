@@ -5,7 +5,7 @@
 			<div class="col-md-2 col-sm-4 tile_stats_count">
 				<span class="count_top">
 					<i class="fa fa-user"></i>
-					총 유저 수
+					총 회원 수
 				</span>
 				<div class="count">2500</div>
 				<span class="count_bottom">

@@ -60,7 +60,7 @@
 						</ul>
 					</li>
 					<li>
-						<a href="#">
+						<a href="manage_tags.jsp">
 							<i class="fa fa-hashtag"></i>
 							Tags
 						</a>
@@ -69,6 +69,12 @@
 						<a href="#">
 							<i class="fa fa-bars-progress"></i>
 							Category
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<i class="fa fa-circle-exclamation"></i>
+							Notice
 						</a>
 					</li>
 				</ul>

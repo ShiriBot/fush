@@ -259,7 +259,7 @@
 								<div class="card-box table-responsive">
 									<p class="text-muted font-13 m-b-30">
 										<!-- 테이블 설명 -->
-										테이블 설명
+										탈퇴요청한 회원 목록입니다.
 									</p>
 									<div id="datatable-members-del_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap no-footer">
 										<div class="dataTables_length" id="datatable-members-del_length">
