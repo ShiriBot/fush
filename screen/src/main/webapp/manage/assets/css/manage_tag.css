@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+.tag_table, .tag_modify{
+	font-size:15px;
+}
+
+.tag_table th{
+	width: 20%;
+}
+
+.tag_table span{
+	margin:10px;
+}
+
+.tag_table span:before{
+	content:"#"
+}
+
+.tag_modifyForm{
+	display:flex;
+	justify-content: flex-end;
+}

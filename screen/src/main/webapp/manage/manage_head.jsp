@@ -10,4 +10,5 @@
 <link rel="stylesheet" href="assets/css/manage_sidebar.css">
 <link rel="stylesheet" href="assets/css/manage_topnav.css">
 <link rel="stylesheet" href="assets/css/manage_table.css">
+<link rel="stylesheet" href="assets/css/manage_tag.css">
 <script src="https://kit.fontawesome.com/d8509e073f.js" crossorigin="anonymous"></script>

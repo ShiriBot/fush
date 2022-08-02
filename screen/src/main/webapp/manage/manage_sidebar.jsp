@@ -67,12 +67,6 @@
 					</li>
 					<li>
 						<a href="#">
-							<i class="fa fa-bars-progress"></i>
-							Category
-						</a>
-					</li>
-					<li>
-						<a href="#">
 							<i class="fa fa-circle-exclamation"></i>
 							Notice
 						</a>

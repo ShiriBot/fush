@@ -7,7 +7,7 @@
 					<i class="fa fa-user"></i>
 					총 회원 수
 				</span>
-				<div class="count">2500</div>
+				<div class="count">2,500</div>
 				<span class="count_bottom">
 					<i class="green">
 						<i class="fa fa-sort-asc"></i>
