@@ -133,9 +133,6 @@ b, strong {
 	font-weight: bolder;
 }
 /* 여기까지 텍스트태그 */
-li {
-	display: list-item;
-}
 
 dl, ol, ul {
 	margin-top: 0;
