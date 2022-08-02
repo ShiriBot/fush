@@ -50,18 +50,18 @@
 
 <div class="center" style="background-color:rgb(219, 219, 219)">
 	<div class="session">
-		<h3>회원님이 가장 높게 평가한 웹툰 순위(순위표 차트)</h3><!-- 차트로하고싶음 -->
-		<div class="DetailBoard">
-			<div class="ranking">
-				<p>1위
-				<p>2위
-				<p>3위
+		<h3>회원님이 가장 높게 평가한 웹툰 순위(순위표 차트)</h3><!-- 차트위에 이미지,제목 넣고싶은데 하기힘듬ㄴ -->
+		<div class="DetailBoard1">
+			<div class="podium2">
+			조조코믹스
 			</div>
-			<div class= "ranking">
-				<div class="rankingTitle">아홉수 우리들</div>
-				<div class="rankingTitle">조조코믹스</div>
-				<div class="rankingTitle">유미의 세포들</div>
+			<div class= "podium1">
+			아홉수 우리들
 			</div>
+			<div class= "podium3">
+			유미의 세포들
+			</div>
+			
 		</div>
 	</div>
 </div>
@@ -113,6 +113,9 @@
 				<div class="webtoonCount" style="font-size:20px">#OO,#OO,#OO</div>
 			</div>
 			<div class="divideBoard">좋아하는 그림체
+				<div class="webtoonCount" style="font-size:20px">OOO,OOO,OOO</div>
+			</div> 
+			<div class="divideBoard">좋아하는 캐릭터
 				<div class="webtoonCount" style="font-size:20px">OOO,OOO,OOO</div>
 			</div> 
 		</div>

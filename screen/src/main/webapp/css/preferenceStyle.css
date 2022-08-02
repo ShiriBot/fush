@@ -51,6 +51,36 @@
 	margin-left:10%;
 }
 
+.podium2{ /* 순위매기는 div */
+	background-color:white;
+	width:20%;
+	height:30%;
+	float:left;
+	border: solid 1px black;
+}
+.podium1{ /* 순위매기는 div */
+	background-color:white;
+	width:20%;
+	height:60%;
+	float:left;
+	border: solid 1px black;
+}
+.podium3{ /* 순위매기는 div */
+	background-color:white;
+	width:20%;
+	height:40%;
+	float:left;
+	border: solid 1px black;
+}
+.DetailBoard1{ /* 시상대용 클래스 따로만듬 */
+	display: flex;
+	width:100%;
+	height:250px;
+	flex-direction: row-reverse;
+	justify-content: center;
+	align-items: flex-end;
+}
+
 
 
 
