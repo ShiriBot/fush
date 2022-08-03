@@ -1,36 +1,44 @@
 @charset "UTF-8";
 
 
-
-.friendsSssion { 
-    display: flex;
-    width: 1000px;
-    justify-content: center;
-    border-bottom: 1px solid lightgrey;
-    padding-bottom:10px;
-}
-
 .friendDiv{
 	display:flex;
 	text-align: center;
 }
-.friendSearch{
+
+/* 친구관리 */
+.friendMange{
 	position: relative;
-    text-align: center;
-    display: flex;
-    margin: 10px;
-    border-top: 1px solid lightgrey;
+    text-align: right;
+    margin-bottom: 30px;
+    padding-bottom:10px;
+    border-bottom: 1px solid lightgrey;
 }
+
+/* div 큰틀 */
+.friendBoard{
+	display:flex;
+	width:1000px;
+	border-bottom: 1px solid lightgrey;
+	margin-bottom: 30px;
+	padding-bottom:30px;
+	margin-top:30px;
+}
+/* div3등분 나누기 div1 */
 .friendthumb{
 	flex:1;
 	width:300px;
+	margin-top:15px;
 }
+/* 첫칸의 img크기 radius */
 .friendthumb img{
 	width:150px;
 	height:150px;
 	border-radius: 70%;
 	overflow:hidden;
+	display:flex;
 }
+/* div2 */
 .friendName{
 	flex:2;
 	width:300px;
@@ -38,32 +46,53 @@
 	margin-left:20px;
 	border-right: 1px solid lightgrey;
 }
+/*  */
+.friendTag{
+	margin-top:30px;
+}
+/* div3 */
 .friendToonRanking{
 	flex:3;
 }
-.friendToonRanking img{
-	width:70px;
-	height:70px;
+.friendMinus{
+	padding-top:10px;
+	width:16px;
 }
-
+.hTitle{
+	margin:0;
+}
+/* div3 위아래로 나누는 div */
 .thrBox{
 	width:500px;
 	height:100px;
 }
 
+/* div3 웹툰사진,제목,별점나눅 */
 .FwebtoonThumb{
 	float:left;
 	width:150px;
+	margin-top:5px;
 }
 .FwebtoonTitle{
 	float:left;
 	width:150px;
+	margin-top:20px;
 }
 .FwebtoonStar{
 	float:left;
 	width:150px;
+	margin-top:20px;
+}
+/* 상세웹툰 이미지 크기 */
+.friendToonRanking img{
+	width:70px;
+	height:70px;
 }
 
+.minus {
+	margin-top:90px;
+	display:none;
+}
 
 
 
