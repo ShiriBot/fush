@@ -11,6 +11,11 @@
 <body>
 <div class="center">
 	<div class="session">
+		<!-- 돌아가기 버튼 -->
+		<div class="back">
+			<a href="mypage.jsp">돌아가기</a>
+		</div>
+		
 		<div class="choice">
 			<div class="choiceRanking">
 				<a href="#">별점별 작품</a> <!-- 별점순,등록순에 색넣고 클릭시 밑에 보드들도 그색으로 바뀌게하기 생각중 -->

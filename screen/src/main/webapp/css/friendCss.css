@@ -1,11 +1,6 @@
 @charset "UTF-8";
 
 
-.friendDiv{
-	display:flex;
-	text-align: center;
-}
-
 /* 친구관리 */
 .friendMange{
 	position: relative;
@@ -13,7 +8,10 @@
     margin-bottom: 30px;
     padding-bottom:10px;
     border-bottom: 1px solid lightgrey;
+    display:flex;
+    justify-content: space-between;
 }
+
 
 /* div 큰틀 */
 .friendBoard{
@@ -27,7 +25,6 @@
 /* div3등분 나누기 div1 */
 .friendthumb{
 	flex:1;
-	width:300px;
 	margin-top:15px;
 }
 /* 첫칸의 img크기 radius */
@@ -36,17 +33,15 @@
 	height:150px;
 	border-radius: 70%;
 	overflow:hidden;
-	display:flex;
 }
 /* div2 */
 .friendName{
 	flex:2;
-	width:300px;
 	margin-right:20px;
 	margin-left:20px;
 	border-right: 1px solid lightgrey;
 }
-/*  */
+/* div2 간단한 소개와 태그들이 들어가는 공간 */
 .friendTag{
 	margin-top:30px;
 }
@@ -54,10 +49,7 @@
 .friendToonRanking{
 	flex:3;
 }
-.friendMinus{
-	padding-top:10px;
-	width:16px;
-}
+/* div3의 설명글 */
 .hTitle{
 	margin:0;
 }
@@ -67,17 +59,19 @@
 	height:100px;
 }
 
-/* div3 웹툰사진,제목,별점나눅 */
+/* div3 웹툰사진 */
 .FwebtoonThumb{
 	float:left;
 	width:150px;
 	margin-top:5px;
 }
+/* div3 제목 */
 .FwebtoonTitle{
 	float:left;
 	width:150px;
 	margin-top:20px;
 }
+/* div3 별점나누기 */
 .FwebtoonStar{
 	float:left;
 	width:150px;
@@ -88,14 +82,65 @@
 	width:70px;
 	height:70px;
 }
-
+/* 마이너스 아이콘 위치조정+숨기기 */
 .minus {
 	margin-top:90px;
 	display:none;
 }
 
 
+/* 수정삭제 스위치기능 */
+.switch-button {
+    position: relative;
+    display: inline-block;
+    width: 55px;
+    height: 30px;
+}
 
+
+.switch-button input {
+	opacity: 0;
+	width: 0;
+	height: 0;
+}
+
+.onoff-switch {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius:20px;
+    background-color: #ccc;
+    box-shadow: inset 1px 5px 1px #999;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.onoff-switch:before {
+    position: absolute;
+    content: "";
+    height: 22px;
+    width: 22px;
+    left: 4px;
+    bottom: 4px;
+    background-color: #fff;
+    -webkit-transition: .5s;
+    transition: .4s;
+    border-radius:20px;
+}
+
+.switch-button input:checked + .onoff-switch {
+    background-color: #F2D522;
+    box-shadow: inset 1px 5px 1px #E3AE56;
+}
+
+.switch-button input:checked + .onoff-switch:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
 
 
 

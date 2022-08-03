@@ -4,6 +4,7 @@
 	display: flex;
 	height:200px;
 	margin:10px;
+	border-bottom: 1px solid lightgrey;
 }
 
 .ratingImgFrame {
@@ -22,6 +23,16 @@
 .ratingContent{
 	padding-left:20px;
 	width: 70%;
+}
+
+.ratingReply{
+	display:flex;
+	justify-content: space-between;
+	height:25px;
+}
+
+.ratingTitle{
+	text-align: left;
 }
 
 .ratingform fieldset{
@@ -49,3 +60,66 @@
 .ratingform input[type=radio]:checked ~ label{
     text-shadow: 0 0 0 #fbee4a; /* 마우스 클릭 체크 */
 }
+
+/* 댓글 모달창 */
+#reply{
+	top:0;
+	left:0;
+	width : 100%;
+	height : 100%;
+	display:none;
+ 	position:fixed;
+	overflow:auto;
+	z-index:1;
+	background-color:rgba(0,0,0,0.4);
+}
+/* 댓글 모달창 */
+.reply_content {
+	margin:auto;
+	position:fixed;
+	top:50%;
+	left:50%;
+	width:600px;
+	height:130px;
+	background:white;
+	transform:translate(-50%,-50%);
+	padding-left:10px;
+	padding-top:10px;
+	border-style:inset;
+}
+/* 입력등록버튼 감싸는 div */
+.replyPopup{
+	display:flex;
+	justify-content: space-between;
+}
+/* 댓글입력창 */
+.replyPopup input[type=text]{
+	width:500px;
+	height:80px;
+}
+/* 등록버튼 */
+.replyPopup input[type=submit]{
+	width:70px;
+	height:60px;
+}
+/* 닫기버튼 가운데 */
+#close_reply{
+	text-align: center;
+}
+/* 댓글 버튼 css없애기 */
+.ratingReply button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    border-style:none;
+}
+/* hover....넣어봤어... 너무 심심해서.. */
+.ratingReply button{
+	transition: all 0.2s linear;
+}
+
+.ratingReply button:hover {
+	transform: scale(1.4);
+}
+

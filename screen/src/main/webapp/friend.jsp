@@ -4,15 +4,20 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
+<!-- 아이콘 쓰는 링크/나중에 webcss로 옮기기(중복) -->
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
 <script>
-	function button1_click() {
-		var minus = document.getElementsByClassName("minus");
-		for(i=0; i<minus.length;i++){
-			minus[i].style.display="block";
-		}
+/* 토글 실패 보류 */
+	function toggle(){
+			const checkbox = document.getElementsByClassName('my_checkbox');
+			
+			const is_checked = checkbox.checked;
+			
+			if(is_checked == true){
+				document.getElementsByClassName('minus')[0].style.display ="block";
+			}
 	}
 </script>
 <%@ include file="head.jsp" %>
@@ -22,9 +27,17 @@
 <body>
 <div class="center">
 	<div class="sssion">
-		<!-- 삭제버튼 -->
+		<!-- 관리 스위치 버튼 -->
+		
 		<div class="friendMange">
-			<button onclick="javascript:button1_click()">삭제	</button>
+			<!-- 돌아가기 버튼 -->
+			<div class="back">
+				<a href="mypage.jsp">돌아가기</a>
+			</div>
+				<label  class="switch-button">
+				<input type="checkbox" onclick="toggle()" id="my_checkbox">
+			    <span class="onoff-switch"></span>
+				</label>
 		</div>
 		
 		<!-- 친구목록 -->

@@ -3,6 +3,23 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!-- 나중에 web으로 옮기기 -->
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<script>
+$(window).scroll(function() {
+    
+    
+    var scrolltop = $(document).scrollTop();
+    var height = $(document).height();
+    var height_win = $(window).height();
+    
+    
+ if (Math.round( $(window).scrollTop()) == $(document).height() - $(window).height()) {
+    alert('d');
+ }
+}
+</script>
 <%@ include file="head.jsp" %>
 <title>평가하기</title>
 </head>
@@ -10,7 +27,7 @@
 <%@ include file="header.jsp" %>
 
 <div class="center">
-<div class="session">
+<div class="session" id="document">
 <h2> 하여튼 뭔가 간지나고 평가를 독려하는 문구 </h2>
 <%@ include file="ratingContent.jsp" %>
 <%@ include file="ratingContent.jsp" %>
@@ -21,12 +38,12 @@
 <%@ include file="ratingContent.jsp" %>
 <%@ include file="ratingContent.jsp" %>
 <%@ include file="ratingContent.jsp" %>
-별점을 누르면 바로 저장되고+스크롤하면 계속 새로 생성되도록 할 생각
-이미 평가한 작품은 다시 나오지 않도록
+<%@ include file="ratingContent.jsp" %>
+<div id="second"></div>
 </div>
 </div>
 <%@ include file="footer.jsp" %>
-
+<%@ include file="reply_modal.jsp" %>
 </body>
 </html>
 

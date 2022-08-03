@@ -1,13 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
+
 <div class="ratingFrame">
-	<div class="ratingImgFrame">
+
+	<div class="ratingImgFrame" id="window">
 		<div class="ratingImg">
 		</div>
 	</div>
 	<div class="ratingContent">
-		<h3 class="ratingTitle">작품제목</h3>
+		<div class="ratingReply">
+			<h3 class="ratingTitle">작품제목</h3>
+			<button onclick ="default1()" id="replyModal">
+				<ion-icon name="ellipsis-vertical-outline"></ion-icon>
+			</button>
+		</div>
 		<h4 class="ratingArtist">작가명</h4>
 		<form name="ratingform" class="ratingform" method="post" action="./save">
 			<fieldset>
