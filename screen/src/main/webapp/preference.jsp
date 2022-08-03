@@ -12,9 +12,9 @@
 
 <div class="center">
 	<div class="session">
-	<h1 class="oneline">OOO님의 웹툰취향 분석	</h1>
+		<h1 class="oneline">OOO님의 웹툰취향 분석	</h1>
 
-	<h3>뭐라 써야될까</h3>
+		<h3>뭐라 써야될까</h3>
 		<div class="DetailBoard">
 			<div class="divideBoard">조회한 웹툰수
 				<div class="webtoonCount">120</div>
@@ -26,24 +26,20 @@
 				<div class="webtoonCount">18</div>
 			</div>
 		</div>
-	
 
-	<h3>내 평점</h3>
+		<h3>내 평점</h3>
 		<div class="DetailBoard">
 			<div class="divideBoard">
 				<div class="webtoonCount">
-						<!-- 넣고싶은 차트예시 (위치조정은 어케하는지몰라서 냅둠) -->
-						<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-						<canvas id="bar-chart" width="500" height="300"></canvas>
-						<script src="js/Chart.js"></script>
+					<!-- 넣고싶은 차트예시 (위치조정은 어케하는지몰라서 냅둠) -->
+					<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+					<canvas id="bar-chart" width="500" height="300"></canvas>
+					<script src="js/Chart.js"></script>
 				</div>
 			</div>
-			
 		</div>
-	
 
-
-	<h3>회원님이 가장 높게 평가한 웹툰 순위(순위표 차트)</h3><!-- 차트위에 이미지,제목 넣고싶은데 하기힘듬ㄴ -->
+		<h3>회원님이 가장 높게 평가한 웹툰 순위(순위표 차트)</h3><!-- 차트위에 이미지,제목 넣고싶은데 하기힘듬ㄴ -->
 		<div class="DetailBoard1">
 			<div class="podium2">
 				조조코믹스
@@ -54,10 +50,9 @@
 			<div class= "podium3">
 				유미의 세포들
 			</div>
-			
 		</div>
 
-	<h3>내가 가장많이본 장르</h3>
+		<h3>내가 가장많이본 장르</h3>
 		<div class="DetailBoard">	
 			<div class="divideBoard">액션
 				<div class="webtoonCount">104</div>
@@ -69,9 +64,8 @@
 				<div class="webtoonCount">40</div>
 			</div>
 		</div>
-	
 
-	<h3>내가 가장좋아하는 작가</h3>
+		<h3>내가 가장좋아하는 작가</h3>
 		<div class="DetailBoard">
 			<div class="ranking">
 				<p>1위
@@ -89,9 +83,8 @@
 				<div class="rankingTitle">3편</div>
 			</div>
 		</div>
-	
 
-	<h3>그 외</h3>
+		<h3>그 외</h3>
 		<div class="DetailBoard">	
 			<div class="divideBoard">좋아하는 태그
 				<div class="webtoonCount" style="font-size:20px">#OO,#OO,#OO</div>
