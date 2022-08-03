@@ -61,7 +61,7 @@ div.minimalistBlack {
 }
 
 /* data cell font-size */
-.divTable.minimalistBlack .divTableBody .divTableCell {
+.divTable.minimalistBlack .divTableBody .divTableCell>label {
 	font-size: 20px;
 	color: #0067a3;
 }
