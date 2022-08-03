@@ -12,12 +12,12 @@
 <div class="center">
 	<div class="session">
 		<div class="choice">
-		<div class="choiceRanking">
-		<a href="#">별점별 작품</a> <!-- 별점순,등록순에 색넣고 클릭시 밑에 보드들도 그색으로 바뀌게하기 생각중 -->
-		</div>
-		<div class="choiceUpdate">
-		<a href="#">평가 등록순</a>
-		</div>
+			<div class="choiceRanking">
+				<a href="#">별점별 작품</a> <!-- 별점순,등록순에 색넣고 클릭시 밑에 보드들도 그색으로 바뀌게하기 생각중 -->
+			</div>
+			<div class="choiceUpdate">
+				<a href="#">평가 등록순</a>
+			</div>
 		</div>
 	
 		<div class="detailChart">

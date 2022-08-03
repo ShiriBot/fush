@@ -13,11 +13,8 @@
 <div class="center">
 	<div class="session">
 	<h1 class="oneline">OOO님의 웹툰취향 분석	</h1>
-	</div>
-</div>
 
-<div class="center" style="background-color:rgb(219, 219, 219)">
-	<div class="session">
+	<h3>뭐라 써야될까</h3>
 		<div class="DetailBoard">
 			<div class="divideBoard">조회한 웹툰수
 				<div class="webtoonCount">120</div>
@@ -29,11 +26,9 @@
 				<div class="webtoonCount">18</div>
 			</div>
 		</div>
-	</div>
-</div>
+	
 
-<div class="center" style="background-color:rgb(219, 219, 219)">
-	<div class="session">
+	<h3>내 평점</h3>
 		<div class="DetailBoard">
 			<div class="divideBoard">
 				<div class="webtoonCount">
@@ -45,12 +40,10 @@
 			</div>
 			
 		</div>
-	</div>
-</div>
+	
 
-<div class="center" style="background-color:rgb(219, 219, 219)">
-	<div class="session">
-		<h3>회원님이 가장 높게 평가한 웹툰 순위(순위표 차트)</h3><!-- 차트위에 이미지,제목 넣고싶은데 하기힘듬ㄴ -->
+
+	<h3>회원님이 가장 높게 평가한 웹툰 순위(순위표 차트)</h3><!-- 차트위에 이미지,제목 넣고싶은데 하기힘듬ㄴ -->
 		<div class="DetailBoard1">
 			<div class="podium2">
 				조조코믹스
@@ -63,11 +56,7 @@
 			</div>
 			
 		</div>
-	</div>
-</div>
 
-<div class="center" style="background-color:rgb(219, 219, 219)">
-	<div class="session">
 	<h3>내가 가장많이본 장르</h3>
 		<div class="DetailBoard">	
 			<div class="divideBoard">액션
@@ -80,11 +69,8 @@
 				<div class="webtoonCount">40</div>
 			</div>
 		</div>
-	</div>
-</div>
+	
 
-<div class="center" style="background-color:rgb(219, 219, 219)">	
-	<div class="session">
 	<h3>내가 가장좋아하는 작가</h3>
 		<div class="DetailBoard">
 			<div class="ranking">
@@ -103,11 +89,9 @@
 				<div class="rankingTitle">3편</div>
 			</div>
 		</div>
-	</div>
-</div>
+	
 
-<div class="center" style="background-color:rgb(219, 219, 219)">	
-	<div class="session">
+	<h3>그 외</h3>
 		<div class="DetailBoard">	
 			<div class="divideBoard">좋아하는 태그
 				<div class="webtoonCount" style="font-size:20px">#OO,#OO,#OO</div>
@@ -121,6 +105,5 @@
 		</div>
 	</div>
 </div>
-
 </body>
 </html>

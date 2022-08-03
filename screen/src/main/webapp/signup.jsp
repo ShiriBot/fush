@@ -11,9 +11,7 @@
 <%@ include file="header.jsp" %>
 
 <div class="center">
-<div class="session">
-회원가입 화면
-</div>
+<%@ include file="signUpForm.jsp" %>
 </div>
 <%@ include file="footer.jsp" %>
 
