@@ -27,7 +27,7 @@
 				<div class="col-md-9 col-sm-9 ">
 					<div id="chart_plot_01" class="demo-placeholder">
 						<!-- <canvas class="float-base"></canvas> -->
-						<canvas id="line-chart" width="300" height=70"></canvas>
+						<canvas id="line-chart" width="300" height="70"></canvas>
 						<script type="text/javascript">
 						new Chart(document.getElementById("line-chart"), {
 							  type: 'line',

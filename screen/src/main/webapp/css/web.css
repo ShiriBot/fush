@@ -425,7 +425,7 @@ a{
 .Thumbnail { /*썸네일 아이템을 감쌀 뼈대*/
 	display: flex;
 	flex-flow: row wrap;
-	width: 100%;
+	width: 80%;
 	height: 50px;
 	position: absolute;
 	bottom: 0px;
@@ -435,7 +435,8 @@ a{
 .slide_item:nth-of-type(1), .thumbnail_item:nth-of-type(1) {
 	/*예제를 위해 썸네일 아이템들의 색깔을 구분*/
 	background-image: url("../images/logo.png");
-	background-repeat: round;
+	background-repeat: no-repeat;
+	background-size: 100%,100%;
 }
 
 .slide_item:nth-of-type(2), .thumbnail_item:nth-of-type(2) {

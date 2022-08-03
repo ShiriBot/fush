@@ -15,8 +15,10 @@
 		<div class="slide_item"></div>
 	</div>
 	<!-- 살려야한다  -->
-	<!-- <div style="display: flex; flex-direction: row; position: relative; justify-content: space-between; width: 100%;"> -->
-		<!-- <span class="prevButton">◀</span> -->
+	<div style="display:flex;width:100%;justify-content: space-between;">
+		<span class="prevButton">◀</span>
+		<span class="nextButton">▶</span>
+	</div>
 		<!--이전 버튼 -->
 		<div class="Thumbnail">
 			<!--썸네일을 감쌀 뼈대 -->
@@ -28,13 +30,11 @@
 			<div class="thumbnail_item"></div>
 			<div class="thumbnail_item"></div>
 		</div>
-		<!-- <span class="nextButton">▶</span> -->
 		<!--다음 버튼 -->
 	</div>
-<!-- </div> -->
 <!-- <img src="images/logo.png"> -->
 
- 
+ <script src="js/slideShow.js"></script>
  
 <div>
 	<h2>이 주의 추천웹툰!</h2>
@@ -167,4 +167,4 @@
 		<p>집이 없어</p>
 	</div>
 </div>
-<script src="js/slideShow.js"></script>
+
