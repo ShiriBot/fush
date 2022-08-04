@@ -26,21 +26,30 @@
 			</div>
 			
 			<div class="middleblockChart">
-				<div class="checkTitle">내과의사 박원장</div>
-				댓글:
-				<div class="checkReply">"의사들의 현실적인 고민과애환을 재치있게 잘 그려낸 작품"
+				<div class="checkTitle">
+					내과의사 박원장
+				</div>
+				<div class="checkReply">
+					<p>댓글:</p>
+					<span>"의사들의 현실적인 고민과 애환을 재치있게 잘 그려낸 작품"</span>
 				</div>
 				<div class="checkTag">
-					<a href="#">#태그</a>
-					<a href="#">#태그</a>
-					<a href="#">#태그</a>
+					<a class="tag" href="#">태그</a>
+					<a class="tag" href="#">태그</a>
+					<a class="tag" href="#">태그</a>
 				</div>
 			</div>
 			<div class="rightblockChart">
-				<div class="star" >
-					<h4>별점</h4>
-					<h2>5.0/5.0</h2>
-					<div>★★★★★</div>
+				<div class="star">
+					<div>
+						<h4>나의 평점</h4>
+						<span>/평균 평점</span>
+					</div>
+					<div>
+						<h2>5.0</h2>
+						<span>/5.0</span>
+						<div>★★★★★</div>
+					</div>
 				</div>
 			</div>
 		</div>
