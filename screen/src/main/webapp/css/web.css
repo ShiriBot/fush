@@ -18,6 +18,7 @@ a{
 .tag{
 	color: #0067a3;
 	margin-right:5px;
+	display:inline-block;
 }
 
 .tag:before{
@@ -30,6 +31,16 @@ a{
 
 .clickBox:hover{
 	cursor:pointer;
+}
+
+.card .tag{
+	font-size:12px;
+}
+
+.card h5{
+	display:inline;
+	margin-right:5px;
+	margin-bottom:5px;
 }
 
 /* 상단 네비바 고정 */
@@ -383,6 +394,7 @@ a{
 	align-items: center;
 	width: 1000px;
 	z-index: 1;
+	margin-bottom:100px;
 }
 
 .slides { /*슬라이드 아이템이 나올 뼈대 지정*/
