@@ -4,9 +4,8 @@
 
 <div class="ratingFrame">
 
-	<div class="ratingImgFrame" id="window">
-		<div class="ratingImg">
-		</div>
+	<div class="ratingImgFrame">
+		<src img="images/jojo.jpg" class="ratingImg">
 	</div>
 	<div class="ratingContent">
 		<div class="ratingReply">
