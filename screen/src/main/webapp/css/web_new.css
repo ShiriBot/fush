@@ -1,20 +1,5 @@
 @charset "UTF-8";
 
-* {
-	box-sizing : border-box;
-	text-decoration:none;
-}
-
-body {
-	font-family: Arial;
-	padding: 10px;
-	background: none;	
-}
-
-a{
-	color:black;
-}
-
 .tag{
 	color: #0067a3;
 	margin-right:5px;

@@ -3,16 +3,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="head.jsp" %>
+<%@ include file="head_new.jsp" %>
 <title>메인</title>
 </head>
 <body>
-<%@ include file="header.jsp" %>
-<div class="center">
-<div class="session">
-<%@ include file="row.jsp" %>
-</div>
-</div>
+
+<%@ include file="header_new.jsp" %>
+<%@ include file="row_new.jsp" %>
 <%@ include file="footer.jsp" %>
 
 </body>
