@@ -16,7 +16,7 @@
 .btn-group, .btn-group-vertical {
     position: relative;
     display: -ms-inline-flexbox;
-    display: block;
+    display: inline;
     vertical-align: middle;
 }
 

@@ -1,22 +1,25 @@
 @charset "UTF-8";
 
-.checkTitle{
-	margin-top:50px;
-	margin-bottom:30px;
-	font-size:30px;
+.choice{
+	position:relative;
+	text-align:center;
+	display:flex;
+	margin:10px;
+	border-top: 1px solid lightgrey;
+}
+.choiceRanking{
+	border-right:1px solid lightgrey;
+	width:50%;
+	text-align:center;
+	
 }
 
-.checkReply{
-	margin-bottom:30px;
-	font: italic 1.2em "Fira Sans", serif;
-	justify-content:center;
-	overflow:hidden;
+.choiceUpdate{
+	width:50%;
+	text-align:center;
+	background-color: #fcfcfc;
+	border-bottom: 1px solid lightgrey;
 }
-
-.checkTag{
-	margin-bottom:30px;
-}
-
 
 /* searchdetail끌고옴 */
 
@@ -24,7 +27,7 @@
 	position:relative;
 	text-align:center;
 	display:flex;
-	margin:10px;
+	padding:10px;
 	border-bottom: 1px solid lightgrey;
 }
 .leftblockChart {
@@ -53,28 +56,41 @@
 	justify-content: center;
 }
 
+.checkTitle{
+	font-size:30px;
+}
 
+.checkReply{
+	overflow:hidden;
+}
 
-.choice{
-	position:relative;
-	text-align:center;
+.checkReply span{
+	font: italic 1.2em "Fira Sans", serif;
+	justify-content:center;
+	text-overflow: ellipsis;
+}
+
+.star{
+	width:100%;
+	height:100%;
 	display:flex;
-	margin:10px;
-	border-top: 1px solid lightgrey;
-}
-.choiceRanking{
-	border-right:1px solid lightgrey;
-	width:50%;
-	text-align:center;
-	
+	flex-flow:column;
+	justify-content:space-evenly;
 }
 
-.choiceUpdate{
-	width:50%;
-	text-align:center;
-	background-color: #fcfcfc;
-	border-bottom: 1px solid lightgrey;
+.star h2,.star h4, .star span{
+	margin:0;
+	display:inline-block;
 }
+
+.star span{
+	font-weight:bold;
+	color:grey;
+}
+
+
+
+
 
 
 

@@ -50,6 +50,18 @@
 												</select> 개씩 보기
 											</label>
 										</div>
+										<div id="datatable-buttons_wrapper" class="dataTables_wrapper dt-bootstrap no-footer" style="display:inline">
+											<div class="dt--members-del btn-group">
+												<a class="btn btn-default buttons-html5 btn-sm" tabindex="0" aria-controls="datatable-buttons" href="#">
+													<span>작품 수정하기</span>
+												</a>
+											</div>
+											<div class="dt--members-del btn-group">
+												<a class="btn btn-default buttons-html5 btn-sm" tabindex="0" aria-controls="datatable-buttons" href="#">
+													<span>작품 삭제하기</span>
+												</a>
+											</div>
+										</div>
 										<div id="datatable-arts_filter" class="dataTables_filter">
 											<label>
 											검색:
