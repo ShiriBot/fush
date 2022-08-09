@@ -3,7 +3,7 @@
 
 <div class="container">
 	<div class="row justify-content-center">
-		<div class="col-8">
+		<div class="col-lg-9 mt-5">
 			<div class="content">
 				<!--전체를 감쌀 뼈대-->
 				<div class="slides">
@@ -36,10 +36,9 @@
 			</div>
 		</div>
 		<!-- <img src="images/logo.png"> -->
-
 		<script src="js/slideShow.js"></script>
 	</div>
-	<div>
+	<div class="row">
 		<h2>이 주의 추천웹툰!</h2>
 		<!-- <a href="#" style="float: right">더보기</a> -->
 	</div>

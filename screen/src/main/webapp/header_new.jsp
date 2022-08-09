@@ -13,8 +13,8 @@
 		</a>
 		
 		<div class="col-sm-4" id="navbarSupportedContent1">
-		<form class="d-flex">
-			<!-- d-flex: display:flex -->
+			<div class="row">
+			<form class="col-10">
 				<fieldset class="field-container">
 					<input type="text" placeholder="Search..." class="field" />
 					<div class="icons-container">
@@ -25,23 +25,9 @@
 						</div>
 					</div>
 				</fieldset>
-				<!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> -->
-				<!-- form-control: 기본 폼양식인듯? me-2:marginright0.5 -->
-				<!-- <button class="btn btn-outline-success" type="submit">Search</button> -->
-				<!-- <div class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-						상세검색
-					</a>
-					<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<li><a class="dropdown-item" href="#">인기태그1</a></li>
-						<li><a class="dropdown-item" href="#">인기태그2</a></li>
-						<li><a class="dropdown-item" href="#">인기태그3</a></li>
-						<li><a class="dropdown-item" href="#">인기태그3</a></li>
-						<li><hr class="dropdown-divider"></li>
-						<li><a class="dropdown-item" href="#">더보기</a></li>
-					</ul>
-				</div> -->
 			</form>
+			<a class="col-2 navBtn primary" href="search.jsp"> 상세검색</a>
+			</div>
 		</div>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
 			aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -60,17 +46,17 @@
 					</a> 
 				</li> -->
 				<li class="nav-item">
-					<a class="nav-link" href="rating.jsp">
+					<a class="nav-link navBtn primary" href="rating.jsp">
 						평가하기
 					</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="login.jsp">
+					<a class="nav-link navBtn primary" href="login.jsp">
 					로그인
 					</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="signup.jsp">
+					<a class="nav-link navBtn primary" href="signup.jsp">
 						회원가입
 					</a>
 				</li>				
