@@ -3,7 +3,7 @@
 
 <div class="container">
 	<div class="row justify-content-center">
-		<div class="col-lg-9 mt-5">
+		<div class="col-lg-10 mt-5 mb-5">
 			<div class="content">
 				<!--전체를 감쌀 뼈대-->
 				<div class="slides">
@@ -17,11 +17,10 @@
 					<div class="slide_item"></div>
 				</div>
 				<!-- 살려야한다  -->
-				<div
-					style="display: flex; width: 100%; justify-content: space-between;">
-					<span class="prevButton">◀</span> <span class="nextButton">▶</span>
+				<div style="display: flex; width: 100%; justify-content: space-between;">
+					<span class="prevButton">◀</span><!--이전 버튼 -->
+					<span class="nextButton">▶</span><!--다음 버튼 -->
 				</div>
-				<!--이전 버튼 -->
 				<div class="Thumbnail">
 					<!--썸네일을 감쌀 뼈대 -->
 					<div class="thumbnail_item"></div>
@@ -32,18 +31,20 @@
 					<div class="thumbnail_item"></div>
 					<div class="thumbnail_item"></div>
 				</div>
-				<!--다음 버튼 -->
+				
 			</div>
 		</div>
 		<!-- <img src="images/logo.png"> -->
 		<script src="js/slideShow.js"></script>
 	</div>
+<!-- 슬라이드쇼 반응형...해야 되는데 좀 빡심.. 좀 더 익숙해지고 마지막에 다시 건드려보겟음 -->
+
 	<div class="row">
 		<h2>이 주의 추천웹툰!</h2>
 		<!-- <a href="#" style="float: right">더보기</a> -->
 	</div>
 	<div class="row">
-		<div class="card">
+		<div class="card col-3">
 			<div class="clickBox" onclick="location.href='artDetail.jsp'">
 				<div class="imgframe" style="height: 200px; overflow: hidden;">
 					<img class="mainImage" src="images/no_home.jpg">
@@ -58,7 +59,7 @@
 				class="tag" href="search.jsp">드라마</a><a class="tag"
 				href="search.jsp">스토리</a><a class="tag" href="search.jsp">공감</a>
 		</div>
-		<div class="card">
+		<div class="card col-3">
 			<div class="clickBox" onclick="location.href='artDetail.jsp'">
 				<div class="imgframe" style="height: 200px; overflow: hidden;">
 					<img class="mainImage" src="images/sample1.jpg">
@@ -71,7 +72,7 @@
 			<a class="tag" href="search.jsp">일상</a><a class="tag"
 				href="search.jsp">에피소드</a><a class="tag" href="search.jsp">공감</a>
 		</div>
-		<div class="card">
+		<div class="card col-3">
 			<div class="clickBox" onclick="location.href='artDetail.jsp'">
 				<div class="imgframe" style="height: 200px; overflow: hidden;">
 					<img class="mainImage" src="images/sample2.jpg">
@@ -90,7 +91,7 @@
 				class="tag" href="search.jsp">스토리</a><a class="tag"
 				href="search.jsp">공감</a>
 		</div>
-		<div class="card">
+		<div class="card col-3">
 			<div class="clickBox" onclick="location.href='artDetail.jsp'">
 				<div class="imgframe" style="height: 200px; overflow: hidden;">
 					<img class="mainImage" src="images/sample3.jpg">

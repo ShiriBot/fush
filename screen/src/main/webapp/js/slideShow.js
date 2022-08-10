@@ -9,6 +9,9 @@ function sliderOn() {
 	firstEle.classList.add('ontheSlide'); //첫번째 슬라이드 아이템에 ontheSlide 클래스 추가
 	firstThumb.classList.add('ontheThumbnail'); // 첫번째 썸네일 아이템에 ontheThumbnail 클래스 추가
 	const gogogo = setInterval(sliderGo, 4000);
+	/*	function setInterval(handler: TimerHandler, timeout?: number): number
+	4000밀리초(=4초) 마다 한번씩 sliderGo 함수 실행*/
+
 	function sliderGo(isThat) {//isThat을 받아오기
 
 		if (isThat) {//isThat이 지정되어 있다면
