@@ -1,31 +1,7 @@
 @charset "UTF-8";
 
-.tag{
-	color: #0067a3;
-	margin-right:5px;
-	display:inline-block;
-}
-
-.tag:before{
-	content:"#";
-}
-
-.overflow-hidden{
-	overflow:hidden;
-}
-
-.clickBox:hover{
-	cursor:pointer;
-}
-
-.card .tag{
-	font-size:12px;
-}
-
-.card h5{
-	display:inline;
-	margin-right:5px;
-	margin-bottom:5px;
+a{
+	text-decoration:none;
 }
 
 /* 검색창 블록 */
@@ -223,121 +199,21 @@
 	animation-delay: 0.1s;
 }
 
-/* 상세검색 버튼 구현 */
-.navBtn {
-	display: flex;
-	color: #ddd;
-	text-decoration: none;
-	font-weight: bold;
-	text-transform: uppercase;
-	transition: all .2s;
-	text-align: center;
-	font-size: 0.9vw;
-	align-items: center;
-}
-
-.navBtn.primary {
-	border-color: #3498db;
-	color: #3498db;
-}
-
-/* Clear floats after the columns */
-.row:after {
-	content: "";
-	display: table;
-	clear: both;
-}
-
-/* Fake image */
-.slideImg {
-	background-color: #aaa;
-	width: 100%;
-	padding: 20px;
-}
-
-/* Add a card effect for articles */
-.card {
-	width:250px;
-	background-color: white;
-	padding: 20px;
-	margin-top: 10px;
-}
-
-.mainImage {
-	width:100%;
-}
-
-.minicard {
-	width:200px;
-	background-color: white;
-	padding: 20px;
-	margin-top: 10px;
-}
-
-.minicard p{
-	font-weight:bold;
-}
-
-/* Footer */
-.footer {
-	padding: 20px;
-	text-align: center;
-	background: #ddd;
-	margin-top: 20px;
-}
-
-.footer a{
-	text-decoration:none;
-	color:black;
-	margin:10px;
-}
-
 .slides { /*슬라이드 아이템이 나올 뼈대 지정*/
-	width: 960px;
-	height: 300px;
+	width: 100%;
+	height:0;
+	padding-bottom:40%;
 	position: relative;
 }
 
 .slide_item { /*슬라이드 아이템을 absolute로 겹쳐놓고 투명하게 하기*/
 	position: absolute;
-	width: 100%;
-	height: 300px;
+	width:100%;
+	height: 100%;
 	opacity: 0;
 	transition: all 0.3s;
 }
 
-.ontheSlide { /*현재 아이템에 붙여줄 클래스*/
-	opacity: 1;
-	transition: all 0.3s;
-}
-
-.ontheThumbnail { /*현재 썸네일에 붙여줄 클래스*/
-	border: 1px dashed red;
-}
-
-.nextButton, .prevButton { /*다음,이전 버튼을 드래그되지 않게 방지해주기*/
-	-webkit-user-select: none;
-	-ms-user-select: none;
-	user-select: none
-}
-
-.nextButton { /*다음 버튼을 오른쪽으로 보내기*/
-	float: right;
-}
-
-.prevButton { /*왼쪽 버튼을 왼쪽으로 보내기*/
-	float: left;
-}
-
-.Thumbnail { /*썸네일 아이템을 감쌀 뼈대*/
-	display: flex;
-	flex-flow: row wrap;
-	width: 80%;
-	height: 50px;
-	position: absolute;
-	bottom: 0px;
-	justify-content:center;
-}
 /*   background-image: url(""); */
 .slide_item:nth-of-type(1), .thumbnail_item:nth-of-type(1) {
 	/*예제를 위해 썸네일 아이템들의 색깔을 구분*/
@@ -366,23 +242,93 @@
 	background: green;
 }
 
+.ontheSlide { /*현재 아이템에 붙여줄 클래스*/
+	opacity: 1;
+	transition: all 0.3s;
+}
+
+.Thumbnail { /*썸네일 아이템을 감쌀 뼈대*/
+	display: flex;
+	flex-flow: row wrap;
+	height: 12%;
+	width:100%;
+	bottom: 0;
+	justify-content:center;
+	position: absolute;
+}
+
 .thumbnail_item { /*썸네일 아이템의 길이 설정*/
-	width: 98px;
+	width: 10%;
+	height:100%;
+	
 }
 
-/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on  of each other instead of next to each other */
-@media screen and (max-width: 800px) {
-	.leftcolumn, .rightcolumn {
-		width: 100%;
-		padding: 0;
-	}
+.ontheThumbnail { /*현재 썸네일에 붙여줄 클래스*/
+	border: 1px dashed red;
 }
 
+.nextButton, .prevButton { /*다음,이전 버튼을 드래그되지 않게 방지해주기*/
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	user-select: none
+}
 
-/* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on  of each other instead of next to each other */
-@media screen and (max-width: 400px) {
-	.nav a {
-		float: none;
-		width: 100%;
-	}
+.nextButton { /*다음 버튼을 오른쪽으로 보내기*/
+	float: right;
+}
+
+.prevButton { /*왼쪽 버튼을 왼쪽으로 보내기*/
+	float: left;
+}
+
+.card {
+	border:none;
+}
+.card .card-title, .card .card-subtitle{
+	display:inline-block;
+}
+
+.card .tag{
+	font-size:12px;
+}
+
+.clickBox:hover{
+	cursor:pointer;
+}
+
+.tag{
+	color: #0067a3;
+	text-decoration:none;
+	margin-right:5px;
+	display:inline-block;
+	
+}
+
+.tag:before{
+	content:"#";
+}
+
+.tagImg {
+	padding-bottom: 100%;
+	height: 0;
+	overflow-y: hidden;
+}
+
+.tagImg img {
+	object-fit: cover;
+	width: inherit;
+}
+
+/* Footer */
+.footer {
+	padding: 20px;
+	text-align: center;
+	background: #ddd;
+	margin-top: 20px;
+}
+
+.footer a{
+	text-decoration:none;
+	color:black;
+	margin:10px;
 }

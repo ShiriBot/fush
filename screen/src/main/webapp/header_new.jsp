@@ -14,7 +14,7 @@
 		
 		<div class="col-sm-4" id="navbarSupportedContent1">
 			<div class="row">
-			<form class="col-10">
+			<form class="col-9">
 				<fieldset class="field-container">
 					<input type="text" placeholder="Search..." class="field" />
 					<div class="icons-container">
@@ -26,7 +26,7 @@
 					</div>
 				</fieldset>
 			</form>
-			<a class="col-2 navBtn primary" href="search.jsp"> 상세검색</a>
+			<a class="col-3 nav-link primary" href="search.jsp"> 상세검색</a>
 			</div>
 		</div>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -46,12 +46,12 @@
 					</a> 
 				</li> -->
 				<li class="nav-item">
-					<a class="nav-link navBtn primary" href="rating.jsp">
+					<a class="nav-link primary" href="rating.jsp">
 						평가하기
 					</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link navBtn primary" href="login.jsp">
+					<a class="nav-link primary" href="login.jsp">
 					로그인
 					</a>
 				</li>
