@@ -1,12 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
 <div class="header">
 	<input type="hidden" id="loginStat" value="<%= session.getAttribute("login") %>">
 	<div class="topNavigation">
 		<a href="main.jsp"><img src="images/logo.png"></a>
 	</div>
-	<div style="display:flex">
 	<div class="sizeOfSearchBar">
 		<fieldset class="field-container">
 			<input type="text" placeholder="Search..." class="field" />
@@ -20,17 +18,16 @@
 			</div>
 		</fieldset>
 	</div>
-		<a class="btn primary" href="search.jsp" style="margin-left:10px;"> 상세검색</a>
-	</div>
+		<a href="searchDetail.jsp"> 상세검색</a>
 	<div>
-		<a class="btn primary"  href="rating.jsp" id="rating"> 평가하기 </a>
-		 
+		<a href="rating.jsp" id="rating"> 평가하기 </a>
+
 <% if(session.getAttribute("login")==null) {%>	
-			<a class="btn primary"  href="login.jsp" id="login"> 로그인</a>
-			<a class="btn primary"  href="signup.jsp" id="member">회원가입</a>
+			<a href="loginProc.jsp" id="login"> 로그인</a>
+			<a href="signup.jsp" id="member">회원가입</a>
 <% } else{ %>
-			<a class="btn primary"  href="logoutProc.jsp" id="logout"> 로그아웃</a>
-			<a class="btn primary"  href="mypage.jsp" id="mypage">마이페이지</a>
+			<a href="logoutProc.jsp" id="logout"> 로그아웃</a>
+			<a href="mypage.jsp" id="mypage">마이페이지</a>
 <%} %>		
 	</div>
 </div>
