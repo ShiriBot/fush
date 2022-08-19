@@ -32,13 +32,13 @@
 					</div>
 				</li> -->
 				<!-- 메시지, 알림 오는 것 처럼 보이는 부분 -->
-				<li role="presentation" class="nav-item dropdown open">
+				<!-- <li role="presentation" class="nav-item dropdown open">
 					<a href="javascript:;" class="dropdown-toggle info-number"
 					id="navbarDropdown1" data-toggle="dropdown" aria-expand="false">
 						<i class="fa fa-envelope-o"></i>
 						<span class="badge bg-green">6</span>
 					</a>
-				</li>
+				</li> -->
 			</ul>
 		</nav>
 	</div>
