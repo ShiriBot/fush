@@ -12,6 +12,7 @@ public class Artwork {
 	private String week;
 	private String detail;
 	private String admit;
+	private List<Tag> tag;
 	private List<Reply> reply;
 	
 	public Artwork() {
