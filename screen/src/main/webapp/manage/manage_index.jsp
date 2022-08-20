@@ -18,15 +18,4 @@
 		</div>
 	</body>
 	
-<script>
-	function bodyClassChange(){
-		const bodyClass = document.getElementById('nav_body').className;
-		if(bodyClass=='nav-md'){
-			document.getElementById('nav_body').className='nav-sm'
-		}else{
-			document.getElementById('nav_body').className='nav-md'
-		}
-		
-	}
-</script>
 </html>
