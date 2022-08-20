@@ -8,4 +8,12 @@ public class BannerImage extends File{
 		
 	}
 
+	public String getSlideArrNum() {
+		return slideArrNum;
+	}
+
+	public void setSlideArrNum(String slideArrNum) {
+		this.slideArrNum = slideArrNum;
+	}
+
 }
