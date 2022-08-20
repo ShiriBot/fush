@@ -8,4 +8,20 @@ public class Tag {
 	public Tag() {
 	}
 
+	public String getSeqno() {
+		return seqno;
+	}
+
+	public void setSeqno(String seqno) {
+		this.seqno = seqno;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
 }

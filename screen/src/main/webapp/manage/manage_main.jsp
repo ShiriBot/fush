@@ -43,7 +43,7 @@
 						</script>
 					</div>
 				</div>
-				<div class="col-md-3 col-sm-3 bg-white">
+				<!-- <div class="col-md-3 col-sm-3 bg-white">
 					<div class="x_title">
 						<h2>유입율</h2>
 						<div class="clearfix"></div>
@@ -89,7 +89,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="clearfix"></div>
+				<div class="clearfix"></div> -->
 			</div>
 		</div>
 	</div>

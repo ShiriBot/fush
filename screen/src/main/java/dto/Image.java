@@ -8,4 +8,12 @@ public class Image extends File{
 		
 	}
 
+	public String getArtSeqno() {
+		return artSeqno;
+	}
+
+	public void setArtSeqno(String artSeqno) {
+		this.artSeqno = artSeqno;
+	}
+	
 }

@@ -20,6 +20,18 @@
 	padding: 0.5rem 1rem;
 }
 
+.nav-sm .container.body .col-md-3.left_col {
+	min-height: 100%;
+	width: 70px;
+	padding: 0;
+	z-index: 9999;
+	position: absolute;
+}
+
+.nav-sm .navbar.nav_title {
+	width: 70px;
+}
+
 /* 사이드바 로고 */
 .nav_title {
 	width: 230px;
