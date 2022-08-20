@@ -3,17 +3,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="head.jsp" %>
+<%@ include file="../head.jsp" %>
 <title>메인</title>
 </head>
 <body>
-<%@ include file="header.jsp" %>
+<%@ include file="header-old.jsp" %>
 <div class="center">
 <div class="session">
-<%@ include file="row.jsp" %>
+<%@ include file="row-old.jsp" %>
 </div>
 </div>
-<%@ include file="footer.jsp" %>
+<%@ include file="../footer.jsp" %>
 
 </body>
 </html>
