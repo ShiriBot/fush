@@ -11,7 +11,7 @@
 				<div class="row x_title">
 					<div class="col-md-6">
 						<h3>
-							유입차트 <small> 이용자들의 유입경로별</small>
+							접속자수 변화 <!-- <small> 이용자들의 누적 접속자수</small> -->
 						</h3>
 					</div>
 					<div class="col-md-6">
@@ -24,7 +24,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-md-9 col-sm-9 ">
+				<div class="col">
 					<div id="chart_plot_01" class="demo-placeholder">
 						<!-- <canvas class="float-base"></canvas> -->
 						<canvas id="line-chart" width="300" height="70"></canvas>
