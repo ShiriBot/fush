@@ -16,7 +16,7 @@
 			</div>
 			<div class="profile_info">
 				<span> Welcome, </span>
-				<h2>MANAGER_NAME</h2>
+				<h2><%=(String)session.getAttribute("sess_name") %></h2>
 			</div>
 		</div>
 		<br>
@@ -27,7 +27,7 @@
 				</h3>
 				<ul class="nav side-menu">
 					<li>
-						<a href="manage_index.jsp">
+						<a href="home.manage">
 							<i class="fa fa-house"></i>
 							HOME
 							

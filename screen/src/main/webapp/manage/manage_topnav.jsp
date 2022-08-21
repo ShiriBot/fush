@@ -16,7 +16,7 @@
 					aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown"
 					aria-expand="false"> 
 						<img src="assets/images/profile_sample.png" alt="">
-						MANAGER_NAME 
+						<%=(String)session.getAttribute("sess_name") %> 
 					</a>
 					<!-- 프로필 눌렀을때 나오는 드롭다운 메뉴인데용... -->
 					<div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown" x-placement="bottem-start" style="will-change: transform; top: 0px; left: 0px; transform: translate3d(-88px, 21px, 0px);">

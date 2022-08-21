@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,9 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet("/manage/*")
+import dao.MemberDao;
+
+@WebServlet("*.manage")
 public class ManageController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	MemberDao mDao = new MemberDao();
 	HttpSession session;
 
     public ManageController() {
@@ -20,6 +24,15 @@ public class ManageController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doAction(request, response);
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doAction(request, response);
+	}
+	
+	protected void doAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		session = request.getSession();
 		
 		String uri = request.getRequestURI(); //프로젝트+파일명
@@ -27,28 +40,41 @@ public class ManageController extends HttpServlet {
 		StringBuffer url = request.getRequestURL(); //전체 경로
 		String file = request.getServletPath(); //파일명만
 		
-		String cmd = uri.substring(uri.lastIndexOf("/")+1);
+		String cmd = uri.substring(uri.lastIndexOf("/")+1,uri.lastIndexOf("."));
 		System.out.println("uri : " +uri+", cmd : "+cmd+", url:"+url+", path:"+path+", file:"+file);
 		
-		String loginStatus = (String)session.getAttribute("loginStatus");
-		
 		if(cmd.equals("login")) {
-			goView(request, response, "/manage/manage_login.jsp");
-		}else {
-			if(!cmd.equals("manage_login.jsp")){
-				if(loginStatus==null) {
-					response.sendRedirect("/manage/login");
-				}else if(!loginStatus.equals("manager")) {
-					response.sendRedirect("/manage/login");
-				}
+			String id = request.getParameter("id");
+			String pw = request.getParameter("pw");
+			Map<String, String> status =  mDao.login(id, pw);
+			switch (status.get("loginStatus")) {
+			case "manager": //로그인 성공
+				//세션설정
+				session.setAttribute("sess_id", id);
+				session.setAttribute("sess_name", status.get("name"));
+				session.setAttribute("login_time", session.getCreationTime());
+				request.setAttribute("msg","loginOk");
+				response.sendRedirect("home.manage");
+				System.out.println("로그인 성공");
+				break;
+			case "ok":
+				//로그인에는 성공했지만 권한이 없는 경우에는 사용자 화면으로 쫓아내기
+				request.setAttribute("msg","authFail");
+				goView(request, response, "/");
+				System.out.println("권한없음");
+				break;
+			default:
+				request.setAttribute("msg","loginFail");
+				//로그인실패
+				goView(request, response, "/manage/manage_login.jsp");
+				System.out.println("로그인실패");
+				break;
 			}
+		}else if(cmd.equals("home")){
+			mDao.count();
+			response.sendRedirect("/manage/manage_index.jsp");
 		}
-		/*response.getWriter().append("Served at: ").append(request.getContextPath());*/
-	}
 
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
 	}
 	
 	void goView(HttpServletRequest req, HttpServletResponse resp, String viewPage) throws ServletException, IOException {
