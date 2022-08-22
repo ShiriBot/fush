@@ -12,7 +12,7 @@
 		<div class="clearfix"> <!-- ::after --> </div>
 		<div class="profile clearfix">
 			<div class="profile_pic">
-				<img class="img-circle profile_img" src="assets/images/profile_sample.png" alt="">
+				<img class="img-circle profile_img" src="/manage/assets/images/profile_sample.png" alt="">
 			</div>
 			<div class="profile_info">
 				<span> Welcome, </span>
@@ -27,7 +27,7 @@
 				</h3>
 				<ul class="nav side-menu">
 					<li>
-						<a href="home.manage">
+						<a href="/admin/home">
 							<i class="fa fa-house"></i>
 							HOME
 							
@@ -35,7 +35,7 @@
 
 					</li>
 					<li>
-						<a href="manage_members.jsp">
+						<a href="/admin/member">
 							<i class="fa fa-users"></i>
 							Members
 						</a>

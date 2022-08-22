@@ -12,11 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.MemberDao;
+import service.MemberService;
 
-@WebServlet("*.manage")
+@WebServlet("/admin/*")
 public class ManageController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	MemberDao mDao = new MemberDao();
+	MemberService memberService = new MemberService();
 	HttpSession session;
 
     public ManageController() {
@@ -40,13 +41,13 @@ public class ManageController extends HttpServlet {
 		StringBuffer url = request.getRequestURL(); //전체 경로
 		String file = request.getServletPath(); //파일명만
 		
-		String cmd = uri.substring(uri.lastIndexOf("/")+1,uri.lastIndexOf("."));
+		String cmd = uri.substring(uri.lastIndexOf("/")+1);
 		System.out.println("uri : " +uri+", cmd : "+cmd+", url:"+url+", path:"+path+", file:"+file);
 		
 		if(cmd.equals("login")) {
 			String id = request.getParameter("id");
 			String pw = request.getParameter("pw");
-			Map<String, String> status =  mDao.login(id, pw);
+			Map<String, String> status =  memberService.login(id, pw);
 			switch (status.get("loginStatus")) {
 			case "manager": //로그인 성공
 				//세션설정
@@ -54,7 +55,7 @@ public class ManageController extends HttpServlet {
 				session.setAttribute("sess_name", status.get("name"));
 				session.setAttribute("login_time", session.getCreationTime());
 				request.setAttribute("msg","loginOk");
-				response.sendRedirect("home.manage");
+				response.sendRedirect("/admin/home");
 				System.out.println("로그인 성공");
 				break;
 			case "ok":
@@ -71,8 +72,13 @@ public class ManageController extends HttpServlet {
 				break;
 			}
 		}else if(cmd.equals("home")){
-			mDao.count();
-			response.sendRedirect("/manage/manage_index.jsp");
+			Map<String, Integer> statistics = memberService.statistics();
+			request.setAttribute("statistics",statistics);
+			System.out.print(request.getAttribute("statistics"));
+			goView(request, response, "/manage/manage_index.jsp");
+		}else if(cmd.equals("member")){
+			memberService.list();
+			goView(request, response, "/manage/manage_members.jsp");
 		}
 
 	}
