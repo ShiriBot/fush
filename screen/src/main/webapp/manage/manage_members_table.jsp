@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <div class="right_col" role="main">
 	<div class="">
@@ -87,22 +88,16 @@
 												</tr>
 											</thead>
 											<tbody>
-												<tr>
-													<td>limfisherman</td>
-													<td>임정후</td>
-													<td>몰?루?</td>
-													<td>관리자</td>
-													<td>2022.08.04</td>
-													<td>(입력안함)</td>
-												</tr>
-												<tr>
-													<td>shiri_bot</td>
-													<td>채정실</td>
-													<td>cowjdtlf@gmail.com</td>
-													<td>관리자</td>
-													<td>2022.08.04</td>
-													<td>1991.09.06.</td>
-												</tr>
+												<c:forEach items="${allMembers}" var="allMember" >
+													<tr>
+														<td><c:out value="${allMember.id}" /></td>
+														<td><c:out value="${allMember.name}" /></td>
+														<td><c:out value="${allMember.email}" /></td>
+														<td><c:out value="${allMember.auth}" /></td>
+														<td><c:out value="${allMember.wdate}" /></td>
+														<td><c:out value="${allMember.birth}" /></td>
+													</tr>
+												</c:forEach>
 											</tbody>
 										</table>
 										<div class="dataTables_info" id="datatable-members_info" role="status" aria-live="polite">
@@ -206,6 +201,19 @@
 													</th>
 												</tr>
 											</thead>
+											<tbody>
+												<c:forEach items="${newMembers}" var="newMember" >
+													<tr>
+														<td><c:out value="${newMember.id}" /></td>
+														<td><c:out value="${newMember.name}" /></td>
+														<td><c:out value="${newMember.email}" /></td>
+														<td><c:out value="${newMember.auth}" /></td>
+														<td><c:out value="${newMember.wdate}" /></td>
+														<td><c:out value="${newMember.birth}" /></td>
+													</tr>
+												</c:forEach>
+											</tbody>
+											
 										</table>
 										<div class="dataTables_info" id="datatable-members-new_info" role="status" aria-live="polite">
 											Showing 1 to 1 of 0 entries
@@ -314,6 +322,18 @@
 													</th>
 												</tr>
 											</thead>
+											<tbody>
+												<c:forEach items="${delMembers}" var="delMember" >
+													<tr>
+														<td><c:out value="${delMember.id}" /></td>
+														<td><c:out value="${delMember.name}" /></td>
+														<td><c:out value="${delMember.email}" /></td>
+														<td><c:out value="${delMember.auth}" /></td>
+														<td><c:out value="${delMember.wdate}" /></td>
+														<td><c:out value="${delMember.birth}" /></td>
+													</tr>
+												</c:forEach>
+											</tbody>
 										</table>
 										<div class="dataTables_info" id="datatable-members-del_info" role="status" aria-live="polite">
 											Showing 1 to 1 of 0 entries

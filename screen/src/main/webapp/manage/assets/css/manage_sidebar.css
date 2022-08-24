@@ -5,6 +5,14 @@
 	background: #2A3F54;
 }
 
+.nav-sm .container.body .col-md-3.left_col {
+	min-height: 100%;
+	width: 70px;
+	padding: 0;
+	z-index: 9999;
+	position: absolute;
+}
+
 /* 사이드바 정렬관련 */
 .navbar {
 	margin-bottom: 0;
@@ -20,6 +28,8 @@
 	padding: 0.5rem 1rem;
 }
 
+
+
 /* 사이드바 로고 */
 .nav_title {
 	width: 230px;
@@ -28,6 +38,15 @@
 	border-radius: 0;
 	height: 57px;
 	padding: 0px;
+}
+
+.nav-sm .navbar.nav_title {
+	width: 70px;
+}
+
+.nav-sm .navbar.nav_title a i {
+	font-size: 27px;
+	margin: 13px 0 0 3px;
 }
 
 /* 사이드바 로고관련 홈으로 가는 링크 부분 */
@@ -45,6 +64,8 @@
 	margin: 0;
 	padding-left: 10px;
 }
+
+
 
 /* 사이드바 로고관련 홈으로 가는 링크 부분 아이콘 */
 .site_title i {
@@ -98,6 +119,10 @@
 	font-weight: 300;
 }
 
+.nav-sm .profile {
+	display: none;
+}
+
 /* 메뉴 리스트 전체 영역 */
 .main_menu_side {
 	padding: 0;
@@ -106,6 +131,10 @@
 /* 메뉴 섹션을 나눌경우 */
 .menu_section {
 	margin-bottom: 35px;
+}
+
+.nav-sm .menu_section {
+	margin: 0;
 }
 
 /* 메뉴 섹션 제목 */
@@ -119,6 +148,10 @@
 	margin-bottom: 0;
 	margin-top: 0;
 	text-shadow: 1px 1px #000;
+}
+
+.nav-sm span.fa, .nav-sm .menu_section h3 {
+	display: none;
 }
 
 /* 메뉴 섹션 내부 리스트 */
@@ -143,6 +176,30 @@
 	color: #E7E7E7;
 	font-weight: 500;
 }
+
+.nav-sm .nav.side-menu li a i {
+	font-size: 25px !important;
+	text-align: center;
+	width: 100% !important;
+	margin-bottom: 5px;
+}
+
+.nav.side-menu>li>a:hover, .nav>li>a:focus {
+	text-decoration: none;
+	background: transparent;
+}
+
+.nav.side-menu>li>a:hover {
+	color: #F2F5F7 !important;
+}
+
+.nav-sm .nav.side-menu li a {
+	text-align: center !important;
+	font-weight: 400;
+	font-size: 10px;
+	padding: 10px 5px;
+}
+
 
 /* 사이드바에 쓰이는 아이콘 관련 */
 .main_menu .fa {
@@ -216,4 +273,8 @@
 	display: block;
 	float: left;
 	background: #172D44;
+}
+
+.nav-sm .hidden-small {
+	visibility: hidden;
 }

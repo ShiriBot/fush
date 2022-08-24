@@ -12,11 +12,11 @@
 		<div class="clearfix"> <!-- ::after --> </div>
 		<div class="profile clearfix">
 			<div class="profile_pic">
-				<img class="img-circle profile_img" src="assets/images/profile_sample.png" alt="">
+				<img class="img-circle profile_img" src="/manage/assets/images/profile_sample.png" alt="">
 			</div>
 			<div class="profile_info">
 				<span> Welcome, </span>
-				<h2>MANAGER_NAME</h2>
+				<h2><%=(String)session.getAttribute("sess_name") %></h2>
 			</div>
 		</div>
 		<br>
@@ -27,7 +27,7 @@
 				</h3>
 				<ul class="nav side-menu">
 					<li>
-						<a href="manage_index.jsp">
+						<a href="/admin/home">
 							<i class="fa fa-house"></i>
 							HOME
 							
@@ -35,7 +35,7 @@
 
 					</li>
 					<li>
-						<a href="manage_members.jsp">
+						<a href="/admin/member">
 							<i class="fa fa-users"></i>
 							Members
 						</a>
@@ -43,21 +43,13 @@
 					<li>
 						<a href="manage_arts.jsp">
 							<i class="fa fa-paintbrush"></i>
-							Arts
-							<span class="fa fa-chevron-down"></span>
+							Art List
 						</a>
-						<ul class="nav child_menu">
-							<li>
-								<a href="manage_arts.jsp">
-								작품목록
-								</a>
-							</li>
-							<li>
-								<a href="manage_arts_request.jsp">
-								작품등록요청
-								</a>
-							</li>
-						</ul>
+					<li>
+						<a href="manage_arts_request.jsp">
+							<i class="fa fa-file-circle-exclamation"></i>
+							Request
+						</a>
 					</li>
 					<li>
 						<a href="manage_tags.jsp">

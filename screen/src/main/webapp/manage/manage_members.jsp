@@ -8,7 +8,7 @@
 		<%@ include file="manage_head.jsp" %>
 	</head>
 	
-	<body class="nav-md">
+	<body class="nav-md" id="nav_body">
 		<div class="container body">
 			<div class="main_container">
 				<%@ include file="manage_sidebar.jsp" %>
