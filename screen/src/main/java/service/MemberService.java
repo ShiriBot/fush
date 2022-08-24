@@ -20,7 +20,7 @@ public class MemberService {
 		return memberDao.statistics();
 	}
 
-	public List<Member> list() {
+	public Map<String, List<Member>>  list() {
 		return memberDao.list();
 	}
 

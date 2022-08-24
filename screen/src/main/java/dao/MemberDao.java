@@ -23,9 +23,7 @@ public class MemberDao {
 	public Map<String, String> login(String id, String pw) {
 		Map<String, String> status =new HashMap<String, String>();
 
-		String sql = "SELECT m.*, "
-				+ "(SELECT auth_code FROM member_auth a WHERE a.id=m.id) auth "
-				+ "FROM member m WHERE id = ?";
+		String sql = "SELECT * FROM v_member_info WHERE id = ?";
 		try {
 			stmt = conn.prepareStatement(sql);
 			stmt.setString(1, id);
@@ -33,11 +31,10 @@ public class MemberDao {
 			if (rs.next()) {
 				System.out.println("rs.next()");
 				if (rs.getString("pw").equals(pw)) {
+					status.put("loginStatus","ok");
+					status.put("name",rs.getString("name"));
 					if(rs.getString("auth").equals("A")||rs.getString("auth").equals("M")) {
-						status.put("loginStatus","manager");
-						status.put("name",rs.getString("name"));
-					}else {
-						status.put("loginStatus","ok");
+						status.put("auth","manager");
 					}
 				} else {
 					status.put("loginStatus","pwFail");
@@ -101,21 +98,65 @@ public class MemberDao {
 		
 	}
 
-	public List<Member> list() {
-		List<Member> members=new ArrayList<Member>();
-		String sql = "SELECT * FROM Member";
+	public Map<String, List<Member>> list() {
+		Map<String, List<Member>> lists = new HashMap<String, List<Member>>();
+		List<Member> members=null;
+		Member member = null;
 		try {
+			String sql = "SELECT * FROM v_member_info WHERE isdel='N'";
 			stmt = conn.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
-			rs.next();
+			members=new ArrayList<Member>();
 			while(rs.next()) {
-				
+				member = new Member();
+				member.setId(rs.getString("id"));
+				member.setName(rs.getString("name"));
+				member.setEmail(rs.getString("email"));
+				member.setAuth(rs.getString("auth"));
+				member.setWdate(rs.getString("wdate"));
+				member.setBirth(rs.getString("birth"));
+				members.add(member);
 			}
+			lists.put("allMembers", members);
+			
+			sql = "SELECT * FROM v_member_info WHERE isdel='N' AND (wdate BETWEEN SYSDATE-7 AND SYSDATE)";
+			stmt = conn.prepareStatement(sql);
+			rs = stmt.executeQuery();
+			members=new ArrayList<Member>();
+			while(rs.next()) {
+				member = new Member();
+				member.setId(rs.getString("id"));
+				member.setName(rs.getString("name"));
+				member.setEmail(rs.getString("email"));
+				member.setAuth(rs.getString("auth"));
+				member.setWdate(rs.getString("wdate"));
+				member.setBirth(rs.getString("birth"));
+				
+				members.add(member);
+			}
+			lists.put("newMembers", members);
+			
+			sql = "SELECT * FROM v_member_info WHERE isdel='Y'";
+			stmt = conn.prepareStatement(sql);
+			rs = stmt.executeQuery();
+			members=new ArrayList<Member>();
+			while(rs.next()) {
+				member = new Member();
+				member.setId(rs.getString("id"));
+				member.setName(rs.getString("name"));
+				member.setEmail(rs.getString("email"));
+				member.setAuth(rs.getString("auth"));
+				member.setWdate(rs.getString("wdate"));
+				member.setBirth(rs.getString("birth"));
+				
+				members.add(member);
+			}
+			lists.put("delMembers", members);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
-		return null;
+		return lists;
 	}
 
 }
