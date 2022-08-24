@@ -15,7 +15,7 @@
 					<a href="javascript:;" class="user-profile dropdown-toggle"
 					aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown"
 					aria-expand="false"> 
-						<img src="assets/images/profile_sample.png" alt="">
+						<img src="/manage/assets/images/profile_sample.png" alt="">
 						<%=(String)session.getAttribute("sess_name") %> 
 					</a>
 					<!-- 프로필 눌렀을때 나오는 드롭다운 메뉴인데용... -->

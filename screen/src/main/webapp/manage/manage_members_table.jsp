@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <div class="right_col" role="main">
 	<div class="">
@@ -25,14 +26,26 @@
 						</h2>
 						<ul class="nav navbar-right panel_toolbox">
 							<li>
-								<a class="collapse-link">
+								<a class="collapse-link" href="javascript:openCloseToc(0)">
 									<i class="fa fa-chevron-up"></i><!-- 이거 누르면 접히게 만들...고 싶어요 -->
 								</a>
 							</li>
 						</ul>
 						<div class="clearfix"></div>
 					</div>
-					<div class="x_content">
+					<script>
+						function openCloseToc(num) {
+							var id = 'x_content'+num
+							if (document.getElementById(id).style.display === 'block') {
+								document.getElementById(id).style.display = 'none';
+								document.getElementsByClassName('collapse-link')[num].getElementsByTagName('i')[0].classList.replace('fa-chevron-up','fa-chevron-down'); 
+							} else {
+								document.getElementById(id).style.display = 'block';
+								/* document.getElementById('toc-toggle').textContent = '숨기기'; */
+							}
+						}
+					</script>
+					<div class="x_content" id="x_content0">
 						<div class="row">
 							<div class="col-sm-12">
 								<div class="card-box table-responsive">
@@ -87,22 +100,16 @@
 												</tr>
 											</thead>
 											<tbody>
-												<tr>
-													<td>limfisherman</td>
-													<td>임정후</td>
-													<td>몰?루?</td>
-													<td>관리자</td>
-													<td>2022.08.04</td>
-													<td>(입력안함)</td>
-												</tr>
-												<tr>
-													<td>shiri_bot</td>
-													<td>채정실</td>
-													<td>cowjdtlf@gmail.com</td>
-													<td>관리자</td>
-													<td>2022.08.04</td>
-													<td>1991.09.06.</td>
-												</tr>
+												<c:forEach items="${allMembers}" var="allMember" >
+													<tr>
+														<td><c:out value="${allMember.id}" /></td>
+														<td><c:out value="${allMember.name}" /></td>
+														<td><c:out value="${allMember.email}" /></td>
+														<td><c:out value="${allMember.auth}" /></td>
+														<td><c:out value="${allMember.wdate}" /></td>
+														<td><c:out value="${allMember.birth}" /></td>
+													</tr>
+												</c:forEach>
 											</tbody>
 										</table>
 										<div class="dataTables_info" id="datatable-members_info" role="status" aria-live="polite">
@@ -206,6 +213,19 @@
 													</th>
 												</tr>
 											</thead>
+											<tbody>
+												<c:forEach items="${newMembers}" var="newMember" >
+													<tr>
+														<td><c:out value="${newMember.id}" /></td>
+														<td><c:out value="${newMember.name}" /></td>
+														<td><c:out value="${newMember.email}" /></td>
+														<td><c:out value="${newMember.auth}" /></td>
+														<td><c:out value="${newMember.wdate}" /></td>
+														<td><c:out value="${newMember.birth}" /></td>
+													</tr>
+												</c:forEach>
+											</tbody>
+											
 										</table>
 										<div class="dataTables_info" id="datatable-members-new_info" role="status" aria-live="polite">
 											Showing 1 to 1 of 0 entries
@@ -314,6 +334,18 @@
 													</th>
 												</tr>
 											</thead>
+											<tbody>
+												<c:forEach items="${delMembers}" var="delMember" >
+													<tr>
+														<td><c:out value="${delMember.id}" /></td>
+														<td><c:out value="${delMember.name}" /></td>
+														<td><c:out value="${delMember.email}" /></td>
+														<td><c:out value="${delMember.auth}" /></td>
+														<td><c:out value="${delMember.wdate}" /></td>
+														<td><c:out value="${delMember.birth}" /></td>
+													</tr>
+												</c:forEach>
+											</tbody>
 										</table>
 										<div class="dataTables_info" id="datatable-members-del_info" role="status" aria-live="polite">
 											Showing 1 to 1 of 0 entries

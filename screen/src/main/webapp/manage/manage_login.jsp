@@ -27,15 +27,15 @@
 <div class="login">
 <div class="container" style="width:900px;height:100%;">
 	<div class="form sign-in-container">
-		<form method="post" action="login.manage">
+		<form method="post" action="/admin/login">
 			<h1>로그인</h1>
 			<div class="social-container">
 				<a href="#"><i class="fab fa-facebook-f"></i></a>
 				<a href="#"><i class="fab fa-google-plus-g"></i></a>
 				<a href="#"><i class="fab fa-linkedin-in"></i></a>
 			</div>
-			<input name="id" type="text" placeholder="아이디를 입력해주세요">
-			<input name="pw" type="password" placeholder="패스워드를 입력해주세요">
+			<input name="id" type="text" value="shiri" placeholder="아이디를 입력해주세요">
+			<input name="pw" type="password" value="1234" placeholder="패스워드를 입력해주세요">
 			<a href="#">아이디/패스워드 찾기</a>
 			<button>로그인</button>
 		</form>

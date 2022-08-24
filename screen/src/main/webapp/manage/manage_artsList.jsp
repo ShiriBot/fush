@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <div class="right_col" role="main">
 	<div class="">
 		<div class="page-title">
@@ -56,11 +58,11 @@
 													<span>작품 수정하기</span>
 												</a>
 											</div>
-											<div class="dt--members-del btn-group">
+											<!-- <div class="dt--members-del btn-group">
 												<a class="btn btn-default buttons-html5 btn-sm" tabindex="0" aria-controls="datatable-buttons" href="#">
 													<span>작품 삭제하기</span>
 												</a>
-											</div>
+											</div> -->
 										</div>
 										<div id="datatable-arts_filter" class="dataTables_filter">
 											<label>
@@ -89,13 +91,15 @@
 												</tr>
 											</thead>
 											<tbody>
-												<tr role="row" class="parent">
-													<td tabindex="0" class="sorting_1">개를 낳았다</td>
-													<td>이선</td>
-													<td  style="max-width:500px;">사랑스러운 너와의 첫 만남부터 이별까지. 처음으로 반려견을 키우게 된 다나와 모든것이 처음인 강아지 명동이가 만나 함께 살아가는 이야기. 강아지 수명 20년. 너와 내가 함께하는 20년 동안 우린 어떤 일을 겪게 될까?</td>
-													<td>연재중</td>
-													<td style="display: none;">https://comic.naver.com/webtoon/list?titleId=712362</td>
-												</tr>
+												<c:forEach items="${artList}" var ="artList">
+													<tr>
+														<td><c:out value="${artList.name}" /></td>
+														<td><c:out value="${artList.author}" /></td>
+														<td style="max-width:500px;"><c:out value="${artList.detail}" /></td>
+														<td><c:out value="${artList.week}" /></td>
+														<td style="display: none;"><c:out value="${artList.url}" /></td>
+													</tr>
+												</c:forEach>
 											</tbody>
 										</table>
 										<div class="dataTables_info" id="datatable-arts_info" role="status" aria-live="polite">
