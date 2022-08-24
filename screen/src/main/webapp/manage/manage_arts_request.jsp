@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -99,39 +101,24 @@
 														</tr>
 													</thead>
 													<tbody>
-														<tr role="row" class="parent">
-															<td tabindex="0" class="sorting_1">신의 탑</td>
-															<td>SIU</td>
-															<td>자신의 모든 것이었던 소녀를 쫓아 탑에 들어온 소년 그리고 그런 소년을 시험하는 탑</td>
-															<td>연재중</td>
-															<td style="display: none;">https://comic.naver.com/webtoon/list?titleId=183559</td>
-														</tr>
-														<tr class="child">
-															<td class="child" colspan="5">
-																<ul data-dtr-index="4">
-																	<li data-dtr-index="5" data-dt-row="4" data-dt-column="5">
-																		<span class="dtr-title"> URL 화면 확인</span>
-																		<iframe src="https://comic.naver.com/webtoon/list?titleId=183559" style="width:100%;"></iframe>
-																	</li>
-																</ul></td>
-														</tr>
-														<tr role="row" class="parent">
-															<td tabindex="0" class="sorting_1">소녀의 세계</td>
-															<td>모랑지</td>
-															<td>완벽해 보이지만 사실 외로웠던 백조들과 맘씨 착한 오리가 만나 여러 갈등을 함께 겪으며 진짜 친구가 되어가는 소녀들의 찐 우정물</td>
-															<td>연재중</td>
-															<td style="display: none;">https://comic.naver.com/webtoon/list?titleId=654774</td>
-														</tr>
-														<tr class="child">
-															<td class="child" colspan="5">
-																<ul data-dtr-index="4">
-																	<li data-dtr-index="5" data-dt-row="4" data-dt-column="5">
-																		<span class="dtr-title"> URL 화면 확인</span>
-																		<iframe src="https://comic.naver.com/webtoon/list?titleId=654774" style="width:100%;"></iframe>
-																	</li>
-																</ul>
-															</td>
-														</tr>
+														<c:forEach items="${artRequest}" var ="artRequest">
+															<tr role="row" class="parent">
+																<td tabindex="0" class="sorting_1"><c:out value="${artRequest.name}" /></td>
+																<td><c:out value="${artRequest.author}" /></td>
+																<td><c:out value="${artRequest.detail}" /></td>
+																<td><c:out value="${artRequest.week}" /></td>
+																<td style="display: none;"><c:out value="${artRequest.url}" /></td>
+															</tr>
+															<tr class="child">
+																<td class="child" colspan="5">
+																	<ul data-dtr-index="4">
+																		<li data-dtr-index="5" data-dt-row="4" data-dt-column="5">
+																			<span class="dtr-title"> URL 화면 확인</span>
+																			<iframe src="<c:out value="${artRequest.url}" />" style="width:100%;"></iframe>
+																		</li>
+																	</ul></td>
+															</tr>
+														</c:forEach>
 													</tbody>
 												</table>
 											</div>

@@ -34,8 +34,8 @@
 				<a href="#"><i class="fab fa-google-plus-g"></i></a>
 				<a href="#"><i class="fab fa-linkedin-in"></i></a>
 			</div>
-			<input name="id" type="text" placeholder="아이디를 입력해주세요">
-			<input name="pw" type="password" placeholder="패스워드를 입력해주세요">
+			<input name="id" type="text" value="shiri" placeholder="아이디를 입력해주세요">
+			<input name="pw" type="password" value="1234" placeholder="패스워드를 입력해주세요">
 			<a href="#">아이디/패스워드 찾기</a>
 			<button>로그인</button>
 		</form>

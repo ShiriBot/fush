@@ -64,7 +64,12 @@ public class Artwork {
 	}
 
 	public void setWeek(String week) {
-		this.week = week;
+		if(week.equals("완결")) {
+			this.week = week;
+		}else {
+			this.week=week+" 연재중" ;
+		}
+		
 	}
 
 	public String getDetail() {
