@@ -35,50 +35,42 @@
 					<div class="x_content">
 						<div class="row">
 							<div class="col-sm-12">
-								<table class="tag_table">
-									<tr>
-										<th>장르</th>
-										<td>
-											<span>일상</span>
-											<span>개그</span>
-											<span>드라마</span>
-											<span>액션</span>
-											<span>감성</span>
-											<span>판타지</span>
-											<span>스릴러</span>
-											<span>시대극</span>
-											<span>스포츠</span>
-										</td>
-									</tr>
-									<tr>
-										<th>플랫폼</th>
-										<td>
-											<span>네이버</span>
-											<span>카카오웹툰</span>
-											<span>카카오페이지</span>
-											<span>레진</span>
-											<span>투믹스</span>
-											<span>봄툰</span>
-										</td>
-									</tr>
-									<tr>
-										<th>완결여부</th>
-										<td>
-											<span>연재중</span>
-											<span>완결</span>
-										</td>
-									</tr>
-									<tr>
-										<th>평점</th>
-										<td>
-											<span>5점</span>
-											<span>4점</span>
-											<span>3점</span>
-											<span>2점</span>
-											<span>1점</span>
-										</td>
-									</tr>
-								</table>
+								<div class="tag_table">
+									<div>장르</div>
+									<div class="drag-container">
+										<div class="tag" draggable="true">일상</div>
+										<div class="tag"  draggable="true">개그</div>
+										<div class="tag"  draggable="true">드라마</div>
+										<div class="tag"  draggable="true">액션</div>
+										<div class="tag"  draggable="true">감성</div>
+										<div class="tag"  draggable="true">판타지</div>
+										<div class="tag"  draggable="true">스릴러</div>
+										<div class="tag"  draggable="true">시대극</div>
+										<div class="tag"  draggable="true">스포츠</div>
+									</div>
+									<div>플랫폼</div>
+									<div class="drag-container">
+										<div class="tag"  draggable="true">네이버</div>
+										<div class="tag"  draggable="true">카카오웹툰</div>
+										<div class="tag"  draggable="true">카카오페이지</div>
+										<div class="tag"  draggable="true">레진</div>
+										<div class="tag"  draggable="true">투믹스</div>
+										<div class="tag"  draggable="true">봄툰</div>
+									</div>
+									<div>완결여부</div>
+									<div class="drag-container">
+										<div class="tag"  draggable="true">연재중</div>
+										<div class="tag"  draggable="true">완결</div>
+									</div>
+									<div>평점</div>
+									<div class="drag-container">
+										<div class="tag"  draggable="true">5점</div>
+										<div class="tag"  draggable="true">4점</div>
+										<div class="tag"  draggable="true">3점</div>
+										<div class="tag"  draggable="true">2점</div>
+										<div class="tag"  draggable="true">1점</div>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -153,3 +145,5 @@
 		</div>
 	</div>
 </div>
+
+<script src="assets/js/dragdrop.js"></script>
