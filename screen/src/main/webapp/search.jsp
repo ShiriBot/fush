@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <%@ include file="head.jsp" %>
 <title>작품검색</title>
 </head>
@@ -12,7 +13,7 @@
 
 <div class="center">
 <div class="session">
-<%@ include file="searchDetail.jsp" %>
+<%@ include file="searchDetail_new.jsp" %>
 </div>
 </div>
 <%@ include file="footer.jsp" %>

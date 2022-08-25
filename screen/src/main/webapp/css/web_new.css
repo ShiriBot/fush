@@ -247,14 +247,15 @@ a{
 	transition: all 0.3s;
 }
 
-.Thumbnail { /*썸네일 아이템을 감쌀 뼈대*/
+.Thumbnail { /*썸네일 아이템을 감쌀 뼈대*/ /* 일단 width 85% margin-left:5% 해놓음 *태클환영* */
 	display: flex;
 	flex-flow: row wrap;
 	height: 12%;
-	width:100%;
+	width:85%;
 	bottom: 0;
 	justify-content:center;
 	position: absolute;
+	margin-left:5%;
 }
 
 .thumbnail_item { /*썸네일 아이템의 길이 설정*/
