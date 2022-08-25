@@ -32,11 +32,10 @@ public class TagDao {
 				sd.setTop(rs.getString("top"));
 				sd.setMid(rs.getString("mid"));
 				sd.setName(rs.getString("name"));
-				sd.setMid_seq(rs.getString("mid_seq"));
-				sd.setTop_seq(rs.getString("top_seq"));
+				sd.setMidSeq(rs.getString("mid_seq"));
+				sd.setTopSeq(rs.getString("top_seq"));
 				sd.setSeqno(rs.getString("seqno"));
 				searchTag[i++] = sd;
-				System.out.println(rs.getString("top_seq"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

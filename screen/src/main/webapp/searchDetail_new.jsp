@@ -18,11 +18,10 @@
 					      <div class="accordion-body">
 					      	<ul>
 					      		<c:forEach items="${searchList}" var="list">
-						      		<c:if test="${list.top_seq ne list.mid_seq}">
-							      		<c:forEach >
-							      			<c:if test="">
-							      				<c:forEach>
-							      				</c:forEach>
+						      		<c:if test="${list.topSeq ne list.midSeq}">
+							      		<c:forEach items="${searchList}" var="mid" end ="${list.midSeq eq '8'}">
+							      			<c:if test="${list.midSeq eq mid.midSeq}">
+							      			
 							      			</c:if>
 							      		</c:forEach>
 							      		<li>
@@ -32,7 +31,7 @@
 							      		
 							      	</c:if>	
 							      	
-							      	<c:if test="${list.top_seq eq list.mid_seq}">
+							      	<c:if test="${list.topSeq eq list.midSeq}">
 							      	
 							      	</c:if>
 					      		</c:forEach>

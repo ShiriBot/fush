@@ -5,8 +5,8 @@ public class TagDto {
 	private String name;
 	private String top;
 	private String mid;
-	private String top_seq;
-	private String mid_seq;
+	private String topSeq;
+	private String midSeq;
 	
 	public String getSeqno() {
 		return seqno;
@@ -32,16 +32,16 @@ public class TagDto {
 	public void setMid(String mid) {
 		this.mid = mid;
 	}
-	public String getTop_seq() {
-		return top_seq;
+	public String getTopSeq() {
+		return topSeq;
 	}
-	public void setTop_seq(String top_seq) {
-		this.top_seq = top_seq;
+	public void setTopSeq(String topSeq) {
+		this.topSeq = topSeq;
 	}
-	public String getMid_seq() {
-		return mid_seq;
+	public String getMidSeq() {
+		return midSeq;
 	}
-	public void setMid_seq(String mid_seq) {
-		this.mid_seq = mid_seq;
+	public void setMidSeq(String midSeq) {
+		this.midSeq = midSeq;
 	}
 }
