@@ -19,7 +19,7 @@
 					      	<ul>
 					      		<c:forEach items="${searchList}" var="list">
 						      		<c:if test="${list.top_seq ne list.mid_seq}">
-							      		<c:forEach>
+							      		<c:forEach >
 							      			<c:if test="">
 							      				<c:forEach>
 							      				</c:forEach>
