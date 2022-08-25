@@ -41,18 +41,18 @@
 						</a>
 					</li>
 					<li>
-						<a href="manage_arts.jsp">
+						<a href="/admin/artwork">
 							<i class="fa fa-paintbrush"></i>
 							Art List
 						</a>
 					<li>
-						<a href="manage_arts_request.jsp">
+						<a href="/admin/artworkRequest">
 							<i class="fa fa-file-circle-exclamation"></i>
 							Request
 						</a>
 					</li>
 					<li>
-						<a href="manage_tags.jsp">
+						<a href="/admin/tag">
 							<i class="fa fa-hashtag"></i>
 							Tags
 						</a>

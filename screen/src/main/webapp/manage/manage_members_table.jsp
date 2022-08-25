@@ -26,14 +26,26 @@
 						</h2>
 						<ul class="nav navbar-right panel_toolbox">
 							<li>
-								<a class="collapse-link">
+								<a class="collapse-link" href="javascript:openCloseToc(0)">
 									<i class="fa fa-chevron-up"></i><!-- 이거 누르면 접히게 만들...고 싶어요 -->
 								</a>
 							</li>
 						</ul>
 						<div class="clearfix"></div>
 					</div>
-					<div class="x_content">
+					<script>
+						function openCloseToc(num) {
+							var id = 'x_content'+num
+							if (document.getElementById(id).style.display === 'block') {
+								document.getElementById(id).style.display = 'none';
+								document.getElementsByClassName('collapse-link')[num].getElementsByTagName('i')[0].classList.replace('fa-chevron-up','fa-chevron-down'); 
+							} else {
+								document.getElementById(id).style.display = 'block';
+								/* document.getElementById('toc-toggle').textContent = '숨기기'; */
+							}
+						}
+					</script>
+					<div class="x_content" id="x_content0">
 						<div class="row">
 							<div class="col-sm-12">
 								<div class="card-box table-responsive">

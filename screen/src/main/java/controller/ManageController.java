@@ -12,14 +12,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.MemberDao;
+import dto.Artwork;
 import dto.Member;
+import service.ArtworkService;
 import service.MemberService;
 
 @WebServlet("/admin/*")
 public class ManageController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	MemberService memberService = new MemberService();
+	ArtworkService artworkService = new ArtworkService();
 	HttpSession session;
 
     public ManageController() {
@@ -85,7 +87,18 @@ public class ManageController extends HttpServlet {
 			request.setAttribute("newMembers",lists.get("newMembers"));
 			request.setAttribute("delMembers",lists.get("delMembers"));
 			goView(request, response, "/manage/manage_members.jsp");
+		}else if(cmd.equals("artwork")){
+			List<Artwork> artList = artworkService.list("all");
+			request.setAttribute("artList", artList);
+			goView(request, response, "/manage/manage_arts.jsp");
+		}else if(cmd.equals("artworkRequest")){
+			List<Artwork> artRequest = artworkService.list("request");
+			request.setAttribute("artRequest", artRequest);
+			goView(request, response, "/manage/manage_arts_request.jsp");
+		}else if(cmd.equals("tag")){
+			goView(request, response, "/manage/manage_tags.jsp");
 		}
+		
 
 	}
 	

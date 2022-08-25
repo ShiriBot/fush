@@ -16,6 +16,18 @@
 	content:"#"
 }
 
+.tag{
+	color: #0067a3;
+	text-decoration:none;
+	margin-right:5px;
+	display:inline-block;
+}
+
+.tag:before{
+	content:"#";
+
+}
+
 .tag_modifyForm{
 	display:flex;
 	justify-content: flex-end;
