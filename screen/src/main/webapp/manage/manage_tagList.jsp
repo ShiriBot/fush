@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     
 <div class="right_col" role="main">
 	<div class="">
@@ -33,46 +34,38 @@
 						<div class="clearfix"></div>
 					</div>
 					<div class="x_content">
-						<div class="row">
-							<div class="col-sm-12">
-								<div class="tag_table">
-									<div>장르</div>
-									<div class="drag-container">
-										<div class="tag" draggable="true">일상</div>
-										<div class="tag"  draggable="true">개그</div>
-										<div class="tag"  draggable="true">드라마</div>
-										<div class="tag"  draggable="true">액션</div>
-										<div class="tag"  draggable="true">감성</div>
-										<div class="tag"  draggable="true">판타지</div>
-										<div class="tag"  draggable="true">스릴러</div>
-										<div class="tag"  draggable="true">시대극</div>
-										<div class="tag"  draggable="true">스포츠</div>
+					<c:forEach items="${tagList}" var="tagLists">
+						<c:if test="${mid ne tagLists.mid}">
+							<div class="row">
+								<c:if test="${top ne tagLists.top}">
+								<div class="tag_top col">
+									${tagLists.top}
+								</div>
+								</c:if>
+								<c:if test="${top eq tagLists.top}">
+								<div class="tag_top col" style="visibility:hidden">
+									${tagLists.top}
+								</div>
+								</c:if>
+									<c:set value="${tagLists.top}" var="top"/>
+								<c:if test="${top ne tagLists.mid}">
+									<div class="tag_mid col">
+											${tagLists.mid}
 									</div>
-									<div>플랫폼</div>
-									<div class="drag-container">
-										<div class="tag"  draggable="true">네이버</div>
-										<div class="tag"  draggable="true">카카오웹툰</div>
-										<div class="tag"  draggable="true">카카오페이지</div>
-										<div class="tag"  draggable="true">레진</div>
-										<div class="tag"  draggable="true">투믹스</div>
-										<div class="tag"  draggable="true">봄툰</div>
+								</c:if>
+								<c:set value="${tagLists.mid}" var="mid"/>
+								<div class="drag-container col-8">
+									<c:forEach items="${tagList}" var="tagName">
+									<c:if test="${top eq tagName.top && mid eq tagName.mid}">
+									<div class="tag" draggable="true">
+									${tagName.name}
 									</div>
-									<div>완결여부</div>
-									<div class="drag-container">
-										<div class="tag"  draggable="true">연재중</div>
-										<div class="tag"  draggable="true">완결</div>
-									</div>
-									<div>평점</div>
-									<div class="drag-container">
-										<div class="tag"  draggable="true">5점</div>
-										<div class="tag"  draggable="true">4점</div>
-										<div class="tag"  draggable="true">3점</div>
-										<div class="tag"  draggable="true">2점</div>
-										<div class="tag"  draggable="true">1점</div>
-									</div>
+									</c:if>
+									</c:forEach>
 								</div>
 							</div>
-						</div>
+						</c:if>
+					</c:forEach>
 					</div>
 				</div>
 			</div>

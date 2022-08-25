@@ -14,14 +14,17 @@ import javax.servlet.http.HttpSession;
 
 import dto.Artwork;
 import dto.Member;
+import dto.TagDto;
 import service.ArtworkService;
 import service.MemberService;
+import service.TagService;
 
 @WebServlet("/admin/*")
 public class ManageController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	MemberService memberService = new MemberService();
 	ArtworkService artworkService = new ArtworkService();
+	TagService tagService = new TagService();
 	HttpSession session;
 
     public ManageController() {
@@ -96,6 +99,8 @@ public class ManageController extends HttpServlet {
 			request.setAttribute("artRequest", artRequest);
 			goView(request, response, "/manage/manage_arts_request.jsp");
 		}else if(cmd.equals("tag")){
+			TagDto[] tagList =tagService.searchService();
+			request.setAttribute("tagList", tagList);
 			goView(request, response, "/manage/manage_tags.jsp");
 		}
 		

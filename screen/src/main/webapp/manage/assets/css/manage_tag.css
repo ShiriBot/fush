@@ -4,16 +4,9 @@
 	font-size:15px;
 }
 
-.tag_table th{
-	width: 20%;
-}
-
-.tag_table span{
-	margin:10px;
-}
-
-.tag_table span:before{
-	content:"#"
+.tag_top, .tag_mid, .drag-container{
+	display: inline-block;
+	border: 1px solid black;
 }
 
 .tag{
@@ -25,10 +18,8 @@
 
 .tag:before{
 	content:"#";
-
 }
 
 .tag_modifyForm{
 	display:flex;
-	justify-content: flex-end;
 }

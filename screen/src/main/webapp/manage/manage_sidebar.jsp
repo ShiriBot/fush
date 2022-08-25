@@ -1,11 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<%
+ String strReferer = request.getHeader("referer"); //이전 URL 가져오기
+ 
+ if(strReferer == null){
+%>
+ <script language="javascript">
+  alert("URL을 직접 입력해서 접근하셨습니다.\n정상적인 경로를 통해 다시 접근해 주세요.");
+  document.location.href="/admin/login";
+ </script>
+<%
+  return;
+ }
+%>
 <div class="col-md-3 left_col menu_fixed">
 	<div class="left_col scroll-view">
 		<div class="navbar nav_title">
 			<a class="site_title" href="manage_index.jsp">
-				<i class="fa fa-paw"> <!-- ::before --> </i> 
+				<i class="fa fa-paw"></i> 
 				<span> MANAGEMENT </span>
 			</a>
 		</div>
