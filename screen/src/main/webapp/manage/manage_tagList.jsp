@@ -38,29 +38,27 @@
 						<c:if test="${mid ne tagLists.mid}">
 							<div class="row">
 								<c:if test="${top ne tagLists.top}">
-								<div class="tag_top col">
-									${tagLists.top}
-								</div>
+									<div class="tag_top col">
+										${tagLists.top}
+									</div>
 								</c:if>
 								<c:if test="${top eq tagLists.top}">
-								<div class="tag_top col" style="visibility:hidden">
-									${tagLists.top}
-								</div>
+									<div class="tag_top col" style="visibility:hidden"></div>
 								</c:if>
-									<c:set value="${tagLists.top}" var="top"/>
+								<c:set value="${tagLists.top}" var="top"/>
 								<c:if test="${top ne tagLists.mid}">
 									<div class="tag_mid col">
-											${tagLists.mid}
+										${tagLists.mid}
 									</div>
 								</c:if>
 								<c:set value="${tagLists.mid}" var="mid"/>
 								<div class="drag-container col-8">
 									<c:forEach items="${tagList}" var="tagName">
-									<c:if test="${top eq tagName.top && mid eq tagName.mid}">
-									<div class="tag" draggable="true">
-									${tagName.name}
-									</div>
-									</c:if>
+										<c:if test="${top eq tagName.top && mid eq tagName.mid}">
+											<div class="tag" draggable="true">
+												${tagName.name}
+											</div>
+										</c:if>
 									</c:forEach>
 								</div>
 							</div>
@@ -89,7 +87,7 @@
 						<div class="row">
 							<div class="col-sm-6 tag_modify">
 								<span>태그 추가</span>
-								<form class="tag_modifyForm">
+								<form class="tag_modifyForm" action="/admin/tagInsert">
 									<input type="text">
 									<input type="submit" value="추가">
 								</form>

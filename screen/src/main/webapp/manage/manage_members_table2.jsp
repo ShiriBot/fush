@@ -100,7 +100,7 @@
 												</tr>
 											</thead>
 											<tbody>
-												<c:forEach items="${allMembers.content}" var="allMember" >
+												<c:forEach items="${allMembers}" var="allMember" >
 													<tr>
 														<td><c:out value="${allMember.id}" /></td>
 														<td><c:out value="${allMember.name}" /></td>
@@ -112,9 +112,8 @@
 												</c:forEach>
 											</tbody>
 										</table>
-										<c:set value="${allMembers}" var="allMembers"/>
 										<div class="dataTables_info" id="datatable-members_info" role="status" aria-live="polite">
-											Showing <c:out value="${(allMembers.currentPage-1)+1}" /> to 1 of 2 entries
+											Showing 1 to 1 of 2 entries
 										</div>
 										<div class="dataTables_paginate paging_simple_numbers" id="datatable-members_paginate">
 											<ul class="pagination">

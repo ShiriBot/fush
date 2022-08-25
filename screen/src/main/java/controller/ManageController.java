@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import dto.Artwork;
 import dto.Member;
+import dto.Page;
 import dto.TagDto;
 import service.ArtworkService;
 import service.MemberService;
@@ -85,8 +86,24 @@ public class ManageController extends HttpServlet {
 			System.out.print(request.getAttribute("statistics"));
 			goView(request, response, "/manage/manage_index.jsp");
 		}else if(cmd.equals("member")){
+			int pagingCount=5;
+
+			String allMemLength = request.getParameter("datatable-members_length");
+			String currentPage = request.getParameter("currentPage");
+			if(currentPage==null) currentPage="1";
+			if(allMemLength==null) allMemLength="10";
+			
+			/*int allNewLength = Integer.parseInt(request.getParameter("datatable-members-new_length"));
+			int allDelLength = Integer.parseInt(request.getParameter("datatable-members-del_length"));*/
+			
+			List<Member> allMembers = memberService.allMemList(Integer.parseInt(allMemLength),Integer.parseInt(currentPage),null);
+			/*int allMemTotal=allMembers.size();*/
+			/*new Page(allMemTotal,Integer.parseInt(currentPage),Integer.parseInt(allMemLength),pagingCount,allMembers);*/
+			
 			Map<String, List<Member>> lists = memberService.list();
-			request.setAttribute("allMembers",lists.get("allMembers"));
+			
+			request.setAttribute("allMembers",new Page(allMembers.size(),Integer.parseInt(currentPage),Integer.parseInt(allMemLength),pagingCount,allMembers));
+			/*request.setAttribute("allMembers",lists.get("allMembers"));*/
 			request.setAttribute("newMembers",lists.get("newMembers"));
 			request.setAttribute("delMembers",lists.get("delMembers"));
 			goView(request, response, "/manage/manage_members.jsp");
@@ -102,6 +119,9 @@ public class ManageController extends HttpServlet {
 			TagDto[] tagList =tagService.searchService();
 			request.setAttribute("tagList", tagList);
 			goView(request, response, "/manage/manage_tags.jsp");
+		}else if(cmd.equals("tagInsert")){
+			tagService.insert();
+			goView(request, response, "/admin/tag");
 		}
 		
 

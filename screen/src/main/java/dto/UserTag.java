@@ -1,6 +1,6 @@
 package dto;
 
-public class UserTag extends Tag {
+public class UserTag extends TagDto {
 
 	private String artSeqno;
 	private String id;

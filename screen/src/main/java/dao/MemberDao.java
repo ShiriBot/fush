@@ -97,16 +97,47 @@ public class MemberDao {
 		return statistics;
 		
 	}
-
+	
+	public List<Member> allMemList(int length, int currentPage, String search){
+		List<Member> members=new ArrayList<Member>();
+		try {
+			String sql = "SELECT * FROM ("
+					+ " SELECT rownum as rn, m.*"
+					+ " FROM v_member_info m"
+					+ " WHERE isdel='N')"
+					+ " WHERE rn BETWEEN ? and ?";
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, currentPage*length-length+1);
+			stmt.setInt(2, currentPage*length);
+			ResultSet rs = stmt.executeQuery();
+			Member member = null;
+			while(rs.next()) {
+				member = new Member();
+				member.setId(rs.getString("id"));
+				member.setName(rs.getString("name"));
+				member.setEmail(rs.getString("email"));
+				member.setAuth(rs.getString("auth"));
+				member.setWdate(rs.getString("wdate"));
+				member.setBirth(rs.getString("birth"));
+				members.add(member);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return members;
+	}
+	
 	public Map<String, List<Member>> list() {
 		Map<String, List<Member>> lists = new HashMap<String, List<Member>>();
 		List<Member> members=null;
-		Member member = null;
 		try {
 			String sql = "SELECT * FROM v_member_info WHERE isdel='N'";
 			stmt = conn.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
 			members=new ArrayList<Member>();
+			Member member = null;
 			while(rs.next()) {
 				member = new Member();
 				member.setId(rs.getString("id"));

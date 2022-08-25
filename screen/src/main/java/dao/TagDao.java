@@ -10,14 +10,12 @@ import dto.TagDto;
 
 public class TagDao {
 	private final Connection conn =OracleConn.getInstance().getConn();
+	PreparedStatement stmt;
 	
 	public TagDto[] searchBox(){
 		TagDto[] searchTag =null;
 		String sql ="select top_seq,top,mid_seq,mid,seqno,name from v_tag_info";
 		
-		
-		
-		PreparedStatement stmt;
 		try {
 			stmt = conn.prepareStatement(sql,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
 			ResultSet rs =stmt.executeQuery();
@@ -41,6 +39,10 @@ public class TagDao {
 			e.printStackTrace();
 		}
 		return searchTag;
+		
+	}
+
+	public void insert() {
 		
 	}
 }
