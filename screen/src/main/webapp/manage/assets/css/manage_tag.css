@@ -25,3 +25,19 @@
 .tag_modifyForm{
 	display:flex;
 }
+
+.modifyModal{
+	position: fixed;
+	top: 0;
+	left: 0;
+	display: none;
+	width: 50%;
+	height: 50%;
+	transform: translate(50%, 50%);
+	overflow: hidden;
+	outline: 0;
+	background:white;
+	z-index:10;
+	border-radius: 0.3rem;
+	flex-direction: column;
+}

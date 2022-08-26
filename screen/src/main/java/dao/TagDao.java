@@ -20,7 +20,6 @@ public class TagDao {
 			stmt = conn.prepareStatement(sql,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
 			ResultSet rs =stmt.executeQuery();
 			
-			
 			rs.last();
 			searchTag = new TagDto[rs.getRow()];
 			rs.beforeFirst();
@@ -34,8 +33,8 @@ public class TagDao {
 				sd.setTopSeq(rs.getString("top_seq"));
 				sd.setSeqno(rs.getString("seqno"));
 				searchTag[i++] = sd;
-				rs.close();
 			}
+			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -43,7 +42,14 @@ public class TagDao {
 		
 	}
 
-	public void insert() {
-		
+	public void insert(String tagName) {
+		String sql ="INSERT INTO tag VALUES (tag_seqno.NEXTVAL,?)";
+		try {
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1, tagName);
+			stmt.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }

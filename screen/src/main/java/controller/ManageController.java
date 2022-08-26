@@ -120,7 +120,7 @@ public class ManageController extends HttpServlet {
 			request.setAttribute("tagList", tagList);
 			goView(request, response, "/manage/manage_tags.jsp");
 		}else if(cmd.equals("tagInsert")){
-			tagService.insert();
+			tagService.insert(request.getParameter("tagName"));
 			goView(request, response, "/admin/tag");
 		}
 		

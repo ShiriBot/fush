@@ -13,7 +13,7 @@ public class TagService {
 		return searchDao.searchBox();
 	}
 
-	public void insert() {
-		tagDao.insert();
+	public void insert(String tagName) {
+		tagDao.insert(tagName);
 	}
 }
