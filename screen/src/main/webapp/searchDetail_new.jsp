@@ -6,39 +6,40 @@
  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 				
 				<div class="row">
-					<div class="col-2 d-flex flex-row align-items-center justify-content-center">장르</div>
-					<div class="accordion col-10" id="accordionPanelsStayOpenExample">
-					  <div class="accordion-item ">
-					    <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-					      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false" aria-controls="panelsStayOpen-collapseOne">
-					       장르
-					      </button>
-					    </h2>
-					    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingOne">
-					      <div class="accordion-body">
-					      	<ul>
-					      		<c:forEach items="${searchList}" var="list">
-						      		<c:if test="${list.topSeq ne list.midSeq}">
-							      		<c:forEach items="${searchList}" var="mid" end ="${list.midSeq eq '8'}">
-							      			<c:if test="${list.midSeq eq mid.midSeq}">
-							      			
-							      			</c:if>
-							      		</c:forEach>
-							      		<li>
-							      		
-							      			${list.name}
-							      		</li>	
-							      		
-							      	</c:if>	
-							      	
-							      	<c:if test="${list.topSeq eq list.midSeq}">
-							      	
-							      	</c:if>
-					      		</c:forEach>
-					      	</ul>
-					      </div>
-					    </div>
-					  </div>
+					<div class="accordion" id="accordionExample">
+						<div class="accordion col-12" id="accordionPanelsStayOpenExample">
+						  <div class="accordion-item ">
+							   	 <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+								    <button class="accordion-button collapsed col" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false" aria-controls="panelsStayOpen-collapseOne">
+								     장르
+								    </button>
+							    </h2>
+							
+						    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingOne">
+						      <div class="accordion-body">
+									      			<div class="d-flex flex-row">
+											      		<div class="d-flex">
+												     	  	<c:forEach items="${searchList}" var="taglist">
+															   	<c:if test="${taglist.topSeq ne taglist.midSeq && taglist.topSeq eq'1' }">
+													      			<c:if test="${mid ne taglist.mid }">
+															      		${taglist.mid}
+															   		</c:if>
+												      			</c:if>
+																	<ul>
+																		<li>
+																			${taglist.name}
+																		</li>
+																	</ul>
+															</c:forEach>
+										      			</div>
+										      		</div>
+									      		<c:set value="${taglist.mid}" var="mid"/>
+								      		<c:if test="${taglist.midSeq eq midSeq}">
+										      	</c:if>	
+						      </div>
+						    </div>
+						  </div>
+					   </div>
 				   </div>
 				</div>
 				

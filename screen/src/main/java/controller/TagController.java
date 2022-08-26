@@ -31,11 +31,11 @@ public class TagController extends HttpServlet {
 		String uri =req.getRequestURI();
 		String cmd = uri.substring(uri.lastIndexOf("/")+1);
 		
-		TagService ss = new TagService();
+		TagService tagService = new TagService();
 		
 		if(cmd.equals("search.so")) {
 			
-			req.setAttribute("searchList", ss.searchService());
+			req.setAttribute("searchList", tagService.tagList());
 			goView(req,resp,"/search.jsp");
 		}
 		

@@ -116,7 +116,7 @@ public class ManageController extends HttpServlet {
 			request.setAttribute("artRequest", artRequest);
 			goView(request, response, "/manage/manage_arts_request.jsp");
 		}else if(cmd.equals("tag")){
-			TagDto[] tagList =tagService.searchService();
+			TagDto[] tagList =tagService.tagList();
 			request.setAttribute("tagList", tagList);
 			goView(request, response, "/manage/manage_tags.jsp");
 		}else if(cmd.equals("tagInsert")){
