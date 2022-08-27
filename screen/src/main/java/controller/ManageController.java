@@ -122,6 +122,12 @@ public class ManageController extends HttpServlet {
 		}else if(cmd.equals("tagInsert")){
 			tagService.insert(request.getParameter("tagName"));
 			goView(request, response, "/admin/tag");
+		}else if(cmd.equals("tagModify")){
+			tagService.modify(request.getParameter("seqno"),request.getParameter("newName"));
+			goView(request, response, "/admin/tag");
+		}else if(cmd.equals("tagDelete")){
+			tagService.delete(request.getParameter("seqno"));
+			goView(request, response, "/admin/tag");
 		}
 		
 

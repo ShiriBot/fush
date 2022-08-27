@@ -52,4 +52,32 @@ public class TagDao {
 			e.printStackTrace();
 		}
 	}
+
+	public void modify(String seqno, String newName) {
+		//쓰읍... 제대로 하려면 중복검사도 해야할거 같긴한데...
+		String sql ="UPDATE tag SET name=? WHERE seqno=?";
+		try {
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1, newName);
+			stmt.setString(2, seqno);
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void delete(String seqno) {
+		String sql ="DELETE FROM tag_match WHERE tag_seqno=?";
+		try {
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1, seqno);
+			stmt.executeUpdate();
+			sql="DELETE FROM tag WHERE seqno=?";
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1, seqno);
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }

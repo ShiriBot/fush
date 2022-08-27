@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    
 <div class="right_col" role="main">
 	<div class="">
 		<div class="page-title">
@@ -57,8 +56,11 @@
 										<c:if test="${top eq tagName.top && mid eq tagName.mid}">
 											<div class="tag" draggable="true">
 												${tagName.name}
-												<a class="modifys" href="javascript:modifyModal('${tagName.seqno}','${tagName.name}');" style="display:none;">
+												<a class="modifys" href="javascript:modal('${tagName.seqno}','${tagName.name}');" style="display:none;">
 													<i class="fa fa-pen-to-square"></i>
+												</a>
+												<a class="deletes" href="javascript:modal('${tagName.seqno}','${tagName.name}');" style="display:none;">
+													<i class="fa fa-circle-xmark"></i>
 												</a>
 											</div>
 										</c:if>
@@ -88,16 +90,16 @@
 					</div>
 					<div class="x_content">
 						<div class="row">
-							<div class="col-sm-6 tag_modify">
+							<div class="col tag_modify">
 								<span>태그 추가</span>
 								<form method="post" class="tag_modifyForm" action="/admin/tagInsert">
 									<input type="text" name="tagName">
-									<input type="submit" value="추가">
+									<input  class="btn btn-primary" type="submit" value="추가">
 								</form>
 								<span>태그 분류 추가</span>
 								<form  class="tag_modifyForm">
-									<input type="text">
-									<input type="submit" value="추가">
+									<input type="text" disabled>
+									<input class="btn btn-primary" type="submit" value="추가">
 								</form>
 							</div>
 						</div>
@@ -122,22 +124,11 @@
 					</div>
 					<div class="x_content">
 						<div class="row">
-							<div class="col-sm-6 tag_modify">
-								<span>태그 이름변경</span>
-								<a id="modifyBtn" class="btn-primary" href="javascript:modify()">변경</a>
-								<div id="modifyModal" class="modifyModal">
-									<h3>태그 이름 변경</h3> <a href="javascript:modifyClose()" style="float:right;font-size:30px;">X</a>
-									<form method="post" name="modify" action="/admin/modifyTag" style="display:flex; height:100%;flex-direction: column;justify-content: space-evenly;">
-										<input type="hidden" name="seqno">
-										<input type="text" name="newName">
-										<input type="submit" value="변경">
-									</form>
-								</div>
+							<div class="cols tag_modify">
+								<!-- <span>태그 이름 변경</span> -->
+								<a id="modifyBtn" class="btn btn-primary" href="javascript:modeChange('modify')">태그 이름 변경</a>
 								<br>
-								<span>태그 삭제</span>
-								<form class="tag_modifyForm">
-									<input type="submit" value="삭제">
-								</form>
+								<a id="deleteBtn" class="btn btn-primary" href="javascript:modeChange('delete')">태그 삭제</a>
 							</div>
 						</div>
 					</div>
@@ -146,35 +137,89 @@
 		</div>
 	</div>
 </div>
-
+<div id="modal" class="modal fade">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 id="modalTitle" class="modal-title"></h5>
+				<button type="button" class="btn-close" onclick="javascript:modifyClose()"></button>
+			</div>
+			<div class="modal-body">
+				<p id="modalText"></p>
+				<form method="post" class="modifyForm" name="modalForm" action="">
+					<input type="hidden" name="seqno">
+					<input type="text" name="newName">
+					<div class="modal-footer">
+						<input class="btn btn-primary" name="submit" type="submit" value="변경">
+						<input class="btn btn-secondary" type="button" value="취소" onclick="javascript:modifyClose()">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
 <script>
-	function modify(){
-		var btn=document.getElementById('modifyBtn').innerHTML;
-		/* alert(btn); */
-		const modifys = document.querySelectorAll('.modifys');
-		if(btn=='변경'){
-			modifys.forEach(modify => {
-				modify.style.display='inline';
-			});
-			btn='취소';
-		}else{
-			modifys.forEach(modify => {
-				modify.style.display='none';
-			});
-			btn='변경';
+	function modeChange(mode){
+		var title;
+		var text;
+		var btn;
+		if(mode=='modify'){
+			const modifys = document.querySelectorAll('.modifys');
+			btn=document.getElementById('modifyBtn').innerHTML;
+			if(btn=='태그 이름 변경'){
+				modifys.forEach(modify => {
+					modify.style.display='inline';
+				});
+				title='태그 이름 변경';
+				text='변경할 이름을 작성해주세요.';
+				btn='태그 이름 변경 취소';
+				document.forms['modalForm'].elements['submit'].value='변경';
+				document.forms['modalForm'].action='/admin/tagModify';
+			}else{
+				modifys.forEach(modify => {
+					modify.style.display='none';
+				});
+				btn='태그 이름 변경';
+			}
+			document.getElementById('modifyBtn').innerHTML=btn;
+		}else if(mode=='delete'){
+			const deletes = document.querySelectorAll('.deletes');
+			btn=document.getElementById('deleteBtn').innerHTML;
+			if(btn=='태그 삭제'){
+				deletes.forEach(delete1 => {
+					delete1.style.display='inline';
+				});
+				title='태그 삭제';
+				text='정말 삭제하시겠습니까?';
+				btn='태그 삭제 취소';
+				document.forms['modalForm'].elements['newName'].disabled=true;
+				document.forms['modalForm'].elements['submit'].value='삭제';
+				document.forms['modalForm'].action='/admin/tagDelete';
+			}else{
+				deletes.forEach(delete1 => {
+					delete1.style.display='none';
+				});
+				document.forms['modalForm'].elements['newName'].disabled=false;
+				btn='태그 삭제';
+			}
+			document.getElementById('deleteBtn').innerHTML=btn;
 		}
-		document.getElementById('modifyBtn').innerHTML=btn;
+		document.querySelector('.modal-title').InnerHTML=title;
+		document.getElementById('modalText').InnerHTML=text;
+		/* 왜 안 바뀔까... */
+		
 	}
 	
-	function modifyModal(seqno,name){
-		document.getElementById('modifyModal').style.display='block';
-		const modifyForm = document.forms['modify'];
-		modifyForm.elements['seqno'].value=seqno;
-		modifyForm.elements['newName'].value=name;
+	function modal(seqno,name){
+		document.getElementById('modal').style.display='flex';
+		document.getElementById('modal').classList.add("show");
+		const modalForm = document.forms['modalForm'];
+		modalForm.elements['seqno'].value=seqno;
+		modalForm.elements['newName'].value=name;
 	}
 	
 	function modifyClose(){
-		document.getElementById('modifyModal').style.display='none';
+		document.getElementById('modal').style.display='none';
 	}
 </script>
 
