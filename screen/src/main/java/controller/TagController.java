@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.RequestDispatcher;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import service.ArtworkService;
 import service.TagService;
 
 
@@ -30,13 +32,16 @@ public class TagController extends HttpServlet {
 	private void doAction(HttpServletRequest req,HttpServletResponse resp) throws ServletException, IOException {
 		String uri =req.getRequestURI();
 		String cmd = uri.substring(uri.lastIndexOf("/")+1);
-		
 		TagService tagService = new TagService();
+		ArtworkService artworkService = new ArtworkService();
 		
 		if(cmd.equals("search.so")) {
-			
 			req.setAttribute("searchList", tagService.tagList());
 			goView(req,resp,"/search.jsp");
+		}else if(cmd.equals("searchTag.so")) {
+		      String tag = req.getParameter("tag");
+		      req.setAttribute("artList", artworkService);
+		      goView(req, resp, "/search.jsp");
 		}
 		
 	}

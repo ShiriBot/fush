@@ -2,181 +2,220 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
- 
- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-				
-				<div class="row">
-					<div class="accordion" id="accordionExample">
-						<div class="accordion col-12" id="accordionPanelsStayOpenExample">
-						  <div class="accordion-item ">
-							   	 <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-								    <button class="accordion-button collapsed col" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false" aria-controls="panelsStayOpen-collapseOne">
-								     장르
-								    </button>
-							    </h2>
-							
-						    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingOne">
-						      <div class="accordion-body">
-									      			<div class="d-flex flex-row">
-											      		<div class="d-flex">
-												     	  	<c:forEach items="${searchList}" var="taglist">
-															   	<c:if test="${taglist.topSeq ne taglist.midSeq && taglist.topSeq eq'1' }">
-													      			<c:if test="${mid ne taglist.mid }">
-															      		${taglist.mid}
-															   		</c:if>
-												      			</c:if>
-																	<ul>
-																		<li>
-																			${taglist.name}
-																		</li>
-																	</ul>
-															</c:forEach>
-										      			</div>
-										      		</div>
-									      		<c:set value="${taglist.mid}" var="mid"/>
-								      		<c:if test="${taglist.midSeq eq midSeq}">
-										      	</c:if>	
-						      </div>
-						    </div>
-						  </div>
-					   </div>
-				   </div>
-				</div>
-				
-				<div class="row">
-					<div class="col-2 d-flex flex-row align-items-center justify-content-center	">소재</div>
-					<div class="accordion col-10" id="accordionPanelsStayOpenExample">
-					  <div class="accordion-item ">
-					    <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
-					      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-					        소재
-					      </button>
-					    </h2>
-					    <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
-					      <div class="accordion-body">
-					        <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-					      </div>
-					    </div>
-					  </div>
-				   </div>
-				</div>
-				
-				<div class="row">
-					<div class="col-2 d-flex justify-content-center	">배경</div>
-						<div class="col-10 d-flex flex-row justify-content-left">
-						<input type="checkbox" name="tags" value="naver" id="naver">
-						<label for="naver">이세계</label> 
-						<input type="checkbox" name="tags" value="kakaoWebtoon" id="kakaoWebtoon">
-						<label for="kakaoWebtoon">학원물</label> 
-						<input type="checkbox" name="tags" value="kakaoPage" id="kakaoPage">
-						<label for="kakaoPage">학원</label> 
-						<input type="checkbox" name="tags" value="lezhin" id="lezin">
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-2 d-flex justify-content-center	">분위기</div>
-						<div class="col-10 d-flex flex-row justify-content-left">
-						<input type="checkbox" name="tags" value="toomics" id="toomics">
-						<label for="toomics">가슴먹먹한</label> 
-						<input type="checkbox" name="tags" value="bomtoon" id="bomtoon">
-						<label for="bomtoon">힐링</label>  
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-2 d-flex justify-content-center	">전개방식</div>
-						<div class="col-10 d-flex flex-row justify-content-left">
-						<input type="checkbox" name="isEnding" value="연재중" id="연재중">
-						<label for="연재중">옴니버스식</label> 
-						<input type="checkbox" name="isEnding" value="완결" id="완결">
-						<label for="완결">소설원작</label> 
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-2 d-flex justify-content-center	">관계</div>
-						<div class="col-10 d-flex flex-row justify-content-left">
-						<input type="checkbox" name="isEnding" value="연재중" id="연재중">
-						<label for="연재중">소꿉친구</label> 
-						<input type="checkbox" name="isEnding" value="완결" id="완결">
-						<label for="완결">계약관계</label> 
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-2 d-flex justify-content-center	">기타</div>
-						<div class="col-10 d-flex flex-row justify-content-left">
-						<a href="#" onclick ="">기타</a>
-					</div>
-				</div>
-				<div class="row">
-				<div class="col-2 d-flex justify-content-center	"></div>
-						<div class="col-10 d-flex flex-row justify-content-left">
-							<label for="customRange3" class="form-label">별점</label>
-							<input type="range" class="form-range" min="0" max="5" step="0.5" id="customRange3">
-						</div>
-				</div>
-				<div class="row">
-					<div class="col-2 d-flex justify-content-center	">태그</div>
-						<div class="col-10 d-flex flex-row justify-content-left">
-					<div class="tableFootStyle" id="result">원하시는 #태그를 골라주세요</div>
-				</div>
-			</div>
-			
-		<div class= "searchBoard">
-			<div class= "searchPop">
-				<a href="#">인기순</a>
-				<a href="#">조회순</a>
-				<a href="#">등록일자순</a>
-			</div>
-			
-				<div class="row">
-					<div class="col">
-						<div class="image"></div>
-						<div class="webtoonName">내과의사 박원장</div>
-					</div>
-					<div class="col">
-						<div class ="authorDetail">
-							<span>글:</span>
-							장봉수
-							<span>그림:</span>
-							장봉수 
-						</div>
-						<div class ="platformDetail">
-							<span>연재처:</span>
-							네이버
-						</div>
-						
-						
-						<!-- 현재 몇화까지 연재중인지 쓰기 완결여부 -->
-						
-						
-						<div class ="webtoonDetail">
-							어릴 적 TV에 나오는 의사들의 멋진 모습을 보고 의사가 되기로 결심한 박원장. 
-							인고의 세월을 보내고 전문의가 되어 본인 이름을 내건 의원의 원장이 되었으나 그를 기다리고 있는 것은 TV 속 의사들의 찬란한 인생이 아니었으니...
-							판타지 의학 드라마는 이제 그만! 19년 차 현직 의사가 직접 그리는 대한민국 의사들의 진짜 이야기! 화제의 하이퍼리얼리즘 메디컬드라마 '내과 박원장'
-						</div>
-						<div class ="genruDetail">
-							<span>장르:</span>
-							드라마
-						</div>
-						<div class ="webtoonHashtag">
-							<a href="#">
-								#드라마 
-							</a>
-							<a href="#">
-								#스토리 
-							</a>
-							<a href="#">
-								#전체 연령가 
-							</a>
-						</div>
-					</div>
-					<div class="col">
-						<div class="star">
-							<h4>별점</h4>
-							<h2>5.0/5.0</h2>
-							<div>★★★★★</div>
-						</div>
-					</div>
-				</div>
-			</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<!-- 아작스 -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+	$(document).ready(function(){
+		$('.dropdown-item').click(function(){
+			var sendData = $('.dropdown-item').val();
+			$.ajax({
+				type:'get',
+				url:'search.so',
+				data:sendData,
+				dataType:'text',
+				context:this,
+				success :function(data){
+					$('#di').text(sendData);
+				}
+			});
+		});
+	});
+$(document).ready(function(){
+	$('.dropdown-item').click(function(){
+		AjaxTagList();
+	})
+})
 
+function AjaxTagList(){
+	var url ="searchTag.so" /* 오류났을경우 경로가 틀렸나 확인 */
+	$.ajax({
+		type:"post",
+		url:url,
+		dataType:"html",
+		data:{
+			tag:%('.dropdown-item').val()
+		},
+		success:function(data){
+			alert('성공');
+			var $div = $('<div></div>');
+            var text = document.createTextNode(data);
+            $div.append(data);
+            $div.appendTo($('#artResult'))
+		},
+	  error : function(request,status,error){
+            alert('code:'+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error); //에러 상태에 대한 세부사항 출력
+            alert(e);
+        }
+	})
+}
+</script>
+
+
+<!-- 장르 드롭다운 -->
+<div class="row">
+	<nav class="navbar navbar-expand-lg navbar-light bg-white" style="border: 1px solid #d8d8df">
+	    <span class="navbar-brand">장르</span>
+	    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+	      <span class="navbar-toggler-icon"></span>
+	    </button>
+	    <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+	    	<c:forEach items="${searchList}" var="taglist">
+	      		<ul class="navbar-nav">
+	       			 <li class="nav-item dropdown"> 
+		          		<c:if test="${midSeq ne taglist.midSeq && taglist.mid ne null && taglist.topSeq eq '1'}">
+					        <a class="nav-link dropdown-toggle text-dark d-inline" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+					        	${taglist.mid}
+					        </a>
+	           			</c:if>
+		           		<c:if test="${midSeq eq taglist.midSeq}">
+		           			<div class="nav-link dropdown-toggle text-dark d-none" style="display:none"></div>
+		           		</c:if>
+	       				<c:set value="${taglist.midSeq}" var ="midSeq"/>
+			        	<ul class="dropdown-menu dropdown-menu-white" aria-labelledby="navbarDarkDropdownMenuLink">
+			    	      	<c:forEach items="${searchList}" var="tagName">  
+				    	      	 <c:if test="${tagName.midSeq eq midSeq && tagName.mid ne null}">
+				    	      	  	<li><button class="dropdown-item"name="tagname" value="${tagName.name}">${tagName.name}</button></li>
+				    	      	 </c:if>
+			    	      	</c:forEach>
+			    	    </ul>
+	       			 </li>
+	   		   </ul>
+	        </c:forEach>	
+	    </div>
+	</nav>
+</div>
+
+<!-- 소재 드롭다운 -->
+<div class="row">
+	<nav class="navbar navbar-expand-lg navbar-light bg-white" style="border: 1px solid #d8d8df">
+	    <span class="navbar-brand">소재</span>
+	    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+	      <span class="navbar-toggler-icon"></span>
+	    </button>
+	    <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+	    	<c:forEach items="${searchList}" var="taglist">
+	      		<ul class="navbar-nav">
+	       			 <li class="nav-item dropdown"> 
+		          		<c:if test="${midSeq ne taglist.midSeq && taglist.mid ne null && taglist.topSeq eq '2'}">
+					        <a class="nav-link dropdown-toggle text-dark d-inline" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+					        	${taglist.mid}
+					        </a>
+	           			</c:if>
+		           		<c:if test="${midSeq eq taglist.midSeq}">
+		           			<div class="nav-link dropdown-toggle text-dark d-none" style="display:none"></div>
+		           		</c:if>
+	       				<c:set value="${taglist.midSeq}" var ="midSeq"/>
+			        	<ul class="dropdown-menu dropdown-menu-white" aria-labelledby="navbarDarkDropdownMenuLink">
+			    	      	<c:forEach items="${searchList}" var="tagName">  
+				    	      	 <c:if test="${tagName.midSeq eq midSeq && tagName.mid ne null}">
+				    	      	  	<li><a class="dropdown-item" href="#">${tagName.name}</a></li>
+				    	      	 </c:if>
+			    	      	</c:forEach>
+			    	    </ul>
+	       			 </li>
+	   		   </ul>
+	        </c:forEach>	
+	    </div>
+	</nav>
+</div>
+				
+<!-- 그외 드롭다운 -->
+<div class="row">
+	<nav class="navbar navbar-expand-lg navbar-light bg-white" style="border: 1px solid #d8d8df">
+	    <span class="navbar-brand">그 외</span>
+	    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+	      <span class="navbar-toggler-icon"></span>
+	    </button>
+	    <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+	    	<c:forEach items="${searchList}" var="taglist">
+	      		<ul class="navbar-nav">
+	       			 <li class="nav-item dropdown"> 
+		          		<c:if test="${midSeq ne taglist.midSeq && taglist.mid ne null && taglist.topSeq ne '1' && taglist.topSeq ne '2' }">
+					        <a class="nav-link dropdown-toggle text-dark d-inline" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+					        	${taglist.mid}
+					        </a>
+	           			</c:if>
+		           		<c:if test="${midSeq eq taglist.midSeq}">
+		           			<div class="nav-link dropdown-toggle text-dark d-none" style="display:none"></div>
+		           		</c:if>
+	       				<c:set value="${taglist.midSeq}" var ="midSeq"/>
+			        	<ul class="dropdown-menu dropdown-menu-white" aria-labelledby="navbarDarkDropdownMenuLink">
+			    	      	<c:forEach items="${searchList}" var="tagName">  
+				    	      	 <c:if test="${tagName.midSeq eq midSeq && tagName.mid ne null}">
+				    	      	  	<li><a class="dropdown-item" href="#">${tagName.name}</a></li>
+				    	      	 </c:if>
+			    	      	</c:forEach>
+			    	    </ul>
+	       			 </li>
+	   		   </ul>
+	        </c:forEach>	
+	    </div>
+	</nav>
+</div>		
 	
+<!-- 별점 -->	
+<div class="row">
+	<div class="col-2 d-flex justify-content-center	"></div>
+	<div class="col-10 d-flex flex-row justify-content-left">
+		<label for="customRange3" class="form-label">별점</label>
+		<input type="range" class="form-range" min="0" max="5" step="0.5" id="customRange3">
+	</div>
+</div>
+
+<!-- 태그 -->
+<div class="row">
+	<div class="col-2 d-flex justify-content-center	">태그</div>
+	<div class="col-10 d-flex flex-row justify-content-left" id ="di">
+		<div class="tableFootStyle" id="result">
+		<strong>${param.tagname}</strong>
+		</div>
+	</div>
+</div>
+
+<!-- 검색결과창 -->
+<div class= "searchBoard">
+	<div class= "searchPop">
+		<a href="#">인기순</a>
+		<a href="#">조회순</a>
+		<a href="#">등록일자순</a>
+	</div>
+		<c:forEach items="${artList}" var="artlist">
+	<div class="row" style="display:none">
+		<c:if test="">
+			<div class="col" id="artResult">
+				<div class="image"></div>
+				<div class="webtoonName">${artlist.name}</div>
+			</div>
+			<div class="col">
+				<div class ="authorDetail">
+					<span>작가:</span>${artlist.author}
+				</div>
+				<div class ="platformDetail">
+					<span>연재처:</span>${artlist.plaform}
+				</div>
+				<div class ="webtoonDetail">
+				${artlist.detail }
+				</div>
+				<div class ="genruDetail">
+					<c:forEach items="artlist.tag" var="artTag">
+						<c:if test="${artTag. eq  }"
+							<span>장르:</span>드라마
+						</c:if>
+					</c:forEach>
+				</div>
+				<div class ="webtoonHashtag">
+					<a href="#">#전체 연령가 </a>
+				</div>
+			</div>
+			<div class="col">
+				<div class="star">
+					<h4>별점</h4>
+					<h2>5.0/5.0</h2>
+					<div>★★★★★</div>
+				</div>
+			</div>
+				</c:if>
+			</div>
+	</c:forEach>
+</div>

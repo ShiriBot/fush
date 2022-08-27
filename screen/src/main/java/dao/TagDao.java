@@ -34,8 +34,8 @@ public class TagDao {
 				sd.setTopSeq(rs.getString("top_seq"));
 				sd.setSeqno(rs.getString("seqno"));
 				searchTag[i++] = sd;
-				rs.close();
 			}
+			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
