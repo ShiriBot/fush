@@ -47,7 +47,7 @@
 
 					</li>
 					<li>
-						<a href="/admin/member">
+						<a href="/admin/member?kind=all">
 							<i class="fa fa-users"></i>
 							Members
 						</a>

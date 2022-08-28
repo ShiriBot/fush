@@ -86,26 +86,30 @@ public class ManageController extends HttpServlet {
 			System.out.print(request.getAttribute("statistics"));
 			goView(request, response, "/manage/manage_index.jsp");
 		}else if(cmd.equals("member")){
+			int[] lengthOpt = {10,25,50,100};
 			int pagingCount=5;
-
-			String allMemLength = request.getParameter("datatable-members_length");
-			String currentPage = request.getParameter("currentPage");
-			if(currentPage==null) currentPage="1";
-			if(allMemLength==null) allMemLength="10";
+			String kind = request.getParameter("kind");
+			int length;
+			int currentPage;
+			String keyword = request.getParameter("keyword");
+			if(request.getParameter("currentPage")==null) {
+				currentPage=1;
+				}else {
+					currentPage=Integer.parseInt(request.getParameter("currentPage"));
+				}
+			if(request.getParameter("length")==null) {
+				length=10;
+			} else {
+				length = Integer.parseInt(request.getParameter("length"));
+			}
 			
-			/*int allNewLength = Integer.parseInt(request.getParameter("datatable-members-new_length"));
-			int allDelLength = Integer.parseInt(request.getParameter("datatable-members-del_length"));*/
+			List<Member> members = memberService.list(kind,length,currentPage,keyword);
 			
-			List<Member> allMembers = memberService.allMemList(Integer.parseInt(allMemLength),Integer.parseInt(currentPage),null);
-			/*int allMemTotal=allMembers.size();*/
-			/*new Page(allMemTotal,Integer.parseInt(currentPage),Integer.parseInt(allMemLength),pagingCount,allMembers);*/
-			
-			Map<String, List<Member>> lists = memberService.list();
-			
-			request.setAttribute("allMembers",new Page(allMembers.size(),Integer.parseInt(currentPage),Integer.parseInt(allMemLength),pagingCount,allMembers));
+			request.setAttribute("members",new Page(members.size(),currentPage,length,pagingCount,members));
+			request.setAttribute("length", length);
+			request.setAttribute("lengthOpt", lengthOpt);
+			request.setAttribute("keyword", keyword);
 			/*request.setAttribute("allMembers",lists.get("allMembers"));*/
-			request.setAttribute("newMembers",lists.get("newMembers"));
-			request.setAttribute("delMembers",lists.get("delMembers"));
 			goView(request, response, "/manage/manage_members.jsp");
 		}else if(cmd.equals("artwork")){
 			List<Artwork> artList = artworkService.list("all");
