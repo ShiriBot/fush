@@ -23,6 +23,11 @@ public class MemberService {
 	public List<Member> list(String kind,int length, int page, String keyword){
 		return memberDao.list(kind, length, page, keyword);
 	}
+
+	public int total(String kind) {
+		return memberDao.total(kind);
+	}
+
 	
 
 }

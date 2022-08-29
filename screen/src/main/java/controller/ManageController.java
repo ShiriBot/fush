@@ -104,12 +104,10 @@ public class ManageController extends HttpServlet {
 			}
 			
 			List<Member> members = memberService.list(kind,length,currentPage,keyword);
-			
-			request.setAttribute("members",new Page(members.size(),currentPage,length,pagingCount,members));
+			request.setAttribute("members",new Page(memberService.total(kind),currentPage,length,pagingCount,members));
 			request.setAttribute("length", length);
 			request.setAttribute("lengthOpt", lengthOpt);
 			request.setAttribute("keyword", keyword);
-			/*request.setAttribute("allMembers",lists.get("allMembers"));*/
 			goView(request, response, "/manage/manage_members.jsp");
 		}else if(cmd.equals("artwork")){
 			List<Artwork> artList = artworkService.list("all");

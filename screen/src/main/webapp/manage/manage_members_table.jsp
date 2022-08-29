@@ -115,7 +115,7 @@
 											</tbody>
 										</table>
 										<div class="dataTables_info" id="datatable-members_info" role="status" aria-live="polite">
-											Showing <c:out value="1" /> to 1 of 2 entries
+											Showing <c:out value="${members.currentPage*length-length+1}" /> to <c:if test="${members.currentPage*length>members.total}"><c:out value="${members.total}" /></c:if> <c:if test="${members.currentPage*length<members.total}"><c:out value="${members.currentPage*length}" /></c:if> of ${members.total} entries
 										</div>
 										<div class="dataTables_paginate paging_simple_numbers" id="datatable-members_paginate">
 											<ul class="pagination">
