@@ -101,8 +101,16 @@
 													</th>
 												</tr>
 											</thead>
+											<c:set value="${members.currentPage*length-length+1}" var="startNum"/>
+											<c:if test="${members.currentPage*length>members.total}">
+												<c:set value="${members.total}" var="endNum" />
+											</c:if>
+											<c:if test="${members.currentPage*length<members.total}">
+												<c:set value="${members.currentPage*length}" var="endNum" />
+											</c:if>
 											<tbody>
-												<c:forEach items="${members.content}" var="member" >
+												<c:if test="${members.content.size() ne 0}">
+												<c:forEach items="${members.content}" var="member" varStatus="status" begin="${startNum-1}" end="${endNum-1}">
 													<tr>
 														<td><c:out value="${member.id}" /></td>
 														<td><c:out value="${member.name}" /></td>
@@ -112,10 +120,12 @@
 														<td><c:out value="${member.birth}" /></td>
 													</tr>
 												</c:forEach>
+												</c:if>
 											</tbody>
 										</table>
+										
 										<div class="dataTables_info" id="datatable-members_info" role="status" aria-live="polite">
-											Showing <c:out value="${members.currentPage*length-length+1}" /> to <c:if test="${members.currentPage*length>members.total}"><c:out value="${members.total}" /></c:if> <c:if test="${members.currentPage*length<members.total}"><c:out value="${members.currentPage*length}" /></c:if> of ${members.total} entries
+											Showing <c:out value="${startNum}" /> to ${endNum } of ${members.total} entries
 										</div>
 										<div class="dataTables_paginate paging_simple_numbers" id="datatable-members_paginate">
 											<ul class="pagination">

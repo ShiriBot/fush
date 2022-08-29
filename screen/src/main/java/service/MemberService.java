@@ -24,10 +24,4 @@ public class MemberService {
 		return memberDao.list(kind, length, page, keyword);
 	}
 
-	public int total(String kind) {
-		return memberDao.total(kind);
-	}
-
-	
-
 }

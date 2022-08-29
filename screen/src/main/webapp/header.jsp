@@ -6,7 +6,7 @@
 	<!-- navbar:네비바. navbar-expand-lg: lg breakpoint(960px)이하면 아이콘 단축, navbar-light: light테마, bg-light:색상지정-->
 	<div class="container-fluid">
 		<!-- container-fluid: 모든 화면에서 width 100% -->
-		<a class="navbar-brand" href="main_new.jsp">
+		<a class="navbar-brand" href="main.jsp">
 		<!-- navbar-brand : 로고 등을 넣는 위치로... 적당한 패딩 등 있는거 --> 
 			<!-- <img src="images/logo.png" alt="" class="d-inline-block align-text-top"> -->
 			A-chu
@@ -50,6 +50,7 @@
 						평가하기
 					</a>
 				</li>
+<% if(session.getAttribute("login")==null) {%>
 				<li class="nav-item">
 					<a class="nav-link primary" href="login.jsp">
 					로그인
@@ -59,7 +60,19 @@
 					<a class="nav-link navBtn primary" href="signup.jsp">
 						회원가입
 					</a>
-				</li>				
+				</li>
+<% } else{ %>
+				<li class="nav-item">
+					<a class="nav-link primary"  href="logoutProc.jsp" id="logout">
+						로그아웃
+					</a>
+				</li>
+				<li class="nav-item">
+					<a  class="nav-link primary" href="mypage.jsp" id="mypage">
+						마이페이지
+					</a>
+				</li>
+<%} %>										
 				<!-- <li class="nav-item">
           <a class="nav-link disabled">Disabled</a>
         </li> -->

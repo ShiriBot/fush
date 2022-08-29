@@ -3,6 +3,7 @@ package dto;
 
 public class Member {
 	
+	private int rownum;
 	private String id;
 	private String pw;
 	private String name;
@@ -16,6 +17,14 @@ public class Member {
 	
 	public Member() {
 		
+	}
+
+	public int getRownum() {
+		return rownum;
+	}
+
+	public void setRownum(int rownum) {
+		this.rownum = rownum;
 	}
 
 	public String getId() {

@@ -101,8 +101,7 @@ public class MemberDao {
 	public List<Member> list(String kind, int length, int currentPage, String keyword){
 		List<Member> members=new ArrayList<Member>();
 		try {
-			String sql = "SELECT * FROM ("
-					+ " SELECT rownum as rn, m.*"
+			String sql = " SELECT rownum as rn, m.*"
 					+ " FROM v_member_info m";
 			switch (kind) {
 			case "all":
@@ -118,16 +117,14 @@ public class MemberDao {
 				break;
 			}
 				
-			sql +=") WHERE rn BETWEEN ? and ?";
 			if(keyword!=null) sql+= " AND name LIKE '%"+keyword+"%'";
 			
 			stmt = conn.prepareStatement(sql);
-			stmt.setInt(1, currentPage*length-length+1);
-			stmt.setInt(2, currentPage*length);
 			ResultSet rs = stmt.executeQuery();
 			Member member = null;
 			while(rs.next()) {
 				member = new Member();
+				member.setRownum(rs.getInt("rn"));
 				member.setId(rs.getString("id"));
 				member.setName(rs.getString("name"));
 				member.setEmail(rs.getString("email"));

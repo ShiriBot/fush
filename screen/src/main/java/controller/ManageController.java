@@ -88,10 +88,15 @@ public class ManageController extends HttpServlet {
 		}else if(cmd.equals("member")){
 			int[] lengthOpt = {10,25,50,100};
 			int pagingCount=5;
-			String kind = request.getParameter("kind");
+			String kind;
 			int length;
 			int currentPage;
 			String keyword = request.getParameter("keyword");
+			if(request.getParameter("kind")==null) {
+				kind="all";
+			}else {
+				kind=request.getParameter("kind");
+			}
 			if(request.getParameter("currentPage")==null) {
 				currentPage=1;
 				}else {
@@ -104,7 +109,7 @@ public class ManageController extends HttpServlet {
 			}
 			
 			List<Member> members = memberService.list(kind,length,currentPage,keyword);
-			request.setAttribute("members",new Page(memberService.total(kind),currentPage,length,pagingCount,members));
+			request.setAttribute("members",new Page(members.size(),currentPage,length,pagingCount,members));
 			request.setAttribute("length", length);
 			request.setAttribute("lengthOpt", lengthOpt);
 			request.setAttribute("keyword", keyword);

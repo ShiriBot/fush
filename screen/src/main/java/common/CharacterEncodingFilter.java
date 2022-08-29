@@ -32,7 +32,7 @@ public class CharacterEncodingFilter extends HttpFilter implements Filter {
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		System.out.println("doFilter() 호출");
+		/*System.out.println("doFilter() 호출");*/
 		//요청필터기능
 		long begin = System.currentTimeMillis();
 		
@@ -40,9 +40,9 @@ public class CharacterEncodingFilter extends HttpFilter implements Filter {
 		
 		chain.doFilter(request, response);
 		//응답필터기능
-		System.out.println("응답필터 시작------");
+		/*System.out.println("응답필터 시작------");*/
 		long end = System.currentTimeMillis();
-		System.out.println("작업시간: " +(end-begin)+"ms");
+		/*System.out.println("작업시간: " +(end-begin)+"ms");*/
 	}
 
 	@Override
