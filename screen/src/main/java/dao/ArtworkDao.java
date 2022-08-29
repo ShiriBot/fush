@@ -20,8 +20,8 @@ public class ArtworkDao {
 	public List<Artwork> list(String type) {
 		List<Artwork> artList = new ArrayList<Artwork>();
 		List<Artwork> artRequest = new ArrayList<Artwork>();
-		
-		String sql = "SELECT * FROM artwork";
+//		이부분 v_art_info에 admit이없어서 오류
+		String sql = "SELECT * FROM v_art_info";
 		try {
 			stmt = conn.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
@@ -32,6 +32,7 @@ public class ArtworkDao {
 				artwork.setDetail(rs.getString("detail"));
 				artwork.setWeek(rs.getString("week"));
 				artwork.setUrl(rs.getString("url"));
+				artwork.setImageRoute(rs.getString("image_route"));
 				
 				if(rs.getString("admit").equals("Y")) {
 					artList.add(artwork);

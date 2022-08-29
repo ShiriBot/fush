@@ -37,11 +37,8 @@ public class TagController extends HttpServlet {
 		
 		if(cmd.equals("search.so")) {
 			req.setAttribute("searchList", tagService.tagList());
+			req.setAttribute("artList",artworkService.list(""));
 			goView(req,resp,"/search.jsp");
-		}else if(cmd.equals("searchTag.so")) {
-		      String tag = req.getParameter("tag");
-		      req.setAttribute("artList", artworkService);
-		      goView(req, resp, "/search.jsp");
 		}
 		
 	}

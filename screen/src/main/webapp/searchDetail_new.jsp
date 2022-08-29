@@ -181,10 +181,10 @@ function AjaxTagList(){
 		<a href="#">등록일자순</a>
 	</div>
 		<c:forEach items="${artList}" var="artlist">
-	<div class="row" style="display:none">
-		<c:if test="">
+	<div class="row">
+		<%-- <c:if test="${!artlist.imageRoute}"> --%>
 			<div class="col" id="artResult">
-				<div class="image"></div>
+				<div class="image"><img src="${artlist.imageRoute}"></div>
 				<div class="webtoonName">${artlist.name}</div>
 			</div>
 			<div class="col">
@@ -199,9 +199,7 @@ function AjaxTagList(){
 				</div>
 				<div class ="genruDetail">
 					<c:forEach items="artlist.tag" var="artTag">
-						<c:if test="${artTag. eq  }"
 							<span>장르:</span>드라마
-						</c:if>
 					</c:forEach>
 				</div>
 				<div class ="webtoonHashtag">
@@ -215,7 +213,6 @@ function AjaxTagList(){
 					<div>★★★★★</div>
 				</div>
 			</div>
-				</c:if>
 			</div>
 	</c:forEach>
 </div>

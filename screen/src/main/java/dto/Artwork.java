@@ -15,6 +15,7 @@ public class Artwork {
 	private List<TagDto> tag;
 	private List<Reply> reply;
 	private String url;
+	private String imageRoute;
 	
 	public Artwork() {
 	}
@@ -110,6 +111,14 @@ public class Artwork {
 
 	public void setUrl(String url) {
 		this.url = url;
+	}
+
+	public String getImageRoute() {
+		return imageRoute;
+	}
+
+	public void setImageRoute(String imageRoute) {
+		this.imageRoute = imageRoute;
 	}
 	
 }
