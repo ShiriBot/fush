@@ -13,7 +13,15 @@ public class TagService {
 		return searchDao.searchBox();
 	}
 
-	public void insert() {
-		tagDao.insert();
+	public void insert(String tagName) {
+		tagDao.insert(tagName);
+	}
+
+	public void modify(String seqno, String newName) {
+		tagDao.modify(seqno,newName);
+	}
+
+	public void delete(String seqno) {
+		tagDao.delete(seqno);
 	}
 }

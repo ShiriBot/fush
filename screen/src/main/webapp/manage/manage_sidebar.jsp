@@ -16,7 +16,7 @@
 <div class="col-md-3 left_col menu_fixed">
 	<div class="left_col scroll-view">
 		<div class="navbar nav_title">
-			<a class="site_title" href="manage_index.jsp">
+			<a class="site_title" href="/admin/home">
 				<i class="fa fa-paw"></i> 
 				<span> MANAGEMENT </span>
 			</a>
@@ -47,7 +47,7 @@
 
 					</li>
 					<li>
-						<a href="/admin/member">
+						<a href="/admin/member?kind=all">
 							<i class="fa fa-users"></i>
 							Members
 						</a>

@@ -20,12 +20,8 @@ public class MemberService {
 		return memberDao.statistics();
 	}
 
-	public Map<String, List<Member>> list() {
-		return memberDao.list();
-	}
-	
-	public List<Member> allMemList(int length, int page, String search){
-		return memberDao.allMemList(length, page, search);
+	public List<Member> list(String kind,int length, int page, String keyword){
+		return memberDao.list(kind, length, page, keyword);
 	}
 	
 
