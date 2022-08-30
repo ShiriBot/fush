@@ -16,6 +16,10 @@ public class Artwork {
 	private List<Reply> reply;
 	private String url;
 	private String imageRoute;
+	private double avgRating;
+	private int cnt;
+	private String tagSeqno;
+	private String tagName;
 	
 	public Artwork() {
 	}
@@ -65,10 +69,10 @@ public class Artwork {
 	}
 
 	public void setWeek(String week) {
-		if(week.equals("완결")) {
+		if(week.equals("�셿寃�")) {
 			this.week = week;
 		}else {
-			this.week=week+" 연재중" ;
+			this.week=week+" �뿰�옱以�" ;
 		}
 		
 	}
@@ -119,6 +123,38 @@ public class Artwork {
 
 	public void setImageRoute(String imageRoute) {
 		this.imageRoute = imageRoute;
+	}
+
+	public double getAvgRating() {
+		return avgRating;
+	}
+
+	public void setAvgRating(double avgRating) {
+		this.avgRating = avgRating;
+	}
+
+	public int getCnt() {
+		return cnt;
+	}
+
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
+
+	public String getTagSeqno() {
+		return tagSeqno;
+	}
+
+	public void setTagSeqno(String tagSeqno) {
+		this.tagSeqno = tagSeqno;
+	}
+
+	public String getTagName() {
+		return tagName;
+	}
+
+	public void setTagName(String tagName) {
+		this.tagName = tagName;
 	}
 	
 }

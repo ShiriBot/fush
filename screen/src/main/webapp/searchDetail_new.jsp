@@ -3,53 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-<!-- 아작스 -->
-<script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script>
-	$(document).ready(function(){
-		$('.dropdown-item').click(function(){
-			var sendData = $('.dropdown-item').val();
-			$.ajax({
-				type:'get',
-				url:'search.so',
-				data:sendData,
-				dataType:'text',
-				context:this,
-				success :function(data){
-					$('#di').text(sendData);
-				}
-			});
-		});
-	});
-$(document).ready(function(){
-	$('.dropdown-item').click(function(){
-		AjaxTagList();
-	})
-})
 
-function AjaxTagList(){
-	var url ="searchTag.so" /* 오류났을경우 경로가 틀렸나 확인 */
-	$.ajax({
-		type:"post",
-		url:url,
-		dataType:"html",
-		data:{
-			tag:%('.dropdown-item').val()
-		},
-		success:function(data){
-			alert('성공');
-			var $div = $('<div></div>');
-            var text = document.createTextNode(data);
-            $div.append(data);
-            $div.appendTo($('#artResult'))
-		},
-	  error : function(request,status,error){
-            alert('code:'+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error); //에러 상태에 대한 세부사항 출력
-            alert(e);
-        }
-	})
-}
-</script>
 
 
 <!-- 장르 드롭다운 -->
@@ -75,7 +29,7 @@ function AjaxTagList(){
 			        	<ul class="dropdown-menu dropdown-menu-white" aria-labelledby="navbarDarkDropdownMenuLink">
 			    	      	<c:forEach items="${searchList}" var="tagName">  
 				    	      	 <c:if test="${tagName.midSeq eq midSeq && tagName.mid ne null}">
-				    	      	  	<li><button class="dropdown-item"name="tagname" value="${tagName.name}">${tagName.name}</button></li>
+				    	      	  	<li><button class="dropdown-item"name="tagname" value="${tagName.name}" ">${tagName.name}</button></li>
 				    	      	 </c:if>
 			    	      	</c:forEach>
 			    	    </ul>

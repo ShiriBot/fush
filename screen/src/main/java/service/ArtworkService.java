@@ -14,5 +14,11 @@ public class ArtworkService {
 	public List<Artwork> list(String type) {
 		return artworkDao.list(type);
 	}
-
+	public List<Artwork> AchuRecommendArt() {
+		return artworkDao.AchuRecommendArt();
+	}
+	
+	public List<Artwork> topTagArt(){
+		return artworkDao.topTagArt();
+	}
 }

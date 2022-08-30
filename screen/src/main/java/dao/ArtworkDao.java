@@ -20,8 +20,7 @@ public class ArtworkDao {
 	public List<Artwork> list(String type) {
 		List<Artwork> artList = new ArrayList<Artwork>();
 		List<Artwork> artRequest = new ArrayList<Artwork>();
-//		이부분 v_art_info에 admit이없어서 오류
-		String sql = "SELECT * FROM v_art_info";
+		String sql = "SELECT * FROM v_art_info_tag";
 		try {
 			stmt = conn.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
@@ -33,6 +32,8 @@ public class ArtworkDao {
 				artwork.setWeek(rs.getString("week"));
 				artwork.setUrl(rs.getString("url"));
 				artwork.setImageRoute(rs.getString("image_route"));
+				artwork.setTagSeqno(rs.getString("tag_seqno"));
+				artwork.setTagName(rs.getString("tag_name"));
 				
 				if(rs.getString("admit").equals("Y")) {
 					artList.add(artwork);
@@ -51,4 +52,59 @@ public class ArtworkDao {
 		}
 	}
 
+	public List<Artwork> AchuRecommendArt() {
+		List<Artwork> mainRC = new ArrayList<Artwork>();
+		
+		String sql ="SELECT seqno, name, author, avg_rating, cnt, image_route"
+				+ " FROM(SELECT *"
+				+ "    FROM  v_art_info "
+				+ "    ORDER BY avg_rating DESC)"
+				+ " WHERE ROWNUM<=4";
+		
+		try {
+			stmt = conn.prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();
+			
+			while(rs.next()) {
+				Artwork artwork = new Artwork();
+				artwork.setSeqno(rs.getString("seqno"));
+				artwork.setName(rs.getString("name"));
+				artwork.setAuthor(rs.getString("author"));
+				artwork.setAvgRating(rs.getDouble("avg_rating"));
+				artwork.setCnt(rs.getInt("cnt"));
+				artwork.setImageRoute(rs.getString("image_route"));
+				
+				mainRC.add(artwork);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return mainRC;
+	}
+
+	public List<Artwork> topTagArt() {
+		List<Artwork> toptag = new ArrayList<Artwork>();
+		
+		String sql ="SELECT *"
+				+ "FROM(SELECT *"
+				+ "    FROM v_art_info_tag"
+				+ "    ORDER BY avg_rating DESC)"
+				+ "WHERE ROWNUM<=2";
+		
+		try {
+			stmt = conn.prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();
+			
+			while(rs.next()) {
+				Artwork artwork = new Artwork();
+				artwork.setTagSeqno(rs.getString("tag_seqno"));
+				artwork.setTagName(rs.getString("tag_name"));
+				toptag.add(artwork);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return toptag;
+	}
+	
 }
