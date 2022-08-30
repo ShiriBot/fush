@@ -4,6 +4,7 @@ import java.util.List;
 
 import dao.ArtworkDao;
 import dto.Artwork;
+import dto.TagDto;
 
 public class ArtworkService {
 	ArtworkDao artworkDao = new ArtworkDao();
@@ -18,7 +19,7 @@ public class ArtworkService {
 		return artworkDao.AchuRecommendArt();
 	}
 	
-	public List<Artwork> topTagArt(){
-		return artworkDao.topTagArt();
+	public List<TagDto> topTag(String seqno){
+		return artworkDao.topTag(seqno);
 	}
 }

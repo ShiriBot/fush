@@ -63,10 +63,8 @@
 						</div>
 						<div class="clickBox"><h5>★:${mainchu.avgRating }</h5></div>
 						<div class="card-link">
-							<c:forEach items="${mainTag }" var="maintag">
-								<c:if test="${mainchu.name eq maintag.name }">
-									<a class="tag" href="search.so">${maintag.name}</a>
-								</c:if>
+							<c:forEach items="${mainchu.tag}" var="maintag">
+								<a class="tag" href="search.so">${maintag.name}</a>
 							</c:forEach>
 						</div>
 					</div>
@@ -88,74 +86,15 @@
 		<div class="row">
 			<c:forEach items ="${mainTag}" var="chuart">
 				<div class="col-3">
-					<c:if test="${chuart.seqno eq topTag.seqno}">
 						<div class="card clickBox" onclick="location.href='artDetail.jsp'">
 							<div class="card-img-top tagImg">
 								<img src="${chuart.imageRoute}">
 							</div>
 							<p>${chuart.name}</p>
 						</div>
-					</c:if>
 				</div>
 			</c:forEach>
 		</div>
 	</c:forEach>
 	</div>
-	<!-- <div class="row">
-		<div class="col">
-			<h3 class="tag clickBox" onclick="location.href='search.jsp'">드라마</h3>
-			<a href="#" style="float: right">더보기</a>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-2">
-			<div class="card clickBox" onclick="location.href='artDetail.jsp'">
-				<div class="card-img-top tagImg">
-					<img src="images/no_home.jpg">
-				</div>
-				<p>집이 없어</p>
-			</div>
-		</div>
-		<div class="col-2">
-			<div class="card clickBox" onclick="location.href='artDetail.jsp'">
-				<div class="card-img-top tagImg">
-					<img src="images/sample2.jpg">
-				</div>
-				<p>이상한 변호사 우영우</p>
-			</div>
-		</div>
-		<div class="col-2">
-			<div class="card clickBox" onclick="location.href='artDetail.jsp'">
-				<div class="card-img-top tagImg">
-					<img src="images/sample3.jpg">
-				</div>
-				<p>나노마신</p>
-			</div>
-		</div>
-		<div class="col-2">
-			<div class="card clickBox" onclick="location.href='artDetail.jsp'">
-				<div class="card-img-top tagImg">
-					<img src="images/sample4.jpg">
-				</div>
-				<p>연애혁명</p>
-			</div>
-		</div>
-		<div class="col-2">
-			<div class="card clickBox" onclick="location.href='artDetail.jsp'">
-				<div class="card-img-top tagImg">
-					<img src="images/sample5.jpg">
-				</div>
-			<p>호랑신랑뎐</p>
-			</div>
-		</div>
-		<div class="col-2">
-			<div class="card clickBox" onclick="location.href='artDetail.jsp'">
-				<div class="card-img-top tagImg">
-					<img src="images/sample6.jpg">
-				</div>
-				<p>개를 낳았다</p>
-			</div>
-		</div>
-	</div>
-
- -->
+	

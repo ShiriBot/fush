@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -39,6 +40,8 @@ public class MainController extends HttpServlet {
 		req.setAttribute("Banner", bannerService.bannerImage());
 		req.setAttribute("mainChu", artworkService.AchuRecommendArt());
 		req.setAttribute("mainTag", artworkService.list(""));
+
+		req.setAttribute("", artworkService.toptag());
 		req.setAttribute("mainTopTag", artworkService.topTagArt());
 		goView(req, resp, "main.jsp");
 	}
