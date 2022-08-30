@@ -18,8 +18,7 @@ public class Artwork {
 	private String imageRoute;
 	private double avgRating;
 	private int cnt;
-	private String tagSeqno;
-	private String tagName;
+	
 	
 	public Artwork() {
 	}
@@ -141,20 +140,5 @@ public class Artwork {
 		this.cnt = cnt;
 	}
 
-	public String getTagSeqno() {
-		return tagSeqno;
-	}
-
-	public void setTagSeqno(String tagSeqno) {
-		this.tagSeqno = tagSeqno;
-	}
-
-	public String getTagName() {
-		return tagName;
-	}
-
-	public void setTagName(String tagName) {
-		this.tagName = tagName;
-	}
 	
 }

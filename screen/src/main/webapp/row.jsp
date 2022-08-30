@@ -81,14 +81,14 @@
 	<c:forEach items="${mainTopTag}" var="topTag">
 		<div class="row">
 			<div class="col">
-				<h3 class="tag clickBox" onclick="location.href='search.jsp'">${topTag.tagName}</h3>
+				<h3 class="tag clickBox" onclick="location.href='search.jsp'">${topTag.Name}</h3>
 				<!-- <a href="#" style="float: right">더보기</a> -->
 			</div>
 		</div>
 		<div class="row">
 			<c:forEach items ="${mainTag}" var="chuart">
 				<div class="col-3">
-					<c:if test="${chuart.tagSeqno eq topTag.tagSeqno}">
+					<c:if test="${chuart.Seqno eq topTag.Seqno}">
 						<div class="card clickBox" onclick="location.href='artDetail.jsp'">
 							<div class="card-img-top tagImg">
 								<img src="${chuart.imageRoute}">

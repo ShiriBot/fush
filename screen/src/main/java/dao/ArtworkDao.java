@@ -20,7 +20,7 @@ public class ArtworkDao {
 	public List<Artwork> list(String type) {
 		List<Artwork> artList = new ArrayList<Artwork>();
 		List<Artwork> artRequest = new ArrayList<Artwork>();
-		String sql = "SELECT * FROM v_art_info_tag";
+		String sql = "SELECT * FROM v_art_info";
 		try {
 			stmt = conn.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
@@ -32,8 +32,7 @@ public class ArtworkDao {
 				artwork.setWeek(rs.getString("week"));
 				artwork.setUrl(rs.getString("url"));
 				artwork.setImageRoute(rs.getString("image_route"));
-				artwork.setTagSeqno(rs.getString("tag_seqno"));
-				artwork.setTagName(rs.getString("tag_name"));
+				
 				
 				if(rs.getString("admit").equals("Y")) {
 					artList.add(artwork);
@@ -87,7 +86,7 @@ public class ArtworkDao {
 		
 		String sql ="SELECT *"
 				+ "FROM(SELECT *"
-				+ "    FROM v_art_info_tag"
+				+ "    FROM tag_avg_rating"
 				+ "    ORDER BY avg_rating DESC)"
 				+ "WHERE ROWNUM<=2";
 		
@@ -97,8 +96,8 @@ public class ArtworkDao {
 			
 			while(rs.next()) {
 				Artwork artwork = new Artwork();
-				artwork.setTagSeqno(rs.getString("tag_seqno"));
-				artwork.setTagName(rs.getString("tag_name"));
+				artwork.setSeqno(rs.getString("seqno"));
+				artwork.setName(rs.getString("name"));
 				toptag.add(artwork);
 			}
 		} catch (SQLException e) {
