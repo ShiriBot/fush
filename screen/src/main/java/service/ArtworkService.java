@@ -22,4 +22,7 @@ public class ArtworkService {
 	public List<TagDto> topTag(String seqno){
 		return artworkDao.topTag(seqno);
 	}
+	public List<Artwork> topTagArt(){
+		
+	}
 }
