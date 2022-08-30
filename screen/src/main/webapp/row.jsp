@@ -6,7 +6,7 @@
 	<div class="row justify-content-center">
 		<div class="col-10 mt-5 mb-5"  style="position:relative">
 			<div class="slides">
-				<!--슬라이드 아이템을 감쌀 뼈대-->
+				<!--슬라이드 아이템을 감쌀 뼈대 -->
 				<c:forEach items="${Banner}" var="banner">
 					<div class="slide_item">
 						<img src="${banner.route}${banner.saveName}.${banner.fileType}">
@@ -65,7 +65,7 @@
 						<div class="card-link">
 							<c:forEach items="${mainTag }" var="maintag">
 								<c:if test="${mainchu.name eq maintag.name }">
-									<a class="tag" href="search.so">${maintag.tagName}</a>
+									<a class="tag" href="search.so">${maintag.name}</a>
 								</c:if>
 							</c:forEach>
 						</div>
@@ -81,14 +81,14 @@
 	<c:forEach items="${mainTopTag}" var="topTag">
 		<div class="row">
 			<div class="col">
-				<h3 class="tag clickBox" onclick="location.href='search.jsp'">${topTag.Name}</h3>
+				<h3 class="tag clickBox" onclick="location.href='search.jsp'">${topTag.name}</h3>
 				<!-- <a href="#" style="float: right">더보기</a> -->
 			</div>
 		</div>
 		<div class="row">
 			<c:forEach items ="${mainTag}" var="chuart">
 				<div class="col-3">
-					<c:if test="${chuart.Seqno eq topTag.Seqno}">
+					<c:if test="${chuart.seqno eq topTag.seqno}">
 						<div class="card clickBox" onclick="location.href='artDetail.jsp'">
 							<div class="card-img-top tagImg">
 								<img src="${chuart.imageRoute}">
