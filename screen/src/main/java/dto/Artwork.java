@@ -68,10 +68,10 @@ public class Artwork {
 	}
 
 	public void setWeek(String week) {
-		if(week.equals("�셿寃�")) {
+		if(week.equals("완결")) {
 			this.week = week;
 		}else {
-			this.week=week+" �뿰�옱以�" ;
+			this.week=week+" 연재중" ;
 		}
 		
 	}

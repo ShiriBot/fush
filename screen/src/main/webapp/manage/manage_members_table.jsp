@@ -67,7 +67,7 @@
 												<label>
 												검색:
 													<input name="keyword" type="search" class="form-control input-sm" placeholder="" aria-controls="datatable-members" onchange="javascript:document.forms['memberFilter'].submit();"
-														<c:if test="${keyword ne null }"> value="${keyword}"</c:if>
+														<c:if test="${keyword ne null}"> value="${keyword}"</c:if>
 													>
 												</label>
 											</div>
@@ -91,12 +91,10 @@
 														aria-label="Grade: activate to sort column ascending">
 														등급
 													</th>
-													<th class="sorting" tabindex="0" aria-controls="datatable-members" rowspan="1" colspan="1"
-														aria-label="Start date: activate to sort column ascending">
+													<th class="sorting" tabindex="0" aria-controls="datatable-members" rowspan="1" colspan="1">
 														가입일자
 													</th>
-													<th class="sorting" tabindex="0" aria-controls="datatable-members" rowspan="1" colspan="1"
-														aria-label="Bith: activate to sort column ascending">
+													<th class="sorting" rowspan="1" colspan="1">
 														생년월일(Opt)
 													</th>
 												</tr>
@@ -129,18 +127,23 @@
 										</div>
 										<div class="dataTables_paginate paging_simple_numbers" id="datatable-members_paginate">
 											<ul class="pagination">
+												<c:if test="${}">
 												<li class="paginate_button previous disabled" id="datatable-members_previous">
-													<a href="#" aria-controls="datatable-members" data-dt-idx="0" tabindex="0">
+													<a href="/admin/member?kind=${kind}&length=${length}&keyword=${keyword}&currentPage=${members.startPage-1}">
 														Previous
 													</a>
 												</li>
-												<li class="paginate_members active">
-													<a href="#" aria-controls="datatable-members" data-dt-idx="1" tabindex="0">
-														1
+												</c:if>
+												<c:forEach var="num" begin="${members.startPage}" end="${members.endPage}">
+												<li class="paginate_members">
+													<a <c:if test="${num eq members.currentPage}"> class="fw-bolder text-decoration-underline " </c:if>
+													href="/admin/member?kind=${kind}&length=${length}&keyword=${keyword}&currentPage=${num}">
+														${num}
 													</a>
 												</li>
+												</c:forEach>
 												<li class="paginate_members active">
-													<a href="#" aria-controls="datatable-members" data-dt-idx="2" tabindex="0">
+													<a href="#">
 														Next
 													</a>
 												</li>
