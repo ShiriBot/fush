@@ -134,29 +134,36 @@ public class ArtworkDao {
 				+ "FROM(SELECT ar.avg_rating, ar.cnt, ai.* "
 				+ "    FROM art_avg_rating ar, art_info ai, art_tag_value t "
 				+ "    WHERE ar.seqno=ai.seqno "
-				+ "		AND ar.seqno=t.art_seqno AND t.tag_seqno= ?"
+				+ "		AND ar.seqno=t.art_seqno AND t.tag_seqno= 10"
 				+ "    ORDER BY avg_rating DESC)"
 				+ "WHERE ROWNUM<=5";
 		try {
 			stmt = conn.prepareStatement(sql);
-			stmt.setString(1, seqno);
 			ResultSet rs = stmt.executeQuery();
 			
 			while(rs.next()) {
 				Artwork artList = new Artwork();
 				artList.setSeqno(rs.getString("seqno"));
 				artList.setName(rs.getString("name"));
-				
-				List<>
-				for(int i =0; i < artwork.size(); i++) {
-					artList.setTag(rs.getStatement());
-				}
+				artwork.add(artList);
+			}
+			for(int i =0; i < artwork.size(); i++) {
+				sql = "select seqno,name from v_tag_info ";
+					stmt = conn.prepareStatement(sql);
+					rs = stmt.executeQuery();
+				List<TagDto> tagDto = new ArrayList<TagDto>();	
+				while(rs.next()) {
+				TagDto tagList = new TagDto();
+					tagList.setSeqno(rs.getString("seqno"));
+					tagList.setName(rs.getString("name"));
+					tagDto.add(tagList);
+				}artwork.get(i).setTag(tagDto);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 			
-		return null;
+		return artwork;
 		
 	}
 }

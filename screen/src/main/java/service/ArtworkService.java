@@ -19,10 +19,10 @@ public class ArtworkService {
 		return artworkDao.AchuRecommendArt();
 	}
 	
-	public List<TagDto> topTag(String seqno){
-		return artworkDao.topTag(seqno);
+	public List<TagDto> topTag(){
+		return artworkDao.topTag();
 	}
-	public List<Artwork> topTagArt(){
-		
+	public List<Artwork> topTagArt(String seqno){
+		return artworkDao.topTagArt(seqno);
 	}
 }

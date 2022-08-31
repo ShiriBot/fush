@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
@@ -10,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dto.Artwork;
 import service.ArtworkService;
 import service.BannerService;
 
@@ -40,9 +43,17 @@ public class MainController extends HttpServlet {
 		req.setAttribute("Banner", bannerService.bannerImage());
 		req.setAttribute("mainChu", artworkService.AchuRecommendArt());
 		req.setAttribute("mainTag", artworkService.list(""));
-
-		req.setAttribute("", artworkService.toptag());
-		req.setAttribute("mainTopTag", artworkService.topTagArt());
+		
+		req.setAttribute("mainTopTag", artworkService.topTag());
+		
+		HashMap <Integer ,String> map = new HashMap<Integer,String>();
+		
+		for(int i =0; i < artworkService.topTag().size(); i++) {
+//			Integer seq =artworkService.topTagArt(artworkService.topTag().get(i).getSeqno());
+//			artworkService.topTag();
+//			map.put(seq, getServletInfo());
+			
+		}
 		goView(req, resp, "main.jsp");
 	}
 

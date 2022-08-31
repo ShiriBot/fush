@@ -86,7 +86,7 @@
 		<div class="row">
 			<c:forEach items ="${mainTag}" var="chuart">
 				<div class="col-3">
-						<div class="card clickBox" onclick="location.href='artDetail.jsp'">
+						<div class="card clickBox" 	onclick="location.href='artDetail.jsp'">
 							<div class="card-img-top tagImg">
 								<img src="${chuart.imageRoute}">
 							</div>
