@@ -83,7 +83,6 @@ public class ManageController extends HttpServlet {
 		}else if(cmd.equals("home")){
 			Map<String, Integer> statistics = memberService.statistics();
 			request.setAttribute("statistics",statistics);
-			System.out.print(request.getAttribute("statistics"));
 			goView(request, response, "/manage/manage_index.jsp");
 		}else if(cmd.equals("member")){
 			int[] lengthOpt = {10,25,50,100};

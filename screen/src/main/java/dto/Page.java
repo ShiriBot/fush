@@ -114,4 +114,10 @@ public class Page {
 		return totalPages;
 	}
 
+	public int getPagingCount() {
+		return pagingCount;
+	}
+	
+	
+
 }

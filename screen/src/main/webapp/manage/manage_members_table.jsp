@@ -127,7 +127,7 @@
 										</div>
 										<div class="dataTables_paginate paging_simple_numbers" id="datatable-members_paginate">
 											<ul class="pagination">
-												<c:if test="${}">
+												<c:if test="${members.currentPage>members.pagingCount}">
 												<li class="paginate_button previous disabled" id="datatable-members_previous">
 													<a href="/admin/member?kind=${kind}&length=${length}&keyword=${keyword}&currentPage=${members.startPage-1}">
 														Previous
@@ -142,11 +142,13 @@
 													</a>
 												</li>
 												</c:forEach>
+												<c:if test="${members.totalPages>members.endPage}">
 												<li class="paginate_members active">
-													<a href="#">
+													<a href="/admin/member?kind=${kind}&length=${length}&keyword=${keyword}&currentPage=${members.endPage+1}">
 														Next
 													</a>
 												</li>
+												</c:if>
 											</ul>
 										</div>
 									</div>

@@ -29,7 +29,6 @@ public class MemberDao {
 			stmt.setString(1, id);
 			ResultSet rs = stmt.executeQuery();
 			if (rs.next()) {
-				System.out.println("rs.next()");
 				if (rs.getString("pw").equals(pw)) {
 					status.put("loginStatus","ok");
 					status.put("name",rs.getString("name"));
@@ -93,7 +92,6 @@ public class MemberDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("dao"+statistics);
 		return statistics;
 		
 	}
