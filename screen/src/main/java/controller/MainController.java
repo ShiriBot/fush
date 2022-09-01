@@ -42,18 +42,15 @@ public class MainController extends HttpServlet {
 		
 		req.setAttribute("Banner", bannerService.bannerImage());
 		req.setAttribute("mainChu", artworkService.AchuRecommendArt());
-		req.setAttribute("mainTag", artworkService.list(""));
-		
 		req.setAttribute("mainTopTag", artworkService.topTag());
 		
 		HashMap <Integer ,String> map = new HashMap<Integer,String>();
 		
 		for(int i =0; i < artworkService.topTag().size(); i++) {
-//			Integer seq =artworkService.topTagArt(artworkService.topTag().get(i).getSeqno());
-//			artworkService.topTag();
-//			map.put(seq, getServletInfo());
-			
+			String seqno = artworkService.topTag().get(i).getSeqno();
+			map.put(i, seqno);
 		}
+		req.setAttribute("mainTag", map);
 		goView(req, resp, "main.jsp");
 	}
 
