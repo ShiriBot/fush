@@ -134,7 +134,7 @@ public class ArtworkDao {
 				+ "FROM(SELECT ar.avg_rating, ar.cnt, ai.* "
 				+ "    FROM art_avg_rating ar, art_info ai, art_tag_value t "
 				+ "    WHERE ar.seqno=ai.seqno "
-				+ "		AND ar.seqno=t.art_seqno AND t.tag_seqno= 10"
+				+ "		AND ar.seqno=t.art_seqno AND t.tag_seqno= "+seqno
 				+ "    ORDER BY avg_rating DESC)"
 				+ "WHERE ROWNUM<=5";
 		try {
