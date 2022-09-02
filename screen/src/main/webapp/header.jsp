@@ -50,7 +50,7 @@
 						평가하기
 					</a>
 				</li>
-<% if(session.getAttribute("login")==null) {%>
+<% if(session.getAttribute("sess_id")==null) {%>
 				<li class="nav-item">
 					<a class="nav-link primary" href="login.jsp">
 					로그인

@@ -27,7 +27,7 @@
 <div class="login">
 <div class="container" style="width:900px;height:100%;">
 	<div class="form sign-in-container">
-		<form method="post" action="/admin/login">
+		<form method="post" action="/login">
 			<h1>로그인</h1>
 			<div class="social-container">
 				<a href="#"><i class="fab fa-facebook-f"></i></a>

@@ -3,6 +3,7 @@ package service;
 import java.util.*;
 
 import dao.MemberDao;
+import dto.Criteria;
 import dto.Member;
 
 public class MemberService {
@@ -20,8 +21,8 @@ public class MemberService {
 		return memberDao.statistics();
 	}
 
-	public List<Member> list(String kind,int length, int page, String keyword){
-		return memberDao.list(kind, length, page, keyword);
+	public List<Member> list(Criteria mCri){
+		return memberDao.list(mCri);
 	}
 
 }

@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import common.OracleConn;
+import dto.Criteria;
 import dto.Member;
 
 public class MemberDao {
@@ -22,7 +23,6 @@ public class MemberDao {
 
 	public Map<String, String> login(String id, String pw) {
 		Map<String, String> status =new HashMap<String, String>();
-
 		String sql = "SELECT * FROM v_member_info WHERE id = ?";
 		try {
 			stmt = conn.prepareStatement(sql);
@@ -96,12 +96,12 @@ public class MemberDao {
 		
 	}
 	
-	public List<Member> list(String kind, int length, int currentPage, String keyword){
+	public List<Member> list(Criteria mCri){
 		List<Member> members=new ArrayList<Member>();
 		try {
 			String sql = " SELECT rownum as rn, m.*"
 					+ " FROM v_member_info m";
-			switch (kind) {
+			switch (mCri.getKind()) {
 			case "all":
 				sql += " WHERE isdel='N'";
 				break;
@@ -115,7 +115,9 @@ public class MemberDao {
 				break;
 			}
 				
-			if(keyword!=null) sql+= " AND name LIKE '%"+keyword+"%'";
+			if(mCri.getKeyword()!=null) sql+= " AND "+mCri.getSearchField()+" LIKE '%"+mCri.getKeyword()+"%'";
+			
+			System.out.println(sql);
 			
 			stmt = conn.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
@@ -138,34 +140,5 @@ public class MemberDao {
 		
 		return members;
 	}
-
-	public int total(String kind) {
-		int total=0;
-		try {
-			String sql = "SELECT count(*) FROM v_member_info m";
-			switch (kind) {
-			case "all":
-				sql += " WHERE isdel='N'";
-				break;
-			case "new":
-				sql += " WHERE isdel='N' AND (wdate BETWEEN SYSDATE-7 AND SYSDATE)";
-				break;
-			case "del":
-				sql += " WHERE isdel='Y'";
-				break;
-			default:
-				break;
-			}
-
-			stmt = conn.prepareStatement(sql);
-			ResultSet rs = stmt.executeQuery();
-			rs.next();
-			total=rs.getInt(1);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return total;
-	}
-	
 	
 }
