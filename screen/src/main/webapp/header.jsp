@@ -68,7 +68,7 @@
 					</a>
 				</li>
 				<li class="nav-item">
-					<a  class="nav-link primary" href="mypage.jsp" id="mypage">
+					<a  class="nav-link primary" href="/mypage/" id="mypage">
 						마이페이지
 					</a>
 				</li>

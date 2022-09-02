@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import service.MemberService;
 import service.PreferenceService;
 
-@WebServlet("/preference/*")
+@WebServlet("/mypage/*")
 public class PreferenceController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -33,10 +33,12 @@ public class PreferenceController extends HttpServlet {
 		String cmd = uri.substring(uri.lastIndexOf("/")+1);
 		
 		PreferenceService preferenceService = new PreferenceService(); 
-		
-		if(cmd.equals("preference")) {
-			req.setAttribute("Preference", preferenceService.MyRatingInfo("user2"));
-			goView(req, resp, "preference.jsp");
+		String id =(String)req.getSession().getAttribute("sess_id");
+		if(cmd.equals("")) {
+			goView(req, resp, "/mypage.jsp");
+		} else if(cmd.equals("preference")) {
+			req.setAttribute("Preference", preferenceService.MyRatingInfo(id));
+			goView(req, resp, "/preference.jsp");
 		}
 	
 	}
