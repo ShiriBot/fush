@@ -47,10 +47,10 @@
 									</p>
 									<div id="datatable-members_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap no-footer">
 										<c:set value="${members}" var="members"/>
-										<form name="memberFilter" method="post" action="/admin/member?kind=all">
+										<form name="memberFilter" method="post" action="/admin/member?kind=${kind}">
 											<div class="dataTables_length" id="datatable-members_length">
 												<label>한번에 
-													<select name="length" aria-controls="datatable-members" class="form-control input-sm" onchange="javascript:document.forms['memberFilter'].submit();">
+													<select name="length" class="form-control input-sm" onchange="javascript:document.forms['memberFilter'].submit();">
 													<!-- <select name="datatable-members_length" aria-controls="datatable-members" class="form-control input-sm" onchange="javascript:tableControl(this)"> -->
 													<c:forEach items="${lengthOpt}" var="len">
 														<option value="${len}" 
@@ -64,9 +64,15 @@
 												</label>
 											</div>
 											<div id="datatable-members_filter" class="dataTables_filter">
+												<select name="searchField">
+													<option value="id">ID</option>
+													<option value="name">이름</option>
+													<option value="email">메일주소</option>
+													<option value="auth">등급</option>
+												</select>
 												<label>
 												검색:
-													<input name="keyword" type="search" class="form-control input-sm" placeholder="" aria-controls="datatable-members" onchange="javascript:document.forms['memberFilter'].submit();"
+													<input name="keyword" type="search" class="form-control input-sm" onchange="javascript:document.forms['memberFilter'].submit();"
 														<c:if test="${keyword ne null}"> value="${keyword}"</c:if>
 													>
 												</label>
@@ -75,20 +81,16 @@
 										<table id="datatable-members" class="table table-striped table-bordered dataTable no-footer dtr-inline">
 											<thead>
 												<tr role="row">
-													<th class="sorting_asc" tabindex="0" aria-controls="datatable-members" rowspan="1" colspan="1"
-														aria-sort="ascending" aria-label="ID: activate to sort column descending">
+													<th class="sorting_asc" tabindex="0" aria-controls="datatable-members" rowspan="1" colspan="1">
 														ID
 													</th>
-													<th class="sorting" tabindex="0" aria-controls="datatable-members" rowspan="1" colspan="1"
-														aria-label="Name: activate to sort column ascending">
+													<th class="sorting" tabindex="0" aria-controls="datatable-members" rowspan="1" colspan="1">
 														이름
 													</th>
-													<th class="sorting" tabindex="0" aria-controls="datatable-members" rowspan="1" colspan="1"
-														aria-label="Mail: activate to sort column ascending">
+													<th class="sorting" tabindex="0" aria-controls="datatable-members" rowspan="1" colspan="1">
 														메일주소
 													</th>
-													<th class="sorting" tabindex="0" aria-controls="datatable-members" rowspan="1" colspan="1"
-														aria-label="Grade: activate to sort column ascending">
+													<th class="sorting" tabindex="0" aria-controls="datatable-members" rowspan="1" colspan="1">
 														등급
 													</th>
 													<th class="sorting" tabindex="0" aria-controls="datatable-members" rowspan="1" colspan="1">

@@ -22,7 +22,6 @@ public class MemberDao {
 
 	public Map<String, String> login(String id, String pw) {
 		Map<String, String> status =new HashMap<String, String>();
-
 		String sql = "SELECT * FROM v_member_info WHERE id = ?";
 		try {
 			stmt = conn.prepareStatement(sql);
@@ -138,34 +137,5 @@ public class MemberDao {
 		
 		return members;
 	}
-
-	public int total(String kind) {
-		int total=0;
-		try {
-			String sql = "SELECT count(*) FROM v_member_info m";
-			switch (kind) {
-			case "all":
-				sql += " WHERE isdel='N'";
-				break;
-			case "new":
-				sql += " WHERE isdel='N' AND (wdate BETWEEN SYSDATE-7 AND SYSDATE)";
-				break;
-			case "del":
-				sql += " WHERE isdel='Y'";
-				break;
-			default:
-				break;
-			}
-
-			stmt = conn.prepareStatement(sql);
-			ResultSet rs = stmt.executeQuery();
-			rs.next();
-			total=rs.getInt(1);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return total;
-	}
-	
 	
 }

@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dto.Artwork;
+import dto.Criteria;
 import dto.Member;
 import dto.Page;
 import dto.TagDto;
@@ -85,27 +86,17 @@ public class ManageController extends HttpServlet {
 			request.setAttribute("statistics",statistics);
 			goView(request, response, "/manage/manage_index.jsp");
 		}else if(cmd.equals("member")){
-			int[] lengthOpt = {10,25,50,100};
-			int pagingCount=5;
-			String kind;
-			int length;
-			int currentPage;
+			String kind=request.getParameter("kind");
+			String length=request.getParameter("length");
+			String currentPage=request.getParameter("currentPage");
+			String searchField=request.getParameter("searchField");
 			String keyword = request.getParameter("keyword");
-			if(request.getParameter("kind")==null) {
-				kind="all";
-			}else {
-				kind=request.getParameter("kind");
-			}
-			if(request.getParameter("currentPage")==null) {
-				currentPage=1;
-				}else {
-					currentPage=Integer.parseInt(request.getParameter("currentPage"));
-				}
-			if(request.getParameter("length")==null) {
-				length=10;
-			} else {
-				length = Integer.parseInt(request.getParameter("length"));
-			}
+			
+			if(request.getParameter("kind")==null) kind="all";
+			if(request.getParameter("currentPage")==null) currentPage="1";
+			if(request.getParameter("length")==null) length="10";
+			
+			Criteria mCri = new Criteria(request.getParameter("kind"),);
 			
 			List<Member> members = memberService.list(kind,length,currentPage,keyword);
 			request.setAttribute("members",new Page(members.size(),currentPage,length,pagingCount,members));
