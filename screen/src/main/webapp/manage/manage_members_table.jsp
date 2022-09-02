@@ -47,14 +47,14 @@
 									</p>
 									<div id="datatable-members_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap no-footer">
 										<c:set value="${members}" var="members"/>
-										<form name="memberFilter" method="post" action="/admin/member?kind=${kind}">
+										<form name="memberFilter" method="post" action="/admin/member?kind=${criteria.kind}">
 											<div class="dataTables_length" id="datatable-members_length">
 												<label>한번에 
 													<select name="length" class="form-control input-sm" onchange="javascript:document.forms['memberFilter'].submit();">
 													<!-- <select name="datatable-members_length" aria-controls="datatable-members" class="form-control input-sm" onchange="javascript:tableControl(this)"> -->
-													<c:forEach items="${lengthOpt}" var="len">
+													<c:forEach items="${criteria.lengthOpt}" var="len">
 														<option value="${len}" 
-															<c:if test="${ len eq length}">
+															<c:if test="${len eq criteria.length}">
 																selected
 															</c:if>	
 														>
@@ -63,17 +63,25 @@
 													</select> 명씩 보기
 												</label>
 											</div>
-											<div id="datatable-members_filter" class="dataTables_filter">
+											<div id="datatable-members_filter" class="dataTables_filter" onchange="javascript:document.forms['memberFilter'].submit();">
 												<select name="searchField">
-													<option value="id">ID</option>
-													<option value="name">이름</option>
-													<option value="email">메일주소</option>
-													<option value="auth">등급</option>
+													<option value="id"
+														<c:if test="${criteria.searchField eq 'id'}">selected</c:if>
+														>ID</option>
+													<option value="name"
+														<c:if test="${criteria.searchField eq 'name'}">selected</c:if>
+														>이름</option>
+													<option value="email"
+														<c:if test="${criteria.searchField eq 'email'}">selected</c:if>
+														>메일주소</option>
+													<option value="auth"
+														<c:if test="${criteria.searchField eq 'auth'}">selected</c:if>
+														>등급</option>
 												</select>
 												<label>
 												검색:
 													<input name="keyword" type="search" class="form-control input-sm" onchange="javascript:document.forms['memberFilter'].submit();"
-														<c:if test="${keyword ne null}"> value="${keyword}"</c:if>
+														<c:if test="${criteria.keyword ne null}"> value="${criteria.keyword}"</c:if>
 													>
 												</label>
 											</div>
@@ -101,12 +109,12 @@
 													</th>
 												</tr>
 											</thead>
-											<c:set value="${members.currentPage*length-length+1}" var="startNum"/>
-											<c:if test="${members.currentPage*length>members.total}">
+											<c:set value="${members.currentPage*criteria.length-criteria.length+1}" var="startNum"/>
+											<c:if test="${members.currentPage*criteria.length>members.total}">
 												<c:set value="${members.total}" var="endNum" />
 											</c:if>
-											<c:if test="${members.currentPage*length<members.total}">
-												<c:set value="${members.currentPage*length}" var="endNum" />
+											<c:if test="${members.currentPage*criteria.length<members.total}">
+												<c:set value="${members.currentPage*criteria.length}" var="endNum" />
 											</c:if>
 											<tbody>
 												<c:if test="${members.content.size() ne 0}">
@@ -131,7 +139,7 @@
 											<ul class="pagination">
 												<c:if test="${members.currentPage>members.pagingCount}">
 												<li class="paginate_button previous disabled" id="datatable-members_previous">
-													<a href="/admin/member?kind=${kind}&length=${length}&keyword=${keyword}&currentPage=${members.startPage-1}">
+													<a href="/admin/member?kind=${criteria.kind}&length=${criteria.length}&keyword=${criteria.keyword}&currentPage=${members.startPage-1}">
 														Previous
 													</a>
 												</li>
@@ -139,7 +147,7 @@
 												<c:forEach var="num" begin="${members.startPage}" end="${members.endPage}">
 												<li class="paginate_members">
 													<a <c:if test="${num eq members.currentPage}"> class="fw-bolder text-decoration-underline " </c:if>
-													href="/admin/member?kind=${kind}&length=${length}&keyword=${keyword}&currentPage=${num}">
+													href="/admin/member?kind=${criteria.kind}&length=${criteria.length}&keyword=${criteria.keyword}&currentPage=${num}">
 														${num}
 													</a>
 												</li>

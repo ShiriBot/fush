@@ -53,35 +53,7 @@ public class ManageController extends HttpServlet {
 		String cmd = uri.substring(uri.lastIndexOf("/")+1);
 		System.out.println("uri : " +uri+", cmd : "+cmd+", url:"+url+", path:"+path+", file:"+file);
 		
-		if(cmd.equals("login")) {
-			String id = request.getParameter("id");
-			String pw = request.getParameter("pw");
-			Map<String, String> status =  memberService.login(id, pw);
-			switch (status.get("loginStatus")) {
-			case "ok":
-				//세션설정
-				session.setAttribute("sess_id", id);
-				session.setAttribute("sess_name", status.get("name"));
-				session.setAttribute("login_time", session.getCreationTime());
-				if(status.get("auth")=="manager") {
-					request.setAttribute("msg","loginOk");
-					response.sendRedirect("/admin/home");
-					System.out.println("관리자 로그인");
-				}else {
-					//로그인에는 성공했지만 권한이 없는 경우에는 사용자 화면으로 쫓아내기
-					request.setAttribute("msg","authFail");
-					response.sendRedirect("/");
-					System.out.println("권한없음");
-				}
-				break;
-			default:
-				request.setAttribute("msg","loginFail");
-				//로그인실패
-				goView(request, response, "/manage/manage_login.jsp");
-				System.out.println("로그인실패");
-				break;
-			}
-		}else if(cmd.equals("home")){
+		if(cmd.equals("home")){
 			Map<String, Integer> statistics = memberService.statistics();
 			request.setAttribute("statistics",statistics);
 			goView(request, response, "/manage/manage_index.jsp");
@@ -96,14 +68,15 @@ public class ManageController extends HttpServlet {
 			if(request.getParameter("currentPage")==null) currentPage="1";
 			if(request.getParameter("length")==null) length="10";
 			
-			Criteria mCri = new Criteria(request.getParameter("kind"),);
+			Criteria mCri = new Criteria(kind,length,currentPage,searchField,keyword);
 			
-			List<Member> members = memberService.list(kind,length,currentPage,keyword);
-			request.setAttribute("members",new Page(members.size(),currentPage,length,pagingCount,members));
-			request.setAttribute("kind", kind);
+			List<Member> members = memberService.list(mCri);
+			request.setAttribute("members",new Page(members.size(),mCri,members));
+			request.setAttribute("criteria",mCri);
+			/*request.setAttribute("kind", kind);
 			request.setAttribute("length", length);
 			request.setAttribute("lengthOpt", lengthOpt);
-			request.setAttribute("keyword", keyword);
+			request.setAttribute("keyword", keyword);*/
 			goView(request, response, "/manage/manage_members.jsp");
 		}else if(cmd.equals("artwork")){
 			List<Artwork> artList = artworkService.list("all");

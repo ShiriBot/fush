@@ -32,12 +32,13 @@ public class Page {
 	
 	//생성자
 	//size : 한 화면에 보여질 행의 개수
-	public Page(int total, int currentPage, int size, int pagingCount, List<?> content) {
+	public Page(int total, Criteria cri, List<?> content) {
 		super();
 		this.total = total;
-		this.currentPage = currentPage;
+		this.currentPage = cri.getCurrentPage();
 		this.content = content;
-		this.pagingCount=pagingCount;
+		this.pagingCount=cri.getPagingCount();
+		int size=cri.getLength();
 		
 		if(total==0) {//select 결과가 없다면
 			totalPages=0;

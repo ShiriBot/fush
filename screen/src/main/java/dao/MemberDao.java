@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import common.OracleConn;
+import dto.Criteria;
 import dto.Member;
 
 public class MemberDao {
@@ -95,12 +96,12 @@ public class MemberDao {
 		
 	}
 	
-	public List<Member> list(String kind, int length, int currentPage, String keyword){
+	public List<Member> list(Criteria mCri){
 		List<Member> members=new ArrayList<Member>();
 		try {
 			String sql = " SELECT rownum as rn, m.*"
 					+ " FROM v_member_info m";
-			switch (kind) {
+			switch (mCri.getKind()) {
 			case "all":
 				sql += " WHERE isdel='N'";
 				break;
@@ -114,7 +115,9 @@ public class MemberDao {
 				break;
 			}
 				
-			if(keyword!=null) sql+= " AND name LIKE '%"+keyword+"%'";
+			if(mCri.getKeyword()!=null) sql+= " AND "+mCri.getSearchField()+" LIKE '%"+mCri.getKeyword()+"%'";
+			
+			System.out.println(sql);
 			
 			stmt = conn.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
