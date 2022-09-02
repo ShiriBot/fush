@@ -1,5 +1,7 @@
 package dto;
 
+import java.util.List;
+
 public class TagDto {
 	private String seqno;
 	private String name;
@@ -7,7 +9,14 @@ public class TagDto {
 	private String mid;
 	private String topSeq;
 	private String midSeq;
+	private List<Artwork> artwork; //이거 이용해서 toptagart랑 toptag 합칠수있음 (고쳐야됨)
 	
+	public List<Artwork> getArtwork() {
+		return artwork;
+	}
+	public void setArtwork(List<Artwork> artwork) {
+		this.artwork = artwork;
+	}
 	public String getSeqno() {
 		return seqno;
 	}

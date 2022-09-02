@@ -29,7 +29,7 @@
 			        	<ul class="dropdown-menu dropdown-menu-white" aria-labelledby="navbarDarkDropdownMenuLink">
 			    	      	<c:forEach items="${searchList}" var="tagName">  
 				    	      	 <c:if test="${tagName.midSeq eq midSeq && tagName.mid ne null}">
-				    	      	  	<li><button class="dropdown-item"name="tagname" value="${tagName.name}" ">${tagName.name}</button></li>
+				    	      	  	<li><button class="dropdown-item"name="tagname" value="${tagName.name}" >${tagName.name}</button></li>
 				    	      	 </c:if>
 			    	      	</c:forEach>
 			    	    </ul>

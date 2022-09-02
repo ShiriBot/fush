@@ -52,7 +52,7 @@
 		<!-- <a href="#" style="float: right">더보기</a> -->
 	</div>
 	<div class="row justify-content-center">
-				<c:forEach items="${mainChu}" var="mainchu">
+		<c:forEach items="${mainChu}" var="mainchu">
 		<div class="col-3">
 			<div class="card">
 					<div class="card-body">
@@ -76,7 +76,9 @@
 			<h2>지금 인기있는 태그</h2>
 		</div>
 	</div>
-	<c:forEach items="${mainTopTag}" var="topTag">
+	
+	<!-- jstl문자열 합쳐서 items="${mainTopTag}${status.index}"하려고했으나 실패 -->
+	<c:forEach items="${mainTopTag0}" var="topTag" varStatus="status">
 		<div class="row">
 			<div class="col">
 				<h3 class="tag clickBox" onclick="location.href='search.jsp'">${topTag.name}</h3>
@@ -84,7 +86,29 @@
 			</div>
 		</div>
 		<div class="row">
-			<c:forEach items ="${mainTag}" var="chuart">
+			<c:forEach items ="${mainTag0}" var="chuart">
+				<div class="col-3">
+						<div class="card clickBox" 	onclick="location.href='artDetail.jsp'">
+							<div class="card-img-top tagImg">
+								<img src="${chuart.imageRoute}">
+							</div>
+							<p>${chuart.name}</p>
+						</div>
+				</div>
+			</c:forEach>
+			
+		</div>
+	</c:forEach>
+	<c:forEach items="${mainTopTag1}" var="topTag" varStatus="status">
+		<div class="row">
+			<div class="col">
+				<h3 class="tag clickBox" onclick="location.href='search.jsp'">${topTag.name}</h3>
+				<!-- <a href="#" style="float: right">더보기</a> -->
+			</div>
+		</div>
+		<div class="row">
+		
+			<c:forEach items ="${mainTag1}" var="chuart">
 				<div class="col-3">
 						<div class="card clickBox" 	onclick="location.href='artDetail.jsp'">
 							<div class="card-img-top tagImg">

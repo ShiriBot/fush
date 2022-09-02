@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,21 +14,23 @@
 <div class="center">
 	<div class="session">
 		<div class="preference"> <!-- 내부 별도 스타일을 주기 위한 클래스 선언하여 감쌌음! -->
-			<h1 class="oneline">OOO님의 웹툰취향 분석	</h1>
+			
+			<h1 class="oneline">user2님의 웹툰취향 분석	</h1>
 		
 			<h3>나의 평가 현황</h3>
+			<c:set value="${Preference}" var="preference"/>
 			<div class="DetailBoard" style="border-bottom:none;">
 				<div class="divideBoard">
-					<span>조회한 웹툰 수</span>
-					<div class="webtoonCount">120</div>
+					<span>회원님의 평가한 평점 평균</span>
+					<div class="webtoonCount">${preference.ArtRatingAvg }</div>
 				</div>
 				<div class="divideBoard">
 					<span>평가한 웹툰 수</span>
-					<div class="webtoonCount">53</div>
+					<div class="webtoonCount">${preference.artCount}</div>
 				</div>
 				<div class="divideBoard">
 					<span>작성한 댓글 수</span>
-					<div class="webtoonCount">18</div>
+					<div class="webtoonCount">${preference.replyCount}</div>
 				</div>
 			</div>
 			<div class="DetailBoard">
