@@ -16,26 +16,28 @@ public class PreferenceDao {
 	
 	public Average MyRatingInfo(String userId) {
 		Average average = new Average();
-		String sql ="SELECT ROUND(avg(r.value),2) as ArtRatingAvg,COUNT(r.seqno) as artCount "
+		String sql ="SELECT ROUND(avg(r.value),2) as ArtRatingAvg, COUNT(r.seqno) as artCount "
 				+ " FROM rating r "
 				+ " where r.ID='"+ userId+"'";
-		
+		try {
+			stmt = conn.prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();
+			while(rs.next()) {
+				average.setArtRatingAvg(rs.getString("ArtRatingAvg"));
+				average.setArtCount(rs.getString("artCount"));
+			}
 		sql="SELECT COUNT(rp.content) as rcnt "
 				+ "FROM reply rp "
 				+ "where rp.id='"+ userId+"'";
-		try {
+		
 			stmt = conn.prepareStatement(sql);
-			System.out.println(sql);
-			ResultSet rs = stmt.executeQuery();
-			System.out.println(rs);
-			average.setArtRatingAvg(rs.getString("ArtRatingAvg"));
-			average.setArtCount(rs.getString("artCount"));
-			average.setReplyCount(rs.getString("replyCount"));
-			
+			ResultSet rs2 = stmt.executeQuery();
+			while(rs2.next()) {
+				average.setReplyCount(rs2.getString("rcnt"));
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		System.out.println("average : "+average);
 		return average;
 	}
 }

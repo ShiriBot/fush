@@ -18,19 +18,18 @@
 			<h1 class="oneline">user2님의 웹툰취향 분석	</h1>
 		
 			<h3>나의 평가 현황</h3>
-			<c:set value="${Preference}" var="preference"/>
 			<div class="DetailBoard" style="border-bottom:none;">
 				<div class="divideBoard">
 					<span>회원님의 평가한 평점 평균</span>
-					<div class="webtoonCount">${preference.ArtRatingAvg }</div>
+					<div class="webtoonCount"></div>
 				</div>
 				<div class="divideBoard">
 					<span>평가한 웹툰 수</span>
-					<div class="webtoonCount">${preference.artCount}</div>
+					<div class="webtoonCount"></div>
 				</div>
 				<div class="divideBoard">
 					<span>작성한 댓글 수</span>
-					<div class="webtoonCount">${preference.replyCount}</div>
+					<div class="webtoonCount"></div>
 				</div>
 			</div>
 			<div class="DetailBoard">
