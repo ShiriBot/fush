@@ -1,5 +1,6 @@
 package dao;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,6 +13,7 @@ import java.util.Map;
 import common.OracleConn;
 import dto.Criteria;
 import dto.Member;
+import oracle.jdbc.OracleTypes;
 
 public class MemberDao {
 	
@@ -52,17 +54,16 @@ public class MemberDao {
 		Map<String,Integer> statistics = new HashMap<String,Integer>();
 		
 		try {
-			String sql = "SELECT count(*) total, "
-					+ "count(CASE WHEN wdate BETWEEN SYSDATE-7 AND SYSDATE THEN 1 END) as new "
-					+ "FROM member";
+			String sql = "call p_member_count(?,?)";
 			//회원수 증감 조회.
 			//전주 대비 증가율 구하기 위한 데이터 : 최근 일주일 가입 수
-			stmt = conn.prepareStatement(sql);
-			ResultSet rs = stmt.executeQuery();
-			rs.next();
+			CallableStatement stmt = conn.prepareCall(sql);
+			stmt.registerOutParameter(1, OracleTypes.NUMBER);
+			stmt.registerOutParameter(2, OracleTypes.NUMBER);
+			stmt.executeQuery();
 			
-			statistics.put("totalMember", rs.getInt("total"));
-			statistics.put("newMember", (int)Math.round(rs.getDouble("new")/(rs.getDouble("total")-rs.getDouble("new"))*100));
+			statistics.put("totalMember", stmt.getInt(1));
+			statistics.put("newMember", (int)Math.round(stmt.getDouble(2)/(stmt.getDouble(1)-stmt.getDouble(2))*100));
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
