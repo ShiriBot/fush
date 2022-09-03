@@ -1,14 +1,18 @@
 package dto;
 
 public class Average {
-	private String ArtRatingAvg;
+	private String artRatingAvg;
 	private String artCount;
 	private String replyCount;
+	
+	public Average() {
+		
+	}
 	public String getArtRatingAvg() {
-		return ArtRatingAvg;
+		return artRatingAvg;
 	}
 	public void setArtRatingAvg(String artRatingAvg) {
-		ArtRatingAvg = artRatingAvg;
+		this.artRatingAvg = artRatingAvg;
 	}
 	public String getArtCount() {
 		return artCount;

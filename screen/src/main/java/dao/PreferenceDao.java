@@ -26,9 +26,9 @@ public class PreferenceDao {
 				average.setArtRatingAvg(rs.getString("ArtRatingAvg"));
 				average.setArtCount(rs.getString("artCount"));
 			}
-		sql="SELECT COUNT(rp.content) as rcnt "
-				+ "FROM reply rp "
-				+ "where rp.id='"+ userId+"'";
+			sql="SELECT COUNT(rp.content) as rcnt "
+					+ "FROM reply rp "
+					+ "where rp.id='"+ userId+"'";
 		
 			stmt = conn.prepareStatement(sql);
 			ResultSet rs2 = stmt.executeQuery();
