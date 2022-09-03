@@ -3,6 +3,8 @@ package service;
 import java.util.*;
 
 import dao.MemberDao;
+import dao.RatingDao;
+import dao.ReplyDao;
 import dto.Criteria;
 import dto.Member;
 
@@ -15,10 +17,6 @@ public class MemberService {
 
 	public Map<String, String> login(String id, String pw) {
 		return memberDao.login(id, pw);
-	}
-
-	public Map<String, Integer> statistics() {
-		return memberDao.statistics();
 	}
 
 	public List<Member> list(Criteria mCri){

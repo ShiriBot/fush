@@ -19,6 +19,7 @@ import dto.Page;
 import dto.TagDto;
 import service.ArtworkService;
 import service.MemberService;
+import service.StatisticsService;
 import service.TagService;
 
 @WebServlet("/admin/*")
@@ -27,6 +28,7 @@ public class ManageController extends HttpServlet {
 	MemberService memberService = new MemberService();
 	ArtworkService artworkService = new ArtworkService();
 	TagService tagService = new TagService();
+	StatisticsService statisticsService = new StatisticsService();
 	HttpSession session;
 
     public ManageController() {
@@ -54,7 +56,7 @@ public class ManageController extends HttpServlet {
 		System.out.println("uri : " +uri+", cmd : "+cmd+", url:"+url+", path:"+path+", file:"+file);
 		
 		if(cmd.equals("home")){
-			Map<String, Integer> statistics = memberService.statistics();
+			Map<String, Integer> statistics = statisticsService.manageMainStatistics();
 			request.setAttribute("statistics",statistics);
 			goView(request, response, "/manage/manage_index.jsp");
 		}else if(cmd.equals("member")){
@@ -73,10 +75,6 @@ public class ManageController extends HttpServlet {
 			List<Member> members = memberService.list(mCri);
 			request.setAttribute("members",new Page(members.size(),mCri,members));
 			request.setAttribute("criteria",mCri);
-			/*request.setAttribute("kind", kind);
-			request.setAttribute("length", length);
-			request.setAttribute("lengthOpt", lengthOpt);
-			request.setAttribute("keyword", keyword);*/
 			goView(request, response, "/manage/manage_members.jsp");
 		}else if(cmd.equals("artwork")){
 			List<Artwork> artList = artworkService.list("all");

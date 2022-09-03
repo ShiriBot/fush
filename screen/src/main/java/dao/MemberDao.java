@@ -47,7 +47,7 @@ public class MemberDao {
 		return status;
 	}
 
-	public Map<String,Integer> statistics() {
+	public Map<String,Integer> manageMainStatistics() {
 		//이 메소드의 위치(클래스)가 여기가 맞는지 모르겠어요...
 		Map<String,Integer> statistics = new HashMap<String,Integer>();
 		
@@ -63,30 +63,6 @@ public class MemberDao {
 			
 			statistics.put("totalMember", rs.getInt("total"));
 			statistics.put("newMember", (int)Math.round(rs.getDouble("new")/(rs.getDouble("total")-rs.getDouble("new"))*100));
-			
-			sql = "SELECT count(*) total, "
-					+ "count(CASE WHEN wdate BETWEEN SYSDATE-7 AND SYSDATE THEN 1 END) as new "
-					+ "FROM rating";
-			//평가수 증감 조회.
-			//전주 대비 증가율 구하기 위한 데이터 : 최근 일주일 가입 수
-			stmt = conn.prepareStatement(sql);
-			rs = stmt.executeQuery();
-			rs.next();
-			
-			statistics.put("totalRating", rs.getInt("total"));
-			statistics.put("newRating", (int)Math.round(rs.getDouble("new")/(rs.getDouble("total")-rs.getDouble("new"))*100));
-			
-			sql = "SELECT count(*) total, "
-					+ "count(CASE WHEN wdate BETWEEN SYSDATE-7 AND SYSDATE THEN 1 END) as new "
-					+ "FROM reply";
-			//평가수 증감 조회.
-			//전주 대비 증가율 구하기 위한 데이터 : 최근 일주일 가입 수
-			stmt = conn.prepareStatement(sql);
-			rs = stmt.executeQuery();
-			rs.next();
-			
-			statistics.put("totalReply", rs.getInt("total"));
-			statistics.put("newReply", (int)Math.round(rs.getDouble("new")/(rs.getDouble("total")-rs.getDouble("new"))*100));
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -115,7 +91,8 @@ public class MemberDao {
 				break;
 			}
 				
-			if(mCri.getKeyword()!=null) sql+= " AND "+mCri.getSearchField()+" LIKE '%"+mCri.getKeyword()+"%'";
+			if(mCri.getSearchField()!=null) {
+				if(!mCri.getSearchField().equals("")) sql+= " AND "+mCri.getSearchField()+" LIKE '%"+mCri.getKeyword()+"%'";}
 			
 			System.out.println(sql);
 			

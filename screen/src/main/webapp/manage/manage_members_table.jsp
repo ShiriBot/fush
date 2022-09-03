@@ -139,7 +139,7 @@
 											<ul class="pagination">
 												<c:if test="${members.currentPage>members.pagingCount}">
 												<li class="paginate_button previous disabled" id="datatable-members_previous">
-													<a href="/admin/member?kind=${criteria.kind}&length=${criteria.length}&keyword=${criteria.keyword}&currentPage=${members.startPage-1}">
+													<a href="/admin/member?kind=${criteria.kind}&length=${criteria.length}&currentPage=${members.startPage-1}&searchField=${criteria.searchField}&keyword=${criteria.keyword}">
 														Previous
 													</a>
 												</li>
@@ -147,14 +147,14 @@
 												<c:forEach var="num" begin="${members.startPage}" end="${members.endPage}">
 												<li class="paginate_members">
 													<a <c:if test="${num eq members.currentPage}"> class="fw-bolder text-decoration-underline " </c:if>
-													href="/admin/member?kind=${criteria.kind}&length=${criteria.length}&keyword=${criteria.keyword}&currentPage=${num}">
+													href="/admin/member?kind=${criteria.kind}&length=${criteria.length}&currentPage=${num}&searchField=${criteria.searchField}&keyword=${criteria.keyword}">
 														${num}
 													</a>
 												</li>
 												</c:forEach>
 												<c:if test="${members.totalPages>members.endPage}">
 												<li class="paginate_members active">
-													<a href="/admin/member?kind=${kind}&length=${length}&keyword=${keyword}&currentPage=${members.endPage+1}">
+													<a href="/admin/member?kind=${criteria.kind}&length=${criteria.length}&currentPage=${members.endPage+1}&searchField=${criteria.searchField}&keyword=${criteria.keyword}">
 														Next
 													</a>
 												</li>
