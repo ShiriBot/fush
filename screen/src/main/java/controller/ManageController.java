@@ -59,31 +59,6 @@ public class ManageController extends HttpServlet {
 			Map<String, Integer> statistics = statisticsService.manageMainStatistics();
 			request.setAttribute("statistics",statistics);
 			goView(request, response, "/manage/manage_index.jsp");
-		}else if(cmd.equals("member")){
-			String kind=request.getParameter("kind");
-			String length=request.getParameter("length");
-			String currentPage=request.getParameter("currentPage");
-			String searchField=request.getParameter("searchField");
-			String keyword = request.getParameter("keyword");
-			
-			if(request.getParameter("kind")==null) kind="all";
-			if(request.getParameter("currentPage")==null) currentPage="1";
-			if(request.getParameter("length")==null) length="10";
-			
-			Criteria mCri = new Criteria(kind,length,currentPage,searchField,keyword);
-			
-			List<Member> members = memberService.list(mCri);
-			request.setAttribute("members",new Page(members.size(),mCri,members));
-			request.setAttribute("criteria",mCri);
-			goView(request, response, "/manage/manage_members.jsp");
-		}else if(cmd.equals("artwork")){
-			List<Artwork> artList = artworkService.list("all");
-			request.setAttribute("artList", artList);
-			goView(request, response, "/manage/manage_arts.jsp");
-		}else if(cmd.equals("artworkRequest")){
-			List<Artwork> artRequest = artworkService.list("request");
-			request.setAttribute("artRequest", artRequest);
-			goView(request, response, "/manage/manage_arts_request.jsp");
 		}else if(cmd.equals("tag")){
 			TagDto[] tagList =tagService.tagList();
 			request.setAttribute("tagList", tagList);
@@ -97,6 +72,36 @@ public class ManageController extends HttpServlet {
 		}else if(cmd.equals("tagDelete")){
 			tagService.delete(request.getParameter("seqno"));
 			goView(request, response, "/admin/tag");
+		}else{
+			String length=request.getParameter("length");
+			String currentPage=request.getParameter("currentPage");
+			String searchField=request.getParameter("searchField");
+			String keyword = request.getParameter("keyword");
+			
+			if(request.getParameter("currentPage")==null) currentPage="1";
+			if(request.getParameter("length")==null) length="10";
+			
+			if(cmd.equals("member")) {
+				String kind=request.getParameter("kind");
+				if(request.getParameter("kind")==null) kind="all";
+				Criteria mCri = new Criteria(kind,length,currentPage,searchField,keyword);
+			
+				List<Member> members = memberService.list(mCri);
+				request.setAttribute("members",new Page(members.size(),mCri,members));
+				request.setAttribute("criteria",mCri);
+				goView(request, response, "/manage/manage_members.jsp");
+			}else if(cmd.equals("artwork")){
+				Criteria aCri = new Criteria("all",length,currentPage,searchField,keyword);
+				List<Artwork> artList = artworkService.list(aCri);
+				request.setAttribute("artworkList",new Page(artList.size(),aCri,artList));
+				request.setAttribute("criteria",aCri);
+				goView(request, response, "/manage/manage_arts.jsp");
+			}else if(cmd.equals("artworkRequest")){
+				Criteria aCri = new Criteria("request",length,currentPage,searchField,keyword);
+				List<Artwork> artRequest = artworkService.list(aCri);
+				request.setAttribute("artRequest", artRequest);
+				goView(request, response, "/manage/manage_arts_request.jsp");
+			}
 		}
 		
 

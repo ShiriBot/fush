@@ -6,7 +6,7 @@
 	<!-- navbar:네비바. navbar-expand-lg: lg breakpoint(960px)이하면 아이콘 단축, navbar-light: light테마, bg-light:색상지정-->
 	<div class="container-fluid">
 		<!-- container-fluid: 모든 화면에서 width 100% -->
-		<a class="navbar-brand" href="main.jsp">
+		<a class="navbar-brand" href="/">
 		<!-- navbar-brand : 로고 등을 넣는 위치로... 적당한 패딩 등 있는거 --> 
 			<!-- <img src="images/logo.png" alt="" class="d-inline-block align-text-top"> -->
 			A-chu

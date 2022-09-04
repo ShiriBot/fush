@@ -14,6 +14,14 @@ public class Criteria {
 		super();
 	}
 	
+	public Criteria(String length, String currentPage, String searchField, String keyword) {
+		super();
+		this.length = Integer.parseInt(length);
+		this.currentPage = Integer.parseInt(currentPage);
+		this.searchField = searchField;
+		this.keyword = keyword;
+	}
+	
 	public Criteria(String kind, String length, String currentPage, String searchField, String keyword) {
 		super();
 		this.kind = kind;

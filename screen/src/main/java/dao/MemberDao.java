@@ -93,7 +93,8 @@ public class MemberDao {
 			}
 				
 			if(mCri.getSearchField()!=null) {
-				if(!mCri.getSearchField().equals("")) sql+= " AND "+mCri.getSearchField()+" LIKE '%"+mCri.getKeyword()+"%'";}
+				if(!mCri.getSearchField().equals("")) sql+= " AND "+mCri.getSearchField()+" LIKE '%"+mCri.getKeyword()+"%'";
+			}
 			
 			System.out.println(sql);
 			

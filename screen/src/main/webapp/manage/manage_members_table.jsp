@@ -25,18 +25,6 @@
 						<div class="btn btn-outline-secondary" onclick="javascript:location.href='/admin/member?kind=del'"> 탈퇴회원목록</div>
 						<div class="clearfix"></div>
 					</div>
-					<!-- <script>
-						function openCloseToc(num) {
-							var id = 'x_content'+num
-							if (document.getElementById(id).style.display === 'block') {
-								document.getElementById(id).style.display = 'none';
-								document.getElementsByClassName('collapse-link')[num].getElementsByTagName('i')[0].classList.replace('fa-chevron-up','fa-chevron-down'); 
-							} else {
-								document.getElementById(id).style.display = 'block';
-								/* document.getElementById('toc-toggle').textContent = '숨기기'; */
-							}
-						}
-					</script> -->
 					<div class="x_content" id="x_content0">
 						<div class="row">
 							<div class="col-sm-12">
@@ -63,6 +51,15 @@
 													</select> 명씩 보기
 												</label>
 											</div>
+											<c:if test="${criteria.kind eq 'del'}">
+											<div id="datatable-buttons_wrapper" class="dataTables_wrapper dt-bootstrap no-footer" style="display: inline">
+												<div class="dt--members-del btn-group">
+													<a class="btn btn-default buttons-html5 btn-sm" href="#">
+														<span>탈퇴처리한 회원 목록에서 삭제하기</span>
+													</a>
+												</div>
+											</div>
+											</c:if>
 											<div id="datatable-members_filter" class="dataTables_filter" onchange="javascript:document.forms['memberFilter'].submit();">
 												<select name="searchField">
 													<option value="id"
@@ -89,19 +86,19 @@
 										<table id="datatable-members" class="table table-striped table-bordered dataTable no-footer dtr-inline">
 											<thead>
 												<tr role="row">
-													<th class="sorting_asc" tabindex="0" aria-controls="datatable-members" rowspan="1" colspan="1">
+													<th class="sorting" rowspan="1" colspan="1">
 														ID
 													</th>
-													<th class="sorting" tabindex="0" aria-controls="datatable-members" rowspan="1" colspan="1">
+													<th class="sorting" rowspan="1" colspan="1">
 														이름
 													</th>
-													<th class="sorting" tabindex="0" aria-controls="datatable-members" rowspan="1" colspan="1">
+													<th class="sorting" rowspan="1" colspan="1">
 														메일주소
 													</th>
-													<th class="sorting" tabindex="0" aria-controls="datatable-members" rowspan="1" colspan="1">
+													<th class="sorting" rowspan="1" colspan="1">
 														등급
 													</th>
-													<th class="sorting" tabindex="0" aria-controls="datatable-members" rowspan="1" colspan="1">
+													<th class="sorting" rowspan="1" colspan="1">
 														가입일자
 													</th>
 													<th class="sorting" rowspan="1" colspan="1">
@@ -172,5 +169,3 @@
 		</div>
 	</div>
 </div>
-
-<script type="text/javascript" src="/manage/assets/js/tableControl.js"></script>

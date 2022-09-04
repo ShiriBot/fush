@@ -42,34 +42,46 @@
 										등록 완료된 작품 목록입니다. 
 									</p>
 									<div id="datatable-arts_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap no-footer">
+										<c:set value="${artworkList}" var="artworkList"/>
+										<form name="artFilter" method="post" action="/admin/artwork">
 										<div class="dataTables_length" id="datatable-arts_length">
 											<label>한번에 
-												<select name="datatable-arts_length" aria-controls="datatable-arts" class="form-control input-sm">
-													<option value="10">10</option>
-													<option value="25">25</option>
-													<option value="50">50</option>
-													<option value="100">100</option>
+												<select name="length" class="form-control input-sm" onchange="javascript:document.forms['artFilter'].submit();">
+													<c:forEach items="${criteria.lengthOpt}" var="len">
+														<option value="${len}" 
+															<c:if test="${len eq criteria.length}">
+																selected
+															</c:if>	
+														>
+														${len}</option>
+													</c:forEach>
 												</select> 개씩 보기
 											</label>
 										</div>
 										<div id="datatable-buttons_wrapper" class="dataTables_wrapper dt-bootstrap no-footer" style="display:inline">
-											<div class="dt--members-del btn-group">
+											<div class="dt--artworkList-del btn-group">
 												<a class="btn btn-default buttons-html5 btn-sm" tabindex="0" aria-controls="datatable-buttons" href="#">
 													<span>작품 수정하기</span>
 												</a>
 											</div>
-											<!-- <div class="dt--members-del btn-group">
-												<a class="btn btn-default buttons-html5 btn-sm" tabindex="0" aria-controls="datatable-buttons" href="#">
-													<span>작품 삭제하기</span>
-												</a>
-											</div> -->
 										</div>
 										<div id="datatable-arts_filter" class="dataTables_filter">
-											<label>
-											검색:
-												<input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable-arts">
-											</label>
+											<select name="searchField">
+													<option value="name"
+														<c:if test="${criteria.searchField eq 'name'}">selected</c:if>
+														>작품명</option>
+													<option value="author"
+														<c:if test="${criteria.searchField eq 'author'}">selected</c:if>
+														>작가명</option>
+												</select>
+												<label>
+												검색:
+													<input name="keyword" type="search" class="form-control input-sm" onchange="javascript:document.forms['artFilter'].submit();"
+														<c:if test="${criteria.keyword ne null}"> value="${criteria.keyword}"</c:if>
+													>
+												</label>
 										</div>
+										</form>
 										<table id="datatable-arts" class="table table-striped table-bordered dataTable no-footer dtr-inline">
 											<thead>
 												<tr role="row">
@@ -90,8 +102,16 @@
 													</th>
 												</tr>
 											</thead>
+											<c:set value="${artworkList.currentPage*criteria.length-criteria.length+1}" var="startNum"/>
+											<c:if test="${artworkList.currentPage*criteria.length>artworkList.total}">
+												<c:set value="${artworkList.total}" var="endNum" />
+											</c:if>
+											<c:if test="${artworkList.currentPage*criteria.length<artworkList.total}">
+												<c:set value="${artworkList.currentPage*criteria.length}" var="endNum" />
+											</c:if>
 											<tbody>
-												<c:forEach items="${artList}" var ="artList">
+												<c:if test="${artworkList.content.size() ne 0}">
+												<c:forEach items="${artworkList.content}" var ="artList" varStatus="status" begin="${startNum-1}" end="${endNum-1}">
 													<tr>
 														<td><c:out value="${artList.name}" /></td>
 														<td><c:out value="${artList.author}" /></td>
@@ -100,28 +120,36 @@
 														<td style="display: none;"><c:out value="${artList.url}" /></td>
 													</tr>
 												</c:forEach>
+												</c:if>
 											</tbody>
 										</table>
 										<div class="dataTables_info" id="datatable-arts_info" role="status" aria-live="polite">
-											Showing 1 to 1 of 1 entries
+											Showing <c:out value="${startNum}" /> to ${endNum } of ${artworkList.total} entries
 										</div>
 										<div class="dataTables_paginate paging_simple_numbers" id="datatable-arts_paginate">
 											<ul class="pagination">
+												<c:if test="${artworkList.currentPage>artworkList.pagingCount}">
 												<li class="paginate_button previous disabled" id="datatable-arts_previous">
-													<a href="#" aria-controls="datatable-members" data-dt-idx="0" tabindex="0">
+													<a href="/admin/artwork?length=${criteria.length}&currentPage=${artworkList.startPage-1}&searchField=${criteria.searchField}&keyword=${criteria.keyword}" >
 														Previous
 													</a>
 												</li>
+												</c:if>
+												<c:forEach var="num" begin="${artworkList.startPage}" end="${artworkList.endPage}">
 												<li class="paginate_arts active">
-													<a href="#" aria-controls="datatable-arts" data-dt-idx="1" tabindex="0">
-														1
+													<a <c:if test="${num eq artworkList.currentPage}"> class="fw-bolder text-decoration-underline " </c:if>
+													href="/admin/artwork?length=${criteria.length}&currentPage=${num}&searchField=${criteria.searchField}&keyword=${criteria.keyword}" >
+														${num}
 													</a>
 												</li>
+												</c:forEach>
+												<c:if test="${artworkList.totalPages>artworkList.endPage}">
 												<li class="paginate_arts active">
-													<a href="#" aria-controls="datatable-arts" data-dt-idx="2" tabindex="0">
+													<a href="/admin/artwork?length=${criteria.length}&currentPage=${artworkList.endPage+1}&searchField=${criteria.searchField}&keyword=${criteria.keyword}">
 														Next
 													</a>
 												</li>
+												</c:if>
 											</ul>
 										</div>
 									</div>

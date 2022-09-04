@@ -9,6 +9,7 @@ import java.util.List;
 
 import common.OracleConn;
 import dto.Artwork;
+import dto.Criteria;
 import dto.TagDto;
 
 public class ArtworkDao {
@@ -18,10 +19,14 @@ public class ArtworkDao {
 	public ArtworkDao() {
 	}
 
-	public List<Artwork> list(String type) {
+	public List<Artwork> list(Criteria aCri) {
 		List<Artwork> artList = new ArrayList<Artwork>();
 		List<Artwork> artRequest = new ArrayList<Artwork>();
 		String sql = "SELECT * FROM v_art_info";
+		if(aCri.getSearchField()!=null) {
+			if(!aCri.getSearchField().equals("")) sql+= " WHERE "+aCri.getSearchField()+" LIKE '%"+aCri.getKeyword()+"%'";
+		}
+		
 		try {
 			stmt = conn.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
@@ -34,7 +39,6 @@ public class ArtworkDao {
 				artwork.setUrl(rs.getString("url"));
 				artwork.setImageRoute(rs.getString("image_route"));
 				
-				
 				if(rs.getString("admit").equals("Y")) {
 					artList.add(artwork);
 				}else {
@@ -45,7 +49,7 @@ public class ArtworkDao {
 			e.printStackTrace();
 		}
 		
-		if(type.equals("request")){
+		if(aCri.getKind().equals("request")){
 			return artRequest;
 		}else {
 			return artList;
