@@ -10,6 +10,7 @@ public class TagDto {
 	private String topSeq;
 	private String midSeq;
 	private List<Artwork> artwork; //이거 이용해서 toptagart랑 toptag 합칠수있음 (고쳐야됨)
+	private double avgRating;
 	
 	public List<Artwork> getArtwork() {
 		return artwork;
@@ -53,4 +54,11 @@ public class TagDto {
 	public void setMidSeq(String midSeq) {
 		this.midSeq = midSeq;
 	}
+	public double getAvgRating() {
+		return avgRating;
+	}
+	public void setAvgRating(double avgRating) {
+		this.avgRating = avgRating;
+	}
+	
 }

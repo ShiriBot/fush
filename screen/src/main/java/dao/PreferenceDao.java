@@ -9,11 +9,13 @@ import java.util.List;
 
 import common.OracleConn;
 import dto.Average;
+import dto.TagDto;
 
 public class PreferenceDao {
 	Connection conn = OracleConn.getInstance().getConn();
 	PreparedStatement stmt;
 	
+	//취향분석-나의 평가 현황
 	public Average MyRatingInfo(String userId) {
 		Average average = new Average();
 		String sql ="SELECT ROUND(avg(r.value),2) as ArtRatingAvg, COUNT(r.seqno) as artCount "
@@ -39,5 +41,30 @@ public class PreferenceDao {
 			e.printStackTrace();
 		}
 		return average;
+	}
+	// 취향분석-나의선호태그
+	public List<TagDto> MyRatingFavoriteTag() {
+		List<TagDto> tagDto = new ArrayList<TagDto>();
+		
+		String sql="select * "
+				+ "from "
+				+ "(SELECT t.name,r.avg_rating "
+				+ "FROM user_tag_record r,tag t "
+				+ "WHERE ID='user2' and r.tag_seqno = t.seqno "
+				+ "ORDER BY avg_rating DESC)";
+		try {
+			stmt = conn.prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();
+				while(rs.next()) {
+				TagDto tag = new TagDto();
+				tag.setName(rs.getString("name"));
+				tag.setAvgRating(rs.getDouble("avg_rating"));
+				tagDto.add(tag);
+				}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return tagDto;
 	}
 }
