@@ -33,6 +33,9 @@ public class Criteria {
 		if(kind==null) {
 			this.kind="all";
 		}
+		if(searchField==null) {
+			this.searchField="id";
+		}
 	}
 
 	public String getKind() {
