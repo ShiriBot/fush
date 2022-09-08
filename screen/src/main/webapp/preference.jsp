@@ -59,6 +59,9 @@
 			<h3>나의 선호태그</h3>
 			<div class="DetailBoard">	
 				<div id="chartdiv"></div>
+					<c:forEach items="${FavoriteTag}" var="favoriteTag">
+						${favoriteTag.name}
+					</c:forEach>
 			</div>
 		
 			<h3>내가 가장 많이 본 장르</h3>
