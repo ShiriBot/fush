@@ -94,10 +94,20 @@
 								<span>태그 추가</span>
 								<form method="post" class="tag_modifyForm" action="/admin/tagInsert">
 									<input type="text" name="tagName">
-									<input  class="btn btn-primary" type="submit" value="추가">
+									<input class="btn btn-primary" type="submit" value="추가">
 								</form>
-								<span>태그 분류 추가</span>
-								<form  class="tag_modifyForm">
+								<span>태그 대분류 추가</span>
+								<form method="post" class="tag_modifyForm">
+									<input type="text" disabled>
+									<input class="btn btn-primary" type="submit" value="추가">
+								</form>
+								<span>태그 중분류 추가</span>
+								<form method="post" class="tag_modifyForm">
+									<select>
+										<c:forEach items="${tagList}" var="tagList">
+										<option value="${tagList.top}">${tagList.top}</option>
+										</c:forEach>
+									</select>
 									<input type="text" disabled>
 									<input class="btn btn-primary" type="submit" value="추가">
 								</form>
@@ -129,6 +139,8 @@
 								<a id="modifyBtn" class="btn btn-primary" href="javascript:modeChange('modify')">태그 이름 변경</a>
 								<br>
 								<a id="deleteBtn" class="btn btn-primary" href="javascript:modeChange('delete')">태그 삭제</a>
+								<br>
+								<a id="categoryBtn" class="btn btn-secondary" href="#" style="cursor:default;">분류 수정</a>
 							</div>
 						</div>
 					</div>

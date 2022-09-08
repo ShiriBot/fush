@@ -26,6 +26,7 @@ public class ArtworkDao {
 		if(aCri.getSearchField()!=null) {
 			if(!aCri.getSearchField().equals("")) sql+= " WHERE "+aCri.getSearchField()+" LIKE '%"+aCri.getKeyword()+"%'";
 		}
+		System.out.print(sql);
 		
 		try {
 			stmt = conn.prepareStatement(sql);

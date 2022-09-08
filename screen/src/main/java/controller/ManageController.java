@@ -62,12 +62,13 @@ public class ManageController extends HttpServlet {
 		}else if(cmd.equals("tag")){
 			TagDto[] tagList =tagService.tagList();
 			request.setAttribute("tagList", tagList);
+			request.setAttribute("msg", request.getAttribute("msg"));
 			goView(request, response, "/manage/manage_tags.jsp");
 		}else if(cmd.equals("tagInsert")){
-			tagService.insert(request.getParameter("tagName"));
+			request.setAttribute("msg", tagService.insert(request.getParameter("tagName")));
 			goView(request, response, "/admin/tag");
 		}else if(cmd.equals("tagModify")){
-			tagService.modify(request.getParameter("seqno"),request.getParameter("newName"));
+			request.setAttribute("msg", tagService.modify(request.getParameter("seqno"),request.getParameter("newName")));
 			goView(request, response, "/admin/tag");
 		}else if(cmd.equals("tagDelete")){
 			tagService.delete(request.getParameter("seqno"));
@@ -84,6 +85,7 @@ public class ManageController extends HttpServlet {
 			if(cmd.equals("member")) {
 				String kind=request.getParameter("kind");
 				if(request.getParameter("kind")==null) kind="all";
+				if(searchField==null) searchField="id"; 
 				Criteria mCri = new Criteria(kind,length,currentPage,searchField,keyword);
 			
 				List<Member> members = memberService.list(mCri);
@@ -91,15 +93,20 @@ public class ManageController extends HttpServlet {
 				request.setAttribute("criteria",mCri);
 				goView(request, response, "/manage/manage_members.jsp");
 			}else if(cmd.equals("artwork")){
-				Criteria aCri = new Criteria("all",length,currentPage,searchField,keyword);
+				if(searchField==null) searchField="name";
+				Criteria aCri = new Criteria(null,length,currentPage,searchField,keyword);
 				List<Artwork> artList = artworkService.list(aCri);
+				
 				request.setAttribute("artworkList",new Page(artList.size(),aCri,artList));
 				request.setAttribute("criteria",aCri);
 				goView(request, response, "/manage/manage_arts.jsp");
 			}else if(cmd.equals("artworkRequest")){
+				if(searchField==null) searchField="name";
 				Criteria aCri = new Criteria("request",length,currentPage,searchField,keyword);
 				List<Artwork> artRequest = artworkService.list(aCri);
+				
 				request.setAttribute("artRequest", artRequest);
+				request.setAttribute("criteria",aCri);
 				goView(request, response, "/manage/manage_arts_request.jsp");
 			}
 		}
