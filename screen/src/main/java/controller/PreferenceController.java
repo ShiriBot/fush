@@ -38,6 +38,7 @@ public class PreferenceController extends HttpServlet {
 			goView(req, resp, "/mypage.jsp");
 		} else if(cmd.equals("preference")) {
 			req.setAttribute("Preference", preferenceService.MyRatingInfo(id));
+			req.setAttribute("FavoriteTag", preferenceService.MyRatingFavoriteTag());
 			goView(req, resp, "/preference.jsp");
 		}
 	

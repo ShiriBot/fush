@@ -19,6 +19,7 @@ public class MemberDao {
 	
 	private final Connection conn = OracleConn.getInstance().getConn();
 	PreparedStatement stmt;
+	CallableStatement cstmt;
 
 	public MemberDao() {
 	}
@@ -57,13 +58,13 @@ public class MemberDao {
 			String sql = "call p_member_count(?,?)";
 			//회원수 증감 조회.
 			//전주 대비 증가율 구하기 위한 데이터 : 최근 일주일 가입 수
-			CallableStatement stmt = conn.prepareCall(sql);
-			stmt.registerOutParameter(1, OracleTypes.NUMBER);
-			stmt.registerOutParameter(2, OracleTypes.NUMBER);
-			stmt.executeQuery();
+			cstmt = conn.prepareCall(sql);
+			cstmt.registerOutParameter(1, OracleTypes.NUMBER);
+			cstmt.registerOutParameter(2, OracleTypes.NUMBER);
+			cstmt.executeQuery();
 			
-			statistics.put("totalMember", stmt.getInt(1));
-			statistics.put("newMember", (int)Math.round(stmt.getDouble(2)/(stmt.getDouble(1)-stmt.getDouble(2))*100));
+			statistics.put("totalMember", cstmt.getInt(1));
+			statistics.put("newMember", (int)Math.round(cstmt.getDouble(2)/(cstmt.getDouble(1)-cstmt.getDouble(2))*100));
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -76,34 +77,20 @@ public class MemberDao {
 	public List<Member> list(Criteria mCri){
 		List<Member> members=new ArrayList<Member>();
 		try {
-			String sql = " SELECT rownum as rn, m.*"
-					+ " FROM v_member_info m";
-			switch (mCri.getKind()) {
-			case "all":
-				sql += " WHERE isdel='N'";
-				break;
-			case "new":
-				sql += " WHERE isdel='N' AND (wdate BETWEEN SYSDATE-7 AND SYSDATE)";
-				break;
-			case "del":
-				sql += " WHERE isdel='Y'";
-				break;
-			default:
-				break;
-			}
-				
-			if(mCri.getSearchField()!=null) {
-				if(!mCri.getSearchField().equals("")) sql+= " AND "+mCri.getSearchField()+" LIKE '%"+mCri.getKeyword()+"%'";
-			}
+			String sql = "call p_member_list(?,?,?,?)";
 			
-			System.out.println(sql);
+			cstmt = conn.prepareCall(sql);
+			cstmt.setString(1, mCri.getKind());
+			cstmt.setString(2, mCri.getSearchField());
+			cstmt.setString(3, mCri.getKeyword());
+			cstmt.registerOutParameter(4, OracleTypes.CURSOR);
+			cstmt.executeQuery();
 			
-			stmt = conn.prepareStatement(sql);
-			ResultSet rs = stmt.executeQuery();
+			ResultSet rs = (ResultSet)cstmt.getObject(4);
+			
 			Member member = null;
 			while(rs.next()) {
 				member = new Member();
-				member.setRownum(rs.getInt("rn"));
 				member.setId(rs.getString("id"));
 				member.setName(rs.getString("name"));
 				member.setEmail(rs.getString("email"));
@@ -121,3 +108,4 @@ public class MemberDao {
 	}
 	
 }
+

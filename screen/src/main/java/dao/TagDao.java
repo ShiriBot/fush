@@ -1,5 +1,6 @@
 package dao;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,10 +8,12 @@ import java.sql.SQLException;
 
 import common.OracleConn;
 import dto.TagDto;
+import oracle.jdbc.oracore.OracleType;
 
 public class TagDao {
 	private final Connection conn =OracleConn.getInstance().getConn();
 	PreparedStatement stmt;
+	CallableStatement cstmt;
 	
 	public TagDto[] searchBox(){
 		TagDto[] searchTag =null;
@@ -42,40 +45,45 @@ public class TagDao {
 		
 	}
 
-	public void insert(String tagName) {
-		String sql ="INSERT INTO tag VALUES (tag_seqno.NEXTVAL,?)";
+	public int insert(String tagName) {
+		int rs=0;
+		String sql ="call p_insert_tag(?,?)";
 		try {
-			stmt = conn.prepareStatement(sql);
-			stmt.setString(1, tagName);
-			stmt.executeQuery();
+			cstmt = conn.prepareCall(sql);
+			cstmt.setString(1, tagName);
+			cstmt.registerOutParameter(2, OracleType.STYLE_INT);
+			cstmt.executeQuery();
+			rs=cstmt.getInt(2);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
+		return rs;
 	}
 
-	public void modify(String seqno, String newName) {
-		//쓰읍... 제대로 하려면 중복검사도 해야할거 같긴한데...
-		String sql ="UPDATE tag SET name=? WHERE seqno=?";
+	public int modify(String seqno, String newName) {
+		int rs=0;
+		String sql ="call p_modify_tag(?,?,?)";
 		try {
-			stmt = conn.prepareStatement(sql);
-			stmt.setString(1, newName);
-			stmt.setString(2, seqno);
-			stmt.executeUpdate();
+			cstmt = conn.prepareCall(sql);
+			cstmt.setString(1, seqno);
+			cstmt.setString(2, newName);
+			cstmt.registerOutParameter(3, OracleType.STYLE_INT);
+			cstmt.executeUpdate();
+			rs=cstmt.getInt(3);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return rs;
 	}
 
 	public void delete(String seqno) {
-		String sql ="DELETE FROM tag_match WHERE tag_seqno=?";
+		String sql ="call p_delete_tag(?)";
 		try {
-			stmt = conn.prepareStatement(sql);
-			stmt.setString(1, seqno);
-			stmt.executeUpdate();
-			sql="DELETE FROM tag WHERE seqno=?";
-			stmt = conn.prepareStatement(sql);
-			stmt.setString(1, seqno);
-			stmt.executeUpdate();
+			cstmt = conn.prepareCall(sql);
+			cstmt.setString(1, seqno);
+			cstmt.executeUpdate();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
