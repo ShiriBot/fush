@@ -49,11 +49,14 @@ public class ArtworkDao {
 			e.printStackTrace();
 		}
 		
-		if(aCri.getKind().equals("request")){
-			return artRequest;
-		}else {
-			return artList;
+		if(aCri.getKind()!=null){
+			if(aCri.getKind().equals("request")){
+				return artRequest;
+			}
 		}
+		
+		return artList;
+		
 	}
 
 	public List<Artwork> AchuRecommendArt() {
