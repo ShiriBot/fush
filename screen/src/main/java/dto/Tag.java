@@ -2,7 +2,7 @@ package dto;
 
 import java.util.List;
 
-public class TagDto {
+public class Tag {
 	private String seqno;
 	private String name;
 	private String top;

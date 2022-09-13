@@ -10,7 +10,7 @@ import java.util.List;
 import common.OracleConn;
 import dto.Artwork;
 import dto.Criteria;
-import dto.TagDto;
+import dto.Tag;
 
 public class ArtworkDao {
 	Connection conn = OracleConn.getInstance().getConn();
@@ -91,9 +91,9 @@ public class ArtworkDao {
 				stmt = conn.prepareStatement(sql);
 				rs = stmt.executeQuery();
 				
-				List<TagDto> tagList = new ArrayList<TagDto>();
+				List<Tag> tagList = new ArrayList<Tag>();
 				while(rs.next()) {
-					TagDto tagDto = new TagDto();
+					Tag tagDto = new Tag();
 					tagDto.setName(rs.getString("name"));
 					tagList.add(tagDto);
 				}
@@ -105,8 +105,8 @@ public class ArtworkDao {
 		return mainRC;
 	}
 
-	public List<TagDto> topTag() {
-		List<TagDto> toptag = new ArrayList<TagDto>();
+	public List<Tag> topTag() {
+		List<Tag> toptag = new ArrayList<Tag>();
 		
 		String sql ="SELECT *"
 				+ "FROM(SELECT *"
@@ -119,7 +119,7 @@ public class ArtworkDao {
 			ResultSet rs = stmt.executeQuery();
 			
 			while(rs.next()) {
-				TagDto tagDto = new TagDto();
+				Tag tagDto = new Tag();
 				tagDto.setSeqno(rs.getString("seqno"));
 				tagDto.setName(rs.getString("name"));
 				toptag.add(tagDto);
@@ -155,9 +155,9 @@ public class ArtworkDao {
 				sql = "select seqno,name from v_tag_info ";
 					stmt = conn.prepareStatement(sql);
 					rs = stmt.executeQuery();
-				List<TagDto> tagDto = new ArrayList<TagDto>();	
+				List<Tag> tagDto = new ArrayList<Tag>();	
 				while(rs.next()) {
-				TagDto tagList = new TagDto();
+				Tag tagList = new Tag();
 					tagList.setSeqno(rs.getString("seqno"));
 					tagList.setName(rs.getString("name"));
 					tagDto.add(tagList);

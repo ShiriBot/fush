@@ -2,14 +2,16 @@ package service;
 
 
 
+import java.util.List;
+
 import dao.TagDao;
-import dto.TagDto;
+import dto.Tag;
 
 public class TagService {
 	TagDao searchDao = new TagDao();
 	TagDao tagDao = new TagDao();
 	
-	public TagDto[] tagList() {
+	public List<Tag> tagList() {
 		return searchDao.searchBox();
 	}
 

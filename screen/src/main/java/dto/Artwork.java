@@ -12,7 +12,7 @@ public class Artwork {
 	private String week;
 	private String detail;
 	private String admit;
-	private List<TagDto> tag;
+	private List<Tag> tag;
 	private List<Reply> reply;
 	private String url;
 	private String imageRoute;
@@ -92,11 +92,11 @@ public class Artwork {
 		this.admit = admit;
 	}
 
-	public List<TagDto> getTag() {
+	public List<Tag> getTag() {
 		return tag;
 	}
 
-	public void setTag(List<TagDto> tag) {
+	public void setTag(List<Tag> tag) {
 		this.tag = tag;
 	}
 

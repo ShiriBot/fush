@@ -4,7 +4,7 @@ import java.util.List;
 
 import dao.PreferenceDao;
 import dto.Average;
-import dto.TagDto;
+import dto.Tag;
 
 public class PreferenceService {
 	PreferenceDao preferenceDao = new PreferenceDao();
@@ -12,7 +12,7 @@ public class PreferenceService {
 	public Average MyRatingInfo(String userId) {
 		return preferenceDao.MyRatingInfo(userId);
 	}
-	public List<TagDto> MyRatingFavoriteTag() {
+	public List<Tag> MyRatingFavoriteTag() {
 		return preferenceDao.MyRatingFavoriteTag();
 	}
 }
