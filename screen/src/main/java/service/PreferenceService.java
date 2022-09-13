@@ -15,4 +15,7 @@ public class PreferenceService {
 	public List<Tag> MyRatingFavoriteTag() {
 		return preferenceDao.MyRatingFavoriteTag();
 	}
+	public List<Tag> MyRatingMostGenre(String userId) {
+		return preferenceDao.MyRatingMostGenre(userId);
+	}
 }

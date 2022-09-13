@@ -20,6 +20,7 @@ public class Criteria {
 		this.currentPage = Integer.parseInt(currentPage);
 		this.searchField = searchField;
 		this.keyword = keyword;
+
 	}
 	
 	public Criteria(String kind, String length, String currentPage, String searchField, String keyword) {
@@ -32,6 +33,10 @@ public class Criteria {
 		
 		if(kind==null) {
 			this.kind="all";
+		}
+		
+		if(keyword==null) {
+			this.keyword="";
 		}
 	}
 

@@ -67,4 +67,28 @@ public class PreferenceDao {
 		
 		return tagDto;
 	}
+	public List<Tag> MyRatingMostGenre(String userId) {
+		List<Tag> genre = new ArrayList<Tag>();
+		String sql="select *  "
+				+ "from( "
+				+ "select  count(*) cnt , name  "
+				+ "from v_tag_info i , user_tag_record u "
+				+ "where i.top_seq ='1' and u.id='"+userId+"' and u.tag_seqno = i.seqno "
+				+ "group by name "
+				+ "order by cnt desc) "
+				+ "where rownum <4";
+
+		try {
+			stmt = conn.prepareStatement(sql);
+			ResultSet rs =stmt.executeQuery();
+			Tag tag = new Tag();
+			tag.setName(rs.getString("name"));
+			genre.add(tag);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return genre;
+	}
 }

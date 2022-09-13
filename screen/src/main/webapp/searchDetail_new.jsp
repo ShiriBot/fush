@@ -4,7 +4,14 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
+<script>
 
+
+		tagName.val();
+		location.href('/search.so?seqno='+seqno)
+	
+
+</script>
 
 <!-- 장르 드롭다운 -->
 <div class="row">
@@ -29,7 +36,7 @@
 			        	<ul class="dropdown-menu dropdown-menu-white" aria-labelledby="navbarDarkDropdownMenuLink">
 			    	      	<c:forEach items="${searchList}" var="tagName">  
 				    	      	 <c:if test="${tagName.midSeq eq midSeq && tagName.mid ne null}">
-				    	      	  	<li><button class="dropdown-item"name="tagname" value="${tagName.name}" >${tagName.name}</button></li>
+				    	      	  	<li><button class="dropdown-item tagName" name="tagname" value="${tagName.name}" onclick="location.href='/search.so?seqno=${tagName.seqno}';" >${tagName.name}</button></li>
 				    	      	 </c:if>
 			    	      	</c:forEach>
 			    	    </ul>
