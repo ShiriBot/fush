@@ -11,12 +11,20 @@
 <script>
 /* 토글 실패 보류 */
 	function toggle(){
-			const checkbox = document.getElementsByClassName('my_checkbox');
+			const checkbox = document.getElementById('my_checkbox');
 			
 			const is_checked = checkbox.checked;
 			
+			const minusBtns = document.querySelectorAll('.minus');
+			
 			if(is_checked == true){
-				document.getElementsByClassName('minus')[0].style.display ="block";
+				minusBtns.forEach(minus => {
+					minus.style.display ='block';
+				});
+			}else{
+				minusBtns.forEach(minus => {
+					minus.style.display ='none';
+				});
 			}
 	}
 </script>
