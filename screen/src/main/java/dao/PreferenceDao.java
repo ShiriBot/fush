@@ -1,5 +1,6 @@
 package dao;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,6 +11,7 @@ import java.util.List;
 import common.OracleConn;
 import dto.Average;
 import dto.Tag;
+import oracle.jdbc.OracleTypes;
 
 public class PreferenceDao {
 	Connection conn = OracleConn.getInstance().getConn();
@@ -37,7 +39,6 @@ public class PreferenceDao {
 			while(rs2.next()) {
 				average.setReplyCount(rs2.getString("rcnt"));
 			}
-			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -56,13 +57,12 @@ public class PreferenceDao {
 		try {
 			stmt = conn.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
-			while(rs.next()) {
+				while(rs.next()) {
 				Tag tag = new Tag();
 				tag.setName(rs.getString("name"));
 				tag.setArtRatingAvg(rs.getString("avg_rating"));
 				tagDto.add(tag);
-			}
-			stmt.close();
+				}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -93,6 +93,30 @@ public class PreferenceDao {
 			e.printStackTrace();
 		}
 
+		return genre;
+	}
+	// 수정해야됨
+	public List<Tag> MyRatingFavoriteGenre(String userId) {
+		List<Tag> genre = new ArrayList<Tag>();
+		String sql="call p_getart_rating(?,?)";
+		
+		try {
+			CallableStatement stmt = conn.prepareCall(sql);
+			stmt.setString(1, userId);
+			stmt.registerOutParameter(2, OracleTypes.CURSOR);
+			
+			
+			ResultSet rs =stmt.executeQuery();
+			
+		while(rs.next()) {
+				Tag tag = new Tag();
+				tag.setName(rs.getString("name"));
+				tag.setArtRatingAvg(rs.getString("cnt"));
+				genre.add(tag);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return genre;
 	}
 }

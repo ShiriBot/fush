@@ -5,6 +5,7 @@
 <div class="session">
 <div class="container-md col-md-9">
 <!-- 화면 전체를 감싼 뼈대 -->
+<!-- 양ㅇ옆 여백 추가하기 -->
 	<div class="row justify-content-center">
 		<div class="col-10 mt-5 mb-5"  style="position:relative">
 			<div class="slides">
