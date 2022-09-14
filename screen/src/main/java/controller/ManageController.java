@@ -16,7 +16,7 @@ import dto.Artwork;
 import dto.Criteria;
 import dto.Member;
 import dto.Page;
-import dto.TagDto;
+import dto.Tag;
 import service.ArtworkService;
 import service.MemberService;
 import service.StatisticsService;
@@ -62,7 +62,7 @@ public class ManageController extends HttpServlet {
 			request.setAttribute("statistics",statistics);
 			goView(request, response, "/manage/manage_index.jsp");
 		}else if(cmd.equals("tag")){
-			TagDto[] tagList =tagService.tagList();
+			List<Tag> tagList =tagService.tagList();
 			request.setAttribute("tagList", tagList);
 			request.setAttribute("msg", request.getAttribute("msg"));
 			goView(request, response, "/manage/manage_tags.jsp");

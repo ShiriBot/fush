@@ -9,7 +9,7 @@ import java.util.List;
 
 import common.OracleConn;
 import dto.Average;
-import dto.TagDto;
+import dto.Tag;
 
 public class PreferenceDao {
 	Connection conn = OracleConn.getInstance().getConn();
@@ -44,8 +44,8 @@ public class PreferenceDao {
 		return average;
 	}
 	// 취향분석-나의선호태그
-	public List<TagDto> MyRatingFavoriteTag() {
-		List<TagDto> tagDto = new ArrayList<TagDto>();
+	public List<Tag> MyRatingFavoriteTag() {
+		List<Tag> tagDto = new ArrayList<Tag>();
 		
 		String sql="select * "
 				+ "from "
@@ -57,7 +57,7 @@ public class PreferenceDao {
 			stmt = conn.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
 			while(rs.next()) {
-				TagDto tag = new TagDto();
+				Tag tag = new Tag();
 				tag.setName(rs.getString("name"));
 				tag.setAvgRating(rs.getDouble("avg_rating"));
 				tagDto.add(tag);
@@ -68,5 +68,29 @@ public class PreferenceDao {
 		}
 		
 		return tagDto;
+	}
+	public List<Tag> MyRatingMostGenre(String userId) {
+		List<Tag> genre = new ArrayList<Tag>();
+		String sql="select *  "
+				+ "from( "
+				+ "select  count(*) cnt , name  "
+				+ "from v_tag_info i , user_tag_record u "
+				+ "where i.top_seq ='1' and u.id='"+userId+"' and u.tag_seqno = i.seqno "
+				+ "group by name "
+				+ "order by cnt desc) "
+				+ "where rownum <4";
+
+		try {
+			stmt = conn.prepareStatement(sql);
+			ResultSet rs =stmt.executeQuery();
+			Tag tag = new Tag();
+			tag.setName(rs.getString("name"));
+			genre.add(tag);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return genre;
 	}
 }

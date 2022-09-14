@@ -1,4 +1,5 @@
 
+
 new Chart(document.getElementById("bar-chart"), {
 	type: 'bar',
 	data: {

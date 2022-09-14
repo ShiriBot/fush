@@ -4,6 +4,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/plugins/wordCloud.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+
 <%@ include file="head.jsp" %>
 <meta charset="UTF-8">
 <%@ include file="header.jsp" %>
@@ -40,9 +46,9 @@
 						<canvas id="bar-chart" width="500" height="100"></canvas>
 					</div>
 				</div>
-				
 			</div>
-		
+			<script src="/js/Chart.js"></script>
+			
 			<!-- <h3>회원님이 가장 높게 평가한 웹툰 순위(순위표 차트)</h3>차트위에 이미지,제목 넣고싶은데 하기힘듬ㄴ
 			<div class="DetailBoard1">
 				<div class="podium2">
@@ -59,11 +65,11 @@
 			<h3>나의 선호태그</h3>
 			<div class="DetailBoard">	
 				<div id="chartdiv"></div>
-					<c:forEach items="${FavoriteTag}" var="favoriteTag">
+					<%-- <c:forEach items="${FavoriteTag}" var="favoriteTag">
 						${favoriteTag.name}
-					</c:forEach>
+					</c:forEach> --%>
 			</div>
-		
+			<script src="/js/tagCloud.js"></script>
 			<h3>내가 가장 많이 본 장르</h3>
 			<div class="DetailBoard">	
 				<div class="divideBoard">

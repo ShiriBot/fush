@@ -5,7 +5,7 @@ import java.util.List;
 import dao.ArtworkDao;
 import dto.Artwork;
 import dto.Criteria;
-import dto.TagDto;
+import dto.Tag;
 
 public class ArtworkService {
 	ArtworkDao artworkDao = new ArtworkDao();
@@ -25,7 +25,7 @@ public class ArtworkService {
 		return artworkDao.AchuRecommendArt();
 	}
 	
-	public List<TagDto> topTag(){
+	public List<Tag> topTag(){
 		return artworkDao.topTag();
 	}
 	
