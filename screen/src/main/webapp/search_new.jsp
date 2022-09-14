@@ -7,7 +7,7 @@
 <%@ include file="head.jsp" %>
 <title>작품검색</title>
 </head>
-<body>
+<body onload="init()">
 
 <%@ include file="header.jsp" %>
 

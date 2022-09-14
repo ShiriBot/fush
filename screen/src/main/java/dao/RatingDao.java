@@ -35,6 +35,7 @@ public class RatingDao {
 			statistics.put("totalRating", rs.getInt("total"));
 			statistics.put("newRating", (int)Math.round(rs.getDouble("new")/(rs.getDouble("total")-rs.getDouble("new"))*100));
 			
+			stmt.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

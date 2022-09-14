@@ -37,6 +37,7 @@ public class PreferenceDao {
 			while(rs2.next()) {
 				average.setReplyCount(rs2.getString("rcnt"));
 			}
+			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -55,12 +56,13 @@ public class PreferenceDao {
 		try {
 			stmt = conn.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
-				while(rs.next()) {
+			while(rs.next()) {
 				Tag tag = new Tag();
 				tag.setName(rs.getString("name"));
 				tag.setArtRatingAvg(rs.getString("avg_rating"));
 				tagDto.add(tag);
-				}
+			}
+			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

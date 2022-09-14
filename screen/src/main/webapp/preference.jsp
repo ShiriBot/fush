@@ -15,7 +15,7 @@
 <%@ include file="header.jsp" %>
 <title>취향분석</title>
 </head>
-<body>
+<body onload="init()">
 
 <div class="center">
 	<div class="session">

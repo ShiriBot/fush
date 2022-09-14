@@ -19,26 +19,13 @@ import dao.MemberDao;
 @WebServlet("/login")
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public Login() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String uri = request.getRequestURI(); //프로젝트+파일명
 		String path = request.getContextPath(); //프로젝트 패스
@@ -53,6 +40,7 @@ public class Login extends HttpServlet {
 		HttpSession session = request.getSession();
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
+		String type = request.getParameter("type");
 		Map<String, String> status =  memberDao.login(id, pw);
 		switch (status.get("loginStatus")) {
 		case "ok":
@@ -62,21 +50,30 @@ public class Login extends HttpServlet {
 			session.setAttribute("login_time", session.getCreationTime());
 			if(status.get("auth")=="manager") {
 				request.setAttribute("msg","loginOk");
-				response.sendRedirect("/admin/home");
+				goView(request, response, "/admin/home");
 				System.out.println("관리자 로그인");
 			}else {
 				//로그인에는 성공했지만 권한이 없는 경우에는 사용자 화면으로 쫓아내기
 				request.setAttribute("msg","authFail");
-				response.sendRedirect("/");
-				System.out.println("권한없음");
+				goView(request, response, "/");
+				System.out.println("유저 로그인");
 			}
 			break;
 		default:
 			request.setAttribute("msg","loginFail");
 			//로그인실패
 			System.out.println("로그인실패");
-			response.sendRedirect("/");
+			if(type.equals("user")) {
+				goView(request, response, "/login.jsp");
+			}else if(type.equals("admin")) {
+				goView(request, response, "/admin/login");
+			}
 			break;
 		}
+	}
+	
+	void goView(HttpServletRequest req, HttpServletResponse resp, String viewPage) throws ServletException, IOException {
+		RequestDispatcher rd = req.getRequestDispatcher(viewPage);
+		rd.forward(req, resp);
 	}
 }

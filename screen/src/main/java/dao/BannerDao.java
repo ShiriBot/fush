@@ -32,7 +32,7 @@ public class BannerDao {
 				bi.setSlideArrNum(rs.getString("slide_arr_num"));
 				bannerImage.add(bi);
 			}
-			
+			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

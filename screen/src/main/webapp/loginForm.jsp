@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <div class="container">
 	<div class="form sign-in-container">
-		<form method="post" action="/login">
+		<form method="post" action="/login?type=user">
 			<h1>로그인</h1>
 			<div class="social-container">
 				<a href="#"><i class="fab fa-facebook-f"></i></a>
