@@ -23,7 +23,7 @@ $(window).scroll(function() {
 <%@ include file="head.jsp" %>
 <title>평가하기</title>
 </head>
-<body>
+<body onload="init()">
 <%@ include file="header.jsp" %>
 
 <div class="center">

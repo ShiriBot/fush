@@ -24,7 +24,7 @@
 <%@ include file="header.jsp" %>
 <title>친구관리</title>
 </head>
-<body>
+<body onload="init()">
 <div class="center">
 	<div class="sssion">
 		<!-- 관리 스위치 버튼 -->

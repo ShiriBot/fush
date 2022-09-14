@@ -8,7 +8,7 @@
 <%@ include file="header.jsp" %>
 <title>평가한 작품보기</title>
 </head>
-<body>
+<body onload="init()">
 <div class="center">
 	<div class="session">
 		<!-- 돌아가기 버튼 -->

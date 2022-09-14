@@ -6,7 +6,7 @@
 <%@ include file="head_new.jsp" %>
 <title>메인</title>
 </head>
-<body>
+<body onload="init()">
 
 <%@ include file="header.jsp" %>
 <%@ include file="row.jsp" %>

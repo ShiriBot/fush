@@ -55,7 +55,9 @@ public class ManageController extends HttpServlet {
 		String cmd = uri.substring(uri.lastIndexOf("/")+1);
 		System.out.println("uri : " +uri+", cmd : "+cmd+", url:"+url+", path:"+path+", file:"+file);
 		
-		if(cmd.equals("home")){
+		if(cmd.equals("login")){
+			goView(request, response, "/manage/manage_login.jsp");
+		}else if(cmd.equals("home")){
 			Map<String, Integer> statistics = statisticsService.manageMainStatistics();
 			request.setAttribute("statistics",statistics);
 			goView(request, response, "/manage/manage_index.jsp");

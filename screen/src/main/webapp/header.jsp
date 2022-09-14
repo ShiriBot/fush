@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<input type="hidden" id="loginStat" value="<%= session.getAttribute("login") %>">
+<input type="hidden" name="msg" value="<%= request.getAttribute("msg") %>">
 <!-- 일단 세션정보를 저장하려던거 같아서... 근데 굳이 컨테이너 안에 넣을 필요가 있는지...? 위치를 잘 모르겠음. -->
 <nav class="navbar navbar-expand-lg sticky-top navbar-light bg-light">
 	<!-- navbar:네비바. navbar-expand-lg: lg breakpoint(960px)이하면 아이콘 단축, navbar-light: light테마, bg-light:색상지정-->

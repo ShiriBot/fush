@@ -58,6 +58,7 @@ public class ReplyDao {
 			statistics.put("totalReply", rs.getInt("total"));
 			statistics.put("newReply", (int)Math.round(rs.getDouble("new")/(rs.getDouble("total")-rs.getDouble("new"))*100));
 			
+			stmt.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

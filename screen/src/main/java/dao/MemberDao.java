@@ -44,6 +44,7 @@ public class MemberDao {
 			} else {
 				status.put("loginStatus","fail");
 			}
+			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -66,6 +67,7 @@ public class MemberDao {
 			statistics.put("totalMember", cstmt.getInt(1));
 			statistics.put("newMember", (int)Math.round(cstmt.getDouble(2)/(cstmt.getDouble(1)-cstmt.getDouble(2))*100));
 			
+			cstmt.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -100,6 +102,7 @@ public class MemberDao {
 				members.add(member);
 			}
 			
+			cstmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

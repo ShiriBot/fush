@@ -6,7 +6,7 @@
 <%@ include file="head.jsp" %>
 <title>작품상세정보:작품명</title>
 </head>
-<body>
+<body onload="init()">
 <%@ include file="header.jsp" %>
 
 <div class="center">

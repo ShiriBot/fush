@@ -46,6 +46,7 @@ public class ArtworkDao {
 					artRequest.add(artwork);
 				}
 			}
+			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -100,6 +101,7 @@ public class ArtworkDao {
 				}
 				mainRC.get(i).setTag(tagList);
 			}
+			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -125,7 +127,7 @@ public class ArtworkDao {
 				tagDto.setName(rs.getString("name"));
 				toptag.add(tagDto);
 			}
-			
+			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -164,6 +166,7 @@ public class ArtworkDao {
 					tagDto.add(tagList);
 				}artwork.get(i).setTag(tagDto);
 			}
+			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

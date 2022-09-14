@@ -38,6 +38,7 @@ public class TagDao {
 				searchTag[i++] = sd;
 			}
 			rs.close();
+			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
