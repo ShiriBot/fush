@@ -58,7 +58,7 @@ public class PreferenceDao {
 				while(rs.next()) {
 				Tag tag = new Tag();
 				tag.setName(rs.getString("name"));
-				tag.setAvgRating(rs.getDouble("avg_rating"));
+				tag.setArtRatingAvg(rs.getString("avg_rating"));
 				tagDto.add(tag);
 				}
 		} catch (SQLException e) {
@@ -81,10 +81,12 @@ public class PreferenceDao {
 		try {
 			stmt = conn.prepareStatement(sql);
 			ResultSet rs =stmt.executeQuery();
-			Tag tag = new Tag();
-			tag.setName(rs.getString("name"));
-			genre.add(tag);
-
+			while(rs.next()) {
+				Tag tag = new Tag();
+				tag.setName(rs.getString("name"));
+				tag.setArtRatingAvg(rs.getString("cnt"));
+				genre.add(tag);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

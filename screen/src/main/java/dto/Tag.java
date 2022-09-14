@@ -10,7 +10,9 @@ public class Tag {
 	private String topSeq;
 	private String midSeq;
 	private List<Artwork> artwork; //이거 이용해서 toptagart랑 toptag 합칠수있음 (고쳐야됨)
-	private double avgRating;
+	private String artRatingAvg;
+	private String artCount;
+	private String replyCount;
 	
 	public List<Artwork> getArtwork() {
 		return artwork;
@@ -54,11 +56,23 @@ public class Tag {
 	public void setMidSeq(String midSeq) {
 		this.midSeq = midSeq;
 	}
-	public double getAvgRating() {
-		return avgRating;
+	public String getArtRatingAvg() {
+		return artRatingAvg;
 	}
-	public void setAvgRating(double avgRating) {
-		this.avgRating = avgRating;
+	public void setArtRatingAvg(String artRatingAvg) {
+		this.artRatingAvg = artRatingAvg;
+	}
+	public String getArtCount() {
+		return artCount;
+	}
+	public void setArtCount(String artCount) {
+		this.artCount = artCount;
+	}
+	public String getReplyCount() {
+		return replyCount;
+	}
+	public void setReplyCount(String replyCount) {
+		this.replyCount = replyCount;
 	}
 	
 }
