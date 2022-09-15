@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dto.Criteria;
 import service.MemberService;
 import service.PreferenceService;
 
@@ -32,7 +33,8 @@ public class PreferenceController extends HttpServlet {
 		String uri =req.getRequestURI();
 		String cmd = uri.substring(uri.lastIndexOf("/")+1);
 		
-		PreferenceService preferenceService = new PreferenceService(); 
+		PreferenceService preferenceService = new PreferenceService();
+		MemberService memberService = new MemberService();
 		String id =(String)req.getSession().getAttribute("sess_id");
 		if(cmd.equals("")) {
 			goView(req, resp, "/mypage.jsp");
@@ -45,7 +47,13 @@ public class PreferenceController extends HttpServlet {
 			req.setAttribute("Platform", preferenceService.MyRatingPlatform(id));
 			req.setAttribute("Chart", preferenceService.Chart(id));
 			goView(req, resp, "/preference.jsp");
-		}
+		} else if(cmd.equals("friend")) {
+			goView(req, resp, "/friend.jsp");
+		} else if(cmd.equals("friendSearch")) {
+		Criteria mCri = new Criteria("friend","id",req.getParameter("id"));
+		memberService.list(null);
+		goView(req, resp, "/friend.jsp");
+	}
 	
 	}
 	

@@ -39,7 +39,7 @@
 			<a class="nav-link" style="text-align:left" href="mypage.jsp">◀ 돌아가기</a>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link btn btn-outline-primary" href="#">친구찾기</a>
+			<button type="button" class="btn btn-primary" onclick="getElementById('friendModal').style.display='block';getElementById('friendModal').classList.add('show');">친구찾기</button>
 		</li>
 		<li class="nav-item">
 			<label  class="switch-button">
@@ -81,6 +81,31 @@
 			</a>
 		</div>
 	</div>
-</div>
+		<!-- 친구찾기용 모달 -->
+		<div class="modal fade" id="friendModal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="friendModalLabel">친구찾기</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<form>
+							<div class="mb-3">
+								<label for="idSearch" class="col-form-label">
+									찾으려는 id를 입력하세요
+								</label>
+								<input type="text" class="form-control" id="idSearch">
+							</div>
+						</form>
+					</div>
+					<!-- <div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary">Save changes</button>
+					</div> -->
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

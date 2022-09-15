@@ -8,7 +8,7 @@
 		<a class="mypageSidebarBtn"  href="checkArt.jsp">
 			평가한 작품보기
 		</a>
-		<a class="mypageSidebarBtn"  href="friend.jsp">
+		<a class="mypageSidebarBtn"  href="friend">
 			친구관리
 		</a>
 		<a class="mypageSidebarBtn"  href="#">

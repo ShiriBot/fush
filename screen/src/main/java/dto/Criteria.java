@@ -39,6 +39,13 @@ public class Criteria {
 			this.keyword="";
 		}
 	}
+	
+	public Criteria(String kind, String searchField, String keyword) {
+		super();
+		this.kind = kind;
+		this.searchField = searchField;
+		this.keyword = keyword;
+	}
 
 	public String getKind() {
 		return kind;
