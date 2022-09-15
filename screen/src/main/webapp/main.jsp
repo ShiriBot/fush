@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="head_new.jsp" %>
+<%@ include file="head.jsp" %>
 <title>메인</title>
 </head>
 <body onload="init()">

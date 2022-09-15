@@ -72,56 +72,37 @@
 			<script src="/js/tagCloud.js"></script>
 			<h3>내가 가장 많이 본 장르</h3>
 			<div class="DetailBoard">	
-				<div class="divideBoard">
-					<span>액션</span>
-					<div class="webtoonCount">104</div>
-				</div>
-				<div class="divideBoard">
-					<span>일상</span>
-					<div class="webtoonCount">88</div>
-				</div> 
-				<div class="divideBoard">
-					<span>판타지</span>
-					<div class="webtoonCount">40</div>
-				</div>
+				<c:forEach items="${CountGenre}" var="countGenre">
+					<div class="divideBoard">
+						<span>${countGenre.name}</span>
+						<div class="webtoonCount">${countGenre.artCount}</div>
+					</div>
+				</c:forEach>
+				
 			</div>
 		
 			<h3>내가 가장 좋아하는 장르</h3>
 			<div class="DetailBoard">	
-				<div class="divideBoard">
-					<span>판타지</span>
-					<div class="webtoonCount">4.1</div>
-				</div>
-				<div class="divideBoard">
-					<span>액션</span>
-					<div class="webtoonCount">3.7</div>
-				</div> 
-				<div class="divideBoard">
-					<span>일상</span>
-					<div class="webtoonCount">3.5</div>
-				</div>
+				<c:forEach items="${FavoriteGenre}" var="favoriteGenre">
+						<div class="divideBoard">
+							<span>${favoriteGenre.name}</span>
+							<div class="webtoonCount">${favoriteGenre.artRatingAvg}</div>
+						</div>
+				</c:forEach>
 			</div>
 		
 			<h3>내가 가장 많이 이용하는 플랫폼</h3>
 			<div class="DetailBoard">	
-				<div class="divideBoard">
-					<img src="images/Naver_Line_Webtoon_logo.png">
-					<span>네이버</span>
-					<div class="webtoonCount">57</div>
-				</div>
-				<div class="divideBoard">
-					<img src="images/Kakao_Webtoon_logo.jpg">
-					<span>카카오 웹툰</span>
-					<div class="webtoonCount">46</div>
-				</div> 
-				<div class="divideBoard">
-					<img src="images/Lezin_Webtoon_logo.jpg">
-					<span>레진코믹스</span>
-					<div class="webtoonCount">38</div>
-				</div>
+				<c:forEach items="${Platform}" var="platform">
+					<div class="divideBoard">
+						<img src="">
+						<span>${platform.plaform}</span>
+						<div class="webtoonCount">${platform.cnt}</div>
+					</div> 
+				</c:forEach>
 			</div>
 
-			<h3>내가 가장 좋아하는 작가</h3>
+			<!-- <h3>내가 가장 좋아하는 작가</h3>
 			<div class="DetailBoard">
 				<div class="ranking">
 					<p>1위
@@ -138,7 +119,7 @@
 					<div class="rankingTitle">3편</div>
 					<div class="rankingTitle">3편</div>
 				</div>
-			</div>
+			</div> -->
 	
 			<!-- <h3>그 외</h3> 별도 표기
 			<div class="DetailBoard">	

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import common.OracleConn;
+import dto.Artwork;
 import dto.Average;
 import dto.Tag;
 import oracle.jdbc.OracleTypes;
@@ -96,27 +97,68 @@ public class PreferenceDao {
 		return genre;
 	}
 	// 수정해야됨
-	public List<Tag> MyRatingFavoriteGenre(String userId) {
+	public List<Tag> MyRatingCountGenre(String userId) {
 		List<Tag> genre = new ArrayList<Tag>();
-		String sql="call p_getart_rating(?,?)";
+		String sql="call get_myart_rating_cnt(?,?)";
 		
 		try {
 			CallableStatement stmt = conn.prepareCall(sql);
-			stmt.setString(1, userId);
+			stmt.setString(1, userId );
 			stmt.registerOutParameter(2, OracleTypes.CURSOR);
-			
-			
-			ResultSet rs =stmt.executeQuery();
-			
-		while(rs.next()) {
+			stmt.executeQuery();
+			ResultSet rs =(ResultSet) stmt.getObject(2);
+			while(rs.next()) {
 				Tag tag = new Tag();
-				tag.setName(rs.getString("name"));
-				tag.setArtRatingAvg(rs.getString("cnt"));
+				tag.setName(rs.getString("cnt_name"));
+				tag.setArtCount(rs.getString("cnt"));
 				genre.add(tag);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return genre;
+	}
+	public List<Tag> MyRatingFavoriteGenre(String userId) {
+		List<Tag> genre = new ArrayList<Tag>();
+		String sql="call get_myart_rating_favorite(?,?)";
+		
+		try {
+		CallableStatement stmt = conn.prepareCall(sql);
+		stmt.setString(1, userId );
+		stmt.registerOutParameter(2, OracleTypes.CURSOR);
+		stmt.executeQuery();
+		ResultSet rs =(ResultSet) stmt.getObject(2);
+		while(rs.next()) {
+			Tag tag = new Tag();
+			tag.setName(rs.getString("avg_name"));
+			tag.setArtRatingAvg(rs.getString("avg"));
+			genre.add(tag);
+		}
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+	return genre;
+	}
+	public List<Artwork> MyRatingPlatform(String userId) {
+		List<Artwork> platform = new ArrayList<Artwork>();
+		String sql ="call get_myplatform_rating(?,?)";
+		
+		try {
+			CallableStatement stmt = conn.prepareCall(sql);
+			stmt.setString(1, userId);
+			stmt.registerOutParameter(2, OracleTypes.CURSOR);
+			stmt.executeQuery();
+			ResultSet rs = (ResultSet) stmt.getObject(2);
+			
+			while(rs.next()) {
+				Artwork artwork= new Artwork();
+				artwork.setPlaform(rs.getString("platform"));
+				artwork.setCnt(rs.getInt("cnt"));
+				platform.add(artwork);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return platform;
 	}
 }

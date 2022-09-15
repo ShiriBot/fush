@@ -26,7 +26,7 @@
 					</div>
 				</fieldset>
 			</form>
-			<a class="col-3 nav-link primary" href="search.so"> 상세검색</a>
+			<a class="col-3 nav-link primary" href="/search.so"> 상세검색</a>
 			</div>
 		</div>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -46,24 +46,24 @@
 					</a> 
 				</li> -->
 				<li class="nav-item">
-					<a class="nav-link primary" href="rating.jsp">
+					<a class="nav-link primary" href="/rating.jsp">
 						평가하기
 					</a>
 				</li>
 <% if(session.getAttribute("sess_id")==null) {%>
 				<li class="nav-item">
-					<a class="nav-link primary" href="login.jsp">
+					<a class="nav-link primary" href="/login.jsp">
 					로그인
 					</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link navBtn primary" href="signup.jsp">
+					<a class="nav-link navBtn primary" href="/signup.jsp">
 						회원가입
 					</a>
 				</li>
 <% } else{ %>
 				<li class="nav-item">
-					<a class="nav-link primary"  href="logoutProc.jsp" id="logout">
+					<a class="nav-link primary"  href="/logoutProc.jsp" id="logout">
 						로그아웃
 					</a>
 				</li>

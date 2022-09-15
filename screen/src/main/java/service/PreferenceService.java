@@ -3,6 +3,7 @@ package service;
 import java.util.List;
 
 import dao.PreferenceDao;
+import dto.Artwork;
 import dto.Average;
 import dto.Tag;
 
@@ -17,5 +18,14 @@ public class PreferenceService {
 	}
 	public List<Tag> MyRatingMostGenre(String userId) {
 		return preferenceDao.MyRatingMostGenre(userId);
+	}
+	public List<Tag>MyRatingFavoriteGenre(String userId) {
+		return preferenceDao.MyRatingFavoriteGenre(userId);
+	}
+	public List<Tag>MyRatingCountGenre(String userId) {
+		return preferenceDao.MyRatingCountGenre(userId);
+	}
+	public List<Artwork>MyRatingPlatform(String userId) {
+		return preferenceDao.MyRatingPlatform(userId);
 	}
 }
