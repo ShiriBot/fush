@@ -16,6 +16,7 @@ am4core.useTheme(am4themes_animated);
 var chart = am4core.create("chartdiv", am4plugins_wordCloud.WordCloud);
 var series = chart.series.push(new am4plugins_wordCloud.WordCloudSeries());
 
+
 series.data = [{/*태그 data*/
   "tag": "개그",
   "weight": 60

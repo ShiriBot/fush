@@ -21,9 +21,14 @@
 	<div class="session">
 		<div class="preference"> <!-- 내부 별도 스타일을 주기 위한 클래스 선언하여 감쌌음! -->
 			
+			<c:forEach items="${Chart}" var="chart">
+			<input type="hidden" name ="chartData" value="${chart.cnt }">
+			${chart.cnt }
+			</c:forEach>
 			<h1 class="oneline">user2님의 웹툰취향 분석	</h1>
 		
 			<h3>나의 평가 현황</h3>
+				
 			<c:set value="${Preference}" var="preference"/>
 			<div class="DetailBoard" style="border-bottom:none;">
 				<div class="divideBoard">
@@ -39,6 +44,13 @@
 					<div class="webtoonCount">${preference.replyCount}</div>
 				</div>
 			</div>
+			<c:forEach items="${Chart}" var="chart">
+				<div class="divideBoard">
+					<span>
+					${chart.cnt}
+					</span>
+				</div>
+			</c:forEach>
 			<div class="DetailBoard">
 				<div class="divideBoard">
 					<div class="webtoonCount">

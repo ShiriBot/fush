@@ -28,4 +28,7 @@ public class PreferenceService {
 	public List<Artwork>MyRatingPlatform(String userId) {
 		return preferenceDao.MyRatingPlatform(userId);
 	}
+	public List<Artwork>Chart(String userId) {
+		return preferenceDao.Chart(userId);
+	}
 }

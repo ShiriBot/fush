@@ -43,6 +43,7 @@ public class PreferenceController extends HttpServlet {
 			req.setAttribute("FavoriteGenre", preferenceService.MyRatingFavoriteGenre(id));
 			req.setAttribute("CountGenre", preferenceService.MyRatingCountGenre(id));
 			req.setAttribute("Platform", preferenceService.MyRatingPlatform(id));
+			req.setAttribute("Chart", preferenceService.Chart(id));
 			goView(req, resp, "/preference.jsp");
 		}
 	

@@ -161,4 +161,25 @@ public class PreferenceDao {
 		}
 		return platform;
 	}
+	public List<Artwork> Chart(String userId){
+		List<Artwork> chart = new ArrayList<Artwork>();
+		String sql="call get_chart_cnt(?,?)";
+		
+		try {
+			CallableStatement stmt = conn.prepareCall(sql);
+			stmt.setString(1, userId);
+			stmt.registerOutParameter(2, OracleTypes.CURSOR);
+			stmt.executeQuery();
+			ResultSet rs = (ResultSet) stmt.getObject(2);
+			
+			while(rs.next()) {
+				Artwork a = new Artwork();
+				a.setCnt(rs.getInt("cnt"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return chart;
+	}
 }
