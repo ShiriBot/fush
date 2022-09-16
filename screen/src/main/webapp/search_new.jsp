@@ -10,7 +10,7 @@
 
 <%@ include file="header.jsp" %>
 
-<div class="container-md col-md-9 mt-3">
+<div class="container-md mt-3">
 <%@ include file="searchDetail_new.jsp" %>
 </div>
 <%@ include file="footer.jsp" %>
