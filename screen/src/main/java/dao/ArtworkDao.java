@@ -1,5 +1,6 @@
 package dao;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,6 +12,7 @@ import common.OracleConn;
 import dto.Artwork;
 import dto.Criteria;
 import dto.Tag;
+import oracle.jdbc.OracleTypes;
 
 public class ArtworkDao {
 	Connection conn = OracleConn.getInstance().getConn();
@@ -26,7 +28,6 @@ public class ArtworkDao {
 		if(aCri.getSearchField()!=null) {
 			if(!aCri.getSearchField().equals("")) sql+= " WHERE "+aCri.getSearchField()+" LIKE '%"+aCri.getKeyword()+"%'";
 		}
-		System.out.print(sql);
 		
 		try {
 			stmt = conn.prepareStatement(sql);
@@ -173,8 +174,31 @@ public class ArtworkDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-			
 		return artwork;
-		
 	}
+	
+	public List<Artwork> Rating(String userId){
+		List<Artwork> artwork = new ArrayList<Artwork>();
+		String sql ="call get_rating_art(?,?)";
+		
+		try {
+			CallableStatement stmt = conn.prepareCall(sql);
+			stmt.setString(1, userId);
+			stmt.registerOutParameter(2, OracleTypes.CURSOR);
+			stmt.executeQuery();
+			ResultSet rs = (ResultSet) stmt.getObject(2);
+			while(rs.next()) {
+				Artwork a = new Artwork();
+				a.setSeqno(rs.getString("seqno"));
+				a.setName(rs.getString("name"));
+				a.setAuthor(rs.getString("author"));
+				a.setImageRoute(rs.getString("image_route"));
+				artwork.add(a);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return artwork;
+	}
+	
 }

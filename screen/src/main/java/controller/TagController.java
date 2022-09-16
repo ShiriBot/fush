@@ -15,7 +15,7 @@ import service.ArtworkService;
 import service.TagService;
 
 
-@WebServlet("*.so") //맵핑 디렉토리로 변경
+@WebServlet("/search") //맵핑 디렉토리로 변경
 public class TagController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -35,10 +35,10 @@ public class TagController extends HttpServlet {
 		TagService tagService = new TagService();
 		ArtworkService artworkService = new ArtworkService();
 		
-		if(cmd.equals("search.so")) {
+		if(cmd.equals("search")) {
 			req.setAttribute("searchList", tagService.tagList());
 			req.setAttribute("artList",artworkService.list());
-			goView(req,resp,"/search.jsp");
+			goView(req,resp,"/search_new.jsp");
 		}
 		
 	}

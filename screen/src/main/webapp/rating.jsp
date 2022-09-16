@@ -20,6 +20,7 @@ $(window).scroll(function() {
  }
 }
 </script>
+
 <%@ include file="head.jsp" %>
 <title>평가하기</title>
 </head>

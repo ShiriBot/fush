@@ -32,4 +32,7 @@ public class ArtworkService {
 	public List<Artwork> topTagArt(String seqno){
 		return artworkDao.topTagArt(seqno);
 	}
+	public List<Artwork> rating(String userId){
+		return artworkDao.Rating(userId);
+	}
 }

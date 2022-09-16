@@ -26,7 +26,7 @@
 					</div>
 				</fieldset>
 			</form>
-			<a class="col-3 nav-link primary" href="/search.so"> 상세검색</a>
+			<a class="col-3 nav-link primary" href="search"> 상세검색</a>
 			</div>
 		</div>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"

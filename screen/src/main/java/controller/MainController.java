@@ -35,7 +35,6 @@ public class MainController extends HttpServlet {
 	private void doAction(HttpServletRequest req,HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html;charset=utf-8");
 		req.setCharacterEncoding("utf-8");
-		System.out.println("confirm");
 		
 		BannerService bannerService = new BannerService();
 		ArtworkService artworkService = new ArtworkService();
