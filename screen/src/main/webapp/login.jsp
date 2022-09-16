@@ -8,10 +8,8 @@
 </head>
 <body>
 <%@ include file="header.jsp" %>
-<div class="center">
-<div class="session">
+<div class="container-md col-md-9 mt-10">
 <%@ include file="loginForm.jsp" %>
-</div>
 </div>
 <%@ include file="footer.jsp" %>
 

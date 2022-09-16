@@ -5,7 +5,8 @@
 
 
 <!-- 장르 드롭다운 -->
-<div class="row" style="width: 60%; float:none; margin:0 auto" >
+
+<div class="row">
 	<nav class="navbar navbar-expand-lg navbar-light bg-white" style="border: 1px solid #d8d8df">
 	    <span class="navbar-brand">장르</span>
 	    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">

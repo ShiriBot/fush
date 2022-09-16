@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<div class="center">
-<div class="session">
 <div class="container-md col-md-9">
 <!-- 화면 전체를 감싼 뼈대 -->
 <!-- 양ㅇ옆 여백 추가하기 -->
@@ -45,10 +43,8 @@
 		<!-- <img src="images/logo.png"> -->
 		<script src="js/slideShow.js"></script>
 	</div>
-</div>
+
 <!-- 슬라이드쇼 반응형...역시 거슬려서 먼저함... 개빡셋음... -->
-</div>
-</div>
 	<div class="row">
 		<div class="col">
 			<h2>A-CHU 추천</h2>
@@ -122,4 +118,5 @@
 			</c:forEach>
 		</div>
 	</c:forEach>
-	</div>
+</div>
+</div>

@@ -17,8 +17,7 @@
 </head>
 <body onload="init()">
 
-<div class="center">
-	<div class="session">
+<div class="container-md col-md-9 mt-3">
 		<div class="preference"> <!-- 내부 별도 스타일을 주기 위한 클래스 선언하여 감쌌음! -->
 			
 			<c:forEach items="${Chart}" var="chart">
@@ -147,14 +146,5 @@
 			</div> -->
 		</div>
 	</div>
-</div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-<script src="js/Chart.js"></script>
-<script src="//cdn.amcharts.com/lib/4/core.js"></script>
-<script src="//cdn.amcharts.com/lib/4/charts.js"></script>
-<script src="//cdn.amcharts.com/lib/4/plugins/wordCloud.js"></script>
-<script src="//cdn.amcharts.com/lib/4/themes/animated.js"></script>
-<script src="js/tagCloud.js"></script>
-
 </body>
 </html>

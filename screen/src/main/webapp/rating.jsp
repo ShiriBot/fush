@@ -27,8 +27,7 @@ $(window).scroll(function() {
 <body onload="init()">
 <%@ include file="header.jsp" %>
 
-<div class="center">
-<div class="session" id="document">
+<div class="container-md col-md-9 mt-3" id="document">
 <h2> 하여튼 뭔가 간지나고 평가를 독려하는 문구 </h2>
 <%@ include file="ratingContent.jsp" %>
 <%@ include file="ratingContent.jsp" %>
@@ -41,7 +40,6 @@ $(window).scroll(function() {
 <%@ include file="ratingContent.jsp" %>
 <%@ include file="ratingContent.jsp" %>
 <div id="second"></div>
-</div>
 </div>
 <%@ include file="footer.jsp" %>
 <%@ include file="reply_modal.jsp" %>

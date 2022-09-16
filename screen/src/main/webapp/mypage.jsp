@@ -10,10 +10,8 @@
 
 <%@ include file="header.jsp" %>
 
-<div class="center">
-<div class="session">
+<div class="container-md col-md-9 mt-3">
 <%@ include file="mypageContent.jsp" %>
-</div>
 </div>
 <%@ include file="footer.jsp" %>
 
