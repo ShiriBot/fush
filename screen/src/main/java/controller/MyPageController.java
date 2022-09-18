@@ -14,17 +14,19 @@ import service.MemberService;
 import service.PreferenceService;
 
 @WebServlet("/mypage/*")
-public class PreferenceController extends HttpServlet {
+public class MyPageController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public PreferenceController() {
+    public MyPageController() {
         super();
     }
 
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    @Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		doAction(req,resp);
 	}
 
+	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		doAction(req, resp);
 	}
@@ -47,11 +49,15 @@ public class PreferenceController extends HttpServlet {
 			req.setAttribute("Platform", preferenceService.MyRatingPlatform(id));
 			req.setAttribute("Chart", preferenceService.Chart(id));
 			goView(req, resp, "/preference.jsp");
+		} else if(cmd.equals("ratedArt")) {
+			goView(req, resp, "/CheckArt.jsp");
 		} else if(cmd.equals("friend")) {
 			goView(req, resp, "/friend.jsp");
 		} else if(cmd.equals("friendSearch")) {
-		Criteria mCri = new Criteria("friend","id",req.getParameter("id"));
-		memberService.list(null);
+		Criteria fCri = new Criteria("friend","id",req.getParameter("id"));
+		if(memberService.list(fCri)!=null) {
+			req.setAttribute("search", "ok");
+		};
 		goView(req, resp, "/friend.jsp");
 	}
 	

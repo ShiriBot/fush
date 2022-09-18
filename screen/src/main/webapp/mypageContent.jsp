@@ -5,10 +5,10 @@
 		<a class="mypageSidebarBtn" href="/mypage/preference">
 			취향분석
 		</a>
-		<a class="mypageSidebarBtn"  href="checkArt.jsp">
+		<a class="mypageSidebarBtn"  href="/mypage/ratedArt">
 			평가한 작품보기
 		</a>
-		<a class="mypageSidebarBtn"  href="friend">
+		<a class="mypageSidebarBtn"  href="/mypage/friend">
 			친구관리
 		</a>
 		<a class="mypageSidebarBtn"  href="#">

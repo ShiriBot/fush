@@ -90,12 +90,12 @@
 						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					</div>
 					<div class="modal-body">
-						<form>
+						<form name="idSearchForm" method="post">
 							<div class="mb-3">
-								<label for="idSearch" class="col-form-label">
+								<label for="id" class="col-form-label">
 									찾으려는 id를 입력하세요
 								</label>
-								<input type="text" class="form-control" id="idSearch">
+								<input type="text" class="form-control" id="id" onchange="javascript:idSearch()">
 							</div>
 						</form>
 					</div>
@@ -108,4 +108,32 @@
 		</div>
 	</div>
 </body>
+<script>
+function idSearch() {
+	var id = document.forms['idSearchForm']['id'].value;
+	var x = new XMLHttpRequest();
+
+	x.onreadystatechange = function() {
+		if (x.readyState === 4 && x.status === 200) {
+			console.log('ok')
+			var rsp = x.responseText.trim();
+			document.getElementById('idChecked').value = rsp;
+			var msg = document.getElementById("idCheckMsg");
+				if (rsp === "1") {
+					msg.innerText = "이미 사용중인 아이디입니다.";
+				} else {
+					msg.innerText = "사용가능한 아이디입니다.";
+				}
+		} else {
+			console.log("server error")
+		};
+	}
+
+	x.open('POST', , true);
+	x.send();
+}
+
+</script>
+
+
 </html>
