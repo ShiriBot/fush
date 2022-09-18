@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -50,15 +51,19 @@ public class MyPageController extends HttpServlet {
 			req.setAttribute("Chart", preferenceService.Chart(id));
 			goView(req, resp, "/preference.jsp");
 		} else if(cmd.equals("ratedArt")) {
-			goView(req, resp, "/CheckArt.jsp");
+			goView(req, resp, "/checkArt.jsp");
 		} else if(cmd.equals("friend")) {
 			goView(req, resp, "/friend.jsp");
 		} else if(cmd.equals("friendSearch")) {
-		Criteria fCri = new Criteria("friend","id",req.getParameter("id"));
-		if(memberService.list(fCri)!=null) {
-			req.setAttribute("search", "ok");
-		};
-		goView(req, resp, "/friend.jsp");
+			Criteria fCri = new Criteria("all","id",req.getParameter("id"));
+			PrintWriter out = resp.getWriter();
+			System.out.print(memberService.list(fCri).size());
+			if(memberService.list(fCri).size()==1) {
+		        out.print("ok"); //response    
+			}else{
+				out.print("no"); //response
+			};
+			/*goView(req, resp, "/friend.jsp");*/
 	}
 	
 	}

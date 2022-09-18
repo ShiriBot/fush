@@ -9,4 +9,4 @@
 	<a href="#">이용약관</a>
 	<a href="#">개인정보 처리방침</a>
 </div>
-<script src="js/messageAlert.js"></script>
+<script src="/js/messageAlert.js"></script>

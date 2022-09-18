@@ -90,12 +90,13 @@
 						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					</div>
 					<div class="modal-body">
-						<form name="idSearchForm" method="post">
+						<form name="idSearchForm">
 							<div class="mb-3">
 								<label for="id" class="col-form-label">
 									찾으려는 id를 입력하세요
 								</label>
 								<input type="text" class="form-control" id="id" onchange="javascript:idSearch()">
+								<div class="row" id="idSearchResult"></div>
 							</div>
 						</form>
 					</div>
@@ -107,30 +108,32 @@
 			</div>
 		</div>
 	</div>
+<%@ include file="footer.jsp" %>
+
 </body>
 <script>
 function idSearch() {
 	var id = document.forms['idSearchForm']['id'].value;
 	var x = new XMLHttpRequest();
+	x.open('GET', '/mypage/friendSearch?id='+id, true);
+	x.send();
 
 	x.onreadystatechange = function() {
 		if (x.readyState === 4 && x.status === 200) {
 			console.log('ok')
 			var rsp = x.responseText.trim();
-			document.getElementById('idChecked').value = rsp;
-			var msg = document.getElementById("idCheckMsg");
-				if (rsp === "1") {
-					msg.innerText = "이미 사용중인 아이디입니다.";
+			var result = document.getElementById('idSearchResult');
+				if (rsp === 'ok') {
+					result.innerHTML = '<div class="col"><span>추가가능</span></div>';
 				} else {
-					msg.innerText = "사용가능한 아이디입니다.";
+					result.innerHTML = '<div class="col"><span>검색결과가 없어요</span></div>';
 				}
 		} else {
 			console.log("server error")
 		};
 	}
 
-	x.open('POST', , true);
-	x.send();
+	
 }
 
 </script>
