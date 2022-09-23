@@ -41,4 +41,8 @@ public class ArtworkServiceImp implements ArtworkService {
 	public List<Artwork> rating(String userId){
 		return artworkDao.Rating(userId);
 	}
+	@Override
+	public List<Artwork> keywordList(Criteria aCri) {
+		return artworkDao.keywordList(aCri);
+	}
 }

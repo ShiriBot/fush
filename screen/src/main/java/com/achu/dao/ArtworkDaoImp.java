@@ -227,6 +227,53 @@ public class ArtworkDaoImp implements ArtworkDao {
 		}
 		return artwork;
 	}
+	
+	@Override
+	public List<Artwork> keywordList(Criteria aCri) {
+		CallableStatement stmt = null;
+		Connection conn = null; 
+		
+		List<Artwork> artList = new ArrayList<Artwork>();
+		List<Artwork> artRequest = new ArrayList<Artwork>();
+	
+		
+		String sql = "call p_get_search_keyword(?,?)";
+		try {
+			conn=dataSource.getConnection();
+			stmt = conn.prepareCall(sql);
+			stmt.setString(1, aCri.getKeyword());
+			stmt.registerOutParameter(2, OracleTypes.CURSOR);
+			stmt.executeQuery();
+			ResultSet rs = (ResultSet) stmt.getObject(2);
+			while(rs.next()) {
+				Artwork artwork = new Artwork();
+				artwork.setName(rs.getString("name"));
+				artwork.setAuthor(rs.getString("author"));
+				artwork.setDetail(rs.getString("detail"));
+				artwork.setWeek(rs.getString("week"));
+				artwork.setUrl(rs.getString("url"));
+				artwork.setImageRoute(rs.getString("image_route"));
+				
+				if(rs.getString("admit").equals("Y")) {
+					artList.add(artwork);
+				}else {
+					artRequest.add(artwork);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			resourceClose(conn,stmt);
+		}
+		if(aCri.getKind()!=null){
+			if(aCri.getKind().equals("request")){
+				return artRequest;
+			}
+		}
+		return artList;
+		
+	}
+	
 	private void resourceClose(Connection conn, PreparedStatement stmt) {
 		try {
 			if(stmt != null || conn != null) {

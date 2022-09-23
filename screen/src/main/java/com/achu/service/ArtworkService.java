@@ -20,4 +20,6 @@ public interface ArtworkService {
 	public List<Artwork> topTagArt(String seqno);
 	
 	public List<Artwork> rating(String userId);
+	
+	public List<Artwork> keywordList(Criteria aCri);
 }

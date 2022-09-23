@@ -55,9 +55,8 @@ public class MainController  {
 	}
 	@RequestMapping("artSearch")
 	public String artSearch(Model m,
-		@ModelAttribute("searchArt") Criteria rs) {
-		
-		artworkService.list(rs);
-		return "searchDetail_new";
+							@ModelAttribute("searchArt") Criteria cri) {
+		m.addAttribute("keyword",artworkService.keywordList(cri));
+		return "search_new";
 	}
 }

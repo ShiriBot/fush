@@ -13,10 +13,12 @@
    <context:component-scan base-package="com.achu.dao" />
    <context:component-scan base-package="com.achu.dto" />
    <context:component-scan base-package="com.achu.service" />
-   
    <!-- db컨넥션 풀 bean 설정 -->
    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-      <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+   		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" />
+   <!-- 		<property name="url" value="jdbc:log4jdbc:oracle:thin:@localhost:1521:xe" />
+   		
+      <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/> -->
    		<property name="url" value="jdbc:oracle:thin:@JCLASS10:1521:achu"/>
    		<property name="username" value="achu"/>
    		<property name="password" value="1234"/>
