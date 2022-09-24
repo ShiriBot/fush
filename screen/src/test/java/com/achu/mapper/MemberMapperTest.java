@@ -1,14 +1,12 @@
 package com.achu.mapper;
 
-
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.*;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.achu.dto.Member;
 	
@@ -22,7 +20,7 @@ import com.achu.dto.Member;
 		
 		@Test
 		public void test() {
-			Member m =mp.getById("testOracle");
+			Member m =mp.getById("dlaa");
 			log.info("나 임정후 가끔 감상에 젖어 눈물을 흘리곤하지★ "+ m.getName());
 			
 		}
