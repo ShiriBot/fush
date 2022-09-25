@@ -191,7 +191,6 @@
 			<version>3.5.6</version>
 		</dependency>
 		
-		<!-- MyBatis-Spring은 MyBatis를 Spring Framework에 녹여내 좀 더 쉽게 사용하고자하는 연동 모듈 -->
 		<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis-spring -->
 		<dependency>
 			<groupId>org.mybatis</groupId>
