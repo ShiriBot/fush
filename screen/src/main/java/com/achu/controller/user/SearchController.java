@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.achu.service.ArtworkService;
 import com.achu.service.ArtworkServiceImp;
+import com.achu.service.MemberService;
 import com.achu.service.TagService;
 import com.achu.service.TagServiceImp;
 
@@ -19,6 +20,8 @@ public class SearchController {
 	TagService tagService;
 	@Autowired
 	ArtworkService artworkService;
+	@Autowired
+	MemberService ms;
 	
 	@RequestMapping(value = "search_new",method = RequestMethod.GET)
 	private void ArtSearch(Model m) {
@@ -26,6 +29,11 @@ public class SearchController {
 			m.addAttribute("searchList", tagService.tagList());
 			m.addAttribute("artList",artworkService.list());
 		}
+	
+	@RequestMapping(value="artDetail")
+	public void artDetail(Model m) {
+		m.addAttribute("detail",artworkService.list());
+	}
 		
 	}
 	

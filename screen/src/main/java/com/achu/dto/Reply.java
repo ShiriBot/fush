@@ -7,6 +7,7 @@ public class Reply {
 	private String wdate;
 	private String art_seqno;
 	private String id;
+	private long ano;
 
 	public Reply() {
 	}
@@ -49,6 +50,14 @@ public class Reply {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public long getAno() {
+		return ano;
+	}
+
+	public void setAno(long ano) {
+		this.ano = ano;
 	}
 	
 }
