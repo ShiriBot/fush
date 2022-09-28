@@ -57,7 +57,7 @@
 									<div id="datatable-responsive_wrapper"
 										class="dataTables_wrapper container-fluid dt-bootstrap no-footer">
 										<div class="row">
-											<div class="col-sm-6">
+											<!-- <div class="col-sm-6">
 												<div class="dataTables_length" id="datatable-responsive_length">
 													<label>
 														Show 
@@ -77,7 +77,7 @@
 													</label>
 												</div>
 											</div>
-										</div>
+										</div> -->
 										<div class="row">
 											<div class="col-sm-12">
 												<table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline collapsed" cellspacing="0" width="100%" role="grid" aria-describedby="datatable-responsive_info" style="width: 100%;">
@@ -123,7 +123,7 @@
 												</table>
 											</div>
 										</div>
-										<div class="row">
+										<!-- <div class="row">
 											<div class="col-sm-5">
 												<div class="dataTables_info" id="datatable-responsive_info" role="status" aria-live="polite">Showing 1 to 1 of 2 entries</div>
 											</div>
@@ -157,7 +157,7 @@
 													</ul>
 												</div>
 											</div>
-										</div>
+										</div> -->
 									</div>
 								</div>
 							</div>

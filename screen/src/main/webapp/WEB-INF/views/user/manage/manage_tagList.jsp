@@ -235,4 +235,4 @@
 	}
 </script>
 
-<script type="text/javascript" src="/manage/assets/js/dragdrop.js"></script>
+<script type="text/javascript" src="/js/dragdrop.js"></script>

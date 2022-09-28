@@ -45,7 +45,7 @@ public class ManageController {
 		return "/manage/manage_index";
 	}
 	
-	@RequestMapping(value="member", method = RequestMethod.GET)
+	@RequestMapping(value="member", method = {RequestMethod.GET,RequestMethod.POST})
 	public String member(Criteria cri, Model model, @ModelAttribute("kind") String kind) {
 		if(cri.getCurrentPage()==0) cri.setCurrentPage(1);
 		if(cri.getLength()==0) cri.setLength(10);
@@ -58,7 +58,7 @@ public class ManageController {
 		return "/manage/manage_members";
 	}
 	
-	@RequestMapping(value="artwork", method = RequestMethod.GET)
+	@RequestMapping(value="artwork", method = {RequestMethod.GET,RequestMethod.POST})
 	public String artwork(Criteria cri, Model model) {
 		if(cri.getCurrentPage()==0) cri.setCurrentPage(1);
 		if(cri.getLength()==0) cri.setLength(10);
@@ -70,7 +70,7 @@ public class ManageController {
 		return "/manage/manage_arts";
 	}
 
-	@RequestMapping(value="artworkRequest", method = RequestMethod.GET)
+	@RequestMapping(value="artworkRequest", method = {RequestMethod.GET,RequestMethod.POST})
 	public String artworkRequest(Criteria cri, Model model) {
 		if(cri.getCurrentPage()==0) cri.setCurrentPage(1);
 		if(cri.getLength()==0) cri.setLength(10);

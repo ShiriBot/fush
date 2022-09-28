@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%-- <%
+<%
  String strReferer = request.getHeader("referer"); //이전 URL 가져오기
  
  if(strReferer == null){
@@ -12,7 +12,7 @@
 <%
   return;
  }
-%> --%>
+%>
 <div class="col-md-3 left_col menu_fixed">
 	<div class="left_col scroll-view">
 		<div class="navbar nav_title">
@@ -39,7 +39,7 @@
 				</h3>
 				<ul class="nav side-menu">
 					<li>
-						<a href="/admin/home">
+						<a href="/admin/">
 							<i class="fa fa-house"></i>
 							HOME
 							
