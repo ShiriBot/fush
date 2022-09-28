@@ -12,4 +12,7 @@ public interface TagService {
 	public String modify(String seqno, String newName);
 
 	public void delete(String seqno);
+
+	//이 아래로 mybatis-jquery 적용 용도
+	public int register(Tag tag);
 }

@@ -21,7 +21,7 @@ import com.achu.service.StatisticsService;
 import com.achu.service.TagService;
 
 @Controller
-@RequestMapping(value="/admin/", method = RequestMethod.GET)
+@RequestMapping(value="/admin/")
 public class ManageController {
 	
 	@Autowired
