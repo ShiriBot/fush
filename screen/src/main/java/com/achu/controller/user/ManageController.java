@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.achu.dto.Artwork;
 import com.achu.dto.Criteria;
@@ -88,21 +87,21 @@ public class ManageController {
 		return "/manage/manage_tags";
 	}
 	
-	@RequestMapping(value="tagInsert", method = RequestMethod.POST)
-	public String tagInsert(@RequestParam("tagName") String tagName,Model model) {
-		model.addAttribute("msg", tagService.insert(tagName));
-		return "redirect:/admin/tag";
-	}
-	
-	@RequestMapping(value="tagModify", method = RequestMethod.POST)
-	public String tagModify(@RequestParam("seqno") String seqno,@RequestParam("newName") String newName,Model model) {
-		model.addAttribute("msg", tagService.modify(seqno,newName));
-		return "redirect:/admin/tag";
-	}
-	
-	@RequestMapping(value="tagDelete", method = RequestMethod.POST)
-	public String tagDelete(@RequestParam("seqno") String seqno,Model model) {
-		tagService.delete(seqno);
-		return "redirect:/admin/tag";
-	}
+	/*	@RequestMapping(value="tagInsert", method = RequestMethod.POST)
+		public String tagInsert(@RequestParam("tagName") String tagName,Model model) {
+			model.addAttribute("msg", tagService.insert(tagName));
+			return "redirect:/admin/tag";
+		}
+		
+		@RequestMapping(value="tagModify", method = RequestMethod.POST)
+		public String tagModify(@RequestParam("seqno") String seqno,@RequestParam("newName") String newName,Model model) {
+			model.addAttribute("msg", tagService.modify(seqno,newName));
+			return "redirect:/admin/tag";
+		}
+		
+		@RequestMapping(value="tagDelete", method = RequestMethod.POST)
+		public String tagDelete(@RequestParam("seqno") String seqno,Model model) {
+			tagService.delete(seqno);
+			return "redirect:/admin/tag";
+		}*/
 }

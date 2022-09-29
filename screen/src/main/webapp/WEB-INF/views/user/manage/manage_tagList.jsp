@@ -26,14 +26,123 @@
 						<ul class="nav navbar-right panel_toolbox">
 							<li>
 								<a class="collapse-link">
-									<i class="fa fa-chevron-up"></i><!-- 이거 누르면 접히게 만들...고 싶어요 -->
+									<i class="fa fa-chevron-up"></i>
 								</a>
 							</li>
 						</ul>
 						<div class="clearfix"></div>
 					</div>
-					<div class="x_content">
-					<c:forEach items="${tagList}" var="tagLists">
+					<div class="x_content tag_list">
+					<script>
+					console.log("tag Module start");
+					 
+					 var tagService = (function(){
+						 function getList(callback, error){
+						 		
+						 		$.getJSON('/adminRest/tagList.json', function(data){
+						 			if(callback){
+						 				callback(data);
+						 			}
+						 		}).fail(function(xhr,status,err){
+						 			if(error){
+						 				error();
+						 			}
+						 		});
+						 		
+						 	}
+						 function update(param, callback, error){
+						 		console.log('태그 수정' + reply.seqno);
+						 		var bno = param.tno;
+						 		var page = param.name;
+						 		$.ajax({
+						 			type: 'put',
+						 			url : '/www/reply/'+reply.seqno,
+						 			data: JSON.stringify(reply),
+						 			contentType : 'application/json; charset=utf-8',
+						 			
+						 			success : function(result, status, xhr){
+						 				if(callback){
+						 					callback(result);
+						 				}
+						 			},
+						 			error : function(){
+						 				if(error){
+						 					error(er);
+						 				}
+						 			}
+						 		});
+						 	}
+					 	return {
+					 		getList:getList,
+					 		update:update
+					 	};
+					 	
+					 	
+					 })();
+					 
+					 		$(document).ready(function(){
+								console.log(tagService);	
+								console.log('=============');	
+								console.log('tag get list');
+								
+								showList();
+								
+								function showList(){
+									tagService.getList(function(list){
+										var str="";
+										var top="";
+										var mid="";
+										console.log(list.length);
+										for(var i=0, len=list.length || 0; i<len ; i++){
+											console.log(list[i]);
+											
+											if(mid != list[i].mid){
+												str+='<div class="row">';
+												if(top != list[i].top){
+													str+='<div class="tag_top col">'+list[i].top+'</div>';
+												}else{
+													str+='<div class="tag_top col" style="visibility:hidden"></div>';
+												}
+												top=list[i].top;
+												if(top != list[i].mid){
+													str+='<div class="tag_mid col">'+list[i].mid+'</div>';
+												}
+												mid=list[i].mid
+												str+='<div class="drag-container col-8">';
+												
+												for(var j=0, len=list.length || 0; j<len ; j++){
+													if(top == list[j].top && mid == list[j].mid){
+														str+='<div class="tag" draggable="true">'+list[j].name ;
+														str+='<a class="modifys" data-tno="'+list[j].seqno+'" data-name="'+list[j].name+'" style="display:none;"> <i class="fa fa-pen-to-square"></i></a>';
+														str+='<a class="deletes" data-tno="'+list[j].seqno+'" data-name="'+list[j].name+'" style="display:none;"> <i class="fa fa-circle-xmark"></i></a>';
+														str+='</div>';
+													}
+												}
+												str+='</div>';
+												str+='</div>';
+											}
+										}
+										$('.tag_list').html(str);
+									});
+								}//여기까지 showList
+								
+								/* $(".modifys").on("click",function(){
+									console.log('수정버튼 클릭');
+								}); */
+							}); //여기까지 onready
+					 		
+					 		$(document).on('click', '.modifys', function () {
+					 			console.log('수정아이콘 클릭');
+					 			modal($(this).data('tno'),$(this).data('name'));
+					 		});
+					 		$(document).on('click', '.deletes', function () {
+					 			console.log('삭제아이콘 클릭');
+					 			modal($(this).data('tno'),$(this).data('name'));
+					 		});
+					 		
+					 	
+					</script>
+					<%-- <c:forEach items="${tagList}" var="tagLists">
 						<c:if test="${mid ne tagLists.mid}">
 							<div class="row">
 								<c:if test="${top ne tagLists.top}">
@@ -68,7 +177,7 @@
 								</div>
 							</div>
 						</c:if>
-					</c:forEach>
+					</c:forEach> --%>
 					</div>
 				</div>
 			</div>
@@ -158,14 +267,12 @@
 			</div>
 			<div class="modal-body">
 				<p id="modalText"></p>
-				<form method="post" class="modifyForm" name="modalForm" action="">
 					<input type="hidden" name="seqno">
 					<input type="text" name="newName">
 					<div class="modal-footer">
-						<input class="btn btn-primary" name="submit" type="submit" value="변경">
-						<input class="btn btn-secondary" type="button" value="취소" onclick="javascript:modifyClose()">
+						<button class="btn btn-primary" name="submit">확인</button>
+						<button class="btn btn-secondary" onclick="javascript:modifyClose()">취소</button>
 					</div>
-				</form>
 			</div>
 		</div>
 	</div>
@@ -185,8 +292,8 @@
 				title='태그 이름 변경';
 				text='변경할 이름을 작성해주세요.';
 				btn='태그 이름 변경 취소';
-				document.forms['modalForm'].elements['submit'].value='변경';
-				document.forms['modalForm'].action='/admin/tagModify';
+				//document.forms['modalForm'].elements['submit'].value='변경';
+				//document.forms['modalForm'].action='/adminRest/tagModify
 			}else{
 				modifys.forEach(modify => {
 					modify.style.display='none';
@@ -217,7 +324,7 @@
 			document.getElementById('deleteBtn').innerHTML=btn;
 		}
 		document.querySelector('.modal-title').InnerHTML=title;
-		document.getElementById('modalText').InnerHTML=text;
+		document.getElementById('.modalText').InnerHTML=text;
 		/* 왜 안 바뀔까... */
 		
 	}

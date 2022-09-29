@@ -1,7 +1,5 @@
 package com.achu.service;
 
-
-
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -60,8 +58,26 @@ public class TagServiceImp implements TagService {
 	
 	//이 아래로 mybatis-jquery 적용 용도
 	@Override
-	public int register(Tag tag) {
-		log.info("tag register service called..."+tag);
-		return mapper.insert(tag);
+	public void register(String tagName) {
+		log.info("tag register service called..."+tagName);
+		mapper.insert(tagName);
+	}
+
+	@Override
+	public List<Tag> tagListRest() {
+		log.info("tag List service called...");
+		return mapper.list();
+	}
+
+	@Override
+	public int edit(String seqno, String newName) {
+		log.info("tag edit service called...");
+		return mapper.edit(seqno,newName);
+	}
+
+	@Override
+	public int remove(String seqno) {
+		log.info("tag remove service called...");
+		return  mapper.remove(seqno);
 	}
 }
