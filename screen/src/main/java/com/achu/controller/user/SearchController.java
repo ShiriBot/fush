@@ -30,11 +30,7 @@ public class SearchController {
 			m.addAttribute("artList",artworkService.list());
 		}
 	
-	@RequestMapping(value="artDetail")
-	public void artDetail(Model m) {
-		m.addAttribute("detail",artworkService.list());
-	}
-		
+	
 	}
 	
 

@@ -17,4 +17,7 @@ public interface ArtworkDao {
 	public List<Artwork> Rating(String userId);
 
 	List<Artwork> keywordList(Criteria aCri);
+
+	public Artwork artDetail(String seqno);
+
 }

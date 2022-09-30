@@ -2,6 +2,7 @@ package com.achu.dto;
 
 public class Reply {
 	
+	private int no;
 	private String seqno;
 	private String content;
 	private String wdate;
@@ -58,6 +59,14 @@ public class Reply {
 
 	public void setAno(long ano) {
 		this.ano = ano;
+	}
+
+	public int getNo() {
+		return no;
+	}
+
+	public void setNo(int no) {
+		this.no = no;
 	}
 	
 }

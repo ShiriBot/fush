@@ -9,10 +9,6 @@
 <body onload="init()">
 <%@ include file="header.jsp" %>
 
-<div class="center">
-<div class="session">
 <%@ include file="artDetailRow.jsp" %>
-</div>
-</div>
 </body>
 </html>

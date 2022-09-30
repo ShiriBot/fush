@@ -56,7 +56,7 @@
 		<div class="col-3">
 			<div class="card">
 					<div class="card-body">
-						<div class="clickBox" onclick="location.href='artDetail'">
+						<div class="clickBox" onclick="location.href='/artDetail/detail?seqno=${mainchu.seqno}'" >
 							<img class="card-img-top" src="${mainchu.imageRoute}" >
 							<h3 class="card-title mt-2">${mainchu.name}</h3>
 							<h5 class="card-subtitle">${mainchu.author}</h5>

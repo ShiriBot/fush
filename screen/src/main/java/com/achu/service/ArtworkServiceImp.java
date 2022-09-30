@@ -11,11 +11,15 @@ import com.achu.dao.ArtworkDaoImp;
 import com.achu.dto.Artwork;
 import com.achu.dto.Criteria;
 import com.achu.dto.Tag;
+import com.achu.mapper.ArtworkMapper;
 
 @Service
 public class ArtworkServiceImp implements ArtworkService {
 	@Autowired
 	ArtworkDao artworkDao;
+	
+	@Autowired 
+	ArtworkMapper mapper;
 	
 	@Override
 	public List<Artwork> list(Criteria aCri) {
@@ -45,4 +49,9 @@ public class ArtworkServiceImp implements ArtworkService {
 	public List<Artwork> keywordList(Criteria aCri) {
 		return artworkDao.keywordList(aCri);
 	}
+	public Artwork artDetail(String seqno) {
+		return artworkDao.artDetail(seqno);
+	}
+	
+	
 }

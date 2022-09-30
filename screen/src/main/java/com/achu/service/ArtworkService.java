@@ -22,4 +22,6 @@ public interface ArtworkService {
 	public List<Artwork> rating(String userId);
 	
 	public List<Artwork> keywordList(Criteria aCri);
+
+	public Artwork artDetail(String seqno);
 }
