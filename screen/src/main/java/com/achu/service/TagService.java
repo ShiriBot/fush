@@ -14,11 +14,13 @@ public interface TagService {
 	public void delete(String seqno);
 
 	//이 아래로 mybatis-jquery 적용 용도
-	public void register(String tagName);
+	public int register(String tagName);
 
 	public List<Tag> tagListRest();
 
 	public int edit(String seqno, String newName);
 	
 	public int remove(String seqno);
+
+	public int confirm(String tagName);
 }

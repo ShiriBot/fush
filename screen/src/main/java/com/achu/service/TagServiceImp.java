@@ -58,9 +58,9 @@ public class TagServiceImp implements TagService {
 	
 	//이 아래로 mybatis-jquery 적용 용도
 	@Override
-	public void register(String tagName) {
+	public int register(String tagName) {
 		log.info("tag register service called..."+tagName);
-		mapper.insert(tagName);
+		return mapper.insert(tagName);
 	}
 
 	@Override
@@ -79,5 +79,11 @@ public class TagServiceImp implements TagService {
 	public int remove(String seqno) {
 		log.info("tag remove service called...");
 		return  mapper.remove(seqno);
+	}
+
+	@Override
+	public int confirm(String tagName) {
+		log.info("tag confirm service called...");
+		return mapper.confirm(tagName);
 	}
 }

@@ -8,13 +8,15 @@ import com.achu.dto.Tag;
 
 public interface TagMapper {
 
-	void insert(String tagName);
+	int insert(String tagName);
 
 	List<Tag> list();
 
 	int edit(@Param("seqno") String seqno,@Param("newName") String newName);
 
 	int remove(String seqno);
+
+	int confirm(String tagName);
 
 	/*Integer insert(Map<String,Object> rs);*/
 

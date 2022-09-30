@@ -31,5 +31,8 @@
   		END
   	}
 	</delete>
+	<select id="confirm" resultType="int">
+		select count(*) from tag WHERE name=#{tagName}
+	</select>
 
 </mapper>
