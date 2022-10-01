@@ -39,6 +39,7 @@
 	  /* 댓글 리스트 */
 	 function getReply(param, callback, error) {
 		 var ano = param.ano;
+		 console.log("ano 넘어오는가" + ano);
 		 $.getJSON("/reply/list/"  + ano + ".json" , function(data){
 			 if(callback) {
 				 callback(data);

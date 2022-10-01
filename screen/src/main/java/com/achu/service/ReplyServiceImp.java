@@ -16,6 +16,7 @@ public class ReplyServiceImp implements ReplyService{
 	
 	@Override
 	public List<Reply> getReplyList(long ano) {
+		System.out.println("ReplyService ano널떠서 디버깅 : " + ano);
 		return mapper.getReplyList(ano);
 	}
 	public int modify(Reply vo) {

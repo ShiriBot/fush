@@ -7,9 +7,9 @@
 	<c:set value ="${detail}" var ="art"/>
 		<button class="bttn-bordered bttn-xs bttn-primary">보러가기</button>
 		<div style="display:none;">${art.seqno}</div>
-		<h1 style="display:inline-block;">${art.name }</h1>
+		<h1 style="display:inline-block;">${art.name}</h1>
 		<div style="display:inline-block;">연재중</div>
-		<h3>${art.author }</h3>
+		<h3>${art.author}</h3>
 		<div>평균 평점 : ★★★★★</div>
 		<a href="#">#스토리</a><a href="#">#드라마</a>
 		<div>${art.detail}</div>
@@ -52,7 +52,6 @@
 <script>
 	var id = '<c:out value="${sess_id}"/>'
 	var seqno = '<c:out value="${art.seqno}"/>';
-	var replySeqno = '<c:out value="${art.seqno}"/>'
 	var modal = $("#reply_modal");
 	var rModal = $(".replyCard");
 	
@@ -73,7 +72,8 @@ $(document).ready(function(){
 	var modal_content = modal.find("input[name='content']");
  	showList();
 	modal.hide();
- 	
+	var seqno = '<c:out value="${art.seqno}"/>';
+ 	console.log("ano값 널떠서 디버깅 " + seqno);
  	 /* 수정버튼 클릭시 */
  	$(".replyCard").on("click","button",function(e){
  	 	var rno = e.target.value;

@@ -274,14 +274,13 @@ public class ArtworkDaoImp implements ArtworkDao {
 		return artList;
 		
 	}
-	
+	// 태그때매 작품정보가 여러번 찍히니까 중첩테이블로 때던 if문으로 작품불러놓고 데이터(태그)가있으면 while문돌리기
 	@Override
 	public Artwork artDetail(String seqno) {
 		CallableStatement stmt = null;
 		Connection conn = null; 
 		Artwork a = new Artwork();
 		List<Tag> tag = new ArrayList<>();
-		List<Reply> reply = new ArrayList<>();
 		String sql = "call p_get_art_detail(?,?)";
 		try {
 			conn=dataSource.getConnection();
@@ -293,7 +292,6 @@ public class ArtworkDaoImp implements ArtworkDao {
 			
 			while(rs.next()) {
 				Tag ta = new Tag(); 
-				Reply r = new Reply();
 				a.setName(rs.getString("name"));
 				a.setSeqno(rs.getString("seqno"));
 				a.setAuthor(rs.getString("author"));
@@ -305,11 +303,7 @@ public class ArtworkDaoImp implements ArtworkDao {
 				ta.setName(rs.getString("tag_name"));
 				tag.add(ta);
 				
-				r.setNo(rs.getInt("r_seqno"));
-				reply.add(r);
-				
 				a.setTag(tag);
-				a.setReply(reply);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
