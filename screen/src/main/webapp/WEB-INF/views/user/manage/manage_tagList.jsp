@@ -33,280 +33,7 @@
 						<div class="clearfix"></div>
 					</div>
 					<div class="x_content tag_list">
-					<script>
-					console.log("tag Module start");
-					 
-					 var tagService = (function(){
-						 
-						 function add(name, callback,error){
-						 		console.log('reply add...');
-						 		
-						 		$.ajax({
-						 			type:'post',
-						 			url:'/adminRest/tagInsert/'+name,
-						 			success : function(result, status, xhr){
-						 				if(callback){
-						 					callback(result);
-						 				}
-						 			},
-						 			error : function(xhr, status, er){
-						 				if(error){
-						 					error(er);
-						 				}
-						 			}
-						 		
-						 		});
-						 	}
-						 
-						 function getList(callback, error){
-						 		
-						 		$.getJSON('/adminRest/tagList.json', function(data){
-						 			if(callback){
-						 				callback(data);
-						 			}
-						 		}).fail(function(xhr,status,err){
-						 			if(error){
-						 				error();
-						 			}
-						 		});
-						 		
-						 	}
-						 function update(tag, callback, error){
-						 		console.log('태그 수정' + tag.seqno);
-						 		var tno = tag.seqno;
-						 		var name = tag.name;
-						 		$.ajax({
-						 			type: 'put',
-						 			url : '/adminRest/tagModify',
-						 			data: JSON.stringify(tag),
-						 			contentType : 'application/json; charset=utf-8',
-						 			
-						 			success : function(result, status, xhr){
-						 				if(callback){
-						 					callback(result);
-						 				}
-						 			},
-						 			error : function(){
-						 				if(error){
-						 					error(er);
-						 				}
-						 			}
-						 		});
-						 	}
-						 function remove(tno, callback, error){
-						 		$.ajax({
-						 			type: 'delete',
-						 			url: '/adminRest/tagDelete/'+tno,
-						 			success: function(result, status, xhr){
-						 				callback(result);
-						 			},
-						 			error : function(){
-						 				if(error){
-						 					error(er);
-						 				}
-						 			}
-						 		
-						 		});
-						 	}
-						 
-						 function confirm(name, callback,error){
-						 		console.log('name duplicate confirm...');
-						 		
-						 		$.ajax({
-						 			type:'get',
-						 			url:'/adminRest/tagConfirm/'+name,
-						 			success : function(result, status, xhr){
-						 				if(callback){
-						 					callback(result);
-						 				}
-						 			},
-						 			error : function(xhr, status, er){
-						 				if(error){
-						 					error(er);
-						 				}
-						 			}
-						 		
-						 		});
-						 	}
-					 	return {
-					 		add:add,
-					 		getList:getList,
-					 		update:update,
-					 		remove:remove,
-					 		confirm:confirm
-					 	};
-					 	
-					 	
-					 })();
-					 
-					 		$(document).ready(function(){
-								console.log(tagService);	
-								console.log('=============');	
-								console.log('tag get list');
-								var modal = $('#modal');
-								var modal_title = $('#modalTitle');
-								var modal_text = $('#modalText');
-								var modal_tagName = modal.find('input[name="tagName"]');
-								
-								$('.modalCloseBtn').on('click', function(e){
-									modal.hide();
-									document.getElementById('modal_duplicate').innerHTML='';
-								});
-								modal.hide();
-								showList();
-								
-								function showList(){
-									tagService.getList(function(list){
-										var str="";
-										var top="";
-										var mid="";
-										//console.log(list.length);
-										for(var i=0, len=list.length || 0; i<len ; i++){
-											//console.log(list[i]);
-											
-											if(mid != list[i].mid){
-												str+='<div class="row">';
-												if(top != list[i].top){
-													str+='<div class="tag_top col">'+list[i].top+'</div>';
-												}else{
-													str+='<div class="tag_top col" style="visibility:hidden"></div>';
-												}
-												top=list[i].top;
-												if(top != list[i].mid){
-													str+='<div class="tag_mid col">'+list[i].mid+'</div>';
-												}
-												mid=list[i].mid
-												str+='<div class="drag-container col-8">';
-												
-												for(var j=0, len=list.length || 0; j<len ; j++){
-													if(top == list[j].top && mid == list[j].mid){
-														str+='<div class="tag" draggable="true">'+list[j].name ;
-														str+='<a class="modifys" data-tno="'+list[j].seqno+'" data-name="'+list[j].name+'" style="display:none;"> <i class="fa fa-pen-to-square"></i></a>';
-														str+='<a class="deletes" data-tno="'+list[j].seqno+'" data-name="'+list[j].name+'" style="display:none;"> <i class="fa fa-circle-xmark"></i></a>';
-														str+='</div>';
-													}
-												}
-												str+='</div>';
-												str+='</div>';
-											}
-										}
-										$('.tag_list').html(str);
-									});
-								}//여기까지 showList
-								
-								/* $('.tag_list').on('click','.modifys',function(){
-									console.log('수정버튼 클릭');
-									modal_tagName.val($(this).data('name'));
-									modal.data('tno',$(this).data('tno'));
-									modal.show();
-								}); */
-								$('#insertTagName').on('propertychange change keyup paste input',function(e){
-									if(e.target.value==''){
-										duplicate.innerHTML='';
-									}else{
-										tagService.confirm(e.target.value,function(rs){
-											if(rs=='0'){
-												duplicate.innerHTML='사용가능한 태그입니다.';
-												insertTagBtn.style.display='inline-block';
-											}else if(rs=='1'){
-												duplicate='중복된 태그입니다.';
-												insertTagBtn.style.display='none';
-											}else{
-												duplicate.innerHTML='뭔가 잘못되었다.';
-											}
-										
-										});
-									}
-								});
-								$('#tagName').on('propertychange change keyup paste input',function(e){
-									if(e.target.value==''){
-										modal_duplicate.innerHTML='';
-									}else{
-										tagService.confirm(e.target.value,function(rs){
-											if(rs=='0'){
-												modal_duplicate.innerHTML='사용가능한 태그입니다.';
-												modal_submit.style.display='inline-block';
-											}else if(rs=='1'){
-												modal_duplicate.innerHTML='중복된 태그입니다.';
-												modal_submit.style.display='none';
-											}else{
-												modal_duplicate.innerHTML='뭔가 잘못되었다.';
-											}
-										
-										});
-									}
-								});
-								//추가 버튼
-								$('#insertTagBtn').click(function(){
-									var name = document.getElementById('insertTagName').value;
-									tagService.add(name, function(result){
-										alert('태그가 추가되었습니다.'+result)
-										showList();
-										document.getElementById('insertTagName').value='';
-										document.getElementById('duplicate').innerHTML='';	
-										//document.getElementById("newLine").innerHTML = '<li>' +reply.content+ '</li>' ;
-									});
-								});
-								$('#modal_submit').on('click', function () {
-						 			console.log('전송 버튼 클릭');
-						 			var seqno =document.getElementsByName('seqno')[0].value;
-						 			var name =document.getElementsByName('tagName')[0].value;
-						 			if($(this)[0].innerHTML=='변경'){
-						 				console.log('수정 함수 불러오기');
-						 				var tag = {seqno: seqno,
-													name: name};
-						 				tagService.update(tag, function(result){
-						 					alert(result);
-						 					modal.hide();
-						 					showList();
-						 				});
-						 				document.getElementById('modifyBtn').innerHTML='태그 이름 변경';
-						 			}else if($(this)[0].innerHTML=='삭제'){
-						 				console.log('삭제 함수 불러오기');
-						 				tagService.remove(seqno, function(result){
-						 					alert(result);
-						 					modal.hide();
-						 					showList();
-						 				});
-						 				document.getElementById('deleteBtn').innerHTML='태그 삭제';
-						 			}
-						 		});
-								
-							}); //여기까지 onready
-
-						
-							
-					 		$(document).on('click', '.modifys', function () {
-					 			console.log('수정아이콘 클릭');
-					 			console.log('일련번호:'+$(this).data('tno'));
-					 			console.log('이름:' +$(this).data('name'));
-					 			//modal_value.val($(this).data('name'));
-								//modal.data('tno',$(this).data('tno'));
-					 			modal($(this).data('tno'),$(this).data('name'));
-								//modal.show();
-					 		});
-					 		$(document).on('click', '.deletes', function () {
-					 			console.log('삭제아이콘 클릭');
-					 			modal($(this).data('tno'),$(this).data('name'));
-					 		});
-					 		
-					 		/* $(document).on('click','#modal_submit', function () {
-					 			console.log('전송 버튼 클릭');
-					 			var seqno =document.getElementsByName('seqno')[0].value;
-					 			var name =document.getElementsByName('tagName')[0].value;
-					 			if($(this)[0].innerHTML=='변경'){
-					 				//console.log('innerHTML 인식하나?');
-					 				var tag = {seqno: seqno,
-												name: name};
-					 				tagService.update(tag, function(result){
-					 					alert(result);
-					 					modal.hide();
-					 					showList();
-					 				});
-					 			}
-					 		}); */
-					 	
-					</script>
+					
 					<%-- <c:forEach items="${tagList}" var="tagLists">
 						<c:if test="${mid ne tagLists.mid}">
 							<div class="row">
@@ -434,8 +161,8 @@
 			</div>
 			<div class="modal-body">
 				<p id="modalText"></p>
-					<input type="hidden" id="seqno" name="seqno">
-					<input type="text" id="tagName" name="tagName">
+					<input type="hidden" id="modal_seqno" name="seqno">
+					<input type="text" id="modal_tagName" name="tagName">
 					<p id="modal_duplicate"></p>
 					<div class="modal-footer">
 						<button class="btn btn-primary" id="modal_submit" name="submit">확인</button>
@@ -446,79 +173,359 @@
 	</div>
 </div>
 <script>
+					console.log("tag Module start");
+					 
+					 var tagService = (function(){
+						 
+						 function add(name, callback,error){
+						 		console.log('tag add...');
+						 		
+						 		$.ajax({
+						 			type:'post',
+						 			url:'/adminRest/tagInsert/'+name,
+						 			success : function(result, status, xhr){
+						 				if(callback){
+						 					callback(result);
+						 				}
+						 			},
+						 			error : function(xhr, status, er){
+						 				if(error){
+						 					error(er);
+						 				}
+						 			}
+						 		
+						 		});
+						 	}
+						 
+						 function getList(callback, error){
+						 		
+						 		$.getJSON('/adminRest/tagList.json', function(data){
+						 			if(callback){
+						 				callback(data);
+						 			}
+						 		}).fail(function(xhr,status,err){
+						 			if(error){
+						 				error();
+						 			}
+						 		});
+						 		
+						 	}
+						 function update(tag, callback, error){
+						 		console.log('태그 수정' + tag.seqno);
+						 		var tno = tag.seqno;
+						 		var name = tag.name;
+						 		$.ajax({
+						 			type: 'put',
+						 			url : '/adminRest/tagModify',
+						 			data: JSON.stringify(tag),
+						 			contentType : 'application/json; charset=utf-8',
+						 			
+						 			success : function(result, status, xhr){
+						 				if(callback){
+						 					callback(result);
+						 				}
+						 			},
+						 			error : function(){
+						 				if(error){
+						 					error(er);
+						 				}
+						 			}
+						 		});
+						 	}
+						 function remove(tno, callback, error){
+						 		$.ajax({
+						 			type: 'delete',
+						 			url: '/adminRest/tagDelete/'+tno,
+						 			success: function(result, status, xhr){
+						 				callback(result);
+						 			},
+						 			error : function(){
+						 				if(error){
+						 					error(er);
+						 				}
+						 			}
+						 		
+						 		});
+						 	}
+						 
+						 function confirm(name, callback,error){
+						 		console.log('name duplicate confirm...');
+						 		
+						 		$.ajax({
+						 			type:'get',
+						 			url:'/adminRest/tagConfirm/'+name,
+						 			success : function(result, status, xhr){
+						 				if(callback){
+						 					callback(result);
+						 				}
+						 			},
+						 			error : function(xhr, status, er){
+						 				if(error){
+						 					error(er);
+						 				}
+						 			}
+						 		
+						 		});
+						 	}
+					 	return {
+					 		add:add,
+					 		getList:getList,
+					 		update:update,
+					 		remove:remove,
+					 		confirm:confirm
+					 	};
+					 	
+					 	
+					 })();
+					 
+					 		$(document).ready(function(){
+								console.log(tagService);	
+								console.log('=============');	
+								console.log('tag get list');
+								var modal = $('#modal');
+								
+								modal.hide();
+								showList();
+								
+								function showList(){
+									tagService.getList(function(list){
+										var str="";
+										var top="";
+										var mid="";
+										//console.log(list.length);
+										for(var i=0, len=list.length || 0; i<len ; i++){
+											//console.log(list[i]);
+											
+											if(mid != list[i].mid){
+												str+='<div class="row">';
+												if(top != list[i].top){
+													str+='<div class="tag_top col">'+list[i].top+'</div>';
+												}else{
+													str+='<div class="tag_top col" style="visibility:hidden"></div>';
+												}
+												top=list[i].top;
+												if(top != list[i].mid){
+													str+='<div class="tag_mid col">'+list[i].mid+'</div>';
+												}
+												mid=list[i].mid
+												str+='<div class="drag-container col-8">';
+												
+												for(var j=0, len=list.length || 0; j<len ; j++){
+													if(top == list[j].top && mid == list[j].mid){
+														str+='<div class="tag" draggable="true" data-tno="'+list[j].seqno+'" data-name="'+list[j].name+'">'+list[j].name ;
+														str+='<a class="modifys" data-tno="'+list[j].seqno+'" data-name="'+list[j].name+'" style="display:none;"> <i class="fa fa-pen-to-square"></i></a>';
+														str+='<a class="deletes" data-tno="'+list[j].seqno+'" data-name="'+list[j].name+'" style="display:none;"> <i class="fa fa-circle-xmark"></i></a>';
+														str+='</div>';
+													}
+												}
+												str+='</div>';
+												str+='</div>';
+											}
+										}
+										$('.tag_list').html(str);
+									});
+								}//여기까지 showList
+								
+								//태그 추가 시 중복체크
+								$('#insertTagName').on('propertychange change keyup paste input',function(e){
+									if(e.target.value==''){
+										duplicate.innerHTML='';
+									}else{
+										tagService.confirm(e.target.value,function(rs){
+											if(rs=='0'){
+												duplicate.innerHTML='사용가능한 태그입니다.';
+												insertTagBtn.style.display='inline-block';
+											}else if(rs=='1'){
+												duplicate='중복된 태그입니다.';
+												insertTagBtn.style.display='none';
+											}else{
+												duplicate.innerHTML='뭔가 잘못되었다.';
+											}
+										
+										});
+									}
+								});
+								
+								//태그 이름 변경 시 중복체크
+								$('#modal_tagName').on('propertychange change keyup paste input',function(e){
+									if(e.target.value==''){
+										modal_duplicate.innerHTML='';
+									}else{
+										tagService.confirm(e.target.value,function(rs){
+											if(rs=='0'){
+												modal_duplicate.innerHTML='사용가능한 태그입니다.';
+												modal_submit.style.display='inline-block';
+											}else if(rs=='1'){
+												modal_duplicate.innerHTML='중복된 태그입니다.';
+												modal_submit.style.display='none';
+											}else{
+												modal_duplicate.innerHTML='뭔가 잘못되었다.';
+											}
+										
+										});
+									}
+								});
+								
+								//추가 버튼
+								$('#insertTagBtn').click(function(){
+									var insert_name = document.getElementById('insertTagName').value;
+									tagService.add(insert_name, function(result){
+										alert('태그가 추가되었습니다.'+result)
+										showList();
+										insertTagName.value='';
+										duplicate.innerHTML='';	
+										//document.getElementById("newLine").innerHTML = '<li>' +reply.content+ '</li>' ;
+									});
+								});
+								$('#modal_submit').on('click', function () {
+						 			console.log('전송 버튼 클릭');
+						 			var seqno =document.getElementsByName('seqno')[0].value;
+						 			var name =document.getElementsByName('tagName')[0].value;
+						 			if($(this)[0].innerHTML=='변경'){
+						 				console.log('수정 함수 불러오기');
+						 				var tag = {seqno: seqno,
+													name: name};
+						 				tagService.update(tag, function(result){
+						 					alert(result);
+						 					modal.hide();
+						 					showList();
+						 				});
+						 				modifyBtn.innerHTML='태그 이름 변경';
+						 			}else if($(this)[0].innerHTML=='삭제'){
+						 				console.log('삭제 함수 불러오기');
+						 				tagService.remove(seqno, function(result){
+						 					alert(result);
+						 					modal.hide();
+						 					showList();
+						 				});
+						 				deleteBtn.innerHTML='태그 삭제';
+						 			}
+						 		});
+								
+								/* $('.tag_list').on('click','.modifys',function(e){
+									console.log('수정버튼 클릭');
+									modal_tagName.val($(this).data('name'));
+									modal.data('tno',$(this).data('tno'));
+									modal.show();
+								}); */
+								/* $(document).on('click', '.deletes', function () {
+					 			console.log('삭제아이콘 클릭');
+					 			modal($(this).data('tno'),$(this).data('name'));
+					 			}); */
+								
+								$('.tag_list').on('click','.modifys' , function(e){
+									console.log('수정아이콘 클릭 이벤트');
+									console.log('tno:'+$(this).data('tno'))
+									console.log('name:'+$(this).data('name'))
+									modal_show($(this).data('tno'),$(this).data('name'));
+									//modal.css('display', 'flex');
+									//modal.addClass('show');;
+								});
+								
+								$('.tag_list').on('click','.deletes' , function(e){
+									console.log('삭제아이콘 클릭 이벤트');
+									modal_show($(this).data('tno'),$(this).data('name'));
+									//modal.css('display', 'flex');
+									//modal.addClass('show');
+								});
+								
+								$('.modalCloseBtn').on('click', function(e){
+									console.log('모달 닫기 버튼');
+									modal.hide();
+									modal_duplicate.innerHTML='';
+								});
+								
+								function modal_show(seqno,tagName){
+									modal.css('display', 'flex');
+									modal.addClass('show');
+									modal_seqno.value=seqno;
+									document.getElementById('modal_tagName').value=tagName;
+								}
+								
+								var modal_title = $('#modalTitle');
+								var modal_text = $('#modalText');
+								var modal_tagName = modal.find('input[name="tagName"]');
+								
+							}); //여기까지 onready
+							
+							/* function modal(seqno,name){
+								//document.getElementById('modal').style.display='flex';
+								//document.getElementById('modal').classList.add("show");
+								//const modalForm = document.forms['modalForm'];
+								//modalForm.elements['seqno'].value=seqno;
+								//modalForm.elements['tagName'].value=name;
+								//console.log(seqno);
+								//console.log(name);
+								document.getElementsByName('seqno')[0].value=seqno;
+								document.getElementsByName('tagName')[0].value=name;
+							} */
 
-	var modal_value = document.getElementsByName('tagName')[0];
-	//var modal_submit = tag_modal.find('button[name="submit"]');
-	var modal_submit = document.getElementsByName('submit')[0];
-	function modeChange(mode){
-		var title;
-		var text;
-		var btn;
-		if(mode=='modify'){
-			const modifys = document.querySelectorAll('.modifys');
-			btn=document.getElementById('modifyBtn').innerHTML;
-			if(btn=='태그 이름 변경'){
-				modifys.forEach(modify => {
-					modify.style.display='inline';
-				});
-				title='태그 이름 변경';
-				text='변경할 이름을 작성해주세요.';
-				btn='태그 이름 변경 취소';
-				modal_submit.innerHTML='변경';
-				//document.forms['modalForm'].elements['submit'].value='변경';
-				//document.forms['modalForm'].action='/adminRest/tagModify
-			}else{
-				modifys.forEach(modify => {
-					modify.style.display='none';
-				});
-				btn='태그 이름 변경';
-			}
-			document.getElementById('modifyBtn').innerHTML=btn;
-		}else if(mode=='delete'){
-			const deletes = document.querySelectorAll('.deletes');
-			btn=document.getElementById('deleteBtn').innerHTML;
-			if(btn=='태그 삭제'){
-				deletes.forEach(delete1 => {
-					delete1.style.display='inline';
-				});
-				title='태그 삭제';
-				text='정말 삭제하시겠습니까?';
-				btn='태그 삭제 취소';
-				modal_value.disabled=true;
-				modal_submit.innerHTML='삭제';
-				//document.forms['modalForm'].elements['submit'].value='삭제';
-				//document.forms['modalForm'].action='/admin/tagDelete';
-			}else{
-				deletes.forEach(delete1 => {
-					delete1.style.display='none';
-				});
-				modal_value.disabled=false;
-				btn='태그 삭제';
-			}
-			document.getElementById('deleteBtn').innerHTML=btn;
-		}
-		document.querySelector('.modal-title').InnerHTML=title;
-		document.getElementById('modalText').InnerHTML=text;
-		/* 왜 안 바뀔까... */
-		
-	}
+							//var modal_value = document.getElementsByName('tagName')[0];
+							//var modal_submit = document.getElementsByName('submit')[0];
+							function modeChange(mode){
+								var title;
+								var text;
+								var btn;
+								if(mode=='modify'){
+									const modifys = document.querySelectorAll('.modifys');
+									btn=document.getElementById('modifyBtn').innerHTML;
+									if(btn=='태그 이름 변경'){
+										modifys.forEach(modify => {
+											modify.style.display='inline';
+										});
+										title='태그 이름 변경';
+										text='변경할 이름을 작성해주세요.';
+										btn='태그 이름 변경 취소';
+										modal_submit.innerHTML='변경';
+										//document.forms['modalForm'].elements['submit'].value='변경';
+										//document.forms['modalForm'].action='/adminRest/tagModify
+									}else{
+										modifys.forEach(modify => {
+											modify.style.display='none';
+										});
+										btn='태그 이름 변경';
+									}
+									document.getElementById('modifyBtn').innerHTML=btn;
+								}else if(mode=='delete'){
+									const deletes = document.querySelectorAll('.deletes');
+									btn=document.getElementById('deleteBtn').innerHTML;
+									if(btn=='태그 삭제'){
+										deletes.forEach(delete1 => {
+											delete1.style.display='inline';
+										});
+										title='태그 삭제';
+										text='정말 삭제하시겠습니까?';
+										btn='태그 삭제 취소';
+										document.getElementById('modal_tagName').disabled=true;
+										modal_submit.innerHTML='삭제';
+										//document.forms['modalForm'].elements['submit'].value='삭제';
+										//document.forms['modalForm'].action='/admin/tagDelete';
+									}else{
+										deletes.forEach(delete1 => {
+											delete1.style.display='none';
+										});
+										modal_value.disabled=false;
+										btn='태그 삭제';
+									}
+									document.getElementById('deleteBtn').innerHTML=btn;
+								}
+								document.querySelector('.modal-title').InnerHTML=title;
+								document.getElementById('modalText').InnerHTML=text;
+								/* 왜 안 바뀔까... */
+								
+							}	
+					 	
+					 	
+					</script>
+<script>
+
 	
-	function modal(seqno,name){
-		document.getElementById('modal').style.display='flex';
-		document.getElementById('modal').classList.add("show");
-		//const modalForm = document.forms['modalForm'];
-		//modalForm.elements['seqno'].value=seqno;
-		//modalForm.elements['tagName'].value=name;
-		//console.log(seqno);
-		//console.log(name);
-		document.getElementsByName('seqno')[0].value=seqno;
-		document.getElementsByName('tagName')[0].value=name;
-	}
 	
+/* 	
 	function modifyClose(){
 		document.getElementById('modal').style.display='none';
 	}
- 
+  */
 </script>
 
 <script type="text/javascript" src="/js/dragdrop.js"></script>
