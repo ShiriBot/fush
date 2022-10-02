@@ -418,15 +418,11 @@
 									console.log('tno:'+$(this).data('tno'))
 									console.log('name:'+$(this).data('name'))
 									modal_show($(this).data('tno'),$(this).data('name'));
-									//modal.css('display', 'flex');
-									//modal.addClass('show');;
 								});
 								
 								$('.tag_list').on('click','.deletes' , function(e){
 									console.log('삭제아이콘 클릭 이벤트');
 									modal_show($(this).data('tno'),$(this).data('name'));
-									//modal.css('display', 'flex');
-									//modal.addClass('show');
 								});
 								
 								$('.modalCloseBtn').on('click', function(e){
