@@ -50,9 +50,6 @@ public class MainController  {
 	@RequestMapping("rating")
 	public void rating() {
 	}
-	@RequestMapping("artDetail")
-	public void artDetail() {
-	}
 	@RequestMapping("artSearch")
 	public String artSearch(Model m,
 							@ModelAttribute("searchArt") Criteria cri) {

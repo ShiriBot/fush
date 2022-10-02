@@ -33,6 +33,9 @@ public class ReplyController {
 			produces = {MediaType.APPLICATION_XML_VALUE,
 						MediaType.APPLICATION_JSON_UTF8_VALUE})
 	public ResponseEntity<List<Reply>> getReply(@PathVariable("ano") Long ano){
+		System.out.println("Replycontroller 에 ano값 널떠서 디버깅 : " + ano);
+//		if(ano == null) {
+//		}
 		return new ResponseEntity<>(service.getReplyList(ano),HttpStatus.OK);
 	}
 	
