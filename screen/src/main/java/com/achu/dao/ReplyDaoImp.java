@@ -36,7 +36,7 @@ public class ReplyDaoImp implements ReplyDao{
 			cstmt.executeQuery();
 			
 			statistics.put("totalReply", cstmt.getInt(1));
-			statistics.put("newReply", (int)Math.round(cstmt.getDouble(2)/(cstmt.getDouble(1)-cstmt.getDouble(2))*100));
+			statistics.put("newReply", cstmt.getInt(2));
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

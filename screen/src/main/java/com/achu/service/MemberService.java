@@ -10,4 +10,6 @@ public interface MemberService {
 	public Map<String, String> login(String id, String pw) ;
 
 	public List<Member> list(Criteria mCri);
+
+	public int delete();
 }

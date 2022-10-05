@@ -36,7 +36,7 @@ public class RatingDaoImp implements RatingDao{
 			cstmt.executeQuery();
 			
 			statistics.put("totalRating", cstmt.getInt(1));
-			statistics.put("newRating", (int)Math.round(cstmt.getDouble(2)/(cstmt.getDouble(1)-cstmt.getDouble(2))*100));
+			statistics.put("newRating", cstmt.getInt(2));
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

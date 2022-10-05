@@ -181,3 +181,9 @@ table.dataTable.dtr-inline.collapsed>tbody>.parent>td:first-child:before, table.
     content: '+';
     background-color: #337ab7;
 }
+
+.btn-selected {
+	color: #fff;
+	background-color: #6c757d;
+	border-color: #6c757d;
+}
