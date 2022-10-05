@@ -21,6 +21,10 @@ var searchService = (function(){
 		 }*/
 	 function getList(Keyword,callback, error) {
 		 console.log("getList실행",Keyword);
+		 if(Keyword.trim() == '') {
+			 alert('검색어를 입력해주세요');
+			 return false;
+		 }
 		 $.getJSON("/searchDetail/search/"+Keyword+".json",function(result){
 			 if(callback) {
 				 callback(result);

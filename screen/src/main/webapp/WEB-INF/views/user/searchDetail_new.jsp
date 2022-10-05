@@ -5,7 +5,7 @@
 
 
 <!-- 장르 드롭다운 -->
-
+<div id="dropDownBox">
 <div class="row">
 	<nav class="navbar navbar-expand-lg navbar-light bg-white" style="border: 1px solid #d8d8df">
 	    <span class="navbar-brand">장르</span>
@@ -28,7 +28,7 @@
 			        	<ul class="dropdown-menu dropdown-menu-white" aria-labelledby="navbarDarkDropdownMenuLink">
 			    	      	<c:forEach items="${searchList}" var="tagName">  
 				    	      	 <c:if test="${tagName.midSeq eq midSeq && tagName.mid ne null}">
-				    	      	  	<li><button class="dropdown-item tagName" name="tagname" value="${tagName.name}" onclick="location.href='/search.so?seqno=${tagName.seqno}';" >${tagName.name}</button></li>
+				    	      	  	<li><button class="dropdown-item tagName" name="tagname" value="${tagName.name}" >${tagName.name}</button></li>
 				    	      	 </c:if>
 			    	      	</c:forEach>
 			    	    </ul>
@@ -105,8 +105,9 @@
 	        </c:forEach>	
 	    </div>
 	</nav>
-</div>		
-	
+</div>
+<!-- #dropDownBox div의 끝 -->		
+</div>	
 <!-- 별점 -->	
 <div class="row">
 	<div class="col-2 d-flex justify-content-center	"></div>
@@ -121,7 +122,6 @@
 	<div class="col-2 d-flex justify-content-center	">태그</div>
 	<div class="col-10 d-flex flex-row justify-content-left" id ="di">
 		<div class="tableFootStyle" id="result">
-		<strong>${param.tagname}</strong>
 		</div>
 	</div>
 </div>
@@ -130,7 +130,7 @@
 <div id="detailSearchBar">
 	<nav class="navbar navbar-light  d-flex">
 		<div class="container-fluid justify-content-center">
-				<textarea class="form-control me-2 w-25 h-25"  name="searchBar"></textarea>
+				<input class="form-control me-2 w-25 h-25"  name="searchBar" style='resize : none;overflow:hidden;'></textarea>
 				<button id="searchSubmit" class="btn btn-outline-success">검색</button>
 		</div>
 	</nav>
@@ -185,7 +185,7 @@
 <script>
 var searchField = $("#detailSearchBar");
 var searchBoard = $(".searchBoard");
-var keyword = searchField.find("textarea[name='searchBar']");
+var keyword = searchField.find("input[name='searchBar']");
 $(document).ready(function(){
 	
 	$("#searchSubmit").on("click",function(){
@@ -200,11 +200,7 @@ $(document).ready(function(){
 					}
 				var str = "";
 				for(var i = 0, len=list.length || 0; i<len; i++){
-					console.log("리스트디버깅 이름: " + list[i].name);
-					/* console.log("리스트디버깅 루트 :" + list[i].imageRoute );
-					console.log("리스트디버깅 작가:" + list[i].author);
-					console.log("리스트디버깅 플랫폼:" + list[i].plaform);
-					console.log("리스트디버깅 디테일" + list[i].detail); */
+					console.log("리스트디버깅 이름: " + list[i].tag);
 					str+="<div id='searchResult'> <div class='row'>"
 					str+="<div class='col' id='artResult'>"
 					str+="<div class='image'><img src='"+ list[i].imageRoute +"'></div>"
@@ -213,15 +209,27 @@ $(document).ready(function(){
 					str+="<span>작가:</span>"+ list[i].author +"</div>"
 					str+="<div class ='platformDetail'><span>연재처:</span>"+list[i].plaform+"</div>"
 					str+="<div class ='webtoonDetail'>"+list[i].detail+"</div>"
-					str+="<div class ='genruDetail'><span>장르:</span>드라마</div>"
+					str+="<div class ='genruDetail'><span>장르:</span></div>"
 					str+="<div class ='webtoonHashtag'><a href='#'>#전체 연령가 </a></div></div>"
 					str+="<div class='col'><div class='star'>"
 					str+="<h4>별점</h4> <h2>5.0/5.0</h2> <div>★★★★★</div></div></div>"
 					str += "</div></div>" 
 				} 
-				console.log("빠져나옴?")
 				$(".searchBoard").html(str);
 			}) 
 		};
+		/* input태그 엔터키입력시 검색결과 나오게 input태그에 keyup이벤트 걸어줌 */
+		 $("input").on("keyup",function(key){
+	         if(key.keyCode==13) {
+		       showList();
+	         }    
+	     });
+	     /* 태그리스트 클릭시 태그목록띄우기 */
+	     $("#dropDownBox").on("click","button",function(){
+		     console.log("태그 클릭");
+			 	var a = $("#dropDownBox").val()
+			 	$("#result").html(a);
+		     });
+	     
 });
 </script>
