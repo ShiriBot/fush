@@ -53,27 +53,14 @@
 	var id = '<c:out value="${sess_id}"/>'
 	var seqno = '<c:out value="${art.seqno}"/>';
 	var modal = $("#reply_modal");
-	var rModal = $(".replyCard");
-	
- /* $(document).on("click","#modifyConfig",function(e){
-	console.log("수정 확인기능 시작");
-	 var reply = {seqno : modal.data("rno"),
-				 content : modal_content.val()};
-	console.log("reply 값 : "+reply);
-	replyService.modify(reply,function(result){
-		console.log("수정 기능 값찍기" + reply.data("rno"));
-		alert(result);
-		modal.hide();
-		showList();
-		}); 
-});  
-	 */
+
 $(document).ready(function(){
 	var modal_content = modal.find("input[name='content']");
  	showList();
 	modal.hide();
 	var seqno = '<c:out value="${art.seqno}"/>';
  	console.log("ano값 널떠서 디버깅 " + seqno);
+ 	
  	 /* 수정버튼 클릭시 */
  	$(".replyCard").on("click","button",function(e){
  	 	var rno = e.target.value;

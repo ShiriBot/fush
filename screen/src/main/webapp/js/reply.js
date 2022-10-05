@@ -16,11 +16,10 @@
 					  callback(result);
 				  }
 			  },error : function(xhr,status,er){
-				  if(error) {
-					  error(er);
-					  alert("댓글을 달려면 로그인 해주세요.");
-				  }
-			  }
+					 if(error) {
+						 error(er);
+					 }
+				 }
 		  });
 	  }
 	  // 댓글 수정시 댓글seqno 받아오기	  

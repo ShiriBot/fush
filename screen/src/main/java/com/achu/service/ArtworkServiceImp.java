@@ -12,6 +12,7 @@ import com.achu.dto.Artwork;
 import com.achu.dto.Criteria;
 import com.achu.dto.Tag;
 import com.achu.mapper.ArtworkMapper;
+import com.achu.mapper.SearchMapper;
 
 @Service
 public class ArtworkServiceImp implements ArtworkService {
@@ -20,6 +21,9 @@ public class ArtworkServiceImp implements ArtworkService {
 	
 	@Autowired 
 	ArtworkMapper mapper;
+	
+	@Autowired
+	SearchMapper searchMapper;
 	
 	@Override
 	public List<Artwork> list(Criteria aCri) {
@@ -51,6 +55,14 @@ public class ArtworkServiceImp implements ArtworkService {
 	}
 	public Artwork artDetail(String seqno) {
 		return artworkDao.artDetail(seqno);
+	}
+	@Override
+	public List<Artwork> Restlist() {
+		return searchMapper.getSearchList();
+	}
+	@Override
+	public List<Artwork> searchList(String keyword) {
+		return searchMapper.searchResult(keyword);
 	}
 	
 	

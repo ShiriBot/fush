@@ -17,25 +17,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.achu.controller.user.ReplyController;
+import com.achu.controller.user.ReplyRestController;
 import com.achu.dto.Reply;
 import com.achu.service.ReplyService;
 
 @RestController
 @RequestMapping("/reply/")
-public class ReplyController {
-	private static final Logger log = LoggerFactory.getLogger(ReplyController.class);
+public class ReplyRestController {
+	private static final Logger log = LoggerFactory.getLogger(ReplyRestController.class);
 	
 	@Autowired
 	ReplyService service;
-	
+	// 리스트 불러오는 컨트롤러
 	@GetMapping(value ="list/{ano}",
 			produces = {MediaType.APPLICATION_XML_VALUE,
 						MediaType.APPLICATION_JSON_UTF8_VALUE})
 	public ResponseEntity<List<Reply>> getReply(@PathVariable("ano") Long ano){
 		System.out.println("Replycontroller 에 ano값 널떠서 디버깅 : " + ano);
-//		if(ano == null) {
-//		}
 		return new ResponseEntity<>(service.getReplyList(ano),HttpStatus.OK);
 	}
 	

@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -32,7 +33,8 @@ public class Login {
 						@ModelAttribute("pw") String pw,
 						@ModelAttribute("type") String type,
 						HttpSession session,
-						RedirectAttributes ra
+						RedirectAttributes ra,
+						Model m
 						 ) {
 		Map<String, String> status =  memberDao.login(id, pw);
 		String viewPage = null;		
@@ -40,6 +42,8 @@ public class Login {
 		case "ok":
 			//세션설정
 			session.setAttribute("sess_id", id);
+			System.out.println("아이디 세션 넘어오나" + id);
+			
 			session.setAttribute("sess_name", status.get("name"));
 			session.setAttribute("login_time", session.getCreationTime());
 			if(status.get("auth")=="manager") {
