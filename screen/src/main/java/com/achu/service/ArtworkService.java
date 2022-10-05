@@ -24,4 +24,8 @@ public interface ArtworkService {
 	public List<Artwork> keywordList(Criteria aCri);
 
 	public Artwork artDetail(String seqno);
+
+	public List<Artwork> Restlist();
+
+	public List<Artwork> searchList(String keyword);
 }

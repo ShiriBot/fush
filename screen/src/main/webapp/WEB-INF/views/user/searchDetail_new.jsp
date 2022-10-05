@@ -126,14 +126,25 @@
 	</div>
 </div>
 
+<!-- 검색창 -->
+<div id="detailSearchBar">
+	<nav class="navbar navbar-light  d-flex">
+		<div class="container-fluid justify-content-center">
+				<textarea class="form-control me-2 w-25 h-25"  name="searchBar"></textarea>
+				<button id="searchSubmit" class="btn btn-outline-success">검색</button>
+		</div>
+	</nav>
+</div>
+
 <!-- 검색결과창 -->
 <div class= "searchBoard">
-	<div class= "searchPop">
+	 <div class= "searchPop">
 		<a href="#">인기순</a>
 		<a href="#">조회순</a>
 		<a href="#">등록일자순</a>
 	</div>
 		<c:forEach items="${artList}" var="artlist">
+	<div id ="searchResult">	
 	<div class="row">
 		<%-- <c:if test="${!artlist.imageRoute}"> --%>
 			<div class="col" id="artResult">
@@ -167,5 +178,50 @@
 				</div>
 			</div>
 			</div>
-	</c:forEach>
+	</div>
+	</c:forEach> 
 </div>
+<script type="text/javascript" src="/js/searchDetail.js"></script>
+<script>
+var searchField = $("#detailSearchBar");
+var searchBoard = $(".searchBoard");
+var keyword = searchField.find("textarea[name='searchBar']");
+$(document).ready(function(){
+	
+	$("#searchSubmit").on("click",function(){
+		showList(); 
+	});
+		function showList(){
+			searchService.getList(keyword.val(),function(list){
+				console.log("겟리스트 시작", list.name);
+				if(list == null || list.length==0){
+					$(".searchBoard").html("검색 결과가 없습니다");
+					return;
+					}
+				var str = "";
+				for(var i = 0, len=list.length || 0; i<len; i++){
+					console.log("리스트디버깅 이름: " + list[i].name);
+					/* console.log("리스트디버깅 루트 :" + list[i].imageRoute );
+					console.log("리스트디버깅 작가:" + list[i].author);
+					console.log("리스트디버깅 플랫폼:" + list[i].plaform);
+					console.log("리스트디버깅 디테일" + list[i].detail); */
+					str+="<div id='searchResult'> <div class='row'>"
+					str+="<div class='col' id='artResult'>"
+					str+="<div class='image'><img src='"+ list[i].imageRoute +"'></div>"
+					str+="<div class='webtoonName'>"+ list[i].name +"</div></div>"
+					str+="<div class='col'><div class ='authorDetail'>"
+					str+="<span>작가:</span>"+ list[i].author +"</div>"
+					str+="<div class ='platformDetail'><span>연재처:</span>"+list[i].plaform+"</div>"
+					str+="<div class ='webtoonDetail'>"+list[i].detail+"</div>"
+					str+="<div class ='genruDetail'><span>장르:</span>드라마</div>"
+					str+="<div class ='webtoonHashtag'><a href='#'>#전체 연령가 </a></div></div>"
+					str+="<div class='col'><div class='star'>"
+					str+="<h4>별점</h4> <h2>5.0/5.0</h2> <div>★★★★★</div></div></div>"
+					str += "</div></div>" 
+				} 
+				console.log("빠져나옴?")
+				$(".searchBoard").html(str);
+			}) 
+		};
+});
+</script>
