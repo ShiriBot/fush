@@ -20,9 +20,9 @@
 			<div class="col-md-12 col-sm-12 ">
 				<div class="x_panel">
 					<div class="x_title">
-						<div class="btn btn-outline-secondary<c:if test="${criteria.kind eq 'all'}"> btn-selected</c:if>" data-kind="all" onclick="javascript:location.href='/admin/member?kind=all'"> 전체회원목록</div>
-						<div class="btn btn-outline-secondary<c:if test="${criteria.kind eq 'new'}"> btn-selected</c:if>" data-kind="new" onclick="javascript:location.href='/admin/member?kind=new'"> 신규회원목록</div>
-						<div class="btn btn-outline-secondary<c:if test="${criteria.kind eq 'del'}"> btn-selected</c:if>" data-kind="del" onclick="javascript:location.href='/admin/member?kind=del'"> 탈퇴회원목록</div>
+						<div class="btn btn-outline-secondary" onclick="javascript:location.href='/admin/member?kind=all'"> 전체회원목록</div>
+						<div class="btn btn-outline-secondary" onclick="javascript:location.href='/admin/member?kind=new'"> 신규회원목록</div>
+						<div class="btn btn-outline-secondary" onclick="javascript:location.href='/admin/member?kind=del'"> 탈퇴회원목록</div>
 						<div class="clearfix"></div>
 					</div>
 					<div class="x_content" id="x_content0">
@@ -38,7 +38,7 @@
 										<form name="memberFilter" method="post" action="/admin/member?kind=${criteria.kind}">
 											<div class="dataTables_length" id="datatable-members_length">
 												<label>한번에 
-													<select id="length" name="length" class="form-control input-sm" onchange="javascript:document.forms['memberFilter'].submit();">
+													<select name="length" class="form-control input-sm" onchange="javascript:document.forms['memberFilter'].submit();">
 													<!-- <select name="datatable-members_length" aria-controls="datatable-members" class="form-control input-sm" onchange="javascript:tableControl(this)"> -->
 													<c:forEach items="${criteria.lengthOpt}" var="len">
 														<option value="${len}" 
@@ -61,7 +61,7 @@
 											</div>
 											</c:if>
 											<div id="datatable-members_filter" class="dataTables_filter" onchange="javascript:document.forms['memberFilter'].submit();">
-												<select id="searchField" name="searchField">
+												<select name="searchField">
 													<option value="id"
 														<c:if test="${criteria.searchField eq 'id'}">selected</c:if>
 														>ID</option>
@@ -77,7 +77,7 @@
 												</select>
 												<label>
 												검색:
-													<input id="keyword" name="keyword" type="search" class="form-control input-sm" onchange="javascript:document.forms['memberFilter'].submit();"
+													<input name="keyword" type="search" class="form-control input-sm" onchange="javascript:document.forms['memberFilter'].submit();"
 														<c:if test="${criteria.keyword ne null}"> value="${criteria.keyword}"</c:if>
 													>
 												</label>
@@ -106,16 +106,14 @@
 													</th>
 												</tr>
 											</thead>
-											<%-- <c:set value="${members.currentPage*criteria.length-criteria.length+1}" var="startNum"/>
+											<c:set value="${members.currentPage*criteria.length-criteria.length+1}" var="startNum"/>
 											<c:if test="${members.currentPage*criteria.length>members.total}">
 												<c:set value="${members.total}" var="endNum" />
 											</c:if>
 											<c:if test="${members.currentPage*criteria.length<members.total}">
 												<c:set value="${members.currentPage*criteria.length}" var="endNum" />
-											</c:if> --%>
-											<tbody class="dataTableBody">
-											</tbody>
-											<%-- <tbody>
+											</c:if>
+											<tbody>
 												<c:if test="${members.content.size() ne 0}">
 												<c:forEach items="${members.content}" var="member" varStatus="status" begin="${startNum-1}" end="${endNum-1}">
 													<tr>
@@ -128,15 +126,15 @@
 													</tr>
 												</c:forEach>
 												</c:if>
-											</tbody> --%>
+											</tbody>
 										</table>
 										
 										<div class="dataTables_info" id="datatable-members_info" role="status" aria-live="polite">
-											<%-- Showing <c:out value="${startNum}" /> to ${endNum } of ${members.total} entries --%>
+											Showing <c:out value="${startNum}" /> to ${endNum } of ${members.total} entries
 										</div>
 										<div class="dataTables_paginate paging_simple_numbers" id="datatable-members_paginate">
 											<ul class="pagination">
-												<%-- <c:if test="${members.currentPage>members.pagingCount}">
+												<c:if test="${members.currentPage>members.pagingCount}">
 												<li class="paginate_button previous disabled" id="datatable-members_previous">
 													<a href="/admin/member?kind=${criteria.kind}&length=${criteria.length}&currentPage=${members.startPage-1}&searchField=${criteria.searchField}&keyword=${criteria.keyword}">
 														Previous
@@ -145,7 +143,7 @@
 												</c:if>
 												<c:forEach var="num" begin="${members.startPage}" end="${members.endPage}">
 												<li class="paginate_members">
-													<a data-page="${num}" <c:if test="${num eq members.currentPage}"> class="fw-bolder text-decoration-underline " </c:if>
+													<a <c:if test="${num eq members.currentPage}"> class="fw-bolder text-decoration-underline " </c:if>
 													href="/admin/member?kind=${criteria.kind}&length=${criteria.length}&currentPage=${num}&searchField=${criteria.searchField}&keyword=${criteria.keyword}">
 														${num}
 													</a>
@@ -157,7 +155,7 @@
 														Next
 													</a>
 												</li>
-												</c:if> --%>
+												</c:if>
 											</ul>
 										</div>
 									</div>
@@ -171,127 +169,3 @@
 		</div>
 	</div>
 </div>
-
-<script>
-var memberService = (function(){
-	
-	function getList(cri, callback, error){
- 		
- 		$.getJSON({
- 			type: 'post',
- 			url : '/adminRest/memberList/',
- 			data: JSON.stringify(cri),
- 			contentType : 'application/json; charset=utf-8',
- 			
- 			success : function(result, status, xhr){
- 				if(callback){
- 					callback(result);
- 				}
- 			},
- 			error : function(){
- 				if(error){
- 					error(er);
- 				}
- 			}
- 		});
- 	}
-	
-	return {
-		getList:getList
-	};
-})();
-
-$(document).ready(function(){
-
-	var criteria = {
-		kind: $(document.querySelector('.btn-selected')).data('kind'),
-		length: length.value||10,
-		currentPage: $(document.querySelector('.pagination .fw-bolder')).attr('href') ||1,
-		searchField: searchField.value, 
-		keyword: keyword.value
-	};
-	
-	console.log(criteria);
-	
-	showList(criteria);
-	
-	$('.pagination').on('click','li a', function(e){
-		console.log('page click------------');
-		e.preventDefault();
-		criteria.currentPage=$(this).attr('href');
-		console.log(criteria.currentPage);
-		showList(criteria);
-	});
-	
-	function showList(criteria){
-		console.log('showList call');
-		memberService.getList(criteria,function(page){
-			/* 해당사항 없는 경우 */
-			console.log('getList call');
-			console.log(page);
-			var list = page.content;
-			if(list==null||list.length==0){
-				$('.dataTableBody').html('');
-				return;
-			}
-			var startIndex = page.cri.currentPage*page.cri.length-page.cri.length;
-			/* 결과가 있는 경우 */
-			var str='';
-			for(var i=startIndex, len=Math.min(page.cri.currentPage*page.cri.length,page.total) || 0; i<len ; i++){
-				//console.log(list[i]);
-				str +='<tr><td>'+list[i].id+'</td><td>'+list[i].name+'</td><td>'+list[i].email+'</td><td>'+list[i].auth+'</td>';
-				str +='<td>'+list[i].wdate+'</td><td>'+list[i].birth+'</td></tr>';
-			}
-			
-			$('.dataTableBody').html(str);
-			
-			showPage(page);
-		});
-	}
-	
-	function showPage(page){
-		/* var currentPage=1; */
-		/* var endPage=Math.ceil(currentPage/5.0)*5;
-		var startPage = endPage-4;
-		console.log("endNum:"+endPage);
-		
-		var prev = startPage !=1;
-		var next = false;
-		
-		if(endPage*5>=total){
-			endPage = Math.ceil(total/5.0);
-		}
-		if(endPage*5<total){
-			next=true;
-		} */
-		var criteria = page.cri;
-		console.log(criteria.currentPage*criteria.length-criteria.length+1);
-		var str='Showing '+(criteria.currentPage*criteria.length-criteria.length+1)+' to '+Math.min(criteria.currentPage*criteria.length,page.total)+' of '+page.total+' entries';
-		//console.log(criteria);
-		
-		$('.dataTables_info').html(str);
-		
-		str='';
-		var prev = page.startPage !=1;
-		var next = page.endPage*criteria.length<page.total;
-
-		
-		if(prev){
-			str+='<li>';
-			str+='<a href="'+(page.startPage-1)+'">Previous</a></li>';
-		}
-		for(var i=page.startPage; i<=page.endPage;i++){
-			var active= criteria.currentPage==i ? ' class="fw-bolder text-decoration-underline "' : '';
-			str +='<li class="paginate_members"> <a '+active+' href="'+i+'"> '+i+'</a></li>';
-		}
-		if(next){
-			str+='<li>';
-			str+='<a href="'+(page.endPage+1)+'">Next</a></li>';
-		}
-		
-		//console.log(str);
-		$('.pagination').html(str);
-		
-	}
-});
-</script>

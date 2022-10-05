@@ -30,6 +30,12 @@
 		SELECT * FROM member WHERE id=#{id}
 	</select>
 	
+	<update id="delete">
+		<![CDATA[
+			UPDATE member SET name='탈퇴처리',email='탈퇴처리', isdel='Y' WHERE deldate<=ADD_MONTHS(SYSDATE,-1)
+		]]>
+	</update>
+	
 	<!-- alias는 요런 방식도 가능 -->
 	<!-- <select id="getById" resultType="MemberMap">
 		select

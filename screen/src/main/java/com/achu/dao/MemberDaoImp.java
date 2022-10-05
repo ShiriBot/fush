@@ -15,9 +15,9 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.achu.common.OracleConn;
 import com.achu.dto.Criteria;
 import com.achu.dto.Member;
+
 import oracle.jdbc.OracleTypes;
 @Repository
 public class MemberDaoImp implements MemberDao{
@@ -76,7 +76,7 @@ public class MemberDaoImp implements MemberDao{
 			cstmt.executeQuery();
 			
 			statistics.put("totalMember", cstmt.getInt(1));
-			statistics.put("newMember", (int)Math.round(cstmt.getDouble(2)/(cstmt.getDouble(1)-cstmt.getDouble(2))*100));
+			statistics.put("newMember", cstmt.getInt(2));
 			
 			cstmt.close();
 		} catch (SQLException e) {

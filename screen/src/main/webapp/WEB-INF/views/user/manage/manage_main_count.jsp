@@ -5,16 +5,16 @@
 <div class="row" style="display:inlne-block;"> <!-- row class→구획구분용 -->
 	<div class="col-md-3 col-sm-6 tile_count tile_stats_count">
 		<span class="count_top">
-			<i class="fa fa-user"></i>
+			<i class="fa fa-users"></i>
 			총 회원 수
 		</span>
 		<div class="count"><%=statistics.get("totalMember") %></div>
 		<span class="count_bottom">
+			최근 7일
 			<i class="green">
-				<i class="fa fa-sort-asc"></i>
-				<%=statistics.get("newMember") %>% 
+				<i class="fa fa-users me-1 ms-1"></i>
+				<%=statistics.get("newMember") %>
 				</i>
-			직전주 대비
 		</span>
 	</div>
 	<div class="col-md-3 col-sm-6 tile_count tile_stats_count">
@@ -24,11 +24,11 @@
 		</span>
 		<div class="count green"><%=statistics.get("totalRating") %></div>
 		<span class="count_bottom">
+			최근 7일
 			<i class="green">
-				<i class="fa fa-sort-asc"></i>
-				<%=statistics.get("newRating") %>% 
+				<i class="fa fa-star me-1 ms-1"></i>
+				<%=statistics.get("newRating") %> 
 			</i> 
-			직전 주 대비
 		</span>
 	</div>
 	<div class="col-md-3 col-sm-6 tile_count tile_stats_count">
@@ -38,11 +38,11 @@
 		</span>
 		<div class="count"><%=statistics.get("totalReply") %></div>
 		<span class="count_bottom">
+			최근 7일
 			<i class="red">
-				<i class="fa fa-sort-desc"></i>
-				<%=statistics.get("newReply") %>% 
+				<i class="fa fa-reply me-1 ms-1"></i>
+				<%=statistics.get("newReply") %> 
 			</i> 
-			직전 주 대비
 		</span>
 	</div>
 	<div class="col-md-3 col-sm-6 tile_count tile_stats_count">
@@ -52,11 +52,11 @@
 		</span>
 		<div class="count">7,325</div>
 		<span class="count_bottom">
+			최근 7일
 			<i class="green">
-				<i class="fa fa-sort-asc"></i>
-				34% 
+				<i class="fa fa-user me-1 ms-1"></i>
+				34
 			</i> 
-			직전 주 대비
 		</span>
 	</div>
 </div>
