@@ -25,10 +25,10 @@
 		           			<div class="nav-link dropdown-toggle text-dark d-none" style="display:none"></div>
 		           		</c:if>
 	       				<c:set value="${taglist.midSeq}" var ="midSeq"/>
-			        	<ul class="dropdown-menu dropdown-menu-white" aria-labelledby="navbarDarkDropdownMenuLink">
+			        	<ul class="dropdown-menu dropdown-menu-white long" aria-labelledby="navbarDarkDropdownMenuLink">
 			    	      	<c:forEach items="${searchList}" var="tagName">  
 				    	      	 <c:if test="${tagName.midSeq eq midSeq && tagName.mid ne null}">
-				    	      	  	<li><button class="dropdown-item tagName" name="tagname" value="${tagName.name}" >${tagName.name}</button></li>
+				    	      	  	<li><button class="dropdown-item tagName" name="tagname" value="${tagName.seqno}"><span>${tagName.name}</span></button></li>
 				    	      	 </c:if>
 			    	      	</c:forEach>
 			    	    </ul>
@@ -224,12 +224,21 @@ $(document).ready(function(){
 		       showList();
 	         }    
 	     });
+		
 	     /* 태그리스트 클릭시 태그목록띄우기 */
 	     $("#dropDownBox").on("click","button",function(){
 		     console.log("태그 클릭");
-			 	var a = $("#dropDownBox").val()
+		     $(".dropdown").click(function(){
+		    		console.log("테스트: ",$(this).tekxt());
+		    		
+			 	for(var i = 0, len=lon.length || 0; i<len; i++){
+			 	var a = $(".tagName").val();
+				     console.log("a 값 : " , a[i]);
+			 	}
+			 	
 			 	$("#result").html(a);
 		     });
 	     
+		});
 });
 </script>

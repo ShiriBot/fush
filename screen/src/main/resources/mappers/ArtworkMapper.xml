@@ -3,11 +3,19 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
   
-  <mapper namespace="com.spring.mapper.ArtworkMapper"> <!-- 인터페이스 만든위치를 똑같이 지정해줘야함 -->
+  <mapper namespace="com.achu.mapper.ArtworkMapper"> <!-- 인터페이스 만든위치를 똑같이 지정해줘야함 -->
    
-   <select id="getArtwork">
-   		SELECT * FROM v_art_info_tag 
-   		WHERE seqno = #{ano}
-   </select>
-   
-   </mapper>
+	  <select id="getArtwork">
+	  		SELECT * FROM v_art_info_tag 
+	  		WHERE seqno = #{ano}
+	  </select>
+	  
+	  <!-- <select id ="searchDeatil">
+		  	SELECT *
+		  	FROM v_art_info_tag
+		  	WHERE name = ${tagName}
+	  	<if test='tag != null'>
+	  		and name = ${tagName} 
+	  	</if>
+	  </select> -->
+  </mapper>
