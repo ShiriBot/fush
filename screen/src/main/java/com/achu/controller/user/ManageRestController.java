@@ -45,12 +45,12 @@ public class ManageRestController {
 		List<Member> members = memberService.list(cri);
 		return new ResponseEntity<>(new ListPage(members.size(),cri,members),HttpStatus.OK);
 	}
-	
-	@GetMapping(value="memberDelete")
-	public ResponseEntity<String> memberDelete() {
-		log.info("memberDelete Mapping OK");
-		return new ResponseEntity<>(String.valueOf(memberService.delete()),HttpStatus.OK);
-	}
+	/*	
+		@GetMapping(value="memberDelete")
+		public ResponseEntity<String> memberDelete() {
+			log.info("memberDelete Mapping OK");
+			return new ResponseEntity<>(String.valueOf(memberService.delete()),HttpStatus.OK);
+		}*/
 	
 	@GetMapping(value="tagList")
 	public ResponseEntity<List<Tag>> tag() {

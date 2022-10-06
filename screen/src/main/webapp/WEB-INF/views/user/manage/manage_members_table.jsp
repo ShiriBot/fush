@@ -20,9 +20,9 @@
 			<div class="col-md-12 col-sm-12 ">
 				<div class="x_panel">
 					<div class="x_title">
-						<div class="btn btn-outline-secondary<c:if test="${criteria.kind eq 'all'}"> btn-selected</c:if>" data-kind="all" onclick="javascript:location.href='/admin/member?kind=all'"> 전체회원목록</div>
-						<div class="btn btn-outline-secondary<c:if test="${criteria.kind eq 'new'}"> btn-selected</c:if>" data-kind="new" onclick="javascript:location.href='/admin/member?kind=new'"> 신규회원목록</div>
-						<div class="btn btn-outline-secondary<c:if test="${criteria.kind eq 'del'}"> btn-selected</c:if>" data-kind="del" onclick="javascript:location.href='/admin/member?kind=del'"> 탈퇴회원목록</div>
+						<div class="btn btn-outline-secondary<c:if test="${criteria.kind eq 'all'}"> btn-selected</c:if>" data-kind="all" > 전체회원목록</div>
+						<div class="btn btn-outline-secondary<c:if test="${criteria.kind eq 'new'}"> btn-selected</c:if>" data-kind="new" > 신규회원목록</div>
+						<div class="btn btn-outline-secondary<c:if test="${criteria.kind eq 'del'}"> btn-selected</c:if>" data-kind="del" > 탈퇴회원목록</div>
 						<div class="clearfix"></div>
 					</div>
 					<div class="x_content" id="x_content0">
@@ -38,7 +38,7 @@
 										<form name="memberFilter" method="post" action="/admin/member?kind=${criteria.kind}">
 											<div class="dataTables_length" id="datatable-members_length">
 												<label>한번에 
-													<select id="length" name="length" class="form-control input-sm" onchange="javascript:document.forms['memberFilter'].submit();">
+													<select id="length" name="length" class="form-control input-sm">
 													<!-- <select name="datatable-members_length" aria-controls="datatable-members" class="form-control input-sm" onchange="javascript:tableControl(this)"> -->
 													<c:forEach items="${criteria.lengthOpt}" var="len">
 														<option value="${len}" 
@@ -51,16 +51,14 @@
 													</select> 명씩 보기
 												</label>
 											</div>
-											<c:if test="${criteria.kind eq 'del'}">
 											<div id="datatable-buttons_wrapper" class="dataTables_wrapper dt-bootstrap no-footer" style="display: inline">
-												<div class="dt--members-del btn-group">
-													<a class="btn btn-default buttons-html5 btn-sm" href="/adminRest/memberDelete">
+												<!-- <div class="dt--members-del btn-group">
+													<a class="btn btn-default buttons-html5 btn-sm" href="/admin/memberDelete">
 														<span>탈퇴처리한 회원 목록에서 삭제하기</span>
 													</a>
-												</div>
+												</div> -->
 											</div>
-											</c:if>
-											<div id="datatable-members_filter" class="dataTables_filter" onchange="javascript:document.forms['memberFilter'].submit();">
+											<div id="datatable-members_filter" class="dataTables_filter">
 												<select id="searchField" name="searchField">
 													<option value="id"
 														<c:if test="${criteria.searchField eq 'id'}">selected</c:if>
@@ -77,7 +75,7 @@
 												</select>
 												<label>
 												검색:
-													<input id="keyword" name="keyword" type="search" class="form-control input-sm" onchange="javascript:document.forms['memberFilter'].submit();"
+													<input id="keyword" name="keyword" type="search" class="form-control input-sm"
 														<c:if test="${criteria.keyword ne null}"> value="${criteria.keyword}"</c:if>
 													>
 												</label>
@@ -204,9 +202,9 @@ var memberService = (function(){
 $(document).ready(function(){
 
 	var criteria = {
-		kind: $(document.querySelector('.btn-selected')).data('kind'),
+		kind: $('.btn-selected').data('kind'),
 		length: length.value||10,
-		currentPage: $(document.querySelector('.pagination .fw-bolder')).attr('href') ||1,
+		currentPage: $('.pagination .fw-bolder').attr('href') ||1,
 		searchField: searchField.value, 
 		keyword: keyword.value
 	};
@@ -215,11 +213,39 @@ $(document).ready(function(){
 	
 	showList(criteria);
 	
+	$('.x_title').on('click','.btn', function(e){
+		console.log('btn click------------');
+		$('.btn-selected').removeClass('btn-selected');
+		$(this).addClass('btn-selected');
+		criteria.kind=$(this).data('kind');
+		showList(criteria);
+	});
+	
 	$('.pagination').on('click','li a', function(e){
 		console.log('page click------------');
 		e.preventDefault();
 		criteria.currentPage=$(this).attr('href');
 		console.log(criteria.currentPage);
+		showList(criteria);
+	});
+	
+	$('#searchField').on('change', function(e){
+		console.log('searchField change...');
+		criteria.searchField=$(this).val();
+		console.log(criteria.searchField);
+		showList(criteria);
+	});
+	$('#length').on('propertychange change keyup paste input', function(e){
+		console.log('length change...');
+		criteria.length=$(this).val();
+		console.log(criteria.length);
+		showList(criteria);
+	});
+	
+	$('#keyword').on('propertychange change keyup paste input', function(e){
+		console.log('keyword change...');
+		criteria.keyword=$(this).val();
+		console.log(criteria.keyword);
 		showList(criteria);
 	});
 	
@@ -250,21 +276,14 @@ $(document).ready(function(){
 	}
 	
 	function showPage(page){
-		/* var currentPage=1; */
-		/* var endPage=Math.ceil(currentPage/5.0)*5;
-		var startPage = endPage-4;
-		console.log("endNum:"+endPage);
-		
-		var prev = startPage !=1;
-		var next = false;
-		
-		if(endPage*5>=total){
-			endPage = Math.ceil(total/5.0);
-		}
-		if(endPage*5<total){
-			next=true;
-		} */
+
 		var criteria = page.cri;
+		
+		if(criteria.kind=='del'){
+			$('#datatable-buttons_wrapper').html('<div class="dt--members-del btn-group"><a class="btn btn-default buttons-html5 btn-sm" href="/admin/memberDelete"><span>탈퇴요청 한달 넘은 개인정보 삭제하기</span></a></div>');
+		}
+		
+		
 		console.log(criteria.currentPage*criteria.length-criteria.length+1);
 		var str='Showing '+(criteria.currentPage*criteria.length-criteria.length+1)+' to '+Math.min(criteria.currentPage*criteria.length,page.total)+' of '+page.total+' entries';
 		//console.log(criteria);

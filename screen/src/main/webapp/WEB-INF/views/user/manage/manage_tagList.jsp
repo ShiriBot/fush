@@ -500,7 +500,7 @@
 										deletes.forEach(delete1 => {
 											delete1.style.display='none';
 										});
-										modal_value.disabled=false;
+										modal_tagName.disabled=false;
 										btn='태그 삭제';
 									}
 									document.getElementById('deleteBtn').innerHTML=btn;
