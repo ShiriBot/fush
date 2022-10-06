@@ -22,13 +22,13 @@
 					        </a>
 	           			</c:if>
 		           		<c:if test="${midSeq eq taglist.midSeq}">
-		           			<div class="nav-link dropdown-toggle text-dark d-none" style="display:none"></div>
+		           			<div class="nav-link dropdown-toggle text-dark d-none ta" ></div>
 		           		</c:if>
 	       				<c:set value="${taglist.midSeq}" var ="midSeq"/>
-			        	<ul class="dropdown-menu dropdown-menu-white long" aria-labelledby="navbarDarkDropdownMenuLink">
+			        	<ul class="dropdown-menu dropdown-menu-white tagList"  aria-labelledby="navbarDarkDropdownMenuLink">
 			    	      	<c:forEach items="${searchList}" var="tagName">  
 				    	      	 <c:if test="${tagName.midSeq eq midSeq && tagName.mid ne null}">
-				    	      	  	<li><button class="dropdown-item tagName" name="tagname" value="${tagName.seqno}"><span>${tagName.name}</span></button></li>
+				    	      	  	<li><button class="dropdown-item" name="tagname" value="${tagName.name}"><span>${tagName.name}</span></button></li>
 				    	      	 </c:if>
 			    	      	</c:forEach>
 			    	    </ul>
@@ -120,8 +120,8 @@
 <!-- 태그 -->
 <div class="row">
 	<div class="col-2 d-flex justify-content-center	">태그</div>
-	<div class="col-10 d-flex flex-row justify-content-left" id ="di">
-		<div class="tableFootStyle" id="result">
+	<div class="col-10 d-flex flex-row justify-content-left" >
+		<div class="tableFootStyle" id="result" >
 		</div>
 	</div>
 </div>
@@ -183,17 +183,22 @@
 </div>
 <script type="text/javascript" src="/js/searchDetail.js"></script>
 <script>
+$(document).ready(function(){
 var searchField = $("#detailSearchBar");
 var searchBoard = $(".searchBoard");
 var keyword = searchField.find("input[name='searchBar']");
-$(document).ready(function(){
+var tag = $(".tagList li").val();
 	
 	$("#searchSubmit").on("click",function(){
-		showList(); 
+		keyword = searchField.find("input[name='searchBar']");
+				console.log("값 체크", keyword.val());
+		showList(keyword,tag); 
 	});
-		function showList(){
-			searchService.getList(keyword.val(),function(list){
-				console.log("겟리스트 시작", list.name);
+
+	console.log("keyword :",keyword);
+		function showList(keyword,tag){
+				console.log("겟리스트 시작", keyword);
+			searchService.getList({keyword:keyword,tag:tag},function(list){
 				if(list == null || list.length==0){
 					$(".searchBoard").html("검색 결과가 없습니다");
 					return;
@@ -226,19 +231,31 @@ $(document).ready(function(){
 	     });
 		
 	     /* 태그리스트 클릭시 태그목록띄우기 */
-	     $("#dropDownBox").on("click","button",function(){
-		     console.log("태그 클릭");
-		     $(".dropdown").click(function(){
-		    		console.log("테스트: ",$(this).tekxt());
-		    		
-			 	for(var i = 0, len=lon.length || 0; i<len; i++){
-			 	var a = $(".tagName").val();
-				     console.log("a 값 : " , a[i]);
-			 	}
-			 	
-			 	$("#result").html(a);
-		     });
-	     
-		});
+		/*   $(".tagList li").click(function(){ 
+				var tag = $(this).text(); 
+				console.log("태그 값:" ,tag);
+
+				
+				searchService.getList(tag,function(){
+					var str="";
+					for(var i = 0, len=tag.length || 0; i<len; i++){
+						console.log("리스트디버깅 이름: " + tag[i].tag);
+						str+="<div id='searchResult'> <div class='row'>"
+						str+="<div class='col' id='artResult'>"
+						str+="<div class='image'><img src='"+ tag[i].imageRoute +"'></div>"
+						str+="<div class='webtoonName'>"+ tag[i].name +"</div></div>"
+						str+="<div class='col'><div class ='authorDetail'>"
+						str+="<span>작가:</span>"+ tag[i].author +"</div>"
+						str+="<div class ='platformDetail'><span>연재처:</span>"+tag[i].plaform+"</div>"
+						str+="<div class ='webtoonDetail'>"+tag[i].detail+"</div>"
+						str+="<div class ='genruDetail'><span>장르:</span></div>"
+						str+="<div class ='webtoonHashtag'><a href='#'>#전체 연령가 </a></div></div>"
+						str+="<div class='col'><div class='star'>"
+						str+="<h4>별점</h4> <h2>5.0/5.0</h2> <div>★★★★★</div></div></div>"
+						str += "</div></div>" 
+					} 
+				$("#result").html(tag);
+			}); 
+	      */
 });
 </script>

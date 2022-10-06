@@ -7,8 +7,11 @@
 	<resultMap id="SearchMap" type="Artwork">
 	</resultMap>
 	<select  id ="searchResult" resultType="Artwork">
-		SELECT * FROM v_art_info
-		WHERE name LIKE  '%'||#{name}||'%' 
+		SELECT distinct name ,seqno,author, admit,tag_name,tag_seqno,platform,rest,week,detail,url,avg_rating,image_route,cnt 
+		FROM v_art_info_tag
+		WHERE name LIKE  '%'||#{name, jdbcType=VARCHAR}||'%' and tag_name like '%'||#{tag_name, jdbcType=VARCHAR}||'%'
+        
+		
 	</select>
 	<select id="getSearchList" resultType="Artwork">
 		SELECT * FROM v_art_info

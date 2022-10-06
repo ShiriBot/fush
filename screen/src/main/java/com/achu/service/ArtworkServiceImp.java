@@ -61,8 +61,8 @@ public class ArtworkServiceImp implements ArtworkService {
 		return searchMapper.getSearchList();
 	}
 	@Override
-	public List<Artwork> searchList(String keyword) {
-		return searchMapper.searchResult(keyword);
+	public List<Artwork> searchList(String keyword,String tagName) {
+		return searchMapper.searchResult(keyword,tagName);
 	}
 	
 	

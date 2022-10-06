@@ -19,15 +19,17 @@ var searchService = (function(){
 				}
 			 });
 		 }*/
-	 function getList(Keyword,callback, error) {
-		 console.log("getList실행",Keyword);
-		 if(Keyword.trim() == '') {
+	 function getList(param,callback, error) {
+		 var keyword = param.keyword;
+		 var tagName = param.tagName;
+		 console.log("js 파일 getList실행",keyword);
+		 if(keyword.trim() == '') {
 			 alert('검색어를 입력해주세요');
 			 return false;
 		 }
-		 $.getJSON("/searchDetail/search/"+Keyword+".json",function(result){
+		 $.getJSON("/searchDetail/search/" + keyword + "/" + tagName + ".json" ,function(result){
 			 if(callback) {
-				 callback(result);
+				 callback(result.keyword,result.tagName);
 				 console.log("성공");
 			 }
 		 }).fail(function(xhr, status, err){

@@ -3,6 +3,7 @@ package com.achu.controller.user;
 import java.awt.RenderingHints.Key;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,13 +28,14 @@ public class SearchRestController {
 	@Autowired
 	ArtworkService artworkService;
 	
-	@GetMapping(value="search/{keyword}",
+	@GetMapping(value="search/{keyword}/{tagName}",
 			produces = {MediaType.APPLICATION_XML_VALUE,
 					MediaType.APPLICATION_JSON_UTF8_VALUE})
-	public ResponseEntity<List<Artwork>> search(@PathVariable("keyword") String Keyword){
-		System.out.println("서치 컨트롤러 검색어 기능 구현 디버깅" + Keyword);
+	public ResponseEntity<List<Artwork>> search(@Param("keyword") String keyword,
+												@Param("tagName") String tagName){
+		System.out.println("서치 컨트롤러 검색어 기능 구현 디버깅" + keyword);
 		
-		return new ResponseEntity<>(artworkService.searchList(Keyword),HttpStatus.OK);
+		return new ResponseEntity<>(artworkService.searchList(keyword,tagName),HttpStatus.OK);
 	}
 	
 	@GetMapping(value ="list",
