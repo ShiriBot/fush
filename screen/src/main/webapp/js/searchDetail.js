@@ -23,10 +23,10 @@ var searchService = (function(){
 		 var keyword = param.keyword;
 		 var tagName = param.tagName;
 		 console.log("js 파일 getList실행",keyword);
-		 if(keyword.trim() == '') {
+		 /*if(keyword == '') {
 			 alert('검색어를 입력해주세요');
 			 return false;
-		 }
+		 }*/
 		 $.getJSON("/searchDetail/search/" + keyword + "/" + tagName + ".json" ,function(result){
 			 if(callback) {
 				 callback(result.keyword,result.tagName);

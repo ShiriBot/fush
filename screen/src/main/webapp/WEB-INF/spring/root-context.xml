@@ -23,14 +23,21 @@
 	<mybatis-spring:scan base-package="com.achu.mapper"/>
 	
 	<!-- db컨넥션 풀 bean 설정 -->
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	 <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" />
 		<!-- <property name="url" value="jdbc:log4jdbc:oracle:thin:@JCLASS10:1521:achu" 
 			/> <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/> -->
 		<property name="url" value="jdbc:oracle:thin:@JCLASS10:1521:achu" />
 		<property name="username" value="achu" />
 		<property name="password" value="1234" />
-	</bean>
+	</bean> 
+	<!-- mysql -->
+	<!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://127.0.0.1:3306/achu" />
+		<property name="username" value="dlaa" />
+		<property name="password" value="1234" />
+	</bean> -->
 	
 	<!-- SqlSession: SQL 실행 및 트랜잭션 제어를 위한 API를 제공. ☆★중요★☆ -->
 	<!-- SqlSessionFactory : SqlSession을 생성하는 구성 요소 -->
