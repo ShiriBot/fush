@@ -2,7 +2,6 @@ package com.achu.dao;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -13,11 +12,8 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.achu.common.OracleConn;
-
 import com.achu.dto.Artwork;
 import com.achu.dto.Criteria;
-import com.achu.dto.Reply;
 import com.achu.dto.Tag;
 
 import oracle.jdbc.OracleTypes;
@@ -53,6 +49,7 @@ public class ArtworkDaoImp implements ArtworkDao {
 			ResultSet rs = (ResultSet) stmt.getObject(3);
 			while(rs.next()) {
 				Artwork artwork = new Artwork();
+				artwork.setSeqno(rs.getString("seqno"));
 				artwork.setName(rs.getString("name"));
 				artwork.setAuthor(rs.getString("author"));
 				artwork.setDetail(rs.getString("detail"));

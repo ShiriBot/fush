@@ -5,7 +5,7 @@
 <div class="right_col" role="main">
 	<div class="">
 		<div class="page-title">
-			<div class="title_left">
+			<div>
 				<h3>
 					작품목록<!-- 페이지 타이틀 --> <small>현재 등록되어 있는 작품들<!-- 페이지 부제목 --></small>
 				</h3>
@@ -46,7 +46,7 @@
 										<form name="artFilter" method="post" action="/admin/artwork">
 										<div class="dataTables_length" id="datatable-arts_length">
 											<label>한번에 
-												<select name="length" class="form-control input-sm" onchange="javascript:document.forms['artFilter'].submit();">
+												<select id="length" name="length" class="form-control input-sm">
 													<c:forEach items="${criteria.lengthOpt}" var="len">
 														<option value="${len}" 
 															<c:if test="${len eq criteria.length}">
@@ -58,15 +58,15 @@
 												</select> 개씩 보기
 											</label>
 										</div>
-										<div id="datatable-buttons_wrapper" class="dataTables_wrapper dt-bootstrap no-footer" style="display:inline">
-											<div class="dt--artworkList-del btn-group">
-												<a class="btn btn-default buttons-html5 btn-sm" tabindex="0" aria-controls="datatable-buttons" href="#">
+										<!-- <div id="datatable-buttons_wrapper" class="dataTables_wrapper dt-bootstrap no-footer" style="display:inline">
+											<div class="dt-artworkList btn-group">
+												<a class="btn btn-default buttons-html5 btn-sm">
 													<span>작품 수정하기</span>
 												</a>
 											</div>
-										</div>
+										</div> -->
 										<div id="datatable-arts_filter" class="dataTables_filter">
-											<select name="searchField">
+											<select id="searchField" name="searchField">
 													<option value="name"
 														<c:if test="${criteria.searchField eq 'name'}">selected</c:if>
 														>작품명</option>
@@ -76,7 +76,7 @@
 												</select>
 												<label>
 												검색:
-													<input name="keyword" type="search" class="form-control input-sm" onchange="javascript:document.forms['artFilter'].submit();"
+													<input id="keyword" name="keyword" type="search" class="form-control input-sm"
 														<c:if test="${criteria.keyword ne null}"> value="${criteria.keyword}"</c:if>
 													>
 												</label>
@@ -100,6 +100,9 @@
 													<th class="sorting" tabindex="0" aria-controls="datatable-responsive" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Art Url: activate to sort column descending" style="display: none;">
 														URL
 													</th>
+													<th>
+														수정
+													</th>
 												</tr>
 											</thead>
 											<c:set value="${artworkList.currentPage*criteria.length-criteria.length+1}" var="startNum"/>
@@ -109,8 +112,8 @@
 											<c:if test="${artworkList.currentPage*criteria.length<artworkList.total}">
 												<c:set value="${artworkList.currentPage*criteria.length}" var="endNum" />
 											</c:if>
-											<tbody>
-												<c:if test="${artworkList.content.size() ne 0}">
+											<tbody class="dataTableBody">
+												<%-- <c:if test="${artworkList.content.size() ne 0}">
 												<c:forEach items="${artworkList.content}" var ="artList" varStatus="status" begin="${startNum-1}" end="${endNum-1}">
 													<tr>
 														<td><c:out value="${artList.name}" /></td>
@@ -120,15 +123,15 @@
 														<td style="display: none;"><c:out value="${artList.url}" /></td>
 													</tr>
 												</c:forEach>
-												</c:if>
+												</c:if> --%>
 											</tbody>
 										</table>
 										<div class="dataTables_info" id="datatable-arts_info" role="status" aria-live="polite">
-											Showing <c:out value="${startNum}" /> to ${endNum } of ${artworkList.total} entries
+											<%-- Showing <c:out value="${startNum}" /> to ${endNum } of ${artworkList.total} entries --%>
 										</div>
 										<div class="dataTables_paginate paging_simple_numbers" id="datatable-arts_paginate">
 											<ul class="pagination">
-												<c:if test="${artworkList.currentPage>artworkList.pagingCount}">
+												<%-- <c:if test="${artworkList.currentPage>artworkList.pagingCount}">
 												<li class="paginate_button previous disabled" id="datatable-arts_previous">
 													<a href="/admin/artwork?length=${criteria.length}&currentPage=${artworkList.startPage-1}&searchField=${criteria.searchField}&keyword=${criteria.keyword}" >
 														Previous
@@ -149,7 +152,7 @@
 														Next
 													</a>
 												</li>
-												</c:if>
+												</c:if> --%>
 											</ul>
 										</div>
 									</div>
@@ -163,3 +166,141 @@
 		</div>
 	</div>
 </div>
+<script>
+var artService = (function(){
+	
+	function getList(cri, callback, error){
+ 		console.log('getList called..');
+ 		$.getJSON({
+ 			type: 'post',
+ 			url : '/adminRest/artList',
+ 			data: JSON.stringify(cri),
+ 			contentType : 'application/json; charset=utf-8',
+ 			
+ 			success : function(result, status, xhr){
+ 				if(callback){
+ 					callback(result);
+ 				}
+ 			},
+ 			error : function(){
+ 				if(error){
+ 					error(er);
+ 				}
+ 			}
+ 		});
+ 	}
+	
+	return {
+		getList:getList
+	};
+})();
+
+$(document).ready(function(){
+
+	var criteria = {
+		length: length.value||10,
+		currentPage: $('.pagination .fw-bolder').attr('href') ||1,
+		searchField: searchField.value, 
+		keyword: keyword.value
+	};
+	
+	console.log(criteria);
+	
+	showList(criteria);
+	
+	$('.pagination').on('click','li a', function(e){
+		console.log('page click------------');
+		e.preventDefault();
+		criteria.currentPage=$(this).attr('href');
+		console.log(criteria.currentPage);
+		showList(criteria);
+	});
+	
+	$('#searchField').on('change', function(e){
+		console.log('searchField change...');
+		criteria.searchField=$(this).val();
+		console.log(criteria.searchField);
+		showList(criteria);
+	});
+	$('#length').on('propertychange change keyup paste input', function(e){
+		console.log('length change...');
+		criteria.length=$(this).val();
+		console.log(criteria.length);
+		showList(criteria);
+	});
+	
+	$('#keyword').on('propertychange change keyup paste input', function(e){
+		console.log('keyword change...');
+		criteria.keyword=$(this).val();
+		console.log(criteria.keyword);
+		showList(criteria);
+	});
+
+	$('.dataTableBody').on('click','button', function(e){
+		console.log('modify click------------');
+		e.preventDefault();
+		window.open('/', '작품수정하기','width=#, height=#'); 
+		return false
+	});
+	
+	function showList(criteria){
+		console.log('showList call');
+		artService.getList(criteria,function(page){
+			/* 해당사항 없는 경우 */
+			console.log('getList return');
+			console.log(page);
+			var list = page.content;
+			if(list==null||list.length==0){
+				$('.dataTableBody').html('');
+				return;
+			}
+			var startIndex = page.cri.currentPage*page.cri.length-page.cri.length;
+			/* 결과가 있는 경우 */
+			var str='';
+			for(var i=startIndex, len=Math.min(page.cri.currentPage*page.cri.length,page.total) || 0; i<len ; i++){
+				//console.log(list[i]);
+				str +='<tr><td>'+list[i].name+'</td><td>'+list[i].author+'</td><td style="max-width:500px;">'+list[i].detail+'</td><td>'+list[i].week+'</td>';
+				str +='<td style="display: none;">'+list[i].url+'</td><td><button class="btn btn-primary" data-ano='+list[i].seqno+'>수정</button></td></tr>';
+			}
+			
+			$('.dataTableBody').html(str);
+			
+			showPage(page);
+		});
+	}
+	
+	function showPage(page){
+
+		var criteria = page.cri;
+		
+		console.log(criteria.currentPage*criteria.length-criteria.length+1);
+		var str='Showing '+(criteria.currentPage*criteria.length-criteria.length+1)+' to '+Math.min(criteria.currentPage*criteria.length,page.total)+' of '+page.total+' entries';
+		//console.log(criteria);
+		
+		$('.dataTables_info').html(str);
+		
+		str='';
+		var prev = page.startPage !=1;
+		var next = page.endPage*criteria.length<page.total;
+
+		
+		if(prev){
+			str+='<li>';
+			str+='<a href="'+(page.startPage-1)+'">Previous</a></li>';
+		}
+		for(var i=page.startPage; i<=page.endPage;i++){
+			var active= criteria.currentPage==i ? ' class="fw-bolder text-decoration-underline "' : '';
+			str +='<li class="paginate_artworks"> <a '+active+' href="'+i+'"> '+i+'</a></li>';
+		}
+		if(next){
+			str+='<li>';
+			str+='<a href="'+(page.endPage+1)+'">Next</a></li>';
+		}
+		
+		//console.log(str);
+		$('.pagination').html(str);
+		
+	}
+});
+</script>
+
