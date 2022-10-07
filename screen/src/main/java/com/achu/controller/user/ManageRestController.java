@@ -17,10 +17,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.achu.dto.Artwork;
 import com.achu.dto.Criteria;
 import com.achu.dto.ListPage;
 import com.achu.dto.Member;
 import com.achu.dto.Tag;
+import com.achu.service.ArtworkService;
 import com.achu.service.MemberService;
 import com.achu.service.TagService;
 
@@ -34,6 +36,8 @@ public class ManageRestController {
 	TagService tagService;
 	@Autowired
 	MemberService memberService;
+	@Autowired
+	ArtworkService artworkService;
 	
 	
 	@RequestMapping(value="memberList", method = {RequestMethod.GET,RequestMethod.POST},produces= {MediaType.APPLICATION_JSON_UTF8_VALUE})
@@ -46,11 +50,16 @@ public class ManageRestController {
 		return new ResponseEntity<>(new ListPage(members.size(),cri,members),HttpStatus.OK);
 	}
 	
-	@GetMapping(value="memberDelete")
-	public ResponseEntity<String> memberDelete() {
-		log.info("memberDelete Mapping OK");
-		return new ResponseEntity<>(String.valueOf(memberService.delete()),HttpStatus.OK);
+	@RequestMapping(value="artList", method = {RequestMethod.GET,RequestMethod.POST},produces= {MediaType.APPLICATION_JSON_UTF8_VALUE})
+	public ResponseEntity<ListPage> artList(@RequestBody Criteria cri) {
+		if(cri.getCurrentPage()==0) cri.setCurrentPage(1);
+		if(cri.getLength()==0) cri.setLength(10);
+		if(cri.getSearchField()==null) cri.setSearchField("id");
+		if(cri.getKind() == null) cri.setKind("all");
+		List<Artwork> artworks = artworkService.list(cri);
+		return new ResponseEntity<>(new ListPage(artworks.size(),cri,artworks),HttpStatus.OK);
 	}
+
 	
 	@GetMapping(value="tagList")
 	public ResponseEntity<List<Tag>> tag() {

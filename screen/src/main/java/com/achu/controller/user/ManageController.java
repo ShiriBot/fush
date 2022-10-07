@@ -57,6 +57,12 @@ public class ManageController {
 		return "/manage/manage_members";
 	}
 	
+	@RequestMapping(value="memberDelete",method = {RequestMethod.GET})
+	public String memberDelete() {
+		memberService.delete();
+		return "redirect:/admin/member?kind=del";
+	}
+	
 	@RequestMapping(value="artwork", method = {RequestMethod.GET,RequestMethod.POST})
 	public String artwork(Criteria cri, Model model) {
 		if(cri.getCurrentPage()==0) cri.setCurrentPage(1);
