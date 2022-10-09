@@ -58,13 +58,13 @@
 												</select> 개씩 보기
 											</label>
 										</div>
-										<!-- <div id="datatable-buttons_wrapper" class="dataTables_wrapper dt-bootstrap no-footer" style="display:inline">
+										<div id="datatable-buttons_wrapper" class="dataTables_wrapper dt-bootstrap no-footer" style="display:inline">
 											<div class="dt-artworkList btn-group">
-												<a class="btn btn-default buttons-html5 btn-sm">
-													<span>작품 수정하기</span>
+												<a class="btn btn-default buttons-html5 btn-sm" onclick="javascript:openWin.document.getElementById('name').value = 'test';">
+													<span>테스트</span>
 												</a>
 											</div>
-										</div> -->
+										</div>
 										<div id="datatable-arts_filter" class="dataTables_filter">
 											<select id="searchField" name="searchField">
 													<option value="name"
@@ -167,6 +167,7 @@
 	</div>
 </div>
 <script>
+var openWin;
 var artService = (function(){
 	
 	function getList(cri, callback, error){
@@ -236,12 +237,6 @@ $(document).ready(function(){
 		showList(criteria);
 	});
 
-	$('.dataTableBody').on('click','button', function(e){
-		console.log('modify click------------');
-		e.preventDefault();
-		window.open('/', '작품수정하기','width=#, height=#'); 
-		return false
-	});
 	
 	function showList(criteria){
 		console.log('showList call');
@@ -301,6 +296,27 @@ $(document).ready(function(){
 		$('.pagination').html(str);
 		
 	}
+	
+
+	$('.dataTableBody').on('click','button', function(e){
+		console.log('modify click------------');
+		//e.preventDefault();
+		openChild($(this).data('ano'));
+		//console.log($(this).data('ano'));
+		//window.open("/admin/artModify", "작품수정하기", "width=570, height=350, resizable = no, scrollbars = no");
+		//window.open('/admin/artModify', '작품수정하기','width=#, height=#');
+	});
+
+	function openChild(seqno) {
+		//console.log(seqno);
+		// window.name = "부모창 이름"; 
+		window.name = 'parentForm';
+		// window.open("open할 window", "자식창 이름", "팝업창 옵션");
+		openWin = window.open('/admin/artModify/'+seqno, '작품수정하기', 'width=500, height=800, resizable = no, scrollbars = no');
+		//openWin.document.getElementById("name").value = seqno;
+	}
+
 });
+
 </script>
 
