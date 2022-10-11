@@ -10,6 +10,7 @@
 
 <script>
 	function toggle(){
+		console.log('toggle called..')
 			const checkbox = document.getElementById('my_checkbox');
 			
 			const is_checked = checkbox.checked;
@@ -18,11 +19,11 @@
 			
 			if(is_checked == true){
 				minusBtns.forEach(minus => {
-					minus.style.display ='block';
+					minus.style.visibility ='visible';
 				});
 			}else{
 				minusBtns.forEach(minus => {
-					minus.style.display ='none';
+					minus.style.visibility ='hidden';
 				});
 			}
 	}
@@ -30,13 +31,13 @@
 <%@ include file="../head.jsp" %>
 <title>친구관리</title>
 </head>
-<body onload="init()">
+<body>
 <%@ include file="../header.jsp" %>
 <div class="container-md col-md-9 mt-5">
 	<ul class="nav justify-content-sm-between mb-3">
 		<!-- 돌아가기 버튼 -->
 		<li class="nav-item">
-			<a class="nav-link" style="text-align:left" href="mypage.jsp">◀ 돌아가기</a>
+			<a class="nav-link" style="text-align:left" href="/mypage/mypage">◀ 돌아가기</a>
 		</li>
 		<li class="nav-item">
 			<button type="button" class="btn btn-primary" onclick="getElementById('friendModal').style.display='block';getElementById('friendModal').classList.add('show');">친구찾기</button>
@@ -61,7 +62,7 @@
 			<div class="friendTag">#일상,#성장,#스토리</div>
 		</div>
 		<!-- 친구의 추천웹툰 -->
-		<div class="friendToonRanking col-6">
+		<div class="friendToonRanking col-5">
 			<h5 class="hTitle">OOO님의 추천웹툰</h5>
 			<div class="thrBox">
 				<div class="FwebtoonThumb">
@@ -76,10 +77,10 @@
 				<div class="FwebtoonStar">★★★★</div>
 			</div>
 			<!-- 마이너스 아이콘 -->
-			<a href="#">
-				<ion-icon name="remove-circle-outline" class="minus"></ion-icon>
-			</a>
 		</div>
+			<a href="#" class="minus col">
+				<ion-icon name="remove-circle-outline" class=""></ion-icon>
+			</a>
 	</div>
 		<!-- 친구찾기용 모달 -->
 		<div class="modal fade" id="friendModal">

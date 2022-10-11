@@ -85,7 +85,9 @@
 /* 마이너스 아이콘 위치조정+숨기기 */
 .minus {
 	margin-top:90px;
-	display:none;
+	/* display:none; */
+	float:right;
+	visibility:hidden;
 }
 
 
