@@ -47,7 +47,7 @@ modal.hide();
 				/* console.log("list.name : ",list[i].name); */
 				str+='<div class="row align-items-start mt-5">'
 					str+='<div class="ratingImg col-2">'
-						str+='<src img="'+ list[i].imageRoute +'">'
+						str+='<img src="'+ list[i].imageRoute +'">'
 					str+='</div>'
 					str+='<div class="tests col-10">'
 						str+='<div class="ratingReply justify-content-start">'
