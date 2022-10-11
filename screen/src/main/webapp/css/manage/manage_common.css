@@ -669,3 +669,13 @@ button, input {
 	color: #fff;
 	background-color: #007bff;
 }
+
+.badge-success {
+	color: #fff;
+	background-color: #28a745;
+}
+
+.badge-info {
+	color: #fff;
+	background-color: #17a2b8;
+}

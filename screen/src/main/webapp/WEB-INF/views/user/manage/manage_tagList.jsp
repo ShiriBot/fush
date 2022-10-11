@@ -23,13 +23,13 @@
 							전체태그목록 <!-- 테이블 제목 -->
 							<small></small>
 						</h2>
-						<ul class="nav navbar-right panel_toolbox">
+					<!-- 	<ul class="nav navbar-right panel_toolbox">
 							<li>
 								<a class="collapse-link">
 									<i class="fa fa-chevron-up"></i>
 								</a>
 							</li>
-						</ul>
+						</ul> -->
 						<div class="clearfix"></div>
 					</div>
 					<div class="x_content tag_list">
@@ -80,13 +80,13 @@
 							태그 추가 <!-- 테이블 제목 -->
 							<small></small>
 						</h2>
-						<ul class="nav navbar-right panel_toolbox">
+						<!-- <ul class="nav navbar-right panel_toolbox">
 							<li>
 								<a class="collapse-link">
-									<i class="fa fa-chevron-up"></i><!-- 이거 누르면 접히게 만들...고 싶어요 -->
+									<i class="fa fa-chevron-up"></i>이거 누르면 접히게 만들...고 싶어요
 								</a>
 							</li>
-						</ul>
+						</ul> -->
 						<div class="clearfix"></div>
 					</div>
 					<div class="x_content">
@@ -102,17 +102,20 @@
 								<span>태그 대분류 추가</span>
 								<form method="post" class="tag_modifyForm">
 									<input type="text" disabled>
-									<input class="btn btn-primary" type="submit" value="추가">
+									<input class="btn btn-secondary" type="submit" value="추가">
 								</form>
 								<span>태그 중분류 추가</span>
 								<form method="post" class="tag_modifyForm">
 									<select>
 										<c:forEach items="${tagList}" var="tagList">
-										<option value="${tagList.top}">${tagList.top}</option>
+										<c:if test="${tagList.top ne top}">
+										<option value="${tagList.topSeq}">${tagList.top}</option>
+										</c:if>
+										<c:set value="${tagList.top}" var="top"/>
 										</c:forEach>
 									</select>
 									<input type="text" disabled>
-									<input class="btn btn-primary" type="submit" value="추가">
+									<input class="btn btn-secondary" type="submit" value="추가">
 								</form>
 							</div>
 						</div>
@@ -126,13 +129,13 @@
 							태그 편집 <!-- 테이블 제목 -->
 							<small></small>
 						</h2>
-						<ul class="nav navbar-right panel_toolbox">
+						<!-- <ul class="nav navbar-right panel_toolbox">
 							<li>
 								<a class="collapse-link">
-									<i class="fa fa-chevron-up"></i><!-- 이거 누르면 접히게 만들...고 싶어요 -->
+									<i class="fa fa-chevron-up"></i>이거 누르면 접히게 만들...고 싶어요
 								</a>
 							</li>
-						</ul>
+						</ul> -->
 						<div class="clearfix"></div>
 					</div>
 					<div class="x_content">

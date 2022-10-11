@@ -7,6 +7,8 @@
 <meta charset="UTF-8">
 <title>작품 수정하기</title>
 <%@ include file="manage_head.jsp" %>
+<script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
 </head>
 <body>
 	<div class="x_panel">
@@ -18,13 +20,15 @@
 		</div>
 		<div class="x_content">
 			<br>
-			<form class="form-horizontal form-label-left">
+			<form id="artModifyForm" class="form-horizontal form-label-left" enctype="multipart/form-data">
 				<div class="form-group row ">
 					<label class="control-label col-md-3 col-sm-3 ">
 						대표 이미지
-						<span class="badge badge-primary">수정</span>
+						<span id="fileUpload" class="badge badge-success">파일 업로드</span>
+						<div id="upload"></div>
+						<!-- <span id="imageLink" class="badge badge-info">이미지 링크</span> -->
 					</label>
-					<div class="col-md-9 col-sm-9 ">
+					<div id="" class="col-md-9 col-sm-9 imageDiv">
 						<img id="image" class="form-control" src="${info.imageRoute}">
 					</div>
 				</div>
@@ -99,4 +103,125 @@
 		</div>
 	</div>
 </body>
+<script>
+var seqno = "${info.seqno}";
+console.log(seqno);
+
+var artModify = (function(){
+	
+	function getInfo(seqno, callback, error){
+ 		console.log('getInfo called..');
+ 		$.getJSON({
+ 			type: 'get',
+ 			url : '/adminRest/artModify/'+seqno,
+ 			contentType : 'application/json; charset=utf-8',
+ 			
+ 			success : function(result, status, xhr){
+ 				if(callback){
+ 					callback(result);
+ 				}
+ 			},
+ 			error : function(){
+ 				if(error){
+ 					error(er);
+ 				}
+ 			}
+ 		});
+ 	}
+	
+	function setImageLink(imageLink, callback,error){
+ 		console.log('image link called...');
+ 		console.log(seqno);
+ 		$.ajax({
+ 			type:'post',
+ 			url:'/adminRest/setImageLink/'+seqno,
+ 			data: JSON.stringify(imageLink),
+ 			contentType: 'application/json; charset=utf-8',
+ 			success : function(result, status, xhr){
+ 				if(callback){
+ 					callback(result);
+ 				}
+ 			},
+ 			error : function(xhr, status, er){
+ 				if(error){
+ 					error(er);
+ 				}
+ 			}
+ 		
+ 		});
+ 	}
+	
+	function setImageFile(imageLink, callback,error){
+ 		console.log('image link called...');
+ 		console.log(seqno);
+ 		$.ajax({
+ 			type:'post',
+ 			url:'/adminRest/setImageLink/'+seqno,
+ 			data: JSON.stringify(imageLink),
+ 			contentType: 'application/json; charset=utf-8',
+ 			success : function(result, status, xhr){
+ 				if(callback){
+ 					callback(result);
+ 				}
+ 			},
+ 			error : function(xhr, status, er){
+ 				if(error){
+ 					error(er);
+ 				}
+ 			}
+ 		
+ 		});
+ 	}
+	
+	return {
+		getInfo:getInfo,
+		setImageLink:setImageLink
+	};
+})();
+
+$(document).ready(function(){
+	
+	$('#fileUpload').on('click', function(e){
+		console.log('file upload click');
+		$('#upload').html('<input type="file" name="imageInput" id="imageInput" accept="image/*">');
+	});
+	
+	$('#imageLink').on('click', function(e){
+		console.log('image link click');
+		var imageLink = prompt('이미지 경로를 입력하세요');
+		artModify.setImageLink(imageLink,function(){});
+		showInfo();
+	});
+	
+	$('#upload').on('change','input',function(e){
+		console.log($(this)[0]);
+		const imageInput = $(this)[0];
+		const formData = new FormData();
+		formData.append("image", imageInput.files[0]);
+		
+		$.ajax({
+			type:'POST',
+			url: '/adminRest/setImageFile/'+seqno,
+			processData: false,
+			contentType: false,
+			data: formData,
+			//data: $(this)[0].files[0],
+			dataType: 'json',
+			success: function(result){
+				console.log('result: ', result)
+			},
+			err: function(err){
+				console.log("err:", err)
+			}
+		})
+	});
+	
+	function showInfo(){
+		artModify.getInfo(seqno,function(info){
+			var str='<img id="image" class="form-control" src="'+info.imageRoute+'">';
+			$('#imageDiv').html(str);
+		});
+	}
+});
+</script>
 </html>

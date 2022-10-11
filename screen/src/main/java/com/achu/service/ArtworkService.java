@@ -2,6 +2,8 @@ package com.achu.service;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.achu.dto.Artwork;
 import com.achu.dto.Criteria;
 import com.achu.dto.Tag;
@@ -28,4 +30,8 @@ public interface ArtworkService {
 	public List<Artwork> Restlist();
 
 	public List<Artwork> searchList(String keyword);
+
+	public int setImageLink(String seqno, String imageLink);
+
+	public String setImageFile(String seqno, MultipartFile file);
 }

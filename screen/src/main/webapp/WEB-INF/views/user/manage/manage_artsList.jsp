@@ -58,13 +58,13 @@
 												</select> 개씩 보기
 											</label>
 										</div>
-										<div id="datatable-buttons_wrapper" class="dataTables_wrapper dt-bootstrap no-footer" style="display:inline">
+										<!-- <div id="datatable-buttons_wrapper" class="dataTables_wrapper dt-bootstrap no-footer" style="display:inline">
 											<div class="dt-artworkList btn-group">
 												<a class="btn btn-default buttons-html5 btn-sm" onclick="javascript:openWin.document.getElementById('name').value = 'test';">
 													<span>테스트</span>
 												</a>
 											</div>
-										</div>
+										</div> -->
 										<div id="datatable-arts_filter" class="dataTables_filter">
 											<select id="searchField" name="searchField">
 													<option value="name"
@@ -100,9 +100,7 @@
 													<th class="sorting" tabindex="0" aria-controls="datatable-responsive" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Art Url: activate to sort column descending" style="display: none;">
 														URL
 													</th>
-													<th>
-														수정
-													</th>
+													<!-- <th>수정</th> -->
 												</tr>
 											</thead>
 											<c:set value="${artworkList.currentPage*criteria.length-criteria.length+1}" var="startNum"/>
@@ -223,6 +221,7 @@ $(document).ready(function(){
 		console.log(criteria.searchField);
 		showList(criteria);
 	});
+	
 	$('#length').on('propertychange change keyup paste input', function(e){
 		console.log('length change...');
 		criteria.length=$(this).val();
@@ -255,7 +254,7 @@ $(document).ready(function(){
 			for(var i=startIndex, len=Math.min(page.cri.currentPage*page.cri.length,page.total) || 0; i<len ; i++){
 				//console.log(list[i]);
 				str +='<tr><td>'+list[i].name+'</td><td>'+list[i].author+'</td><td style="max-width:500px;">'+list[i].detail+'</td><td>'+list[i].week+'</td>';
-				str +='<td style="display: none;">'+list[i].url+'</td><td><button class="btn btn-primary" data-ano='+list[i].seqno+'>수정</button></td></tr>';
+				//str +='<td style="display: none;">'+list[i].url+'</td><td><button class="btn btn-primary" data-ano='+list[i].seqno+'>수정</button></td></tr>';
 			}
 			
 			$('.dataTableBody').html(str);
