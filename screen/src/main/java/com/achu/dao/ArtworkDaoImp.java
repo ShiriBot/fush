@@ -279,6 +279,7 @@ public class ArtworkDaoImp implements ArtworkDao {
 		Artwork a = new Artwork();
 		List<Tag> tag = new ArrayList<>();
 		String sql = "call p_get_art_detail(?,?)";
+		System.out.println("작품 일련번호:" +seqno);
 		try {
 			conn=dataSource.getConnection();
 			stmt = conn.prepareCall(sql);

@@ -70,6 +70,7 @@ public class ArtworkServiceImp implements ArtworkService {
 	}
 	@Override
 	public int setImageLink(String seqno, String imageLink) {
+		//System.out.println("서비스 이미지 링크:"+imageLink);
 		return mapper.setImageLink(seqno, imageLink);
 	}
 	@Override

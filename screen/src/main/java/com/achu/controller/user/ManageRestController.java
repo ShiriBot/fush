@@ -101,14 +101,16 @@ public class ManageRestController {
 	}
 	
 	@PostMapping(value="setImageLink/{seqno}", produces={"text/plain; charset=utf-8"})
-	public ResponseEntity<String> setImage(@PathVariable("seqno") String seqno, @RequestBody String ImageLink) {
+	public ResponseEntity<String> setImage(@PathVariable("seqno") String seqno, @RequestBody String imageLink) {
 		//System.out.println(seqno);
 		//System.out.println(ImageLink);
-		artworkService.setImageLink(seqno,ImageLink);
+		imageLink=imageLink.replaceAll("\"", "");
+		//System.out.println("콘트롤러 이미지 링크:"+imageLink);
+		artworkService.setImageLink(seqno,imageLink);
 		return null;
 	}
 	
-	@GetMapping(value="artModify/{seqno}",produces="text/plain; charset=utf-8")
+	@GetMapping(value="artModify/{seqno}",produces= {MediaType.APPLICATION_JSON_UTF8_VALUE})
 	public ResponseEntity<Artwork> artModify(@PathVariable("seqno") String seqno){
 		return new ResponseEntity<>(artworkService.artDetail(seqno), HttpStatus.OK);
 	}

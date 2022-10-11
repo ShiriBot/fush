@@ -24,11 +24,11 @@
 				<div class="form-group row ">
 					<label class="control-label col-md-3 col-sm-3 ">
 						대표 이미지
-						<span id="fileUpload" class="badge badge-success">파일 업로드</span>
-						<div id="upload"></div>
-						<!-- <span id="imageLink" class="badge badge-info">이미지 링크</span> -->
+						<!-- <span id="fileUpload" class="badge badge-success">파일 업로드</span>
+						<div id="upload"></div> -->
+						<span id="imageLink" class="badge badge-info">이미지 링크</span>
 					</label>
-					<div id="" class="col-md-9 col-sm-9 imageDiv">
+					<div id="imageDiv" class="col-md-9 col-sm-9 imageDiv">
 						<img id="image" class="form-control" src="${info.imageRoute}">
 					</div>
 				</div>
@@ -111,6 +111,7 @@ var artModify = (function(){
 	
 	function getInfo(seqno, callback, error){
  		console.log('getInfo called..');
+ 		console.log('getInfo function:'+seqno);
  		$.getJSON({
  			type: 'get',
  			url : '/adminRest/artModify/'+seqno,
@@ -131,7 +132,7 @@ var artModify = (function(){
 	
 	function setImageLink(imageLink, callback,error){
  		console.log('image link called...');
- 		console.log(seqno);
+ 		console.log('image link function:'+seqno);
  		$.ajax({
  			type:'post',
  			url:'/adminRest/setImageLink/'+seqno,
@@ -152,8 +153,8 @@ var artModify = (function(){
  	}
 	
 	function setImageFile(imageLink, callback,error){
- 		console.log('image link called...');
- 		console.log(seqno);
+ 		console.log('image file called...');
+ 		console.log('image file function:'+seqno);
  		$.ajax({
  			type:'post',
  			url:'/adminRest/setImageLink/'+seqno,
@@ -189,6 +190,7 @@ $(document).ready(function(){
 	$('#imageLink').on('click', function(e){
 		console.log('image link click');
 		var imageLink = prompt('이미지 경로를 입력하세요');
+		//console.log(imageLink);
 		artModify.setImageLink(imageLink,function(){});
 		showInfo();
 	});
@@ -218,6 +220,7 @@ $(document).ready(function(){
 	
 	function showInfo(){
 		artModify.getInfo(seqno,function(info){
+			console.log('showInfo called...')
 			var str='<img id="image" class="form-control" src="'+info.imageRoute+'">';
 			$('#imageDiv').html(str);
 		});

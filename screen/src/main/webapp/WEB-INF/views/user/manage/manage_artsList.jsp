@@ -100,7 +100,7 @@
 													<th class="sorting" tabindex="0" aria-controls="datatable-responsive" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Art Url: activate to sort column descending" style="display: none;">
 														URL
 													</th>
-													<!-- <th>수정</th> -->
+													<th>수정</th>
 												</tr>
 											</thead>
 											<c:set value="${artworkList.currentPage*criteria.length-criteria.length+1}" var="startNum"/>
@@ -254,7 +254,7 @@ $(document).ready(function(){
 			for(var i=startIndex, len=Math.min(page.cri.currentPage*page.cri.length,page.total) || 0; i<len ; i++){
 				//console.log(list[i]);
 				str +='<tr><td>'+list[i].name+'</td><td>'+list[i].author+'</td><td style="max-width:500px;">'+list[i].detail+'</td><td>'+list[i].week+'</td>';
-				//str +='<td style="display: none;">'+list[i].url+'</td><td><button class="btn btn-primary" data-ano='+list[i].seqno+'>수정</button></td></tr>';
+				str +='<td style="display: none;">'+list[i].url+'</td><td><button class="btn btn-primary" data-ano='+list[i].seqno+'>수정</button></td></tr>';
 			}
 			
 			$('.dataTableBody').html(str);

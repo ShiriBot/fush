@@ -21,7 +21,7 @@
 	  
 	<update id="setImageLink">
 		UPDATE image 
-		SET route=#{imageLink}, save_name='', file_type=''
+		SET link_address=#{imageLink}
 		WHERE art_seqno=#{seqno}
 	</update>
 	
