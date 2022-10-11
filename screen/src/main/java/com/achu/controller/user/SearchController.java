@@ -7,7 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.achu.dto.Criteria;
 import com.achu.service.ArtworkService;
 import com.achu.service.MemberService;
 import com.achu.service.TagService;
@@ -23,10 +25,13 @@ public class SearchController {
 	MemberService ms;
 	
 	@RequestMapping(value = "search_new",method = RequestMethod.GET)
-	private void ArtSearch(Model m) {
-		
+	private void ArtSearch(@RequestParam("keyword") String keyword,Model m) {
+			Criteria cri = new Criteria();
+			cri.setKeyword(keyword);
+		System.out.println(cri);
 			m.addAttribute("searchList", tagService.tagList());
-			m.addAttribute("artList",artworkService.list());
+			m.addAttribute("artList",artworkService.list(cri));
+			m.addAttribute("keyword",keyword);
 		}
 	
 	

@@ -14,9 +14,9 @@
 		
 		<div class="col-sm-4" id="navbarSupportedContent1">
 			<div class="row">
-			<form class="col-9" method="get" action ="artSearch">
+			<form id="search" class="col-9" method="get" action ="/search_new">
 				<fieldset class="field-container">
-					<input type="text" placeholder="Search..." class="field" name ="searchArt" />
+					<input type="text" placeholder="Search..." class="field" name ="keyword" />
 					<div class="icons-container">
 						<div class="icon-search"></div>
 						<div class="icon-close">
@@ -26,7 +26,7 @@
 					</div>
 				</fieldset>
 			</form>
-			<a class="col-3 nav-link primary" href="/search_new"> 상세검색</a>
+			<a class="col-3 nav-link primary" href="javascript:document.getElementById('search').submit()"> 상세검색</a>
 			</div>
 		</div>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -81,3 +81,15 @@
 		</div>
 	</div>
 </nav>
+<!-- <script type="text/javascript">
+  $(document).ready(function () {
+	  var searchField = $("#navbarSupportedContent1");
+	  var keyword = searchField.find("input[name='searchArt']");
+	  	  
+	  $("input").on("keyup",function(key){
+		  if(key.keyCode==13) {
+      	
+         }    
+    });
+  });
+</script> -->

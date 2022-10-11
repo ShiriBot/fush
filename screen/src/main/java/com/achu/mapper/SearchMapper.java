@@ -9,6 +9,5 @@ import com.achu.dto.Artwork;
 public interface SearchMapper {
 	public List<Artwork> getSearchList();
 	
-	public List<Artwork> searchResult(@Param("name") String name,
-									 @Param("tag_name")	String tagName);
+	public List<Artwork> searchResult(@Param("name") String name);
 }

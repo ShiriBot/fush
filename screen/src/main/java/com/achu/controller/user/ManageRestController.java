@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.achu.dto.Artwork;
 import com.achu.dto.Criteria;
@@ -97,5 +98,24 @@ public class ManageRestController {
 				result=new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 			}
 		return result;
+	}
+	
+	@PostMapping(value="setImageLink/{seqno}", produces={"text/plain; charset=utf-8"})
+	public ResponseEntity<String> setImage(@PathVariable("seqno") String seqno, @RequestBody String ImageLink) {
+		//System.out.println(seqno);
+		//System.out.println(ImageLink);
+		artworkService.setImageLink(seqno,ImageLink);
+		return null;
+	}
+	
+	@GetMapping(value="artModify/{seqno}",produces="text/plain; charset=utf-8")
+	public ResponseEntity<Artwork> artModify(@PathVariable("seqno") String seqno){
+		return new ResponseEntity<>(artworkService.artDetail(seqno), HttpStatus.OK);
+	}
+	
+	@PostMapping(value="setImageFile/{seqno}",produces="text/plain; charset=utf-8")
+	public ResponseEntity<String> setImageFile(@PathVariable("seqno") String seqno, @RequestBody MultipartFile file){
+		System.out.println(file);
+		return new ResponseEntity<>(artworkService.setImageFile(seqno,file), HttpStatus.OK);
 	}
 }

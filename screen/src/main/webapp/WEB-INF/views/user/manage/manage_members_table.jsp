@@ -255,6 +255,13 @@ $(document).ready(function(){
 			/* 해당사항 없는 경우 */
 			console.log('getList call');
 			console.log(page);
+			
+			if(criteria.kind=='del'){
+				$('#datatable-buttons_wrapper').html('<div class="dt--members-del btn-group"><a class="btn btn-default buttons-html5 btn-sm" href="/admin/memberDelete"><span>탈퇴요청 한달 넘은 개인정보 삭제하기</span></a></div>');
+			}else{
+				$('#datatable-buttons_wrapper').html('');
+			}
+			
 			var list = page.content;
 			if(list==null||list.length==0){
 				$('.dataTableBody').html('');
@@ -278,11 +285,6 @@ $(document).ready(function(){
 	function showPage(page){
 
 		var criteria = page.cri;
-		
-		if(criteria.kind=='del'){
-			$('#datatable-buttons_wrapper').html('<div class="dt--members-del btn-group"><a class="btn btn-default buttons-html5 btn-sm" href="/admin/memberDelete"><span>탈퇴요청 한달 넘은 개인정보 삭제하기</span></a></div>');
-		}
-		
 		
 		console.log(criteria.currentPage*criteria.length-criteria.length+1);
 		var str='Showing '+(criteria.currentPage*criteria.length-criteria.length+1)+' to '+Math.min(criteria.currentPage*criteria.length,page.total)+' of '+page.total+' entries';

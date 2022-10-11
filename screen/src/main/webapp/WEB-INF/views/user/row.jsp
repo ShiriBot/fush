@@ -12,12 +12,6 @@
 					<div class="slide_item">
 						<img src="${banner.route}${banner.saveName}.${banner.fileType}">
 					</div>
-					<!--슬라이드될 아이템들 -->
-					<!-- <div class="slide_item"></div>
-					<div class="slide_item"></div>
-					<div class="slide_item"></div>
-					<div class="slide_item"></div>
-					<div class="slide_item"></div> -->
 				</c:forEach>
 			</div>
 			<!-- 살려야한다  -->
@@ -31,16 +25,9 @@
 					<div class="thumbnail_item">
 						<img src="${banner.route}${banner.saveName}.${banner.fileType}">
 					</div>
-					<!--썸네일 아이템들 -->
-				<!-- 	<div class="thumbnail_item"></div>
-					<div class="thumbnail_item"></div>
-					<div class="thumbnail_item"></div>
-					<div class="thumbnail_item"></div>
-					<div class="thumbnail_item"></div> -->
 				</c:forEach>	
 			</div>
 		</div>
-		<!-- <img src="images/logo.png"> -->
 		<script src="/js/slideShow.js"></script>
 	</div>
 

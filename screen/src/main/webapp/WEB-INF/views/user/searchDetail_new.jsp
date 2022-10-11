@@ -5,8 +5,30 @@
 
 
 <!-- 장르 드롭다운 -->
-<div id="dropDownBox">
+<!-- <div id="dropDownBox">
 <div class="row">
+	<nav class="navbar navbar-expand-lg navbar-light bg-white" style="border: 1px solid #d8d8df">
+	    <span class="navbar-brand">장르</span>
+	    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+	      <span class="navbar-toggler-icon"></span>
+	    </button>
+	    <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+	      		<ul class="navbar-nav">
+	       			 <li class="nav-item dropdown"> 
+					        <a class="nav-link dropdown-toggle text-dark d-inline midTag" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+					        중간 태그 자리</a>
+		           			<div class="nav-link dropdown-toggle text-dark d-none ta" ></div>
+			        	<ul class="dropdown-menu dropdown-menu-white tagList"  aria-labelledby="navbarDarkDropdownMenuLink">
+				    	      	  	<li><button class="dropdown-item" name="tagname" value="">하위 태그자리</button></li>
+			    	    </ul>
+	       			 </li>
+	   		   </ul>
+	    </div>
+	</nav>
+</div>
+ -->
+<!-- 잘가 jstl아 -->
+ <div class="row"> 
 	<nav class="navbar navbar-expand-lg navbar-light bg-white" style="border: 1px solid #d8d8df">
 	    <span class="navbar-brand">장르</span>
 	    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,7 +59,7 @@
 	        </c:forEach>	
 	    </div>
 	</nav>
-</div>
+</div> 
 
 <!-- 소재 드롭다운 -->
 <div class="row">
@@ -128,9 +150,10 @@
 
 <!-- 검색창 -->
 <div id="detailSearchBar">
+<c:set value="${keyword}" var="key"/>
 	<nav class="navbar navbar-light  d-flex">
 		<div class="container-fluid justify-content-center">
-				<input class="form-control me-2 w-25 h-25"  name="searchBar" style='resize : none;overflow:hidden;'></textarea>
+				<input class="form-control me-2 w-25 h-25"  name="searchBar" style='resize : none;overflow:hidden;' value = "${key}">
 				<button id="searchSubmit" class="btn btn-outline-success">검색</button>
 		</div>
 	</nav>
@@ -187,25 +210,23 @@ $(document).ready(function(){
 var searchField = $("#detailSearchBar");
 var searchBoard = $(".searchBoard");
 var keyword = searchField.find("input[name='searchBar']");
-var tag = $(".tagList li").val();
-	
-	$("#searchSubmit").on("click",function(){
-		keyword = searchField.find("input[name='searchBar']");
-				console.log("값 체크", keyword.val());
-		showList(keyword,tag); 
-	});
+console.log("키워드 val", keyword.val());
 
-	console.log("keyword :",keyword);
-		function showList(keyword,tag){
-				console.log("겟리스트 시작", keyword);
-			searchService.getList({keyword:keyword,tag:tag},function(list){
+	
+	$("#searchSubmit").on("click",function(key){
+			       showList();
+		     });
+	
+		function showList(){
+			searchService.getList(keyword.val(),function(list){
+				console.log("겟리스트 시작", keyword.val());
 				if(list == null || list.length==0){
 					$(".searchBoard").html("검색 결과가 없습니다");
 					return;
-					}
+					} 
 				var str = "";
 				for(var i = 0, len=list.length || 0; i<len; i++){
-					console.log("리스트디버깅 이름: " + list[i].tag);
+					console.log("리스트디버깅 이름: " + list[i].name);
 					str+="<div id='searchResult'> <div class='row'>"
 					str+="<div class='col' id='artResult'>"
 					str+="<div class='image'><img src='"+ list[i].imageRoute +"'></div>"
@@ -228,34 +249,7 @@ var tag = $(".tagList li").val();
 	         if(key.keyCode==13) {
 		       showList();
 	         }    
-	     });
+	     }); 
 		
-	     /* 태그리스트 클릭시 태그목록띄우기 */
-		/*   $(".tagList li").click(function(){ 
-				var tag = $(this).text(); 
-				console.log("태그 값:" ,tag);
-
-				
-				searchService.getList(tag,function(){
-					var str="";
-					for(var i = 0, len=tag.length || 0; i<len; i++){
-						console.log("리스트디버깅 이름: " + tag[i].tag);
-						str+="<div id='searchResult'> <div class='row'>"
-						str+="<div class='col' id='artResult'>"
-						str+="<div class='image'><img src='"+ tag[i].imageRoute +"'></div>"
-						str+="<div class='webtoonName'>"+ tag[i].name +"</div></div>"
-						str+="<div class='col'><div class ='authorDetail'>"
-						str+="<span>작가:</span>"+ tag[i].author +"</div>"
-						str+="<div class ='platformDetail'><span>연재처:</span>"+tag[i].plaform+"</div>"
-						str+="<div class ='webtoonDetail'>"+tag[i].detail+"</div>"
-						str+="<div class ='genruDetail'><span>장르:</span></div>"
-						str+="<div class ='webtoonHashtag'><a href='#'>#전체 연령가 </a></div></div>"
-						str+="<div class='col'><div class='star'>"
-						str+="<h4>별점</h4> <h2>5.0/5.0</h2> <div>★★★★★</div></div></div>"
-						str += "</div></div>" 
-					} 
-				$("#result").html(tag);
-			}); 
-	      */
 });
 </script>

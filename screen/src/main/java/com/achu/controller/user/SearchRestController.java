@@ -28,14 +28,15 @@ public class SearchRestController {
 	@Autowired
 	ArtworkService artworkService;
 	
-	@GetMapping(value="search/{keyword}/{tagName}",
+	
+	
+	@GetMapping(value="search/{keyword}",
 			produces = {MediaType.APPLICATION_XML_VALUE,
 					MediaType.APPLICATION_JSON_UTF8_VALUE})
-	public ResponseEntity<List<Artwork>> search(@Param("keyword") String keyword,
-												@Param("tagName") String tagName){
+	public ResponseEntity<List<Artwork>> search(@PathVariable("keyword") String keyword){
 		System.out.println("서치 컨트롤러 검색어 기능 구현 디버깅" + keyword);
 		
-		return new ResponseEntity<>(artworkService.searchList(keyword,tagName),HttpStatus.OK);
+		return new ResponseEntity<>(artworkService.searchList(keyword),HttpStatus.OK);
 	}
 	
 	@GetMapping(value ="list",
