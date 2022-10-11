@@ -15,6 +15,7 @@ import com.achu.dto.Criteria;
 import com.achu.dto.Image;
 import com.achu.dto.Tag;
 import com.achu.mapper.ArtworkMapper;
+import com.achu.mapper.RatingMapper;
 import com.achu.mapper.SearchMapper;
 
 @Service
@@ -23,10 +24,11 @@ public class ArtworkServiceImp implements ArtworkService {
 	ArtworkDao artworkDao;
 	
 	@Autowired 
-	ArtworkMapper mapper;
+	ArtworkMapper artworkMapper;
 	
 	@Autowired
 	SearchMapper searchMapper;
+	
 	
 	@Override
 	public List<Artwork> list(Criteria aCri) {
@@ -71,7 +73,7 @@ public class ArtworkServiceImp implements ArtworkService {
 	@Override
 	public int setImageLink(String seqno, String imageLink) {
 		//System.out.println("서비스 이미지 링크:"+imageLink);
-		return mapper.setImageLink(seqno, imageLink);
+		return artworkMapper.setImageLink(seqno, imageLink);
 	}
 	@Override
 	public String setImageFile(String seqno, MultipartFile item) {
@@ -122,6 +124,10 @@ public class ArtworkServiceImp implements ArtworkService {
 			}*/
 		}
 		
-		return mapper.setImageFile(seqno,image);
+		return artworkMapper.setImageFile(seqno,image);
+	}
+	@Override
+	public List<Artwork> getRatingList(String id) {
+		return artworkMapper.getRatingList(id);
 	}
 }

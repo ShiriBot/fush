@@ -211,7 +211,7 @@ var searchField = $("#detailSearchBar");
 var searchBoard = $(".searchBoard");
 var keyword = searchField.find("input[name='searchBar']");
 console.log("키워드 val", keyword.val());
-
+showList();
 	
 	$("#searchSubmit").on("click",function(key){
 			       showList();

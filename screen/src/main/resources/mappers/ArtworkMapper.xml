@@ -30,4 +30,13 @@
 		SET route=#{image.route}, save_name=#{image.saveName}, file_type=#{image.fileType},file_size=#{image.fileSize}
 		WHERE art_seqno=#{seqno}
 	</update>
+	<select id="getRatingList" resultType="Artwork">
+	  SELECT seqno, name, author, image_route 
+	FROM v_art_info
+	WHERE seqno in(
+	    SELECT seqno FROM v_art_info
+	    MINUS
+	    SELECT seqno FROM user_rating_record WHERE id=#{id})
+	order by dbms_random.value
+  </select>
   </mapper>

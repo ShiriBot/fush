@@ -34,4 +34,8 @@ public interface ArtworkService {
 	public int setImageLink(String seqno, String imageLink);
 
 	public String setImageFile(String seqno, MultipartFile file);
+
+	public List<Artwork>  getRatingList(String id);
+
+	
 }

@@ -15,11 +15,10 @@
 
 .ratingImg {
 	/* background-color: #aaa; */
-	/* background-image: url("../images/jojo.jpg");
-	background-repeat: no-repeat; */
-	width: 100%;
+	 /* background-image: url("../images/jojo.jpg"); */
+	/* background-repeat: no-repeat;  */
 	height: 100%;
-	padding: 20px;
+	padding: 5%;
 }
 
 .ratingContent{
@@ -67,13 +66,13 @@
 #reply{
 	top:0;
 	left:0;
-	width : 100%;
+	width : 100%; 
 	height : 100%;
 	display:none;
  	position:fixed;
 	overflow:auto;
-	z-index:1;
-	background-color:rgba(0,0,0,0.4);
+	z-index:3;
+	background-color:rgba(0,0,0,0.2);
 }
 /* 댓글 모달창 */
 .reply_content {
@@ -100,28 +99,113 @@
 	height:80px;
 }
 /* 등록버튼 */
-.replyPopup input[type=submit]{
+/* .replyPopup input[type=submit]{
 	width:70px;
 	height:60px;
-}
+} */
 /* 닫기버튼 가운데 */
-#close_reply{
+/* #close_reply{
 	text-align: center;
-}
+} */
 /* 댓글 버튼 css없애기 */
-.ratingReply button {
+ .ratingContainer button {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
     background-color: transparent;
     border-style:none;
-}
+} 
 /* hover....넣어봤어... 너무 심심해보여서.. */
-.ratingReply button{
+ .ratingContainer button{
 	transition: all 0.2s linear;
 }
 
-.ratingReply button:hover {
+.ratingContainer button:hover {
 	transform: scale(1.4);
-}
+} 
 
+.ratingContainer {
+	background-color: #fff;
+	border-radius: 10px;
+  	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
+			0 10px 10px rgba(0,0,0,0.22);
+	position: relative;
+	overflow: hidden;
+	width: 100%;
+	max-width: 100%;
+	min-height: 480px;
+	padding-left : 5%;
+}
+/* 별점 다시짬 codepen에서 퍼옴 https://codepen.io/andreacrawford/pen/NvqJXW */
+/* use display:inline-flex to prevent whitespace issues. alternatively, you can put all the children of .rating-group on a single line */
+  .rating-group {
+    display: inline-flex;
+  }
+  
+  /* make hover effect work properly in IE */
+  .rating__icon {
+    pointer-events: none;
+  }
+  
+  /* hide radio inputs */
+  .rating__input {
+   position: absolute !important;
+   left: -9999px !important;
+  }
+
+  /* set icon padding and size */
+  .rating__label {
+    cursor: pointer;
+    /* if you change the left/right padding, update the margin-right property of .rating__label--half as well. */
+    padding: 0 0.1em;
+    font-size: 2rem;
+  }
+
+  /* add padding and positioning to half star labels */
+  .rating__label--half {
+    padding-right: 0;
+    margin-right: -1.2em;
+    z-index: 2;
+  }
+  
+  /* set default star color */
+  .rating__icon--star {
+    color: orange;
+  }
+  
+  /* set color of none icon when unchecked */
+  .rating__icon--none {
+    color: #eee;
+  }
+
+  /* if none icon is checked, make it red */
+  .rating__input--none:checked + .rating__label .rating__icon--none {
+    color: red;
+  }
+
+  /* if any input is checked, make its following siblings grey */
+  .rating__input:checked ~ .rating__label .rating__icon--star {
+    color: #ddd;
+  }
+  
+  /* make all stars orange on rating group hover */
+  .rating-group:hover .rating__label .rating__icon--star,
+  .rating-group:hover .rating__label--half .rating__icon--star {
+    color: orange;
+  }
+
+  /* make hovered input's following siblings grey on hover */
+  .rating__input:hover ~ .rating__label .rating__icon--star,
+  .rating__input:hover ~ .rating__label--half .rating__icon--star {
+    color: #ddd;
+  }
+  
+  /* make none icon grey on rating group hover */
+  .rating-group:hover .rating__input--none:not(:hover) + .rating__label .rating__icon--none {
+     color: #eee;
+  }
+
+  /* make none icon red on hover */
+  .rating__input--none:hover + .rating__label .rating__icon--none {
+    color: red;
+  }

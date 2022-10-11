@@ -50,15 +50,14 @@
 
 <script type="text/javascript" src="/js/reply.js"></script>
 <script>
+
+$(document).ready(function(){
 	var id = '<c:out value="${sess_id}"/>'
 	var seqno = '<c:out value="${art.seqno}"/>';
 	var modal = $("#reply_modal");
-
-$(document).ready(function(){
 	var modal_content = modal.find("input[name='content']");
  	showList();
 	modal.hide();
-	var seqno = '<c:out value="${art.seqno}"/>';
  	console.log("ano값 널떠서 디버깅 " + seqno);
  	
  	 /* 수정버튼 클릭시 */
@@ -97,12 +96,11 @@ $(document).ready(function(){
 				showList();
 			}); 
 	});
- 	
  	/* 댓글 리스트 출력 */
 	function showList(){
-		replyService.getReply({ano:seqno},function(list){
-			/* console.log("시퀀스 : "+seqno); 
-			console.log("리스트 내용" +list.length); */
+		replyService.getReply(seqno,function(list){
+			console.log("시퀀스 : "+seqno);
+			console.log("리스트 내용" +list.length); 
 				for(var i= 0, len=list.length || 0; i < len; i++){
 					console.log(list[i]);
 				}

@@ -1,5 +1,7 @@
 package com.achu.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 import com.achu.dto.Artwork;
@@ -12,4 +14,6 @@ public interface ArtworkMapper {
 	public int setImageLink(@Param("seqno") String seqno, @Param("imageLink") String imageLink);
 
 	public String setImageFile(@Param("seqno") String seqno, @Param("image") Image image);
+	
+	public List<Artwork> getRatingList(@Param("id") String id);
 }
