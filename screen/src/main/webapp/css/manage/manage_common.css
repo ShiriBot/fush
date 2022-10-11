@@ -660,3 +660,12 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav,
 	line-height: 1;
 	-webkit-font-smoothing: antialiased;
 }
+
+button, input {
+	overflow: visible;
+}
+
+.badge-primary {
+	color: #fff;
+	background-color: #007bff;
+}

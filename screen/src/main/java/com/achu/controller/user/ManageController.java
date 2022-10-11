@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -110,4 +111,10 @@ public class ManageController {
 			tagService.delete(seqno);
 			return "redirect:/admin/tag";
 		}*/
+	
+	@RequestMapping(value="artModify/{seqno}", method = RequestMethod.GET)
+	public String artModify(@PathVariable("seqno") String seqno,Model model) {
+		model.addAttribute("info",artworkService.artDetail(seqno));
+		return "/manage/artModify";
+	}
 }
