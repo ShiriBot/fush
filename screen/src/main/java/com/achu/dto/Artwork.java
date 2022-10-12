@@ -7,7 +7,7 @@ public class Artwork {
 	private String seqno;
 	private String name;
 	private String author;
-	private String plaform;
+	private String platform;
 	private String rest;
 	private String week;
 	private String detail;
@@ -48,11 +48,11 @@ public class Artwork {
 	}
 
 	public String getPlaform() {
-		return plaform;
+		return platform;
 	}
 
-	public void setPlaform(String plaform) {
-		this.plaform = plaform;
+	public void setPlaform(String platform) {
+		this.platform = platform;
 	}
 
 	public String getRest() {
