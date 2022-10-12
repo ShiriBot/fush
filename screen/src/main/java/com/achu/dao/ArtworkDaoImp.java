@@ -296,7 +296,7 @@ public class ArtworkDaoImp implements ArtworkDao {
 				a.setDetail(rs.getString("detail"));
 				a.setImageRoute(rs.getString("image_route"));
 				a.setAvgRating(rs.getDouble("avg_rating"));
-				a.setPlaform(rs.getString("platform"));
+				a.setPlatform(rs.getString("platform"));
 				
 				ta.setName(rs.getString("tag_name"));
 				tag.add(ta);

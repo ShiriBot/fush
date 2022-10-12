@@ -2,7 +2,6 @@ package com.achu.dao;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -13,11 +12,10 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.achu.common.OracleConn;
-
 import com.achu.dto.Artwork;
 import com.achu.dto.Average;
 import com.achu.dto.Tag;
+
 import oracle.jdbc.OracleTypes;
 
 @Repository
@@ -180,7 +178,7 @@ public class PreferenceDaoImp implements PreferenceDao{
          
          while(rs.next()) {
             Artwork artwork= new Artwork();
-            artwork.setPlaform(rs.getString("platform"));
+            artwork.setPlatform(rs.getString("platform"));
             artwork.setCnt(rs.getInt("cnt"));
             platform.add(artwork);
          }

@@ -47,11 +47,11 @@ public class Artwork {
 		this.author = author;
 	}
 
-	public String getPlaform() {
+	public String getPlatform() {
 		return platform;
 	}
 
-	public void setPlaform(String platform) {
+	public void setPlatform(String platform) {
 		this.platform = platform;
 	}
 
