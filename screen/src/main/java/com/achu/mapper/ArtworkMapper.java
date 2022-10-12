@@ -1,5 +1,6 @@
 package com.achu.mapper;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
@@ -16,4 +17,6 @@ public interface ArtworkMapper {
 	public String setImageFile(@Param("seqno") String seqno, @Param("image") Image image);
 	
 	public List<Artwork> getRatingList(@Param("id") String id);
+
+	public int modify(HashMap<String, String> key);
 }

@@ -1,5 +1,6 @@
 package com.achu.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -36,6 +37,8 @@ public interface ArtworkService {
 	public String setImageFile(String seqno, MultipartFile file);
 
 	public List<Artwork>  getRatingList(String id);
+
+	public int modify(HashMap<String, String> key);
 
 	
 }

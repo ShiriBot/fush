@@ -311,7 +311,7 @@ $(document).ready(function(){
 		// window.name = "부모창 이름"; 
 		window.name = 'parentForm';
 		// window.open("open할 window", "자식창 이름", "팝업창 옵션");
-		openWin = window.open('/admin/artModify/'+seqno, '작품수정하기', 'width=500, height=800, resizable = no, scrollbars = no');
+		openWin = window.open('/admin/artModify/'+seqno, '작품수정하기', 'width=1000, height=550, resizable = no, scrollbars = no');
 		//openWin.document.getElementById("name").value = seqno;
 	}
 

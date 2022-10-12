@@ -1,5 +1,6 @@
 package com.achu.controller.user;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -100,19 +101,20 @@ public class ManageRestController {
 		return result;
 	}
 	
+	@GetMapping(value="getInfo/{seqno}",produces= {MediaType.APPLICATION_JSON_UTF8_VALUE})
+	public ResponseEntity<Artwork> getInfo(@PathVariable("seqno") String seqno){
+		//System.out.println("ManageRestController artModify seqno:"+seqno);
+		return new ResponseEntity<>(artworkService.artDetail(seqno), HttpStatus.OK);
+	}
+	
 	@PostMapping(value="setImageLink/{seqno}", produces={"text/plain; charset=utf-8"})
 	public ResponseEntity<String> setImage(@PathVariable("seqno") String seqno, @RequestBody String imageLink) {
 		//System.out.println(seqno);
 		//System.out.println(ImageLink);
 		imageLink=imageLink.replaceAll("\"", "");
 		//System.out.println("콘트롤러 이미지 링크:"+imageLink);
-		artworkService.setImageLink(seqno,imageLink);
-		return null;
-	}
-	
-	@GetMapping(value="artModify/{seqno}",produces= {MediaType.APPLICATION_JSON_UTF8_VALUE})
-	public ResponseEntity<Artwork> artModify(@PathVariable("seqno") String seqno){
-		return new ResponseEntity<>(artworkService.artDetail(seqno), HttpStatus.OK);
+		//artworkService.setImageLink(seqno,imageLink);
+		return artworkService.setImageLink(seqno,imageLink)==1? new ResponseEntity<>("이미지 추가 완료", HttpStatus.OK) : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
 	@PostMapping(value="setImageFile/{seqno}",produces="text/plain; charset=utf-8")
@@ -120,4 +122,13 @@ public class ManageRestController {
 		System.out.println(file);
 		return new ResponseEntity<>(artworkService.setImageFile(seqno,file), HttpStatus.OK);
 	}
+	
+	@PostMapping(value="artModify/{seqno}",produces= {MediaType.APPLICATION_JSON_UTF8_VALUE})
+	public ResponseEntity<String> artModify(@PathVariable("seqno") String seqno, @RequestBody HashMap<String,String> key){
+		//System.out.println("ManageRestController artModify seqno:"+seqno);
+		key.put("seqno", seqno);
+		System.out.println(key);
+		return artworkService.modify(key)==1? new ResponseEntity<>("수정 완료", HttpStatus.OK) : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	
 }

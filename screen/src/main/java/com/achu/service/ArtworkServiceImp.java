@@ -1,6 +1,7 @@
 package com.achu.service;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -15,7 +16,6 @@ import com.achu.dto.Criteria;
 import com.achu.dto.Image;
 import com.achu.dto.Tag;
 import com.achu.mapper.ArtworkMapper;
-import com.achu.mapper.RatingMapper;
 import com.achu.mapper.SearchMapper;
 
 @Service
@@ -129,5 +129,9 @@ public class ArtworkServiceImp implements ArtworkService {
 	@Override
 	public List<Artwork> getRatingList(String id) {
 		return artworkMapper.getRatingList(id);
+	}
+	@Override
+	public int modify(HashMap<String, String> key) {
+		return artworkMapper.modify(key);
 	}
 }

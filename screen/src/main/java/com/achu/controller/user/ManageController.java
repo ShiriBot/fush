@@ -114,7 +114,9 @@ public class ManageController {
 	
 	@RequestMapping(value="artModify/{seqno}", method = RequestMethod.GET)
 	public String artModify(@PathVariable("seqno") String seqno,Model model) {
-		model.addAttribute("info",artworkService.artDetail(seqno));
+		model.addAttribute("seqno",seqno);
+		//model.addAttribute("info",artworkService.artDetail(seqno));
+		//System.out.println("ManageController artModify Called..."+seqno);
 		return "/manage/artModify";
 	}
 }
