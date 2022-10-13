@@ -23,4 +23,7 @@ public interface TagService {
 	public int remove(String seqno);
 
 	public int confirm(String tagName);
+
+	public List<Tag> tagSearch(String keyword);
+
 }

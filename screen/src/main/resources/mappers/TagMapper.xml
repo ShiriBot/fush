@@ -34,5 +34,9 @@
 	<select id="confirm" resultType="int">
 		select count(*) from tag WHERE name=#{tagName}
 	</select>
+	
+	<select id="tagSearch" resultType="Tag">
+		select * from tag where name like '%'||#{keyword}||'%' 
+	</select>
 
 </mapper>

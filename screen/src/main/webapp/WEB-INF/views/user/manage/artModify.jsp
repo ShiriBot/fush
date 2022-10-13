@@ -63,36 +63,23 @@
 								<textarea id="detail" class="form-control" rows="3">${info.detail}</textarea>
 							</div>
 						</div>
-						<div class="form-group row">
+						<!-- <div class="form-group row">
 							<label class="control-label col-md-3 col-sm-3 ">
 								연재처
 								<span class="badge badge-primary" data-field="platform">수정</span>
 							</label>
 							<div class="col-md-9 col-sm-9 ">
 								<select id="platform" class="form-control" >
-									<option <c:if test="${info.plaform=='네이버 웹툰'}">selected</c:if>>네이버 웹툰</option>
-									<option <c:if test="${info.plaform=='카카오 웹툰'}">selected</c:if>>카카오 웹툰</option>
-									<option <c:if test="${info.plaform=='레진코믹스'}">selected</c:if>>레진코믹스</option>
 								</select>
 							</div>
-						</div>
+						</div> -->
 						<div class="control-group row">
-							<label class="control-label col-md-3 col-sm-3 ">작품 태그 관리</label>
+							<label class="control-label col-md-3 col-sm-3 ">작품 태그 관리(구현중)</label>
 							<div class="col-md-9 col-sm-9 ">
 								<input id="tags_1" type="text" class="tags form-control" value="social, adverts, sales" data-tagsinput-init="true" style="display: none;">
-								<div id="artTag" class="tagsinput" style="width: auto; min-height: 100px; height: 100px;">
-									<c:forEach items="${info.tag}" var="tag">
-										<span class="tag">
-											<span>${tag.name}&nbsp;&nbsp;</span>
-											<a href="#" title="Removing tag">x</a>
-										</span>
-									</c:forEach>
-									<div id="tags_1_addTag">
-										<input id="tags_1_tag" value="" placeholder="add a tag" style="color: rgb(102, 102, 102); width: 72px;">
-									</div>
-									<div class="tags_clear"></div>
-								</div>
-								<div id="suggestions-container" style="position: relative; float: left; width: 250px; margin: 10px;"></div>
+								<div id="artTag" class="tagsinput" style="width: auto; min-height: 100px; height: 100px;"></div>
+								
+								<!-- <div id="suggestions-container" style="position: relative; float: left; width: 250px; margin: 10px;"></div> -->
 							</div>
 						</div>
 						<!-- <div class="ln_solid"></div>
@@ -252,6 +239,29 @@ $(document).ready(function(){
 		}
 	});
 	
+	$('#artTag').on('propertychange change keyup paste input','#tags_1_tag',function(e){
+		console.log($('#artTag').find('.dropdown-menu'));
+		$('#artTag').find('.dropdown-menu *').remove();
+		if(e.target.value==''){
+		}else{
+			$.ajax({
+	 			type:'get',
+	 			url:'/adminRest/tagSearch/'+e.target.value,
+	 			contentType : 'application/json; charset=utf-8',
+	 			success : function(result){
+	 				for(var i=0; i<result.length; i++){
+		 				$('#artTag').find('.dropdown-menu').append(
+							$('<li>').text(result[i].name).attr({'key':result[i].seqno}).addClass('dropdown-item')
+						);	
+	 				}
+	 			},
+	 			error : function(error){
+	 				console.log("error:", error);
+	 			}
+	 		});
+		}
+	});
+	
 	function showInfo(){
 			console.log('showInfo called... seqno:'+seqno);
 			//console.log('showInfo seqno:'+seqno);
@@ -262,7 +272,7 @@ $(document).ready(function(){
 			artName.value=info.name;
 			author.value=info.author;
 			detail.innerHTML=info.detail;
-			str='';
+			/* str='';
 			var platformList = ['네이버웹툰','카카오웹툰','레진코믹스'];
 			//console.log('platformList:'+platformList);
 			//console.log('platformList.lenth:'+platformList.length);
@@ -275,13 +285,13 @@ $(document).ready(function(){
 				}
 				str+='<option '+isSelected+'>'+platformList[i]+'</option>';
 			}
-			platform.innerHTML=str;
+			platform.innerHTML=str; */
 			
 			str='';
 			for(var i=0; i<info.tag.length;i++){
 				str+='<span class="tag"><span>'+info.tag[i].name+'&nbsp;&nbsp;</span><a href="#" title="Removing tag">x</a></span>';
 			}
-			str+='<div id="tags_1_addTag"><input id="tags_1_tag" value="" placeholder="add a tag" style="color: rgb(102, 102, 102); width: 72px;"></div>';
+			str+='<div id="tags_1_addTag"><input id="tags_1_tag" value="" placeholder="add a tag" style="color: rgb(102, 102, 102); width: 72px;"><ul class="dropdown-menu"></ul></div>';
 			str+='<div class="tags_clear"></div>';
 			
 			artTag.innerHTML=str;

@@ -131,4 +131,10 @@ public class ManageRestController {
 		return artworkService.modify(key)==1? new ResponseEntity<>("수정 완료", HttpStatus.OK) : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
+	@GetMapping(value="tagSearch/{keyword}",produces= {MediaType.APPLICATION_JSON_UTF8_VALUE})
+	public ResponseEntity<List<Tag>> tagSearch(@PathVariable("keyword") String keyword){
+		System.out.println("ManageRestController tagSearch keyword:"+keyword);
+		return new ResponseEntity<>(tagService.tagSearch(keyword), HttpStatus.OK);
+	}
+	
 }

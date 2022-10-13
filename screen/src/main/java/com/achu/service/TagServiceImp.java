@@ -86,4 +86,10 @@ public class TagServiceImp implements TagService {
 		log.info("tag confirm service called...");
 		return mapper.confirm(tagName);
 	}
+
+	@Override
+	public List<Tag> tagSearch(String keyword) {
+		log.info("tag tagSearch service called...");
+		return mapper.tagSearch(keyword);
+	}
 }

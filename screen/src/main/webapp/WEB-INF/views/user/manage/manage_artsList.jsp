@@ -313,8 +313,14 @@ $(document).ready(function(){
 		// window.open("open할 window", "자식창 이름", "팝업창 옵션");
 		openWin = window.open('/admin/artModify/'+seqno, '작품수정하기', 'width=1000, height=550, resizable = no, scrollbars = no');
 		//openWin.document.getElementById("name").value = seqno;
+		openWin.onbeforeunload=function (){
+			console.log('작동됨/?');
+			//showList(criteria);
+			//window.location.reload();
+		}
 	}
 
+	
 });
 
 </script>

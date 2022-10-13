@@ -18,6 +18,8 @@ public interface TagMapper {
 
 	int confirm(String tagName);
 
+	List<Tag> tagSearch(String keyword);
+
 	/*Integer insert(Map<String,Object> rs);*/
 
 }
