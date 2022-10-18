@@ -15,7 +15,7 @@ body {
 
  */
 
-.container {
+.loginContainer {
 	background-color: #fff;
 	border-radius: 10px;
   	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
@@ -27,30 +27,30 @@ body {
 	min-height: 480px;
 }
 
-.container h1 {
+.loginContainer h1 {
 	font-weight: bold;
 	margin: 0;
 }
 
-.container h2 {
+.loginContainer h2 {
 	text-align: center;
 }
 
-.container p {
+.loginContainer p {
 	font-size: 14px;
 	font-weight: 100;
 	line-height: 20px;
 	margin: 20px 0 30px;
 }
 
-.container a {
+.loginContainer a {
 	color: #333;
 	font-size: 14px;
 	text-decoration: none;
 	margin: 15px 0;
 }
 
-.container button {
+.loginContainer button {
 	border-radius: 20px;
 	border: 1px solid var(--primary-color);
 	background-color: var(--secondary-color);
@@ -62,16 +62,16 @@ body {
 	cursor: pointer;
 }
 
-.container button:hover {
+.loginContainer button:hover {
 	transform: scale(1.05);
 }
 
-.container button.signup_btn {
+.loginContainer button.signup_btn {
 	background-color: transparent;
 	border-color: #FFFFFF;
 }
 
-.container form {
+.loginContainer form {
 	background-color: #FFFFFF;
 	display: flex;
 	align-items: center;
@@ -82,7 +82,7 @@ body {
 	text-align: center;
 }
 
-.container input {
+.loginContainer input {
 	background-color: #EDEDEE;
 	border: none;
 	padding: 12px 15px;

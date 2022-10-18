@@ -52,7 +52,7 @@
 				</li>
 <% if(session.getAttribute("sess_id")==null) {%>
 				<li class="nav-item">
-					<a class="nav-link primary" href="goLogin">
+					<a class="nav-link primary" href="/goLogin">
 					로그인
 					</a>
 				</li>
@@ -63,7 +63,7 @@
 				</li>
 <% } else{ %>
 				<li class="nav-item">
-					<a class="nav-link primary"  href="logout" id="logout">
+					<a class="nav-link primary"  href="/logout" id="logout">
 						로그아웃
 					</a>
 				</li>

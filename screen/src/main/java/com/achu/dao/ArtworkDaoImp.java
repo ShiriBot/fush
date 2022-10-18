@@ -172,6 +172,7 @@ public class ArtworkDaoImp implements ArtworkDao {
 				Artwork artList = new Artwork();
 				artList.setSeqno(rs.getString("seqno"));
 				artList.setName(rs.getString("name"));
+				artList.setImageRoute(rs.getString("image_route"));
 				artwork.add(artList);
 			}
 			for(int i =0; i < artwork.size(); i++) {

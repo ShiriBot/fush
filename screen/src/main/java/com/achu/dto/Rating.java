@@ -2,20 +2,21 @@ package com.achu.dto;
 
 public class Rating {
 	private String seqno;
-	private int value;
+	private double value;
 	private String id;
 	private String wdate;
 	private String artSeqno;
+	
 	public String getSeqno() {
 		return seqno;
 	}
 	public void setSeqno(String seqno) {
 		this.seqno = seqno;
 	}
-	public int getValue() {
+	public double getValue() {
 		return value;
 	}
-	public void setValue(int value) {
+	public void setValue(double value) {
 		this.value = value;
 	}
 	public String getId() {
@@ -33,8 +34,8 @@ public class Rating {
 	public String getArtSeqno() {
 		return artSeqno;
 	}
-	public void setArtSeqno(String artSeqno) {
-		this.artSeqno = artSeqno;
+	public void setArtSeqno(String art_seqno) {
+		this.artSeqno = art_seqno;
 	} 
 	
 }

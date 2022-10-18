@@ -138,6 +138,28 @@
 	min-height: 480px;
 	padding-left : 5%;
 }
+
+.ratingTitle  a{
+	text-decoration-line: none;
+	color: black;
+}
+.ratingTitle  a:hover {
+    color: black;
+    background-color: transparent;
+    text-decoration: none;
+}
+.ratingTitle  a:visited {
+	text-decoration-line: none;
+	color: inherit;
+}
+.ratingTitle  a:active {
+    color: black;
+    /* background-color: transparent; */
+    text-decoration: none;
+}
+
+
+
 /* 별점 다시짬 codepen에서 퍼옴 https://codepen.io/andreacrawford/pen/NvqJXW */
 /* use display:inline-flex to prevent whitespace issues. alternatively, you can put all the children of .rating-group on a single line */
   .rating-group {
@@ -160,7 +182,7 @@
     cursor: pointer;
     /* if you change the left/right padding, update the margin-right property of .rating__label--half as well. */
     padding: 0 0.1em;
-    font-size: 2rem;
+    font-size: 3rem;
   }
 
   /* add padding and positioning to half star labels */

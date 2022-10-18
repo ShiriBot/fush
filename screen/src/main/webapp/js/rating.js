@@ -17,14 +17,14 @@
 			}
 		});
 	}
-	function rating(val,callback){
-		console.log("rating function  실행 " , val);
+	function rating(ratingStar,callback){
+		console.log("rating function  실행 " , ratingStar);
 		$.ajax({
-			type : 'POST',
-			url : '/ratingRest/val',
-			data : JSON.stringify(val),
-			  contentType : 'application/json; charset=utf-8',
-			  success :function(result, status, xhr){
+			type : 'post',
+			url : '/ratingRest/starVal',
+			data : JSON.stringify(ratingStar),
+			contentType : 'application/json; charset=utf-8',
+			success :function(result, status, xhr){
 				  if(callback) {
 					  callback(result);
 				  }
@@ -35,5 +35,6 @@
 				 }
 		});
 	}
-	return {list : list};
+	return {list : list,
+		rating : rating};
 })();

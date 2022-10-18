@@ -1,9 +1,9 @@
 package com.achu.mapper;
 
-import com.achu.dto.Artwork;
+import com.achu.dto.Rating;
 
 public interface RatingMapper {
-	public int ratingReg(int vaule);
+	public int ratingReg(Rating vaule);
 	
 	
 }

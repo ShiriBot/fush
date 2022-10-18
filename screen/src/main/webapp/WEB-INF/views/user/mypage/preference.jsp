@@ -24,7 +24,7 @@
 			<input type="hidden" name ="chartData" value="${chart.cnt }">
 			${chart.cnt }
 			</c:forEach>
-			<h1 class="oneline">user2님의 웹툰취향 분석	</h1>
+			<h1 class="oneline"><%=(String)session.getAttribute("sess_name")%>님의 웹툰취향 분석	</h1>
 		
 			<h3>나의 평가 현황</h3>
 				
@@ -107,7 +107,7 @@
 				<c:forEach items="${Platform}" var="platform">
 					<div class="divideBoard">
 						<img src="">
-						<span>${platform.plaform}</span>
+						<span>${platform.platform}</span>
 						<div class="webtoonCount">${platform.cnt}</div>
 					</div> 
 				</c:forEach>

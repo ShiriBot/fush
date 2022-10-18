@@ -28,6 +28,7 @@
 </div>
  -->
 <!-- 잘가 jstl아 -->
+<div class="container">
  <div class="row"> 
 	<nav class="navbar navbar-expand-lg navbar-light bg-white" style="border: 1px solid #d8d8df">
 	    <span class="navbar-brand">장르</span>
@@ -50,7 +51,7 @@
 			        	<ul class="dropdown-menu dropdown-menu-white tagList"  aria-labelledby="navbarDarkDropdownMenuLink">
 			    	      	<c:forEach items="${searchList}" var="tagName">  
 				    	      	 <c:if test="${tagName.midSeq eq midSeq && tagName.mid ne null}">
-				    	      	  	<li><button class="dropdown-item" name="tagname" value="${tagName.seqno}"><span>${tagName.name}</span></button></li>
+				    	      	  	<li><button class="dropdown-item" name="tagname" value="${tagName.name}"><span>${tagName.name}</span></button></li>
 				    	      	 </c:if>
 			    	      	</c:forEach>
 			    	    </ul>
@@ -179,7 +180,7 @@
 					<span>작가:</span>${artlist.author}
 				</div>
 				<div class ="platformDetail">
-					<span>연재처:</span>${artlist.platform}
+					<span>연재처:</span>
 				</div>
 				<div class ="webtoonDetail">
 				${artlist.detail }
@@ -204,14 +205,14 @@
 	</div>
 	</c:forEach> 
 </div>
+</div>
 <script type="text/javascript" src="/js/searchDetail.js"></script>
 <script>
 $(document).ready(function(){
 var searchField = $("#detailSearchBar");
 var searchBoard = $(".searchBoard");
 var keyword = searchField.find("input[name='searchBar']");
-var tagSeqno = $(".dropdown-item").val();
-/* console.log("키워드 val", keyword.val()); */
+console.log("키워드 val", keyword.val());
 showList();
 	
 	$("#searchSubmit").on("click",function(key){
@@ -220,14 +221,14 @@ showList();
 	
 		function showList(){
 			searchService.getList(keyword.val(),function(list){
-				/* console.log("겟리스트 시작", keyword.val()); */
+				console.log("겟리스트 시작", keyword.val());
 				if(list == null || list.length==0){
 					$(".searchBoard").html("검색 결과가 없습니다");
 					return;
 					} 
 				var str = "";
 				for(var i = 0, len=list.length || 0; i<len; i++){
-					/* console.log("리스트디버깅 이름: " + list[i].name); */
+					console.log("리스트디버깅 이름: " + list[i].name);
 					str+="<div id='searchResult'> <div class='row'>"
 					str+="<div class='col' id='artResult'>"
 					str+="<div class='image'><img src='"+ list[i].imageRoute +"'></div>"
@@ -251,44 +252,6 @@ showList();
 		       showList();
 	         }    
 	     }); 
-		/* 태그리스트 */
-		/* var tag = $(".dropdown-item");
-		console.log("밖에서 tag값 찍히나 : ", tag)
-		getTagName();
-		function getTagName(){
-			for(var i = 0; i <= tag.length; i++){
-				console.log("for문으로 tag값 돌려보기 ", tag.val());
-				console.log("tag길이 ", tag.length);
-			};
-		}
-		 */
-		 function showTagList(){
-				searchService.getTagList({keyword:keyword.val(),seqno:seqno},function(list){
-					/* console.log("겟리스트 시작", keyword.val()); */
-					if(list == null || list.length==0){
-						$(".searchBoard").html("검색 결과가 없습니다");
-						return;
-						} 
-					var str = "";
-					for(var i = 0, len=list.length || 0; i<len; i++){
-						console.log("seqno :" , seqno);
-						 console.log("리스트디버깅 이름: " + list[i].name); 
-						str+="<div id='searchResult'> <div class='row'>"
-						str+="<div class='col' id='artResult'>"
-						str+="<div class='image'><img src='"+ list[i].imageRoute +"'></div>"
-						str+="<div class='webtoonName'>"+ list[i].name +"</div></div>"
-						str+="<div class='col'><div class ='authorDetail'>"
-						str+="<span>작가:</span>"+ list[i].author +"</div>"
-						str+="<div class ='platformDetail'><span>연재처:</span>"+list[i].plaform+"</div>"
-						str+="<div class ='webtoonDetail'>"+list[i].detail+"</div>"
-						str+="<div class ='genruDetail'><span>장르:</span></div>"
-						str+="<div class ='webtoonHashtag'><a href='#'>#전체 연령가 </a></div></div>"
-						str+="<div class='col'><div class='star'>"
-						str+="<h4>별점</h4> <h2>5.0/5.0</h2> <div>★★★★★</div></div></div>"
-						str += "</div></div>" 
-					} 
-					$(".searchBoard").html(str);
-				}) 
-			};
+		
 });
 </script>
