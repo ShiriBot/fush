@@ -74,7 +74,7 @@
 							</div>
 						</div> -->
 						<div class="control-group row">
-							<label class="control-label col-md-3 col-sm-3 ">작품 태그 관리(구현중)</label>
+							<label class="control-label col-md-3 col-sm-3 ">작품 태그 관리</label>
 							<div class="col-md-9 col-sm-9 ">
 								<input id="tags_1" type="text" class="tags form-control" value="social, adverts, sales" data-tagsinput-init="true" style="display: none;">
 								<div id="artTag" class="tagsinput" style="width: auto; min-height: 100px; height: 100px;"></div>
@@ -268,37 +268,41 @@ $(document).ready(function(){
 		//console.log(e.target.getAttribute('key'));
 		var tagSeq = e.target.getAttribute('data-tagSeq');
 		//console.log(tagSeq);
-		$.ajax({
- 			type:'get',
- 			url:'/adminRest/artTagInsert/'+seqno+'/'+tagSeq,
- 			contentType : 'application/json; charset=utf-8',
- 			dataType: 'text',
- 			success : function(result){
- 				alert(result);
- 				showInfo();
- 			},
- 			error : function(error){
- 				console.log("error:", error);
- 			}
- 		});
+		if(confirm('수정하시겠습니까?')){
+			$.ajax({
+	 			type:'get',
+	 			url:'/adminRest/artTagInsert/'+seqno+'/'+tagSeq,
+	 			contentType : 'application/json; charset=utf-8',
+	 			dataType: 'text',
+	 			success : function(result){
+	 				alert(result);
+	 				showInfo();
+	 			},
+	 			error : function(error){
+	 				console.log("error:", error);
+	 			}
+	 		});
+		}
  	});
 	
 	$('#artTag').on('click', 'a', function(e){
 		//console.log('태그 삭제 아이콘 클릭 확인');
 		var tagSeq = e.target.getAttribute('data-tagSeq');
-		$.ajax({
- 			type:'get',
- 			url:'/adminRest/artTagDelete/'+seqno+'/'+tagSeq,
- 			contentType : 'application/json; charset=utf-8',
- 			dataType: 'text',
- 			success : function(result){
- 				alert(result);
- 				showInfo();
- 			},
- 			error : function(error){
- 				console.log("error:", error);
- 			}
- 		});
+		if(confirm('수정하시겠습니까?')){
+			$.ajax({
+	 			type:'get',
+	 			url:'/adminRest/artTagDelete/'+seqno+'/'+tagSeq,
+	 			contentType : 'application/json; charset=utf-8',
+	 			dataType: 'text',
+	 			success : function(result){
+	 				alert(result);
+	 				showInfo();
+	 			},
+	 			error : function(error){
+	 				console.log("error:", error);
+	 			}
+	 		});
+		}
 	});
 	
 	function showInfo(){
