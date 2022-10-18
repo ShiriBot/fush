@@ -18,7 +18,11 @@ public interface TagMapper {
 
 	int confirm(String tagName);
 
-	List<Tag> tagSearch(String keyword);
+	List<Tag> tagSearch(@Param("seqno") String seqno, @Param("keyword") String keyword);
+
+	int artTagInsert(@Param("seqno") String seqno, @Param("tagSeq") String tagSeq);
+
+	int artTagDelete(@Param("seqno") String seqno, @Param("tagSeq") String tagSeq);
 
 	/*Integer insert(Map<String,Object> rs);*/
 

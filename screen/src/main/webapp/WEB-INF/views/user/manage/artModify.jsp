@@ -36,31 +36,31 @@
 						</div>
 						</div>
 					<div class="col">
-						<div class="form-group row ">
+						<div class="form-group row" style="position: relative;">
 							<label class="control-label col-md-3 col-sm-3 ">
 								작품명
-								<span class="badge badge-primary" data-field="artName">수정</span>
 							</label>
 							<div class="col-md-9 col-sm-9 ">
 								<input id="artName" type="text" class="form-control" value="${info.name}">
+								<span class="badge badge-primary" data-field="artName">수정</span>
 							</div>
 						</div>
-						<div class="form-group row ">
+						<div class="form-group row " style="position: relative;">
 							<label class="control-label col-md-3 col-sm-3 ">
 								작가명
-								<span class="badge badge-primary" data-field="author">수정</span>
 							</label>
 							<div class="col-md-9 col-sm-9 ">
 								<input id="author" type="text" class="form-control" value="${info.author}">
+								<span class="badge badge-primary" data-field="author">수정</span>
 							</div>
 						</div>
-						<div class="form-group row">
+						<div class="form-group row" style="position: relative;">
 							<label class="control-label col-md-3 col-sm-3 ">
 								작품설명
-								<span class="badge badge-primary" data-field="detail">수정</span>
 							</label>
 							<div class="col-md-9 col-sm-9 ">
 								<textarea id="detail" class="form-control" rows="3">${info.detail}</textarea>
+								<span class="badge badge-primary" data-field="detail">수정</span>
 							</div>
 						</div>
 						<!-- <div class="form-group row">
@@ -213,7 +213,7 @@ $(document).ready(function(){
 		});
 	});
 	
-	$('.control-label').on('click','.badge-primary',function(e){
+	$('.form-group').on('click','.badge-primary',function(e){
 		console.log('modify badge click');
 		//console.log($(this).data('field'));
 		var field = $(this).data('field');
@@ -240,19 +240,21 @@ $(document).ready(function(){
 	});
 	
 	$('#artTag').on('propertychange change keyup paste input','#tags_1_tag',function(e){
-		console.log($('#artTag').find('.dropdown-menu'));
+		//console.log($('#artTag').find('.dropdown-menu'));
 		$('#artTag').find('.dropdown-menu *').remove();
 		if(e.target.value==''){
+			$('#artTag').find('.dropdown-menu').css('display','none');
+			//console.log('빈값 인식 안함?');
 		}else{
 			$.ajax({
 	 			type:'get',
-	 			url:'/adminRest/tagSearch/'+e.target.value,
+	 			url:'/adminRest/tagSearch/'+seqno+'/'+e.target.value,
 	 			contentType : 'application/json; charset=utf-8',
 	 			success : function(result){
 	 				for(var i=0; i<result.length; i++){
 		 				$('#artTag').find('.dropdown-menu').append(
-							$('<li>').text(result[i].name).attr({'key':result[i].seqno}).addClass('dropdown-item')
-						);	
+							$('<li>').text(result[i].name).attr('data-tagSeq',result[i].seqno).addClass('dropdown-item')
+						).css('display','block');	
 	 				}
 	 			},
 	 			error : function(error){
@@ -260,6 +262,43 @@ $(document).ready(function(){
 	 			}
 	 		});
 		}
+	});
+	
+	$('#artTag').on('click', '.dropdown-item', function(e){
+		//console.log(e.target.getAttribute('key'));
+		var tagSeq = e.target.getAttribute('data-tagSeq');
+		//console.log(tagSeq);
+		$.ajax({
+ 			type:'get',
+ 			url:'/adminRest/artTagInsert/'+seqno+'/'+tagSeq,
+ 			contentType : 'application/json; charset=utf-8',
+ 			dataType: 'text',
+ 			success : function(result){
+ 				alert(result);
+ 				showInfo();
+ 			},
+ 			error : function(error){
+ 				console.log("error:", error);
+ 			}
+ 		});
+ 	});
+	
+	$('#artTag').on('click', 'a', function(e){
+		//console.log('태그 삭제 아이콘 클릭 확인');
+		var tagSeq = e.target.getAttribute('data-tagSeq');
+		$.ajax({
+ 			type:'get',
+ 			url:'/adminRest/artTagDelete/'+seqno+'/'+tagSeq,
+ 			contentType : 'application/json; charset=utf-8',
+ 			dataType: 'text',
+ 			success : function(result){
+ 				alert(result);
+ 				showInfo();
+ 			},
+ 			error : function(error){
+ 				console.log("error:", error);
+ 			}
+ 		});
 	});
 	
 	function showInfo(){
@@ -289,7 +328,7 @@ $(document).ready(function(){
 			
 			str='';
 			for(var i=0; i<info.tag.length;i++){
-				str+='<span class="tag"><span>'+info.tag[i].name+'&nbsp;&nbsp;</span><a href="#" title="Removing tag">x</a></span>';
+				str+='<span class="tag"><span>'+info.tag[i].name+'&nbsp;&nbsp;</span><a href="#" data-tagSeq='+info.tag[i].seqno+' title="Removing tag">x</a></span>';
 			}
 			str+='<div id="tags_1_addTag"><input id="tags_1_tag" value="" placeholder="add a tag" style="color: rgb(102, 102, 102); width: 72px;"><ul class="dropdown-menu"></ul></div>';
 			str+='<div class="tags_clear"></div>';

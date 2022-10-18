@@ -17,12 +17,15 @@
 	<insert id="insert"> 
 		INSERT INTO tag VALUES (tag_seqno.NEXTVAL,#{tagName})
 	</insert>
+	
 	<select id="list" resultType="Tag">
 		select top_seq,top,mid_seq,mid,seqno,name from v_tag_info
 	</select>
+	
 	<update id="edit">
 		UPDATE tag SET name=#{newName} WHERE seqno=#{seqno}
 	</update>
+	
 	<delete id="remove">
 	{CALL
 		BEGIN
@@ -31,12 +34,26 @@
   		END
   	}
 	</delete>
+	
 	<select id="confirm" resultType="int">
 		select count(*) from tag WHERE name=#{tagName}
 	</select>
 	
 	<select id="tagSearch" resultType="Tag">
-		select * from tag where name like '%'||#{keyword}||'%' 
+		select * 
+		from tag 
+		where name like '%'||#{keyword}||'%' 
+			and seqno not in (
+				select tag_seqno from art_tag_value where art_seqno=#{seqno}
+				)
 	</select>
+	
+	<insert id="artTagInsert" >
+		INSERT INTO art_tag_value VALUES (art_tag_seqno.NEXTVAL, #{seqno}, #{tagSeq})
+	</insert>
+	
+	<delete id="artTagDelete">
+		DELETE FROM art_tag_value WHERE art_seqno=#{seqno} and tag_seqno=#{tagSeq}
+	</delete>
 
 </mapper>

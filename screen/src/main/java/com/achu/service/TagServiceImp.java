@@ -88,8 +88,20 @@ public class TagServiceImp implements TagService {
 	}
 
 	@Override
-	public List<Tag> tagSearch(String keyword) {
+	public List<Tag> tagSearch(String seqno, String keyword) {
 		log.info("tag tagSearch service called...");
-		return mapper.tagSearch(keyword);
+		return mapper.tagSearch(seqno, keyword);
+	}
+
+	@Override
+	public int artTagInsert(String seqno, String tagSeq) {
+		log.info("tag tagInsert service called...");
+		return mapper.artTagInsert(seqno, tagSeq);
+	}
+
+	@Override
+	public int artTagDelete(String seqno, String tagSeq) {
+		log.info("tag tagDelete service called...");
+		return mapper.artTagDelete(seqno, tagSeq);
 	}
 }

@@ -200,6 +200,12 @@ table.dataTable.dtr-inline.collapsed>tbody>.parent>td:first-child:before, table.
     margin-bottom: 10px;
 }
 
+.form-group .badge-primary {
+	position: absolute;
+	right: 5%;
+	top: 30%;
+}
+
 .tagsinput {
     border: 1px solid #CCC;
     background: #FFF;

@@ -131,10 +131,23 @@ public class ManageRestController {
 		return artworkService.modify(key)==1? new ResponseEntity<>("수정 완료", HttpStatus.OK) : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
-	@GetMapping(value="tagSearch/{keyword}",produces= {MediaType.APPLICATION_JSON_UTF8_VALUE})
-	public ResponseEntity<List<Tag>> tagSearch(@PathVariable("keyword") String keyword){
+	@GetMapping(value="tagSearch/{seqno}/{keyword}",produces= {MediaType.APPLICATION_JSON_UTF8_VALUE})
+	public ResponseEntity<List<Tag>> tagSearch(@PathVariable("seqno") String seqno ,@PathVariable("keyword") String keyword){
 		System.out.println("ManageRestController tagSearch keyword:"+keyword);
-		return new ResponseEntity<>(tagService.tagSearch(keyword), HttpStatus.OK);
+		return new ResponseEntity<>(tagService.tagSearch(seqno,keyword), HttpStatus.OK);
+	}
+	
+	@GetMapping(value="artTagInsert/{seqno}/{tagSeq}",produces= {MediaType.APPLICATION_JSON_UTF8_VALUE})
+	public ResponseEntity<String> artTagInsert(@PathVariable("seqno") String seqno ,@PathVariable("tagSeq") String tagSeq){
+		System.out.println("ManageRestController tagInsert called seqno:"+seqno+", tagSeq:"+tagSeq);
+		return tagService.artTagInsert(seqno,tagSeq)==1? new ResponseEntity<>("추가완료", HttpStatus.OK) :new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	
+	
+	@GetMapping(value="artTagDelete/{seqno}/{tagSeq}",produces= {MediaType.APPLICATION_JSON_UTF8_VALUE})
+	public ResponseEntity<String> artTagDelete(@PathVariable("seqno") String seqno ,@PathVariable("tagSeq") String tagSeq){
+		System.out.println("ManageRestController tagInsert called seqno:"+seqno+", tagSeq:"+tagSeq);
+		return tagService.artTagDelete(seqno,tagSeq)==1? new ResponseEntity<>("삭제완료", HttpStatus.OK) :new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
 }

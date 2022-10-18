@@ -299,6 +299,7 @@ public class ArtworkDaoImp implements ArtworkDao {
 				a.setPlatform(rs.getString("platform"));
 				
 				ta.setName(rs.getString("tag_name"));
+				ta.setSeqno(rs.getString("tag_seqno"));
 				tag.add(ta);
 				
 				a.setTag(tag);

@@ -24,6 +24,10 @@ public interface TagService {
 
 	public int confirm(String tagName);
 
-	public List<Tag> tagSearch(String keyword);
+	public List<Tag> tagSearch(String seqno, String keyword);
+
+	public int artTagInsert(String seqno, String tagSeq);
+
+	public int artTagDelete(String seqno, String tagSeq);
 
 }
