@@ -30,7 +30,7 @@ public interface ArtworkService {
 
 	public List<Artwork> Restlist();
 
-	public List<Artwork> searchList(String keyword);
+	public List<Artwork> searchList(String keyword,String seqno);
 
 	public int setImageLink(String seqno, String imageLink);
 

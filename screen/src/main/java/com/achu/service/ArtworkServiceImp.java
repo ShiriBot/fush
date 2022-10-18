@@ -67,8 +67,8 @@ public class ArtworkServiceImp implements ArtworkService {
 		return searchMapper.getSearchList();
 	}
 	@Override
-	public List<Artwork> searchList(String keyword) {
-		return searchMapper.searchResult(keyword);
+	public List<Artwork> searchList(String keyword,String seqno) {
+		return searchMapper.searchResult(keyword,seqno);
 	}
 	@Override
 	public int setImageLink(String seqno, String imageLink) {

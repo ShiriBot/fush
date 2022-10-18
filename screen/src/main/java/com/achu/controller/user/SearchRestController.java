@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.achu.dto.Artwork;
 import com.achu.dto.Criteria;
+import com.achu.dto.Tag;
 import com.achu.service.ArtworkService;
 
 @RestController
@@ -29,15 +30,25 @@ public class SearchRestController {
 	ArtworkService artworkService;
 	
 	
-	
-	@GetMapping(value="search/{keyword}",
+	//검색어로 검색 
+	@GetMapping(value="search/{keyword}/{seqno}",
 			produces = {MediaType.APPLICATION_XML_VALUE,
 					MediaType.APPLICATION_JSON_UTF8_VALUE})
-	public ResponseEntity<List<Artwork>> search(@PathVariable("keyword") String keyword){
-		System.out.println("서치 컨트롤러 검색어 기능 구현 디버깅" + keyword);
+	public ResponseEntity<List<Artwork>> search(@PathVariable("keyword") String keyword,
+												@PathVariable String seqno){
+		System.out.println("서치 컨트롤러 검색어 기능 구현 디버깅 keyword" + keyword);
+		System.out.println("서치 컨트롤러 검색어 기능 구현 디버깅 seqno" + seqno);
 		
-		return new ResponseEntity<>(artworkService.searchList(keyword),HttpStatus.OK);
+		return new ResponseEntity<>(artworkService.searchList(keyword,seqno),HttpStatus.OK);
 	}
+	// 태그로 검색
+//	@GetMapping(value="tag/{tagName}",
+//			produces= {MediaType.APPLICATION_XML_VALUE,
+//					MediaType.APPLICATION_JSON_VALUE})
+//	public ResponseEntity<List<Artwork>> searchTag(@PathVariable String tag){
+//		System.out.println("searchTag 컨트롤러 실행 + tag" + tag);
+//		return new ResponseEntity<>(artworkService.searchList(tag),HttpStatus.OK);
+//	}
 	
 	@GetMapping(value ="list",
 			produces = {MediaType.APPLICATION_XML_VALUE,

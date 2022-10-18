@@ -9,5 +9,6 @@ import com.achu.dto.Artwork;
 public interface SearchMapper {
 	public List<Artwork> getSearchList();
 	
-	public List<Artwork> searchResult(@Param("name") String name);
+	public List<Artwork> searchResult(@Param("name") String name,
+									  @Param("seqno") String seqno);
 }

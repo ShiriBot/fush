@@ -48,7 +48,7 @@ public class ReplyRestController {
 		return service.modify(vo) == 1 ? new ResponseEntity<>("댓글 수정 완료",HttpStatus.OK) : 
 			new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
-	
+	//댓글등록
 	@PostMapping(value="add",
 			 consumes = "application/json",
 			 produces= "text/plain; charset=utf-8") // consumes 요청할때 데이터 요청 방식

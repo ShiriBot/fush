@@ -6,7 +6,7 @@ console.log("Search Detail Module start")
 
 var searchService = (function(){
 	
-	function getList(keyword,callback, error) {
+	/*function getList(keyword,callback, error) {
 		 console.log("getList실행",keyword);
 			$.getJSON("/searchDetail/search/"+keyword+".json",function(result){
 				 if(callback) {
@@ -18,8 +18,8 @@ var searchService = (function(){
 					error();
 				}
 			 });
-		 }
-/*	 function getList(param,callback, error) {
+		 }*/
+	 function getList(param,callback, error) {
 		 var keyword = param.keyword;
 		 var tagName = param.tagName;
 		 console.log("js 파일 getList실행",keyword);
@@ -36,7 +36,7 @@ var searchService = (function(){
 			 if(error) {
 				 error();
 			 }
-		 });*
-	 }*/
+		 });
+	 }
 	 return { getList: getList};
 })();

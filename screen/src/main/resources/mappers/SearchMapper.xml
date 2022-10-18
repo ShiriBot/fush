@@ -9,7 +9,10 @@
 	<select  id ="searchResult" resultType="Artwork">
 		SELECT distinct name ,seqno,author, admit,platform,rest,week,detail,url,avg_rating,image_route,cnt 
 		FROM v_art_info_tag
-		WHERE name LIKE  '%'||#{name, jdbcType=VARCHAR}||'%'
+		WHERE name LIKE  '%'||#{name, jdbcType=VARCHAR}||'%' 
+		<if test="#{seqno}!= null">
+			and tag_seqno = #{seqno}
+		</if>
         
 		
 	</select>

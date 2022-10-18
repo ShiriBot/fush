@@ -3,7 +3,6 @@ pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <div class="ratingContainer">
-
 </div>
 <!-- 댓글 모달 -->
 <div id="reply">
@@ -19,14 +18,14 @@ pageEncoding="UTF-8"%>
 </div>
 <!-- 스크립트 -->
 <script type="text/javascript" src="/js/rating.js"></script>
+<script type="text/javascript" src="/js/reply.js"></script>
 <script>
 var id = '<c:out value="${sess_id}"/>'
-var seqno = '<c:out value="${art.seqno}"/>';
 var modal = $("#reply");
+var modalVal = modal.find("input[name='content']");
 $(document).ready(function(){
 showRatingList();
 modal.hide();
-
 	/*$(".ratingContainer").on("click",function(e){
 	 var ch = $(this).parent().parent().parent().parent(".row").val(); 
 	 var ch = $(this).children().children().children().children(".ch").val(); 
@@ -47,7 +46,8 @@ modal.hide();
 				/* console.log("list.name : ",list[i].name); */
 				str+='<div class="row align-items-start mt-5">'
 					str+='<div class="ratingImg col-2">'
-						str+='<img src="'+ list[i].imageRoute +'">'
+						str+='<a href="/artDetail/detail?seqno='+list[i].seqno+'"><img src="'+ list[i].imageRoute +'"></a>'
+					str+='<input type="hidden" id = "tagSeq" value="'+list[i].seqno+'">'
 					str+='</div>'
 					str+='<div class="tests col-10">'
 						str+='<div class="ratingReply justify-content-start">'
@@ -97,7 +97,23 @@ modal.hide();
 		/* var button = e.target.value; */
 		modal.show();
 	});
-
+	/* 댓글 달기 누를경우*/
+	$("#modifyConfig").on("click",function(){
+		var comment = document.getElementById("comment").value;
+		var rseqno = document.getElementById("tagSeq").value;
+		var replyadd = {
+	   			art_seqno : rseqno , 
+	   			id : id ,
+	   			content : comment
+	   		};
+		console.log("rseqno",rseqno);
+		console.log("id",id);
+		console.log("comment",comment);
+		console.log("replyadd",replyadd);
+		replyService.add(replyadd);
+		alert("댓글이 등록되었습니다. 해당 작품 페이지로 이동합니다.");
+		window.location.href ="/artDetail/detail?seqno="+rseqno;
+	});
 	 <!-- 모달 닫기 버튼 -->
      $("#modalColseBtn").on("click",function(e){
 
