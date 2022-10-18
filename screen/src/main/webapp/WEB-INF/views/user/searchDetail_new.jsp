@@ -235,7 +235,7 @@ showList();
 					str+="<div class='webtoonName'>"+ list[i].name +"</div></div>"
 					str+="<div class='col'><div class ='authorDetail'>"
 					str+="<span>작가:</span>"+ list[i].author +"</div>"
-					str+="<div class ='platformDetail'><span>연재처:</span>"+list[i].plaform+"</div>"
+					str+="<div class ='platformDetail'><span>연재처:</span>"+list[i].platform+"</div>"
 					str+="<div class ='webtoonDetail'>"+list[i].detail+"</div>"
 					str+="<div class ='genruDetail'><span>장르:</span></div>"
 					str+="<div class ='webtoonHashtag'><a href='#'>#전체 연령가 </a></div></div>"
