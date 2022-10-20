@@ -5,17 +5,25 @@
 }
 
 .tag_top, .tag_mid, .drag-container{
-	display: inline-block;
+	/* display: inline-block;
 	border-top: 1px solid black;
-/* 	border-bottom: 1px solid black; */
-	font-size:15px;
+	border-bottom: 1px solid black;
+	font-size:15px; */
+}
+
+table {
+	
+} 
+
+th, td {
+}
+
+.top_tag, .mid_tag {
+	width:10%;
 }
 
 .tag{
-	color: #0067a3;
-	text-decoration:none;
-	margin-right:5px;
-	display:inline-block;
+	margin-top:5px;
 }
 
 .tag:before{

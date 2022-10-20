@@ -282,7 +282,7 @@
 					 })();
 					 
 					 		$(document).ready(function(){
-								console.log(tagService);	
+								//console.log(tagService);	
 								console.log('=============');	
 								console.log('tag get list');
 								var modal = $('#modal');
@@ -295,39 +295,126 @@
 										var str="";
 										var top="";
 										var mid="";
+										var rowNum=1;
 										//console.log(list.length);
+										str+='<div class="row"><table>';
+										str+='<colgroup><col class="top_tag"><col class="mid_tag"><col class="tag_name"></colgroup>';
+										str+='<thead><th>대분류</th><th>중분류</th><th>개별태그</th></thead><tbody>'
 										for(var i=0, len=list.length || 0; i<len ; i++){
 											//console.log(list[i]);
 											
 											if(mid != list[i].mid){
-												str+='<div class="row">';
-												if(top != list[i].top){
-													str+='<div class="tag_top col">'+list[i].top+'</div>';
-												}else{
-													str+='<div class="tag_top col" style="visibility:hidden"></div>';
-												}
+												rowNum+=1;
+												str+='<tr><td>'+(list[i].top==null? '미분류':list[i].top)+'</td>';
 												top=list[i].top;
-												if(top != list[i].mid){
-													str+='<div class="tag_mid col">'+list[i].mid+'</div>';
-												}
+												str+='<td>'+(list[i].mid==null? '미분류':list[i].mid)+'</td>';
 												mid=list[i].mid
-												str+='<div class="drag-container col-8">';
+												str+='<td class="drag-container">';
 												
 												for(var j=0, len=list.length || 0; j<len ; j++){
 													if(top == list[j].top && mid == list[j].mid){
-														str+='<div class="tag" draggable="true" data-tno="'+list[j].seqno+'" data-name="'+list[j].name+'">'+list[j].name ;
+														str+='<span class="tag"><span draggable="true" data-tno="'+list[j].seqno+'" data-name="'+list[j].name+'">'+list[j].name ;
 														str+='<a class="modifys" data-tno="'+list[j].seqno+'" data-name="'+list[j].name+'" style="display:none;"> <i class="fa fa-pen-to-square"></i></a>';
 														str+='<a class="deletes" data-tno="'+list[j].seqno+'" data-name="'+list[j].name+'" style="display:none;"> <i class="fa fa-circle-xmark"></i></a>';
-														str+='</div>';
+														str+='</span></span>';
 													}
 												}
-												str+='</div>';
-												str+='</div>';
+												str+='</td></tr>';
 											}
 										}
+										str+='</tbody></table></div>';
 										$('.tag_list').html(str);
+										//mergeTable('.tag_list',0);
+										$('.tag_list').rowspan(0);
+										for(var i=0; i<rowNum; i++){
+											$('.tag_list').colspan(i);
+										}
 									});
 								}//여기까지 showList
+								
+								$.fn.rowspan = function(colIdx, isStats) {
+									return this.each(function(){
+										var that;
+										$('tr', this).each(function(row) {
+											$('td:eq('+colIdx+')', this).filter(':visible').each(function(col) {
+												if ($(this).html() == $(that).html() && 
+														(!isStats || isStats && $(this).prev().html() == $(that).prev().html())) {
+													rowspan = $(that).attr("rowspan") || 1;
+													rowspan = Number(rowspan)+1;
+													
+													$(that).attr("rowspan",rowspan);
+													
+													// do your action for the colspan cell here
+													$(this).hide();
+													
+													// do your action for the old cell here
+													//$(this).remove(); 
+													
+												} else {
+													that = this;
+												}
+												// set the that if not already set
+												that = (that == null) ? this : that;
+											});
+										});
+									});
+								}; 
+								
+								$.fn.colspan = function(rowIdx) {
+								    return this.each(function(){
+								        
+								        var that;
+								        $('tr', this).filter(":eq("+rowIdx+")").each(function(row) {
+								            $(this).find('td').filter(':visible').each(function(col) {
+								                if ($(this).html() == $(that).html()) {
+								                    colspan = $(that).attr("colspan") || 1;
+								                    colspan = Number(colspan)+1;
+								                    
+								                    $(that).attr("colspan",colspan);
+								                    $(this).hide(); // .remove();
+								                } else {
+								                    that = this;
+								                }
+								                
+								                // set the that if not already set
+								                that = (that == null) ? this : that;
+								                
+								            });
+								        });
+								    });
+								}
+								
+								function mergeTable(target, index) {
+									var loop = null;
+									var start_idx = 0;  //최초 td테그의 인덱스를 담을 변수 입니다.
+									var add_num = 1;    //마지막 td 테그의 인덱스를 담을 변수 입니다.
+									$(target).find('tr').each(function (idx) {
+										var target_text = $(this).find('td').eq(index).text();
+										if (!loop) {  //최초 동작이면
+											loop = target_text;
+											start_idx = idx;
+										} else if (target_text == loop) {  //같은 열이 발견된 것 이라면
+											add_num++;
+											//같은열이긴 한데 근데 마지막이면
+											if (idx == $(target).find('tr').length - 1) {
+												$(target).find('tr').eq(start_idx).find('td').eq(index).attr("rowSpan", add_num).css('vertical-align', 'middle');
+												for (var i = start_idx + 1; i < start_idx + add_num; i++) {
+													$(target).find('tr').eq(i).find('td').eq(index).hide(); //hide로 변경
+												}
+											}
+										} else { //다른 텍스트가 발견된 것 이라면
+											if (add_num != 1) {//머지가 필요한 경우라면
+												$(target).find('tr').eq(start_idx).find('td').eq(index).attr("rowSpan", add_num).css('vertical-align', 'middle');
+												for (var i = start_idx + 1; i < start_idx + add_num; i++) {
+													$(target).find('tr').eq(i).find('td').eq(index).hide(); //hide로 변경
+												}
+											}
+											start_idx = idx;
+											loop = target_text;
+											add_num = 1;
+										}
+									});
+								}
 								
 								//태그 추가 시 중복체크
 								$('#insertTagName').on('propertychange change keyup paste input',function(e){

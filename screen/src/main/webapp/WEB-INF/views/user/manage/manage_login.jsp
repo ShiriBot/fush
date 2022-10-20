@@ -25,7 +25,7 @@
 </head>
 <body>
 <div class="login">
-<div class="container" style="width:900px;height:100%;">
+<div class="loginContainer" style="width:900px;height:100%;">
 	<div class="form sign-in-container">
 		<form method="post" action="/login?type=admin">
 			<h1>로그인</h1>
